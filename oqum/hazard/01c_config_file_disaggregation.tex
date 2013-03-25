@@ -1,0 +1,49 @@
+\subsubsection{Seismic hazard disaggregation}
+%
+In this section we describe the structure of the configutation 
+file to be used to complete a seismic hazard disaggregation. 
+Since only a few parts of the standard configuration file need to 
+be changed we'll use the description give in Section 
+\ref{sec:config_classical_PSHA} at page 
+\pageref{sec:config_classical_PSHA} as a reference.
+%
+\begin{itemize}
+%
+\item \textbf{Calculation type and model info}
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+[general]
+description = A demo OpenQuake-engine .ini file for PSHA disaggregation
+calculation_mode = disaggregation
+random_seed = 1024
+\end{Verbatim}
+The calculation mode parameter in this case is set as 
+\texttt{disaggregation}.
+%
+\item \textbf{Geometry of the area (or the sites) where hazard is computed}
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+[geometry]
+sites = 11.0 44.5
+
+
+\end{Verbatim}
+In the section it will be necessary to specify the geographic 
+coordinates of the site (or the sites) where the disaggregation
+will be performed.
+%
+\item \textbf{Disaggregation parameters}
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+[disaggregation]
+poes_disagg = 0.02, 0.1
+mag_bin_width = 1.0
+distance_bin_width = 25.0
+# decimal degrees
+coordinate_bin_width = 1.5
+num_epsilon_bins = 3
+\end{Verbatim}
+With the disaggregation settings above we'll disaggregate the intensity
+measure levels with 10\% and 2\% probability of exceedance in the
+\texttt{investigation\_time} defined in the ``Calculation configuration''
+section of the OpenQuake configuration file (see page 
+\pageref{sec:calculation_configuration}).
+
+\end{itemize}

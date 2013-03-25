@@ -1,0 +1,50 @@
+% -----------------------------------------------------------------------------
+\section{Demo 01 - Classical PSHA}
+
+% -----------------------------------------------------------------------------
+\section{Demo 02 - Classical PSHA: simple logic tree}
+This demo contains simple logic tree structures accounting for epistemic
+uncertainties in the seismic source and ground motion intensity models.
+
+The seismic source model incorporates epistemic uncertainty about the 
+value of the maximum magnitude of the magnitude-frequency distribution 
+used.
+%
+The ground motion intensity model includes uncertainty about the ground
+motion prediction equations to be used in the calculation of hazard.
+
+Given that the overall structure of the logic tree is not particularly
+complex and assuming that uncertainties are fully correlated we decide 
+to compute all the possible realisations of the logic tree by fixing 
+the \texttt{number\_\-of\_\-logic\_\-tree\_\-samples} parameter in the 
+configuration file to zero.
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\normalsize]
+[logic_tree]
+number_of_logic_tree_samples = 0
+\end{Verbatim}
+
+Let's now run the OpenQuake:
+\begin{Verbatim}[frame=single, fontsize=\normalsize]
+user@ubuntu:~/demos/classical_psha_simple_lt$ openquake \ 
+--rh job_1strike.ini 
+\end{Verbatim}
+
+This is the list of results that we get at the end of this calculation:
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\normalsize]
+Calculation 8 results:
+id | output_type | name
+5 | hazard_curve | hc-rlz-10
+6 | hazard_curve | hc-rlz-7
+7 | hazard_curve | hc-rlz-8
+8 | hazard_curve | hc-rlz-9
+9 | hazard_curve | hc-rlz-11
+10 | hazard_curve | hc-rlz-12
+11 | hazard_map | hazard-map(0.1)-PGA-rlz-10
+12 | hazard_map | hazard-map(0.1)-PGA-rlz-7
+13 | hazard_map | hazard-map(0.1)-PGA-rlz-8
+14 | hazard_map | hazard-map(0.1)-PGA-rlz-9
+15 | hazard_map | hazard-map(0.1)-PGA-rlz-11
+16 | hazard_map | hazard-map(0.1)-PGA-rlz-12
+\end{Verbatim}
+OpenQuake produced six hazard curves and six hazard maps i.e. one
+result for each leaf of the logic tree. 

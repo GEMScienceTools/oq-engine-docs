@@ -1,0 +1,48 @@
+\subsubsection{Event based PSHA}
+%
+In the following we describe the sections of the logic tree that are 
+specific for event based PSHA calculations (the remaining sections 
+\begin{enumerate}
+\item \textbf{Calculation type and model info}
+    This part is almost identical to the corresponding one 
+    describe in section \ref{sec:config_classical_PSHA}. Note
+    the setting of the \texttt{calculation\_mode} parameter.
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
+    numbers=left, numbersep=2pt]
+[general]
+description = A demo OpenQuake-engine .ini file for classical PSHA
+calculation_mode = event_based
+random_seed = 1024
+\end{Verbatim}
+%
+\item \textbf{Event based} \hfill \\
+This is an additional part used to specify the number of stochastic 
+event sets (each one representing a potential realisation of seismicity
+during the \texttt{investigation\_time} specified in the 
+\texttt{calculation\_configuration} part.
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+[event_based_params]
+ses_per_logic_tree_path = 5
+ground_motion_correlation_model = JB2009
+ground_motion_correlation_params = {"vs30_clustering": true}
+\end{Verbatim}
+%
+\item \textbf{Output} \hfill \\
+This part substitutes the \texttt{Output} part described in 
+configuration file example descibed in section \ref{sec:config_classical_PSHA}
+at page \pageref{sec:config_classical_PSHA}.
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+[output]
+export_dir = /tmp/xxx
+complete_logic_tree_ses = true
+complete_logic_tree_gmf = true
+ground_motion_fields = true
+# post-process ground motion fields into hazard curves,
+# given the specified `intensity_measure_types_and_levels`
+hazard_curves_from_gmfs = true
+mean_hazard_curves = true
+quantile_hazard_curves = 0.15, 0.5, 0.85
+poes_hazard_maps = 0.1, 0.2
+\end{Verbatim}
+%
+\end{enumerate}
