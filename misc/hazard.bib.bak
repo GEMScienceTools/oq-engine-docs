@@ -147,19 +147,6 @@
   timestamp = {2011.08.18}
 }
 
-@ARTICLE{atkinson2003,
-  author = {Atkinson, G. A. and Boo},
-  title = {Empirical Ground-Motion Relations for Subduction-Zone Earthquakes
-	and Their Application to Cascadia and Other Regions},
-  journal = {Bu},
-  year = {2003},
-  volume = {93},
-  pages = {1703-1729},
-  number = {4},
-  owner = {marcop},
-  timestamp = {2013.03.24}
-}
-
 @ARTICLE{atkinson2006,
   author = {Atkinson, G. A. and Boore, D. M.},
   title = {{Earthquake Ground-Motion Prediction Equations for Eastern North
@@ -173,6 +160,31 @@
   timestamp = {2011.02.10}
 }
 
+@ARTICLE{ab2003,
+  author = {Atkinson, G. A. and Boore, D. M.},
+  title = {{Empirical Ground-Motion Relations for Subduction-Zone Earthquakes
+	and Their Application to Cascadia and Other Regions}},
+  journal = {Bulletin of the Seismological Society of America},
+  year = {2003},
+  volume = {93},
+  pages = {1703--1729},
+  owner = {damianomonelli},
+  timestamp = {2011.10.18}
+}
+
+@ARTICLE{atkinson2003,
+  author = {Atkinson, G. A. and Boore, D. M.},
+  title = {Empirical Ground-Motion Relations for Subduction-Zone Earthquakes
+	and Their Application to Cascadia and Other Regions},
+  journal = {Bu},
+  year = {2003},
+  volume = {93},
+  pages = {1703-1729},
+  number = {4},
+  owner = {marcop},
+  timestamp = {2013.03.24}
+}
+
 @ARTICLE{ab2003Erratum,
   author = {Gail M. Atkinson and David M. Boore},
   title = {{Erratum to Empirical Ground-Motion Relations for Subduction Zone
@@ -181,19 +193,6 @@
   year = {2008},
   volume = {98},
   pages = {2567-2569},
-  owner = {damianomonelli},
-  timestamp = {2011.10.18}
-}
-
-@ARTICLE{ab2003,
-  author = {Gail M. Atkinson and David M. Boore},
-  title = {{Empirical Ground-Motion Relations for Subduction-Zone Earthquakes
-	
-	and Their Application to Cascadia and Other Regions}},
-  journal = {Bulletin of the Seismological Society of America},
-  year = {2003},
-  volume = {93},
-  pages = {1703--1729},
   owner = {damianomonelli},
   timestamp = {2011.10.18}
 }
@@ -603,10 +602,7 @@
 
 @UNPUBLISHED{dEtAl2010,
   author = {Drouet, S. and Cotton, F. and Beauval, C.},
-  title = {Deliverable 4.2: Regionally adjusted
-	
-	Ground Motion Prediction Equations
-	
+  title = {Deliverable 4.2: Regionally adjusted Ground Motion Prediction Equations
 	(GMPE) for Europe},
   note = {SHARE Internal Report},
   year = {2010},
@@ -621,6 +617,17 @@
   year = {1968},
   owner = {marcop},
   timestamp = {2011.01.26}
+}
+
+@INPROCEEDINGS{faccioli2010,
+  author = {Faccioli, E. and Bianchini, A. and Villani, M.},
+  title = {New ground motion prediction equations for T $>$ 1 s and their influence
+	on seismic hazard assessment},
+  booktitle = {Proceedings of the University of Tokyo Symposium on Long-Period Ground
+	Motion and Urban Disaster Mitigation},
+  year = {2010},
+  owner = {marcop},
+  timestamp = {2013.03.25}
 }
 
 @TECHREPORT{Felzer2008,
@@ -710,29 +717,6 @@
   timestamp = {2011.04.18}
 }
 
-@TECHREPORT{usgsNSHM1996,
-  author = {Frankel, A. and Mueller, C. and Barnhard, T. and Perkins, D. and
-	Leyendecker, E. V. and Dickman, N. and Hanson, S. and Hopper, M.},
-  title = {National Seismic Hazard Maps: Documentation June 1996},
-  institution = {United States Geological Survey Open-File Report 96-532},
-  year = {1996},
-  owner = {GW},
-  timestamp = {2010.12.04}
-}
-
-@TECHREPORT{usgsNSHM2002,
-  author = {Frankel, A. and Petersen, M. D. and Mueller, C. S. and Haller, K.
-	M. and Wheeler, R. L. and Leyendecker, E. V. and Wesson, R. L. and
-	Harmson, S. C. and Cramer, C. H. and Perkins, D. M. and Rukstales,
-	K. S.},
-  title = {Documentation for the 2002 Updata to the National Seismic Hazard
-	Maps},
-  institution = {United States Geological Survey Open-File Report 02-420},
-  year = {2002},
-  owner = {GW},
-  timestamp = {2010.12.04}
-}
-
 @TECHREPORT{frankel2002,
   author = {Frankel, A. D. and Petersen, M. D. and Mueller, C. S. and Haller,
 	K. M. and Wheeler, R. L. and Leyendecker, E. V. and Wesson, R. L.
@@ -786,19 +770,6 @@
   timestamp = {2013.02.11}
 }
 
-@ARTICLE{Gomborg1991,
-  author = {Gomborg, J.},
-  title = {Seismicity and detection/location threshold in the southern ?????
-	basin seismic network},
-  journal = {Journal of Geophysical Research},
-  year = {1991},
-  volume = {96},
-  pages = {401 - 414},
-  number = {16},
-  owner = {GW},
-  timestamp = {2010.11.03}
-}
-
 @ARTICLE{GutenbergRichter1944,
   author = {Gutenberg, B. and Richter, C. F.},
   title = {Frequency of Earthquakes in {C}alifornia},
@@ -822,20 +793,6 @@
   timestamp = {2011.08.29}
 }
 
-@ARTICLE{hanks2002,
-  author = {Hanks, T. and Bakun},
-  title = {A Bilinear Source-Scaling Model for M-log A Observations of Continental
-	Earthquakes},
-  journal = {Bull. Seism. Soc. Am.},
-  year = {2002},
-  volume = {92},
-  pages = {1841-1846},
-  number = {5},
-  doi = {10.1785/0120010148},
-  owner = {marcop},
-  timestamp = {2011.08.18}
-}
-
 @ARTICLE{hanks2008,
   author = {Hanks, T. and Bakun, W. H.},
   title = {M-logA Observations for Recent Large Earthquakes},
@@ -845,6 +802,20 @@
   pages = {490-494},
   number = {1},
   doi = {10.1785/0120070174},
+  owner = {marcop},
+  timestamp = {2011.08.18}
+}
+
+@ARTICLE{hanks2002,
+  author = {Hanks, T. and Bakun, W. H.},
+  title = {A Bilinear Source-Scaling Model for M-log A Observations of Continental
+	Earthquakes},
+  journal = {Bull. Seism. Soc. Am.},
+  year = {2002},
+  volume = {92},
+  pages = {1841-1846},
+  number = {5},
+  doi = {10.1785/0120010148},
   owner = {marcop},
   timestamp = {2011.08.18}
 }
@@ -1053,8 +1024,7 @@
 }
 
 @ARTICLE{manighetti2007,
-  author = {Isabelle Manighetti and Michel Campillo and Sylvain Bouley and Fabrice
-	Cotton},
+  author = {Manighetti, I. and Campillo, M. and Bouley, S. and Cotton, F.},
   title = {Earthquake scaling, fault segmentation, and structural maturity},
   journal = {Earth and Planetary Science Letters},
   year = {2007},
@@ -1139,8 +1109,8 @@
 @INPROCEEDINGS{McVerry2000,
   author = {McVerry, G. H. and Zhao, J. X. and Abrahamson, N. A. and Somerville,
 	P. G.},
-  title = {CRUSTAL AND SUBDUCTION ZONE ATTENUATION RELATIONS FOR NEW ZEALAND
-	EARTHQUAKES},
+  title = {{Crustal and Subduction Zone Attenuation Relations For New Zealand
+	Earthquakes}},
   booktitle = {Proc. 12th World Conference on Earthquake Engineering},
   year = {2000},
   owner = {damianomonelli},
@@ -1532,7 +1502,7 @@
 
 @ARTICLE{Uhrhammer1986,
   author = {Uhrhammer, R.},
-  title = {Characteristics of {N}orthern and {C}entral {C}alifornia Seismicity},
+  title = {{Characteristics of {N}orthern and {C}entral {C}alifornia Seismicity}},
   journal = {Earthquake Notes},
   year = {1986},
   volume = {57},
@@ -1657,8 +1627,8 @@
 
 @ARTICLE{youngs1985,
   author = {Youngs, R. R. and Coppersmith, K. J.},
-  title = {Implications of fault slip rates and earthquake recurrence models
-	to probabilistic seismic hazard estimates},
+  title = {{Implications of fault slip rates and earthquake recurrence models
+	to probabilistic seismic hazard estimates}},
   journal = {Bull. Seism. Soc. Am.},
   year = {1985},
   volume = {75},
@@ -1671,7 +1641,8 @@
 @ARTICLE{zhang1999,
   author = {Zhang, P. and Yang, Z. and Gupta, H. K. and Bhatia, S. C. and Shedlock,
 	K. M.},
-  title = {Global Seismic Hazard Assessment Program (GSHAP) in continental Asia},
+  title = {{Global Seismic Hazard Assessment Program (GSHAP) in continental
+	Asia}},
   journal = {Annali di Geofisica},
   year = {1999},
   volume = {42},
@@ -1684,8 +1655,8 @@
   author = {Zhao, J. X. and Zhang, J. and Asano, A. and Oyno, Y. and Oouchi,
 	T. and Takahashi, T. and Ogawa, H. and Irikura, K. and Thio, H. K.
 	and Somerville, P. G. and Fukushima, Y. and Fukushima, Y.},
-  title = {Attenuation Relations of Strong Ground Motion in Japan Using Site
-	Classification Based on Predominant Period},
+  title = {{Attenuation Relations of Strong Ground Motion in Japan Using Site
+	Classification Based on Predominant Period}},
   journal = {Bulletin of the Seismological Society of America},
   year = {2006},
   volume = {96},

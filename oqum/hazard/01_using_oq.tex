@@ -38,10 +38,13 @@ calculation of seismic hazard.
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsubsection{The Seismic Source Logic Tree}
 The structure of the Seismic Source Logic Tree consists of at least one 
-branching level. This branching level is the one used to define the 
-initial seismic source model (or a number of initial seismic source models, 
-see \ref{fig:psha_input}). 
-%
+branching level. The first - and mandatory - branching level is the one 
+used to define one (or several) \glspl{initialseismicsourceinputmodel}
+(see Figure \ref{fig:psha_input}). The successive branching levels can
+be used to account for epistemic uncertainties in the parameters 
+characterizing the \glspl{initialseismicsourceinputmodel}
+
+
 The example provided below shows the simplest Seismic Source Logic Tree 
 structure that can be defined in a PSHA Input model for OQ. This consists
 of a logic tree with one initial seismic source model (with weight equal 
@@ -61,7 +64,7 @@ maximum magnitude.
 %
 Below we provide an example of such logic tree structure.
 \input{./oqum/hazard/verbatim/sslt_example_simpleLT.tex}
-Note that the uncertainty on the maximum magnitude is specifies in terms 
+Note that the uncertainty on the maximum magnitude is specified in terms 
 of relative increments with respect to the initial maximum magnitude 
 defined in the initial seismic source models.
 %

@@ -67,7 +67,8 @@
 \newglossaryentry{complexfaultsource}{
 	name = complex fault source,
 	description={
-	A source typology usually adopted to model subduction interface faults
+	A source typology usually adopted to model subduction interface faults, 
+    where ruptures can be floated over the fault surface.
 	}
 }
 %
@@ -129,10 +130,12 @@
 \newglossaryentry{faulttrace}{
 	name = fault trace,
 	description={A curve representing the intersection between the surface 
-    containing the fault surface and the topographic surface
-    \begin{figure}[!ht]
+    representing the fault and the topographic surface
+    \begin{figure}[!h]
     \centering
     \includegraphics[width=10cm]{./figures/hazard/single_rupture.eps}
+    \caption{Trace example}
+    \label{fig:trace}
     \end{figure}
     }
 }
@@ -204,10 +207,10 @@
 }
 %
 % ------- I 
-\newglossaryentry{initialseismicsourcemodel}{
-	name = initial seismic source model,
-	description={An initial seismic source model is a 
-    \gls{seismicsourcemodel} included in the first 
+\newglossaryentry{initialseismicsourceinputmodel}{
+	name = initial seismic source input model,
+	description={An initial seismic source input model is a 
+    \gls{seismicsourceinputmodel} included in the first 
 	branching level of a seismic source logic tree}
 }
 \newglossaryentry{investigationtime}{
@@ -288,6 +291,7 @@
 }
 %
 % ------- R
+\newacronym{acr:rjb}{r$_{\text{jb}}$}{Joyner and Boore distance}
 \newglossaryentry{rupture}{
 	name=earthquake rupture, 
 	description={A 3D surface - representing a portion or the entire 
@@ -297,10 +301,9 @@
 }
 \newglossaryentry{rake}{
 	name=rake, 
-	description={The 
+	description={The rake is the angle 
 	}	
 }
-
 %
 % ------- S
 \newacronym{acr:ssha}{SSHA}{Scenario Based Seismic Hazard Analysis}
@@ -344,12 +347,21 @@
 	branching level in the logic tree by definition contains one or
 	several alternative \gls{initialseismicsourcemodel}}
 }
+\newacronym[description={\glslink{seismicsourceinputmodel}{Seismic 
+    Source Input Model}}]{acr:ssim}{SSIM}{Seismic Source Input Model}
+\newglossaryentry{seismicsourceinputmodel}{
+	name = seismic source input model,
+	description={A collection of seismic source input. 
+    In the OpenQuake-engine a seismic source model doesncontain 
+    epistemic uncertainty}
+}
 \newacronym{acr:ssm}{SSM}{Seismic Source Model}
 \newglossaryentry{seismicsourcemodel}{
 	name = seismic source model,
-	description={An object containing a list of \gls{seismicsourcedata}.
-    In the OpenQuake-engine a seismic source model doesn't contain 
-    epistemic uncertainty}
+	description={Technically a collection of SeismicSource objects
+        (see \href{SeismicSource} 
+        {https://github.com/gem/oq-hazardlib/blob/master/openquake/hazardlib/source/base.py})
+    }
 }
 \newacronym{acr:scec}{SCEC}{Southern California Earthquake Center}
 \newglossaryentry{seismicsourcesystem}{

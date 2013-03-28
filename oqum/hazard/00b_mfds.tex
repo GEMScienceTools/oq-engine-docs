@@ -1,15 +1,16 @@
 \subsection{Supported magnitude-frequency distributions}
+\label{sec:mfd}
 The magnitude-frequency distributions currently supported by the 
 \gls{acr:oqe} are the following: 
 \begin{description}
     \item[A discrete incremental magnitude-frequency distribution] \hfill \\
-    It's the simplest distribution supported. It's defined by the 
+    It's the simplest distribution offered. It's defined by a 
     minimum value of magnitude (representing the mid point of the first
-    bin) and by the bin width. The distribution itself is simply a 
-    sequence of floats describing for annual number of events for 
-    different bin. Below we provide an example of the xml that should
-    be incorporated in order to define this \gls{acr:mfd} for a given
-    seismic source.
+    bin) and the bin width. The distribution itself is simply a 
+    sequence of floats describing the annual number of events for 
+    different bins (centered on increasing values of magnitude). 
+    Below we show an example of the xml used to describe an incremental 
+    \glspl{acr:mfd} for a seismic source input of a \gls{acr:ssim}.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize]
 <incrementalMFD minMag="5.05" binWidth="0.1">
     <occurRates>0.15 0.08 0.05 0.03 0.015</occurRates>

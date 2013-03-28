@@ -7,8 +7,6 @@
 \usepackage{geometry}
 \usepackage{moresize}
 
-\usepackage{chappg}
-
 %
 %\usepackage{algorithmic}
 % 
@@ -43,11 +41,25 @@
 \usepackage{framed}
 \usepackage[utf8]{inputenc}
 
+
+% Page numbering by chapter - for compatibility with glossary see
+% http://tex.stackexchange.com/questions/32686/ledmac-pagelinesep-and-makeindex
+%\usepackage{chappg}
+%\renewcommand{\chappgsep}{-}%
 %
 % Package to create a glossary - It must be uploaded after hyperref
 % to produce the glossary: makeglossaries OQB
 %\usepackage[toc,acronym,nonumberlist,style=altlist]{glossaries}
-\usepackage[toc,nonumberlist,style=altlist]{glossaries}
+%\usepackage[xindy,toc,nonumberlist,style=altlist]{glossaries}
+%\usepackage[toc,nonumberlist,style=altlist,number=none]{glossaries}
+\usepackage[toc,
+            nonumberlist,
+            seeautonumberlist,
+            toc,
+            style=altlist]{glossaries}
+\renewcommand*{\glsgroupskip}{}
+\renewcommand*{\glsseeformat}[3][\seename]{%
+(\xmakefirstuc{#1} \glsseelist{#2}.)}
 \glstoctrue
 \makeglossaries
 %
