@@ -38,7 +38,7 @@
 	\gls{branch} is located in a logic tree structure. For example, 
 	in \gls{acr:oq} the first branching level of the 
 	\gls{seismicsourcelogictree} always contains one or several 
-	\glspl{initialseismicsourcemodel}
+	\glspl{initialseismicsourceinputmodel}
 	}
 }
 \newglossaryentry{branchset}{
@@ -184,9 +184,9 @@
 \newglossaryentry{groundmotionparameter}{
 	name = ground-motion parameter,
 	description={A scalar or vector quantity describing a relevant property
-	of the shaking such as intensity (e.g. PGA or Spectral Acceleration) 
-	or duration, equivalent number of cycles 
-	\citep[see for example][]{hancock2005})
+	    of the shaking such as intensity (e.g. PGA or Spectral Acceleration) 
+	    or duration, equivalent number of cycles 
+	    \citep[see for example][]{hancock2005})
 	}
 }
 \newglossaryentry{groundmotionpredictioneq}{
@@ -204,11 +204,12 @@
 }
 %
 % ------- I 
-\newglossaryentry{initialseismicsourcemodel}{
-	name = initial seismic source model,
-	description={An initial seismic source model is a 
-    \gls{seismicsourcemodel} included in the first 
-	branching level of a seismic source logic tree}
+\newglossaryentry{initialseismicsourceinputmodel}{
+	name = initial seismic source input model,
+	description={It's the ensable of information needed to fully describe 
+        the seismic sources composing a seismic source input model. The 
+        initial seismic source input model is included in the first 
+	    branching level of a seismic source logic tree}
 }
 \newglossaryentry{investigationtime}{
 	name = investigation time,
@@ -342,19 +343,30 @@
 	structured and systematic way the epistemic uncertainties 
 	characterizing the seismic source model. The first 
 	branching level in the logic tree by definition contains one or
-	several alternative \gls{initialseismicsourcemodel}}
+	several alternative \gls{initialseismicsourceinputmodel}}
 }
-\newacronym{acr:ssm}{SSM}{Seismic Source Model}
-\newglossaryentry{seismicsourcemodel}{
-	name = seismic source model,
+\newacronym{acr:ssim}{SSIM}{Seismic Source Input Model}
+\newglossaryentry{seismicsourceinputmodel}{
+	name = seismic source input model,
 	description={An object containing a list of \gls{seismicsourcedata}.
     In the OpenQuake-engine a seismic source model doesn't contain 
     epistemic uncertainty}
 }
+\newglossaryentry{seismicsource}{
+	name = seismic source,
+    description={An object that can generate}
+}
+\newacronym{acr:ssm}{SSM}{Seismic Source Model}
+\newglossaryentry{seismicsourcemodel}{
+	name = seismic source model,
+	description={An object containing a list of \glspl{seismicsource}
+    objects}
+}
 \newacronym{acr:scec}{SCEC}{Southern California Earthquake Center}
 \newglossaryentry{seismicsourcesystem}{
 	name = seismic source system,
-	description={An object containing a list of \glspl{initialseismicsourcemodel}
+	description={An object containing a list of 
+        \glspl{initialseismicsourceinputmodel}
 	and the \gls{seismicsourcelogictree}}
 }
 \newglossaryentry{simplefaultsource}{

@@ -1,0 +1,15 @@
+The main components of a logic tree structure in the OpenQuake engine are 
+the following:
+\begin{description}
+    \item[branch]: the simplest component of a logic tree structure. 
+    A branch represent an alternative 
+    \item[branching set]: it groups a set of branches i.e. 
+    alternative interpretation of a parameter or a model. This set of 
+    uncertainties can be applied to the whole initial seismic source input 
+    model or to a subset of seismic source data. The sum of the 
+    weights/probabilities assigned to the set of branches 
+    \item[branching level]: it's the largest container. It's not used in 
+    modelling uncertainty, but it's useful in maintaining a logic and an 
+    order in the structure of the logic tree as it's will be explained in 
+    the following examples.
+\end{description}

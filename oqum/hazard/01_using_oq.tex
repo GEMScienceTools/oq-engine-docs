@@ -14,7 +14,7 @@ Event based, Disaggregation, and UHS) are organised into:
     motion prediction equations, per tectonic region type, needed to model 
     the ground motion shaking in the region of interest.
 \end{itemize}
-
+%
 Figure \ref{fig:psha_input} summarises the structure of a PSHA input model
 for the OpenQuake-engine and the relationships between the files.
 % ..............................................................................
@@ -27,7 +27,9 @@ for the OpenQuake-engine and the relationships between the files.
 \end{figure}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . < Figure
 % ..............................................................................
-
+% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+\subsection{Defining Logic Trees in the OpenQuake engine}
+\input{./oqum/hazard/01a_logic_trees.tex}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{The Seismic Source System}
 The Seismic Source System contains the models describing position, geometry 
@@ -38,32 +40,32 @@ calculation of seismic hazard.
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsubsection{The Seismic Source Logic Tree}
 The structure of the Seismic Source Logic Tree consists of at least one 
-branching level. This branching level is the one used to define the 
-initial seismic source model (or a number of initial seismic source models, 
-see \ref{fig:psha_input}). 
-%
+\gls{branchinglevel}. This branching level is the one used to define the 
+\gls{initialseismicsourceinputmodel} (or a number of initial seismic source 
+models, see Figure \ref{fig:psha_input}). 
+
 The example provided below shows the simplest Seismic Source Logic Tree 
-structure that can be defined in a PSHA Input model for OQ. This consists
-of a logic tree with one initial seismic source model (with weight equal 
-to one) and no epistemic uncertainties.
+structure that can be defined in a \gls{pshainputmodel} for OQ. 
+This consists of a logic tree with just one branching level containing 
+one \gls{branchset} with one branch used to define the initial seismic source 
+model (its weight will be equal to one).
 \input{./oqum/hazard/verbatim/sslt_example.tex}
 
-The optional branching levels will contain rules that modify specific 
-parameters of the sources in the initial seismic source model so as to 
+The optional branching levels will contain rules that modify parameters 
+of the sources in the initial seismic source model so as to 
 take into account the epistemic uncertainties. 
 
 For example, if the principal epistemic uncertainties to be considered are
 source geometry and maximum magnitude, the modeller can create a logic tree
 structure with three initial seismic source models (each one exploring a 
-different definition of the geometry of sources and, an assigned weight) 
-and one branching level accounting for the epistemic uncertainty on the 
-maximum magnitude.
-%
+different definition of the geometry of sources) and one branching level 
+accounting for the epistemic uncertainty on the maximum magnitude.
+ 
 Below we provide an example of such logic tree structure.
 \input{./oqum/hazard/verbatim/sslt_example_simpleLT.tex}
-Note that the uncertainty on the maximum magnitude is specifies in terms 
+Note that the uncertainty on the maximum magnitude is specified in terms 
 of relative increments with respect to the initial maximum magnitude 
-defined in the initial seismic source models.
+defined for each source in the initial seismic source models.
 %
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsubsection{The Seismic Source Model}
