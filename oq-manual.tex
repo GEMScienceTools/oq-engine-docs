@@ -83,25 +83,12 @@
 \thispagestyle{empty}
 \psset{unit=1cm}
 \begin{pspicture}(0,0)(21cm,29.7cm)
-	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
-		(0.0cm,15.0cm)(21cm,29.7cm)	
-	\rput[l](0cm,15cm){\includegraphics[width=21cm,height=15cm]{./figures/adapazari.eps}}
-	\psframe[fillstyle=solid,linecolor=gray02,fillcolor=white]
-		(0.0cm,0.0cm)(21cm,15.1cm)
-	\psframe[fillstyle=solid,linecolor=orange01,fillcolor=orange01]
-		(0.0cm,15.0cm)(21cm,15.5cm)
-	\psframe[fillstyle=solid,linecolor=orange01,fillcolor=orange01]
-		(0.0cm,25.0cm)(21cm,25.1cm)
+	\rput[l](0cm,14.85cm){\includegraphics[width=21cm,height=29.7cm]{./figures/cover.eps}}
 	% Title
-	\rput[r](19.5cm,13.5cm){\sffamily\bfseries\HUGE\color{orange01}
-		{OpenQuake User's Manual}}
+
 	% Logos
-	\rput[r](19.5,27.5cm){\includegraphics[height=1cm]
-		{./figures/GEM_logo.eps}}	
-	\rput(4cm,27.5cm){\includegraphics[height=1.5cm]
-		{./figures/openquake_logo1.eps}}
 	%
-	\rput[r](19.5cm,2cm){\sffamily\large\color{gray01}{Version 1.1}}
+
 \end{pspicture}
 %  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Second page
 \restoregeometry
@@ -110,7 +97,7 @@
 % - - - - - - - - - - - - - - - - - - - - - - -  This is the internal title page
 \setcounter{page}{1}
 \begin{titlepage}
-	\titlehead{\emph{``OpenQuake: Working together to compute risk''}}
+	\titlehead{\emph{``OpenQuake: Working together to assess risk''}}
 	\title{ \textcolor{blue01}{\textsf{\bfseries\Huge OpenQuake User's Manual}}  }
 	\date{}
 \end{titlepage}
@@ -152,25 +139,20 @@
 % ------------------------------------------------------------------------- Part
 \part{Risk}
 % ------------------------------------------------------------------------------
-%\chapter{Introduction}
-%	\input{./oqum/part_Risk_Calc/introduction.tex}
+\chapter{Introduction to the risk module}
+	\input{./oqum/risk/01-introduction.tex}
 % ------------------------------------------------------------------------------
-%\chapter{OpenQuake risk input description}
-%	\label{chap:riskinp}
-%	\input{./oqum/part_risk_calc/riskInputDescription.tex}
+\chapter{Using the risk module}
+	\label{chap:riskmodule}
+	\input{./oqum/risk/02-usingRiskModule.tex}
 % ------------------------------------------------------------------------------
-%\chapter{OpenQuake risk calculation examples}
-%	\label{chap:riskexamples}
-%	\input{./oqum/part_Risk_Calc/riskCalcExamples.tex}
-	
-%\chapter{OpenQuake risk configuration parameters}	
-%	\label{chap:riskconfigpar}
-%	\input{./oqum/part_risk_calc/riskConfigParam.tex}	
+\chapter{Risk calculations and results}	
+	\label{chap:riskout}
+	\input{./oqum/risk/03-riskCalculationsResults.tex}
 %
-%\chapter{OpenQuake risk output description}	
-%	\label{chap:riskout}
-%	\input{./oqum/part_risk_calc/riskOutputDescription.tex}	
-	
+\chapter{Demonstrative examples}
+	\label{chap:riskexamples}
+	\input{./oqum/risk/04-demonstrativeExamples.tex}
 % ==============================================================================
 % ------------------------------------------------------------------------- Part
 %\part{Modeller's Toolkit}
@@ -214,13 +196,13 @@
 \thispagestyle{empty}
 \psset{unit=1cm}
 \begin{pspicture}(0,0)(21cm,29.7cm)
-	\psframe[fillstyle=solid,linecolor=gray02,fillcolor=white]
+	\psframe[fillstyle=solid,linecolor=cyan,fillcolor=white]
 		(0.0cm,0.0cm)(21cm,15.0cm)
 	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
 		(0.0cm,15.0cm)(21cm,29.7cm)
-	\psframe[fillstyle=solid,linecolor=orange01,fillcolor=orange01]
+	\psframe[fillstyle=solid,linecolor= blue01,fillcolor= blue01]
 		(0.0cm,15.0cm)(21cm,15.5cm)
-	\psframe[fillstyle=solid,linecolor=orange01,fillcolor=orange01]
+	\psframe[fillstyle=solid,linecolor= blue01,fillcolor= blue01]
 		(0.0cm,25.0cm)(21cm,25.1cm)
 \end{pspicture}
 %
