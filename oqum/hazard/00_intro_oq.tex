@@ -55,8 +55,8 @@ source typologies such as:
 	\item Seismicity temporal occurrence follows a Poissonian model; 
 \end{itemize}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-\subsection{Source typologies for modelling distributed seismicity}
-\subsubsection{Point sources}
+\subsection{Source typologies for modellcorollarydefinitioning distributed seismicity}
+=\subsubsection{Point sources}
 \label{hazard:seismic_source_types:pointSources}
 \index{Source type!point}
 \index{Point source|see{Source type}}
@@ -194,9 +194,9 @@ partiality.
 Grid sources are modelled in \gls{acr:oqe} simply as a set of point sources. 
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 \subsubsection{Area sources}
-\label{hazard:seismic_source_types:areaSources}
+\label{hazarcorollarydefinitiond:seismic_source_types:areaSources}
 \index{Source type!area} 
-\index{Area source|see{Source type}}
+\index{Area definitioncorollarydefinition|see{Source type}}
 %
 Area sources describe the seismicity occurring over wide areas where  
 identification and characterization - i.e. the unambiguous definition 
@@ -308,6 +308,7 @@ source type are described in the following paragraph.
 \begin{itemize}
 \item A \gls{faulttrace} (usually a polyline); 
 \item A \gls{frequencymagnitudedistribution};
+\item A \gls{msr};
 \item A representative value of the dip angle (specified following 
 the Aki-Richards convention; see \citet{aki2002});
 \item Rake angle (specified following the Aki-Richards convention; 
@@ -415,7 +416,37 @@ America, Japan).
 \subsubsection{Characteristic faults}
 \index{Source type!fault!characteristic}
 \index{Characteristic fault|see{Source type}}
-
+The charactercistic fault source is a particular typology created following 
+the assumption that ruptures will always cover the entire fault surface. 
+%
+The fault surface can be represented as a \gls{simplefaultsource} surface 
+or a \gls{complexfaultsource} surface or a combination of rectangular ruptures
+as represented in Figure \ref{fig:char_fault_source}.
+% ..............................................................................
+% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=15cm]{./figures/hazard/multi_surface.ps}
+\caption{Geometry of a multi-segmented characteristic fault composed of four
+	rectangular ruptures as modelled in OpenQuake.}
+\label{fig:char_fault_source}
+\end{figure}
+% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . < Figure
+% ..............................................................................
 %
 %  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
 \paragraph{Source data}
+%
+\begin{itemize}
+\item The characteristic rupture surface is defined through one of the 
+	following options:
+	\begin{itemize}
+		\item A list of rectangular ruptures 
+		\item A \gls{simplefaultsource} geometry
+		\item A \gls{complexfaultsource} geometry
+	\end{itemize}
+\item A \gls{frequencymagnitudedistribution};
+\item Rake angle (specified following the Aki-Richards convention; 
+see \citet{aki2002}) 
+\item Upper and lower depth values limiting the seismogenic interval; 
+\end{itemize}

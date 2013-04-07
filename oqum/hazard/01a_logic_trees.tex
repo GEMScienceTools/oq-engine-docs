@@ -27,6 +27,20 @@ the following:
     order in the structure of the tree.
 \end{description}
 
+Below we provide a simple schema illustrating the skeleton of the 
+\gls{acr:oqe} logic tree:
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+\textcolor{green}{<logicTreeBranchingLevel branchingLevelID=ID>}
+    \textcolor{blue}{<logicTreeBranchSet branchSetID=ID}
+            \textcolor{blue}{uncertaintyType=TYPE>}
+        \textcolor{magenta}{<logicTreeBranch>}
+            \textcolor{cyan}{<uncertaintyModel>VALUE</uncertaintyModel>}
+            \textcolor{cyan}{<uncertaintyWeight>WEIGHT</uncertaintyWeight>}
+        \textcolor{magenta}{</logicTreeBranch>}
+    \textcolor{blue}{</logicTreeBranchSet>}
+\textcolor{green}{</logicTreeBranchingLevel>}
+\end{Verbatim}
+
 A schematic representation of these three objects is provided in Figure 
 \ref{glts}. A branching level identifies the position in a tree where
 branching occurs while a branch set identifies a collection of branches 
@@ -49,11 +63,11 @@ In the NRML schema, a logic tree structure is defined through the
 </\textcolor{red}{logicTree}>
 \end{Verbatim}
 %
-A \Verb+logicTree+ is defined as a sequence of \Verb+logicTreeBranchingLevel+ 
+A \Verb+logicTree+ contains as a sequence of \Verb+logicTreeBranchingLevel+ 
 elements. The position in the sequence specifies in which level of the tree 
-the branching level is located. That is, the first logicTreeBranchingLevel 
-element in the sequence represents the first level in the tree, the second 
-element the second level in the tree, and so on.
+the branching level is located. That is, the first 
+\texttt{logicTreeBranchingLevel} element in the sequence represents the first 
+level in the tree, the second element the second level in the tree, and so on.
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 <\textcolor{red}{logicTree} logicTreeID="ID">
@@ -75,6 +89,7 @@ be defined.
 A \Verb+logicTreeBranchingLevel+ is defined as a sequence of 
 \Verb+logicTreeBranchSet+ elements. Each \Verb+logicTreeBranchSet+ 
 defines a particular epistemic uncertainty inside a branching level. 
+
 A branch set has two required attributes (\Verb+branchSetID+ and 
 \Verb+uncertaintyType+ (defining the type of epistemic uncertainty 
 the branch set is defining))
@@ -117,10 +132,11 @@ a and b values.
 (absolute) on the Guten\-berg-Richter maximum magnitude.
 \end{itemize}
 No restrictions are given on the number of branch sets that can be defined 
-inside a branching level.\\
-A \Verb+branchSet+ is defined as a sequence of  \Verb+logicTreeBranch+ 
-elements, each defined by an \Verb+uncertaintyModel+ element (a string 
-identifying an uncertainty model; the content of the string varies with
+inside a branching level.
+
+A \Verb+branchSet+ is defined as a sequence of \Verb+logicTreeBranch+ 
+elements, each specified by an \Verb+uncertaintyModel+ element (a string 
+identifying an uncertainty mod\-el; the content of the string varies with
 the uncertaintyType attribute value of the branchSet element) and the
 uncertaintyWeight element (specifying the probability/weight associated 
 to the uncertaintyModel):
@@ -230,33 +246,17 @@ applyToSources="srcID1 srcID2 .... srcIDN"
 \end{Verbatim}
     \item \Verb+applyToSourceType+: specifies to which source type the 
     uncertainty applies to.  Only one source typology can be defined 
-    (\Verb+area+, \Verb+point+, \Verb+simpleFault+, \Verb+complexFault+), e.g.:
+    (\Verb+area+, \Verb+point+, \texttt{simple\-Fault}, 
+	\Verb+complexFault+), e.g.:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 applyToSources="area"
 \end{Verbatim}
     \item \Verb+applyToTectonicRegionType+: specifies to which tectonic 
     region type the uncertainty applies to. Only one tectonic region type 
-    can be defined (\texttt{Active} \texttt{Shallow Crust}, 
+    can be defined (\texttt{Ac\-tive} \texttt{Shallow Crust}, 
     \Verb+Stable Shallow Crust+, \Verb+Subduction Interface+, 
     \texttt{Sub\-duc\-tion} \texttt{IntraSlab}, \texttt{Volcanic}), e.g.:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 applyToTectonicRegionType="Active Shallow Crust"
 \end{Verbatim}
 \end{itemize}
-
-
-
-Below we provide a simple schema illustrating the skeleton of the 
-\gls{acr:oqe} logic tree:
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-\textcolor{red}{<logicTreeBranchingLevel branchingLevelID=ID>}
-    \textcolor{blue}{<logicTreeBranchSet branchSetID=ID}
-            \textcolor{blue}{uncertaintyType=TYPE>}
-        \textcolor{green}{<logicTreeBranch>}
-            \textcolor{purple}{<uncertaintyModel>VALUE</uncertaintyModel>}
-            \textcolor{purple}{<uncertaintyWeight>WEIGHT</uncertaintyWeight>}
-        \textcolor{green}{</logicTreeBranch>}
-    \textcolor{blue}{</logicTreeBranchSet>}
-\textcolor{red}{</logicTreeBranchingLevel>}
-\end{Verbatim}
-
