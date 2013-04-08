@@ -11,7 +11,7 @@ is straightforward. Below we provide an example of the simplest
 command that can be used to launch a hazard calculation which 
 consists in the invocation of \texttt{openquake} together with 
 the \texttt{--rh} option which stands for ``run hazard'' and 
-requires the name of a configuration file (in the example below
+the name of a configuration file (in the example below
 it corresponds to \texttt{job.ini}):
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --rh job.ini
@@ -23,20 +23,25 @@ as shown in the example below:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --rh job.ini --log-level debug
 \end{Verbatim}
+In this example we ask the engine to provide an extensive amount
+of information (usually not justified for a standard analysis). 
+Alternative options are: \texttt{debug}, \texttt{info}, \texttt{progress},
+\texttt{warn}, \texttt{error}, \texttt{critical}.
 
-There are two alterative ways to get results from OpenQuake engine. 
-The first one is activated at the OpenQuake invocation the flag 
+There are two alterative ways to get results from OpenQuake engine:
+directly at the end of the calculation, by exporting them from the 
+internal \gls{acr:oqe} database. 
+
+The first option is activated at the OpenQuake invocation by the flag 
 \texttt{--exports xml} as shown in the example below
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --rh job.ini \textcolor{red}{--exports xml}
 \end{Verbatim}
+The second option, allows the user to export the computed results at 
+their's disposal.
 
-With the second option, it's possible to export from the database 
-incorporated into the OpenQuake-engine the results produced by 
-any of the calculations completed.
-
-The list of the hazard calculations is obtained with 
-the following command:
+The list of the hazard calculations stored on the \gls{acr:oqe} is 
+obtained with the following command:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --lhc
 \end{Verbatim}
@@ -56,5 +61,6 @@ calc_id | num_jobs | latest_job_status | last_update | description
 \end{Verbatim}
 % -----------------------------------------------------------------------------
 \input{./oqum/hazard/02a_output.tex}
+\clearpage
 \input{./oqum/hazard/02c_output_event_based.tex}
 \input{./oqum/hazard/02b_output_disaggregation.tex}

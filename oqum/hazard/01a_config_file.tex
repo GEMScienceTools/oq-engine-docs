@@ -100,7 +100,7 @@ solution is to define uniform site conditions (i.e. all the sites have
 the same soli conditions). Alternatively it's possible to define 
 spatially variable soil properties in a separate file; the engine will
 then assign to each investigation site the appropriate characteristics.
-
+%
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=17, numbers=left, numbersep=2pt]
 [site_params]
@@ -148,7 +148,7 @@ gsim_logic_tree_file = gmpe_logic_tree.xml
 # years
 investigation_time = 50.0
 intensity_measure_types = PGA, SA(0.1)
-intensity_measure_types_and_levels = \{"PGA": [0.005, 0.007, ..., 2.13]\} 
+intensity_measure_types_and_levels = \{"PGA": [0.005, ..., 2.13]\} 
 truncation_level = 3
 # km
 maximum_distance = 200.0
