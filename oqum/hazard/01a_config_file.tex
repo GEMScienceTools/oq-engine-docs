@@ -16,9 +16,11 @@ random_seed = 1024
 \end{Verbatim}
 In this section the user specifies the following parameters:
 \begin{itemize}
-    \item \texttt{description}: a parameter that can be used to describe 
-        the type of calculation defined 
-    \item \texttt{calculation\_mode}: sets the kind of calculation. 
+    \item \texttt{description}: a parameter that can be used to designate 
+        the model 
+    \item \texttt{calculation\_mode}: it is used to set the kind 
+        of calculation. In this case it corresponds to \texttt{classical}.
+        We'll describe alternative options later on.
     \item \texttt{random\_seed}: is used to control the random generator 
         so that when montecarlo procedures are used calculations are 
         replicable (if the same \texttt{random\_seed} is used).
@@ -29,9 +31,11 @@ In this section the user specifies the following parameters:
 This section is used to specify where hazard will be computed. Two 
 option are available. 
 
-The first one consists on the defining a polygon 
+The first one consists on defining a polygon 
 (usually a rectangle) and a distance (in km) used to discretize the 
-polygon area. An example is provided below.
+polygon area. The polygon is defined by a list of longitude-latitude tuples.
+
+An example is provided below.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=5, numbers=left, numbersep=2pt]
 [geometry]
@@ -49,22 +53,33 @@ sites = 10.0 43.0, 12.0 43.0, 12.0 46.0, 10.0 46.0
 
 
 \end{Verbatim}
+If the list of sites is too long the user can specify the name 
+of a .csv file as it is snown below
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
+    firstnumber=5, numbers=left, numbersep=2pt]
+[geometry]
+sites\_csv = <name_of_the_csv_file>
+
+
+\end{Verbatim}
 %
 \item \textbf{Logic tree sampling} \hfill \\
-    The \gls{acr:oqe} provides two options for processing the full 
+    The \gls{acr:oqe} provides two options for processing the whole 
     logic tree structure. The first option uses Montecarlo sampling;
-    the user in this case specifies a number of realisations. In the 
-    second option all the possible realisations are created. Below 
-    we provide an example for the latter option.
+    the user in this case specifies a number of realisations. 
+
+    In the second option all the possible realisations are created. 
+    Below we provide an example for the latter option.
+    In this example we set the \texttt{number\-\_of\-\_logic\_tree\_samples}
+    to 0. \gls{acr:oqe} will perform a complete enumeration of all 
+    the possible paths from the roots to the leaves of the logic tree 
+    structure. 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=9, numbers=left, numbersep=2pt]
 [logic_tree]
 number_of_logic_tree_samples = 0
 \end{Verbatim}
-    In this example we set the \texttt{number\_of\_logic\_tree\_samples}
-    to 0. \gls{acr:oqe} will perform a complete enumeration of all 
-    the possible paths from the roots to the leaves of the logic tree 
-    structure. If the seismic source logic tree and the ground motion
+    If the seismic source logic tree and the ground motion
     logic tree do not contain epistemic uncertainties the engine will
     create a single PSHA input.
 %
@@ -97,7 +112,7 @@ reference_depth_to_1pt0km_per_sec = 100.0
 \end{Verbatim}
 In this section the user specifies local soil conditions. The simplest
 solution is to define uniform site conditions (i.e. all the sites have 
-the same soli conditions). Alternatively it's possible to define 
+the same soil conditions). Alternatively it's possible to define 
 spatially variable soil properties in a separate file; the engine will
 then assign to each investigation site the appropriate characteristics.
 %
@@ -153,15 +168,17 @@ truncation_level = 3
 # km
 maximum_distance = 200.0
 \end{Verbatim}
-This section of the OQ configuration file specifies the parameters that
+This section of the \gls{acr:oqe} configuration file specifies the 
+parameters that
 are relevant for the calculation of hazard. These include the names of
-the two files with the Seismic Source System and the Ground Motion System,
-the duration of the time window used to compute the hazard, the ground 
-motion intensity measure types and levels for which the probability of 
-exceedence will be computed, the level of truncation of the gaussian 
+the two files containing the Seismic Source System and the Ground 
+Motion System, the duration of the time window used to compute the 
+hazard, the ground motion intensity measure types and levels for 
+which the probability of exceedence will be computed, the level of
+truncation of the gaussian 
 distribution of the logarithm of ground motion used in the calculation 
 of hazard and the maximum integration distance (i.e. the distance within 
-which sources will contribute in the computation of the hazard).
+which sources will contribute to the computation of the hazard).
 %
 \item \textbf{Output}
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
