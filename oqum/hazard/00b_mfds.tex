@@ -6,17 +6,20 @@ The magnitude-frequency distributions currently supported by the
     It's the simplest distribution supported. It's defined by the 
     minimum value of magnitude (representing the mid point of the first
     bin) and by the bin width. The distribution itself is simply a 
-    sequence of floats describing for annual number of events for 
-    different bin. Below we provide an example of the xml that should
-    be incorporated in order to define this \gls{acr:mfd} for a given
-    seismic source.
+    sequence of floats describing the annual number of events for 
+    different bins. 
+
+    Below we provide an example of the xml that should
+    be incorporated in a seismic source description in order to define 
+    this \gls{acr:mfd}. An additional example for this distribution can
+    be also found at page \pageref{example_incremental_mfd}.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize]
 <incrementalMFD minMag="5.05" binWidth="0.1">
     <occurRates>0.15 0.08 0.05 0.03 0.015</occurRates>
 </incrementalMFD>
 \end{Verbatim}
     This is the magnitude-frequency distribution obtained with the above
-    settings:
+    settings is represented in Figure \ref{fig:evenly_discretized_mfd}.
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
 \begin{figure}[!ht]
@@ -31,20 +34,24 @@ The magnitude-frequency distributions currently supported by the
 \item[A double truncated Gutenberg-Richter distribution] \hfill \\
     This distribution is de\-scribed by means of a minimum \texttt{minMag}
     and maximum magnitude \texttt{maxMag} and by the $a$ and $b$ values 
-    of the Gutenberg-Richter relationship. The synthax of the xml is 
-    rather compact as shown below
+    of the Gutenberg-Richter relationship necessary to specify the annual 
+    rate of occurrence equal or larger than a given magnitude value. 
+    
+    The synthax of the xml used to describe this magnitude-frequency 
+    distribution is rather compact as demonstrated in the following example
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize]
 <truncGutenbergRichterMFD aValue="5.0" bValue="1.0" minMag="5.0" 
         maxMag="6.0"/>
 \end{Verbatim}
-    This is the magnitude-frequency distribution obtained using the 
-    parameters of the considered example:
+    Figure \ref{fig:dt_gr_mfd} the magnitude-frequency distribution 
+    obtained using the parameters of the considered example.
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
 \begin{figure}[!ht]
 \centering
 \includegraphics[width=12cm]{./figures/hazard/dt_mfd.eps}
-\caption{Double truncated Gutenberg-Richter magnitude-frequency distribution.}
+\caption{Example of a double truncated Gutenberg-Richter 
+magnitude-frequency distribution.}
 \label{fig:dt_gr_mfd}
 \end{figure}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . < Figure
