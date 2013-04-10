@@ -129,7 +129,8 @@
 \newglossaryentry{faulttrace}{
 	name = fault trace,
 	description={A curve representing the intersection between the surface 
-    containing the fault surface and the topographic surface
+    containing the fault surface (or its prolongation) 
+	and the topographic surface.
     \begin{figure}[!ht]
     \centering
     \includegraphics[width=10cm]{./figures/hazard/single_rupture.eps}
@@ -254,14 +255,18 @@
 }
 %
 % ------- O
-\newacronym{acr:hazlib}{oq-hazardlib}{OpenQuake hazard library}
+\newacronym{acr:hazlib}{oq-hazardlib}{OpenQuake hazard library \hfill \\
+	(online repository at 
+	\href{oq-hazardlib online repository}{http://github.com/gem/oq-hazardlib})}
 \newglossaryentry{opensha}{
 	name = OpenSHA,
 	description = {OpenSHA is an open-source, advanced Java-based 
 	platform for conducting Seismic Hazard Analysis - 
 	(see \href{http://opensha.org}{OpenSHA website})}
 }
-\newacronym{acr:oqe}{oq-engine}{OpenQuake-engine}
+\newacronym{acr:oqe}{oq-en\-gine}{OpenQuake-engine	\hfill \\
+	(online repository at 
+	\href{oq-engine online repository}{http://github.com/gem/oq-engine})}
 %
 % ------- P
 \newacronym{acr:pga}{PGA}{Peak Ground Acceleration}
@@ -288,14 +293,19 @@
 }
 %
 % ------- R
-\newacronym{acr:rrup}{$\text{r}_{\text{rup}}$}{Closest distance between 
-	the site and rupture. It's a common source-site distance metrics 
-	used in the creation of ground motion prediction equations}
+\newacronym{acr:rrup}{$\text{r}_{\text{rup}}$}{closest distance between 
+	the site and rupture}
 \newglossaryentry{rupture}{
 	name=earthquake rupture, 
 	description={A 3D surface - representing a portion or the entire 
     fault surface - over which a slip event (i.e. an earthquake) 
     occurs.
+	}	
+}
+\newglossaryentry{ruptureaspectratio}{
+	name=rupture aspect ratio, 
+	description={It's the ratio between the lenght and the width of an
+		earthquake rupture
 	}	
 }
 \newglossaryentry{rake}{
@@ -385,7 +395,10 @@
 }
 \newglossaryentry{strike}{
 	name = strike,
-	description={The strike
+	description={
+	The strike direction correspond to the angle between the north and
+	the direction you take so that when you walk along the \gls{faulttrace}
+	the fault dips on your right. 
 	}
 }
 \newacronym{acr:sa}{S$_a$}{Spectral Acceleration}

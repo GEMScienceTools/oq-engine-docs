@@ -148,7 +148,7 @@
 }
 
 @ARTICLE{atkinson2003,
-  author = {Atkinson, G. A. and Boo},
+  author = {Atkinson, G. A. and Boore},
   title = {Empirical Ground-Motion Relations for Subduction-Zone Earthquakes
 	and Their Application to Cascadia and Other Regions},
   journal = {Bu},
@@ -621,6 +621,17 @@
   year = {1968},
   owner = {marcop},
   timestamp = {2011.01.26}
+}
+
+@INPROCEEDINGS{faccioli2010,
+  author = {Faccioli, E. and Bianchini, A. and Villani, M.},
+  title = {New ground motion prediction equations for T > 1 s and their influence
+	on seismic hazard assessment},
+  booktitle = {Proceedings of the University of Tokyo Symposium on Long-Period Ground
+	Motion and Urban Disaster Mitigation},
+  year = {2010},
+  owner = {marcop},
+  timestamp = {2013.03.25}
 }
 
 @TECHREPORT{Felzer2008,
