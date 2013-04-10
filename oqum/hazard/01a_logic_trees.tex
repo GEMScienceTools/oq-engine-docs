@@ -204,26 +204,19 @@ sign) to the Guten\-berg-Richter b value:
 <uncertaintyModel>B_VALUE_INCREMENT</uncertaintyModel>
 \end{Verbatim}
 \item if \Verb+uncertaintyType="abGRAbsolute"+, the uncertainty model 
-contains one (if the uncertainty apply to a source with only one 
-Guten\-berg-Richter magnitude frequency distribution) or more (if the 
-source has more than one magnitude frequency distributions) a and b pairs:
+must contain one a and b pair:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 <uncertaintyModel>
-A_VALUE_1 B_VALUE_1
- ... 
-A_VALUE_N B_VALUE_N
+A_VALUE B_VALUE
 </uncertaintyModel>
 \end{Verbatim}
     \item if \Verb+uncertaintyType="maxMagGRAbsolute"+, the uncertainty 
-    model contains one or more (depending on the number of magnitude 
-    frequency distributions in the source) Guten\-berg-Richter maximum 
-    magnitude values:
+    model must contain one Guten\-berg-Richter maximum 
+    magnitude value:
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 <uncertaintyModel>
-MAX_MAGNITUDE_1
- ... 
-MAX_MAGNITUDE_N
+MAX_MAGNITUDE
 </uncertaintyModel>
 \end{Verbatim}
 \end{itemize}
