@@ -29,14 +29,14 @@
 	number of alternatives. A branch is associated with a weight 
 	value \citep{scherbaum2011} if the \gls{branchset} represents the 
 	epistemic uncertainty on a parameter or a model when the \gls{branchset} 
-	is used to specify alternative models (e.g. district \glspl{acr:fmd})
+	is used to specify alternative models (e.g. district \glspl{acr:mfd})
 	}
 }
 \newglossaryentry{branchinglevel}{
 	name = branching level,
 	description={It indicates the position where a \gls{branchset} or a 
 	\gls{branch} is located in a logic tree structure. For example, 
-	in \gls{acr:oq} the first branching level of the 
+	the first branching level of the 
 	\gls{seismicsourcelogictree} always contains one or several 
 	\glspl{initialseismicsourceinputmodel}
 	}
@@ -129,7 +129,8 @@
 \newglossaryentry{faulttrace}{
 	name = fault trace,
 	description={A curve representing the intersection between the surface 
-    containing the fault surface and the topographic surface
+    containing the fault surface (or its prolongation) 
+	and the topographic surface.
     \begin{figure}[!ht]
     \centering
     \includegraphics[width=10cm]{./figures/hazard/single_rupture.eps}
@@ -144,6 +145,7 @@
 %
 % ------- G
 \newacronym{acr:gem}{GEM}{Global Earthquake Model}
+\newacronym{acr:gmf}{GMF}{Ground Motion Field}
 \newacronym{acr:gmpe}{GMPE}{Ground Motion Prediction Equation}
 \newacronym{acr:gmlt}{GMLT}{Ground Motion Logic Tree (see 
     \gls{groundmotionlogictree}} 
@@ -151,9 +153,9 @@
 	name = grid source,
 	description={
 	It's a source typology usually adopted to model distributed 
-	seismicity. It's usually produced by a seismicity smoothing algorithm 
-	(one of the most famous algorithm is the one proposed by 
-	\citet{frankel1995})}
+	seismicity. It's routinely produced by a seismicity smoothing 
+	algorithm (one of the most famous algorithm is the one proposed 
+	by \citet{frankel1995})}
 }
 \newglossaryentry{groundmotionfield}{
 	name = ground-motion field,
@@ -162,7 +164,7 @@
 }
 \newglossaryentry{groundmotionfieldcalc}{
 	name = ground-motion field calculator,
-	description={An \gls{acr:oq} calculator that given a rupture computes the 
+	description={An \gls{acr:oqe} calculator that given a rupture computes the 
 	geographic distribution of a ground motion intensity parameter. Currently
 	OQ can generate ground motion fields using a \gls{acr:gmpe}}
 }
@@ -253,16 +255,18 @@
 }
 %
 % ------- O
-\newacronym{acr:hazlib}{oq-hazardlib}{OpenQuake hazard library}
+\newacronym{acr:hazlib}{oq-hazardlib}{OpenQuake hazard library \hfill \\
+	(online repository at 
+	\href{oq-hazardlib online repository}{http://github.com/gem/oq-hazardlib})}
 \newglossaryentry{opensha}{
 	name = OpenSHA,
 	description = {OpenSHA is an open-source, advanced Java-based 
 	platform for conducting Seismic Hazard Analysis - 
-	(see \href{http://opensha.org}{OpenSHA website}). \gls{acr:oq}-hazard 
-	relies on a distilled version of OpenSHA}
+	(see \href{http://opensha.org}{OpenSHA website})}
 }
-\newacronym{acr:oq}{OQ}{OpenQuake}
-\newacronym{acr:oqe}{oq-engine}{OpenQuake-engine}
+\newacronym{acr:oqe}{oq-en\-gine}{OpenQuake-engine	\hfill \\
+	(online repository at 
+	\href{oq-engine online repository}{http://github.com/gem/oq-engine})}
 %
 % ------- P
 \newacronym{acr:pga}{PGA}{Peak Ground Acceleration}
@@ -289,13 +293,19 @@
 }
 %
 % ------- R
-\newacronym{acr:rrup}{$\text{r}_{\text{rup}}$}{closest distance to 
-	the rupture}
+\newacronym{acr:rrup}{$\text{r}_{\text{rup}}$}{closest distance between 
+	the site and rupture}
 \newglossaryentry{rupture}{
 	name=earthquake rupture, 
 	description={A 3D surface - representing a portion or the entire 
     fault surface - over which a slip event (i.e. an earthquake) 
-    occurs
+    occurs.
+	}	
+}
+\newglossaryentry{ruptureaspectratio}{
+	name=rupture aspect ratio, 
+	description={It's the ratio between the lenght and the width of an
+		earthquake rupture
 	}	
 }
 \newglossaryentry{rake}{
@@ -385,7 +395,10 @@
 }
 \newglossaryentry{strike}{
 	name = strike,
-	description={The strike
+	description={
+	The strike direction correspond to the angle between the north and
+	the direction you take so that when you walk along the \gls{faulttrace}
+	the fault dips on your right. 
 	}
 }
 \newacronym{acr:sa}{S$_a$}{Spectral Acceleration}

@@ -13,14 +13,14 @@ the following:
     \begin{itemize}
         \item An ID 
         \item An uncertainty type (for a comprehensive list of the types of 
-        uncertainty currently supported see Section )
+        uncertainty currently supported see page \pageref{list_epistemic_unc})
         \item One or more branches
     \end{itemize}
     
     This set of uncertainties can be applied to the whole initial 
     seismic source input model or just to a subset of seismic source
     data. The sum of the weights/probabilities assigned to the set 
-    of branches. 
+    of branches always correspond to one.
 
     \item[branching level]: it's the largest container. It's not used in 
     modelling uncertainty, but it's useful in maintaining a logic and an 
@@ -40,11 +40,14 @@ Below we provide a simple schema illustrating the skeleton of the
     \textcolor{blue}{</logicTreeBranchSet>}
 \textcolor{green}{</logicTreeBranchingLevel>}
 \end{Verbatim}
+As it clearly appears from this example the structure of a logic 
+tree is a set nested elements, from the largest to the smallest 
+containers.
 
-A schematic representation of these three objects is provided in Figure 
-\ref{glts}. A branching level identifies the position in a tree where
-branching occurs while a branch set identifies a collection of branches 
-(i.e. individual branches) whose weights sum to 1.\\
+A schematic representation of the elemental components of a logic tree 
+structure is provided in Figure \ref{glts}. 
+A branching level identifies the position where branching occurs while 
+a branch set identifies a collection of branches (i.e. individual branches) whose weights sum to 1.
 %
 \begin{figure}[!h]
 \centering
@@ -53,7 +56,8 @@ branching occurs while a branch set identifies a collection of branches
 levels, branch sets, and individual branches.}
 \label{glts}
 \end{figure}
-%
+
+\subsubsection{Logic trees as described in the nrml schema}
 In the NRML schema, a logic tree structure is defined through the 
 \Verb+logicTree+ element: 
 %
@@ -64,10 +68,12 @@ In the NRML schema, a logic tree structure is defined through the
 \end{Verbatim}
 %
 A \Verb+logicTree+ contains as a sequence of \Verb+logicTreeBranchingLevel+ 
-elements. The position in the sequence specifies in which level of the tree 
-the branching level is located. That is, the first 
-\texttt{logicTreeBranchingLevel} element in the sequence represents the first 
-level in the tree, the second element the second level in the tree, and so on.
+elements. 
+The position in the sequence of a \Verb+logicTreeBranchingLevel+ specifies 
+the level of the tree where it is located. That is, the first 
+\texttt{logicTreeBranchingLevel} element in the sequence represents 
+the first level in the tree, the second element the second level in
+the tree, and so on.
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 <\textcolor{red}{logicTree} logicTreeID="ID">
@@ -90,9 +96,9 @@ A \Verb+logicTreeBranchingLevel+ is defined as a sequence of
 \Verb+logicTreeBranchSet+ elements. Each \Verb+logicTreeBranchSet+ 
 defines a particular epistemic uncertainty inside a branching level. 
 
-A branch set has two required attributes (\Verb+branchSetID+ and 
+A branch set has two required attributes \Verb+branchSetID+ and 
 \Verb+uncertaintyType+ (defining the type of epistemic uncertainty 
-the branch set is defining))
+the branch set is modelling)
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 <\textcolor{red}{logicTree} logicTreeID="ID">
 ...
@@ -115,21 +121,22 @@ the branch set is defining))
 </\textcolor{red}{logicTree}>
 \end{Verbatim}
 Possible values for the \Verb+uncertaintyType+ attribute are:
+\label{list_epistemic_unc}
 \begin{itemize}
 \item \Verb+gmpeModel+: identifying epistemic uncertainties on ground 
 motion prediction equations
 \item \Verb+sourceModel+: identifying epistemic uncertainties on source models
-\item \Verb+maxMagGRRelative+: identifying epistemic uncertainties 
-(relative: that is increments) to be added (or subtracted, depending on 
-the sign of the increment) to the 
-Guten\-berg-Richter maximum magnitude value.
-\item \Verb+bGRRelative+: identifying epistemic uncertainties (relative)
-to be applied to the Guten\-berg-Richter b value.
-\item \Verb+abGRAbsolute+:identifying epistemic uncertainties (absolute: 
-that is new values used to replace original values) on the Guten\-berg-Richter
-a and b values.
-\item \Verb+maxMagGRAbsolute+: identifying epistemic uncertainties 
-(absolute) on the Guten\-berg-Richter maximum magnitude.
+\item \Verb+maxMagGRRelative+: identifying relative (i.e. increments)
+	epistemic uncertainties to be added (or subtracted, depending on 
+	the sign of the increment) to the Guten\-berg-Richter maximum 
+	magnitude value.
+\item \Verb+bGRRelative+: identifying relative epistemic uncertainties 
+	to be applied to the Guten\-berg-Richter b value.
+\item \Verb+abGRAbsolute+:identifying absolute (i.e. values used to replace
+ 	original values) epistemic uncertainties on the 
+	Guten\-berg-Richter a and b values.
+\item \Verb+maxMagGRAbsolute+: identifying (absolute) epistemic 
+	uncertainties on the Guten\-berg-Richter maximum magnitude.
 \end{itemize}
 No restrictions are given on the number of branch sets that can be defined 
 inside a branching level.
@@ -137,9 +144,8 @@ inside a branching level.
 A \Verb+branchSet+ is defined as a sequence of \Verb+logicTreeBranch+ 
 elements, each specified by an \Verb+uncertaintyModel+ element (a string 
 identifying an uncertainty mod\-el; the content of the string varies with
-the uncertaintyType attribute value of the branchSet element) and the
-uncertaintyWeight element (specifying the probability/weight associated 
-to the uncertaintyModel):
+the \texttt{uncertaintyType} attribute value of the branchSet element) 
+and the \texttt{uncertaintyWeight} element (specifying the probability/weight associated to the uncertaintyModel):
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 <\textcolor{red}{logicTree} logicTreeID="ID">
 ...
@@ -175,7 +181,8 @@ Depending on the \Verb+uncertaintyType+ the content of the
 \begin{itemize}
 \item if \Verb+uncertaintyType="gmpeModel"+, the uncertainty model 
 contains the name of a ground motion prediction equation (a list of 
-available GMPEs are given in appendix A), e.g.:
+available GMPEs are given in appendix A at page 
+\pageref{sec:gmpes_list}), e.g.:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 <uncertaintyModel>GMPE_NAME</uncertaintyModel>
 \end{Verbatim}
