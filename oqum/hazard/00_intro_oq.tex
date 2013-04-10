@@ -16,10 +16,9 @@ and the main calculation workflows available.
 \section{Source typologies}
 \index{Source type}
 A general \gls{acr:oqe} Seismic Source model contains a list
-of sources belonging to a finite set of possible typologies. 
-Each source type is defined by a set of parameters - called 
-source data - essential for specifying source geometry and 
-seismicity occurrence characteristics.
+of sources belonging to a set of possible typologies. 
+Each source type is defined by a set of parameters essential for specifying 
+source geometry and seismicity occurrence characteristics.
 %
 Currently the OpenQuake-engine supports the following source types: 
 \begin{itemize}
@@ -55,7 +54,7 @@ source typologies such as:
 	\item Seismicity temporal occurrence follows a Poissonian model; 
 \end{itemize}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
-\subsection{Source typologies for modellcorollarydefinitioning distributed seismicity}
+\subsection{Source typologies for distributed seismicity}
 =\subsubsection{Point sources}
 \label{hazard:seismic_source_types:pointSources}
 \index{Source type!point}
@@ -75,31 +74,30 @@ to model distributed seismicity. These are the basic assumptions used to
 generate finite ruptures with point sources:
 \begin{itemize}
 	\item ruptures have a rectangular shape
-	\item rupture's hypocenter is located in the middle of the rupture
+	\item rupture's hypocenter is located in the middle (centroid) of the rupture
 	\item ruptures are limited at the top and at the bottom by two planes 
 	parallel to the topographic surface and placed at two characteristic 
 	depths named upper and lower seismogenic depths, respectively.
 \end{itemize} 
 %
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-\paragraph{Source data}
 %
 For each point source (i.e. grid node) the following parameters are requested
 (Figure \ref{fig:single_rupture} shows some of the parameters described below, 
 together with an example of rupture):
 \begin{itemize}
 \item The coordinates of the point (i.e. Longitude and Latitude in decimal 
-    degrees)
-\item The upper and lower seismogenic depths;
+    degrees, centred on the Greenwich Meridian (-180. to 180.))
+\item The upper and lower seismogenic depths (in km);
 \item One \gls{mfd};
 \item One magnitude-scaling relationship;
 \item The rupture aspect ratio;
 \item A distribution of nodal planes i.e. one (or several) instances 
     of the following set of parameters:
 \begin{itemize}
-    \item \gls{strike}
-    \item \gls{dip}
-    \item \gls{rake}
+    \item \gls{strike} in degrees (0. to 360.)
+    \item \gls{dip} in degrees (0. to 90.)
+    \item \gls{rake} in degrees (-180. to 180. following the \cite{aki2002} convention
 \end{itemize}
 \item A magnitude independent depth distribution of hypocenters. 
 \end{itemize}
@@ -232,7 +230,7 @@ of internal borders
 \item A magnitude independent depth distribution of hypocenters. 
 \end{itemize}
 
-Below we provide the exerpt of an .xml file used to describe the properties of
+Below we provide the excerpt of an .xml file used to describe the properties of
 an area source of a seismic source model.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
 numbers=left, numbersep=2pt]
@@ -269,14 +267,14 @@ numbers=left, numbersep=2pt]
     </hypoDepthDist>
 </areaSource>
 \end{Verbatim}
-The ruptures generated inside this area source follow to possible nodal 
+The ruptures generated inside this area source follow two possible nodal 
 planes and have hypocenters at two depths. 
 %
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{Fault source with floating ruptures}
 %
 Fault sources are classified according to the method adopted to 
-distribute ruptures over the fault surface. Two are the option currently 
+distribute ruptures over the fault surface. Two options are currently 
 supported: 
 \begin{itemize}
     \item Ruptures with a surface lower than the whole fault surface are 
@@ -285,7 +283,7 @@ supported:
         This model is compatible with almost all the possible 
         magnitude-frequency distributions.
     \item Ruptures always fill the entire fault surface. This model is 
-        compatible only with characteristic models (\`{a} la 
+        compatible only with characteristic models (e.g.  
         \cite{schwartz1984}).
 \end{itemize}
 In this Section we discuss fault source types that support floating ruptures.
@@ -300,10 +298,9 @@ of the source which is basically obtained by projecting a trace
 (i.e. a polyline) along a characteristic dip direction. 
 
 The parameters used to create an instance of this 
-source type are described in the following paragraph.
+source type are described below:
 %
 %  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   . 
-\paragraph{Source data}
 %
 \begin{itemize}
 \item A \gls{faulttrace} (usually a polyline); 
@@ -315,6 +312,9 @@ the Aki-Richards convention; see \citet{aki2002});
 see \citet{aki2002}) 
 \item Upper and lower depth values limiting the seismogenic interval; 
 \end{itemize}
+
+The fault trace nodes (Longitude, Latitude) must be entered such that the 
+dip direction is $90 \circ$ clockwise from the azimuth of the trace.
 Below we provide the excerpt of an .xml file used to describe the 
 properties of a simple fault source.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
@@ -347,7 +347,7 @@ properties of a simple fault source.
 \index{Source type!fault!complex geometry}
 \index{Complex fault|see{Source type}}
 %
-Complex faults differ from simple fault just by the way the geometry of 
+Complex faults differ from simple fault in the manner in which geometry of 
 the fault surface is defined and, consequently by the way the fault 
 surface is later created. 
 The input parameters used to describe complex faults are, for the most 

@@ -3,11 +3,11 @@ The magnitude-frequency distributions currently supported by the
 \gls{acr:oqe} are the following: 
 \begin{description}
     \item[A discrete incremental magnitude-frequency distribution] \hfill \\
-    It's the simplest distribution supported. It's defined by the 
+    It's the most versatile distribution supported. It's defined by the 
     minimum value of magnitude (representing the mid point of the first
     bin) and by the bin width. The distribution itself is simply a 
-    sequence of floats describing for annual number of events for 
-    different bin. Below we provide an example of the xml that should
+    sequence of floats (or exponentials) describing the annual rate of events for 
+    each different bin. Below we provide an example of the xml that should
     be incorporated in order to define this \gls{acr:mfd} for a given
     seismic source.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize]
@@ -15,8 +15,8 @@ The magnitude-frequency distributions currently supported by the
     <occurRates>0.15 0.08 0.05 0.03 0.015</occurRates>
 </incrementalMFD>
 \end{Verbatim}
-    This is the magnitude-frequency distribution obtained with the above
-    settings:
+    The magnitude-frequency distribution obtained with the above
+    settings is shown in Figure \ref{fig:evenly_discretized_mfd}.
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
 \begin{figure}[!ht]
@@ -37,8 +37,8 @@ The magnitude-frequency distributions currently supported by the
 <truncGutenbergRichterMFD aValue="5.0" bValue="1.0" minMag="5.0" 
         maxMag="6.0"/>
 \end{Verbatim}
-    This is the magnitude-frequency distribution obtained using the 
-    parameters of the considered example:
+    The magnitude-frequency distribution obtained using the 
+    parameters of the considered example is shown in Figure \ref{fig:dt_gr_mfd}
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
 \begin{figure}[!ht]
