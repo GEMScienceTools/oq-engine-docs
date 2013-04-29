@@ -244,7 +244,7 @@ In this final example, the OpenQuake engine will require population distribution
 Scripts capable of converting information about the assets stored in Excel or ASCII files into NRML have been developed by the scientists working at \gls{acr:gem} and can be found at the GEM Science tools repository at GitHub (\textcolor{blue01}{\Verb+http://github.com/GEMScienceTools+}). 
 
 \subsection{Physical vulnerability model definition}
-In this section, the NRML schema for the \gls{vulnerability model} is described in detail. In order to do so, a graphical representation of a \gls{vulnerability model} (mean loss ratio for a set of intensity measure levels) is illustrated in Figure \ref{fig:vulModel}, and the equivalent NRML file is then presented. Note that although the uncertainty for each loss ratio is not represented in the aforementioned figure, it has been considered in the input NRML file, by means of a coefficient of variation per loss ratio and an associated lognormal distribution. This model is comprised of two discrete \glspl{vulnerability function} and uses spectral acceleration for a given period of vibration as the intensity measure type. 
+In this section, the NRML schema for the \gls{vulnerability model} is described in detail. In order to do so, a graphical representation of a \gls{vulnerability model} (mean loss ratio for a set of intensity measure levels) is illustrated in Figure \ref{fig:vulModel}, and the equivalent NRML file is then presented. Note that although the uncertainty for each loss ratio is not represented in the aforementioned figure, it has been considered in the input NRML file, by means of a coefficient of variation per loss ratio and a probabilistic distribution, which can currently be set to lognormal or beta. This model is comprised of two discrete \glspl{vulnerability function} and uses spectral acceleration for a given period of vibration as the intensity measure type. 
 
 \begin{figure}[ht]
 \centering
@@ -269,7 +269,7 @@ At the top of the NRML schema, the following metadata are being stored:
 \begin{itemize}
 \item  \Verb+vulnerabilitySetID+: A unique key used to identify the \gls{vulnerability model} instance within the OpenQuake engine;
 \item  \Verb+assetCategory+: An attribute that describes the asset typology (e.g.: population, buildings, contents);
-\item  \Verb+lossCategory+: An attribute that describes the type of loss being modelled for the assetCategory (e.g.: fatalities, structural replacement cost, contents replacement cost). 
+\item  \Verb+lossCategory+: An attribute that describes the type of loss being modelled for the assetCategory (e.g. fatalities, structural replacement cost, contents replacement cost). 
 \end{itemize}
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
@@ -305,7 +305,7 @@ Within this component, an attribute specifying the intensity measure type (e.g.:
 Finally, for each discrete \gls{vulnerability function} the following parameters are required:
 \begin{itemize}
 \item  \Verb+ vulnerabilityFunctionID +: A unique key that is used to relate each \gls{vulnerability function} with the \glspl{asset} in the \gls{exposure model};
-\item  \Verb+ probabilisticDistribution +: An attribute that establishes the type of probabilistic distribution used to model the uncertainty in loss ratio. At the moment, the OpenQuake engine only supports lognormal distributions, however, other types of distributions such as beta will be incorporated in future releases;
+\item  \Verb+ probabilisticDistribution +: An attribute that establishes the type of probabilistic distribution used to model the uncertainty in loss ratio. At the moment, the OpenQuake engine supports lognormal (\Verb+LN+) and beta (\Verb+BT+) distributions;
 \item  \Verb+ lossRatio +: A set of mean loss ratios (one for each intensity measure level defined previously). These values can represent different losses such as fatality rates (ratio between the number of fatalities and total population exposed) or so-called damage ratio (ratio between the repair cost and the replacement cost of a given structure).
 \item  \Verb+ coefficientsVariation +: A set of coefficients of variation (one per loss ratio) that describes the uncertainty in the loss ratio. If users do not want to consider the uncertainty, this set of parameters can be set to zero, and the OpenQuake engine assumes each loss ratio as a deterministic value. 
 \end{itemize}
@@ -472,7 +472,7 @@ maximum_distance = 10
 \item  \Verb+calculation_mode+: this parameter sets the type of calculations. The key word for each risk calculator is described in the following sections;
 \item  \Verb+exposure_file+: this parameter is used to specify the path to the \gls{exposure model} file;
 \item  \Verb+region_constraint+: this field is used to define the polygon enclosing the region of interest. Assets outside of this region will not be considered in the risk calculations. This region is defined using pairs of coordinates (longitude and latitude in decimal degrees) that indicate the vertexes of the polygon;
-\item  \Verb+maximum_distance+: this parameter indicates the maximum allowable distance between an \gls{asset} and the closest hazard input. If no hazard input is found within this distance, the \gls{asset} is skipped and a message is provided mentioning the id of the asset that is affected by this issue.
+\item  \Verb+maximum_distance+: this parameter indicates the maximum allowable distance between an \gls{asset} and the closest hazard input. If no hazard input is found within this distance, the \gls{asset} is skipped and a message is provided mentioning the id of the asset that is affected by this issue. If this parameter is not provided, the OpenQuake-Engine assumes the maximum allowable distance as 5 km.
 \end{itemize}
 
 Depending on the type of calculations, other parameters besides the aforementioned ones need to be provided, as will be described in the following sections.
@@ -489,7 +489,7 @@ master_seed = 3
 
 \begin{itemize}
 \item  \Verb+vulnerability_file+: this parameter is used to specify the path to the \gls{vulnerability model} file;
-\item  \Verb+asset_correlation+: if the uncertainty in the loss ratios has been defined within the \gls{vulnerability model}, users can specify a coefficient of correlation that will be used in the Monte Carlo sampling process of the loss ratios, between the assets that share the same \gls{taxonomy}. If the \Verb+asset_correlation+ is set to one, the loss ratio residuals will be perfectly correlated. On the other hand, if this parameter is set to zero, the loss ratios will be sampled independently. Any value between zero and one will lead to increasing levels of correlation;
+\item  \Verb+asset_correlation+: if the uncertainty in the loss ratios has been defined within the \gls{vulnerability model}, users can specify a coefficient of correlation that will be used in the Monte Carlo sampling process of the loss ratios, between the assets that share the same \gls{taxonomy}. If the \Verb+asset_correlation+ is set to one, the loss ratio residuals will be perfectly correlated. On the other hand, if this parameter is set to zero, the loss ratios will be sampled independently. Any value between zero and one will lead to increasing levels of correlation. If this parameter is not defined, the OpenQuake engine assumes no correlation in the vulnerability;
 \item  \Verb+master_seed+: this parameter is used to control the random generator in the loss ratio sampling process. This way, if the same \Verb+master_seed+ is defined at each calculation run, the same random loss ratios will be generated, thus allowing replicability of the results.
 \end{itemize}
 
@@ -514,12 +514,12 @@ vulnerability_file = vulnerability_model.xml
 asset_correlation = 0.7
 master_seed = 3
 
-loss_curve_resolution = 20
+loss_curve_resolution = 15
 conditional_loss_poes = 0.01, 0.05, 0.1
 \end{Verbatim}
 
 \begin{itemize}
-\item  \Verb+loss_curve_resolution+: since this calculator uses an event-based approach, a large number of levels of loss (and associated probabilities of exceedance) is computed (one per event) for each asset. The oq-risklib will use this large set of results to extrapolate a loss curve, whose number of points are controlled by this parameter;
+\item  \Verb+loss_curve_resolution+: since this calculator uses an event-based approach, a large number of levels of loss (and associated probabilities of exceedance) is computed (one per event) for each asset. The oq-risklib will use this large set of results to extrapolate a loss curve, whose number of points are controlled by this parameter. By default, the OpenQuake engine assumes the \Verb+loss_curve_resolution+ equal to 20;
 \item  \Verb+conditional_loss_poes+: this parameter is used to define the probabilities of exceedance at which loss maps are to be produced.
 \end{itemize}
 
@@ -534,7 +534,7 @@ conditional_loss_poes = 0.01, 0.05, 0.1
 \end{Verbatim}
 
 \begin{itemize}
-\item  \Verb+lrem_steps_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. More details are provided in the OpenQuake Engine Book (Risk).  
+\item  \Verb+lrem_steps_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake engine assumes the \Verb+lrem_steps_per_interval+ to be equal to 5. More details are provided in the OpenQuake Engine Book (Risk).  
 \end{itemize}
 
 \subsubsection{Retrofitting Benefit/Cost Ratio Calculator}
