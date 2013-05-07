@@ -3,16 +3,17 @@
 In this section we describe the structure of the configutation 
 file to be used to complete a seismic hazard disaggregation. 
 Since only a few parts of the standard configuration file need to 
-be changed we'll use the description give in Section 
+be changed we'll use the description given in Section 
 \ref{sec:config_classical_PSHA} at page 
-\pageref{sec:config_classical_PSHA} as a reference.
+\pageref{sec:config_classical_PSHA} as a reference and we'll 
+emphasize in the following major differences.
 %
 \begin{itemize}
 %
 \item \textbf{Calculation type and model info}
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 [general]
-description = A demo OpenQuake-engine .ini file for PSHA disaggregation
+description = A demo .ini file for PSHA disaggregation
 calculation_mode = disaggregation
 random_seed = 1024
 \end{Verbatim}
@@ -40,10 +41,9 @@ distance_bin_width = 25.0
 coordinate_bin_width = 1.5
 num_epsilon_bins = 3
 \end{Verbatim}
-With the disaggregation settings above we'll disaggregate the intensity
-measure levels with 10\% and 2\% probability of exceedance in the
-\texttt{investigation\_time} defined in the ``Calculation configuration''
-section of the OpenQuake configuration file (see page 
-\pageref{sec:calculation_configuration}).
-
+With the disaggregation settings shown above we'll disaggregate the intensity
+measure levels with 10\% and 2\% probability of exceedance using the
+\texttt{in\-ves\-ti\-gation\_time} and the intensity measure types 
+defined in the ``Calculation configuration'' section of the OpenQuake
+configuration file (see page \pageref{sec:calculation_configuration}). 
 \end{itemize}

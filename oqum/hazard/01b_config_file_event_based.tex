@@ -1,12 +1,13 @@
 \subsubsection{Event based PSHA}
 %
 In the following we describe the sections of the logic tree that are 
-specific for event based PSHA calculations (the remaining sections 
+required to complete event based PSHA calculations 
 \begin{enumerate}
-\item \textbf{Calculation type and model info}
+\item \textbf{Calculation type and model info} \hfill \\
     This part is almost identical to the corresponding one 
-    describe in section \ref{sec:config_classical_PSHA}. Note
-    the setting of the \texttt{calculation\_mode} parameter.
+    described in section \ref{sec:config_classical_PSHA}. Note
+    the setting of the \texttt{cal\-cu\-lation\_mode} parameter
+    which now corresponds to \texttt{event\_based}.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     numbers=left, numbersep=2pt]
 [general]
@@ -17,9 +18,12 @@ random_seed = 1024
 %
 \item \textbf{Event based} \hfill \\
 This is an additional part used to specify the number of stochastic 
-event sets (each one representing a potential realisation of seismicity
-during the \texttt{investigation\_time} specified in the 
-\texttt{calculation\_configuration} part.
+event sets to be generated for each logic tree realisation 
+(each stochastic event set represents a potential realisation of seismicity
+during the \texttt{in\-ves\-ti\-gation\_time} specified in the 
+\texttt{calculation\_configuration} part).
+Additionaly in this section the user can specify the spatial correlation
+model to be used in case for the generation of ground motion fields. 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 [event_based_params]
 ses_per_logic_tree_path = 5

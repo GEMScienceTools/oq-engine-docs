@@ -33,15 +33,20 @@
 	number of alternatives. A branch is associated with a weight 
 	value \citep{scherbaum2011} if the \gls{branchset} represents the 
 	epistemic uncertainty on a parameter or a model when the \gls{branchset} 
+<<<<<<< HEAD
 	is used to specify alternative models (e.g. district \glspl{acr:fmd})}
+=======
+	is used to specify alternative models (e.g. district \glspl{acr:mfd})
+	}
+>>>>>>> haz-marco
 }
 \newglossaryentry{branchinglevel}{
 	name = branching level,
 	description={It indicates the position where a \gls{branchset} or a 
 	\gls{branch} is located in a logic tree structure. For example, 
-	in \gls{acr:oq} the first branching level of the 
+	the first branching level of the 
 	\gls{seismicsourcelogictree} always contains one or several 
-	\glspl{initialseismicsourcemodel}
+	\glspl{initialseismicsourceinputmodel}
 	}
 }
 \newglossaryentry{branchset}{
@@ -137,8 +142,14 @@
 \newglossaryentry{faulttrace}{
 	name = fault trace,
 	description={A curve representing the intersection between the surface 
+<<<<<<< HEAD
     representing the fault and the topographic surface
     \begin{figure}[!h]
+=======
+    containing the fault surface (or its prolongation) 
+	and the topographic surface.
+    \begin{figure}[!ht]
+>>>>>>> haz-marco
     \centering
     \includegraphics[width=10cm]{./figures/hazard/single_rupture.eps}
     \caption{Trace example}
@@ -165,6 +176,7 @@
 %
 % ------- G
 \newacronym{acr:gem}{GEM}{Global Earthquake Model}
+\newacronym{acr:gmf}{GMF}{Ground Motion Field}
 \newacronym{acr:gmpe}{GMPE}{Ground Motion Prediction Equation}
 \newacronym{acr:gmlt}{GMLT}{Ground Motion Logic Tree (see 
     \gls{groundmotionlogictree}} 
@@ -172,9 +184,9 @@
 	name = grid source,
 	description={
 	It's a source typology usually adopted to model distributed 
-	seismicity. It's usually produced by a seismicity smoothing algorithm 
-	(one of the most famous algorithm is the one proposed by 
-	\citet{frankel1995})}
+	seismicity. It's routinely produced by a seismicity smoothing 
+	algorithm (one of the most famous algorithm is the one proposed 
+	by \citet{frankel1995})}
 }
 \newglossaryentry{groundmotionfield}{
 	name = ground-motion field,
@@ -183,7 +195,7 @@
 }
 \newglossaryentry{groundmotionfieldcalc}{
 	name = ground-motion field calculator,
-	description={An \gls{acr:oq} calculator that given a rupture computes the 
+	description={An \gls{acr:oqe} calculator that given a rupture computes the 
 	geographic distribution of a ground motion intensity parameter. Currently
 	OQ can generate ground motion fields using a \gls{acr:gmpe}}
 }
@@ -205,9 +217,9 @@
 \newglossaryentry{groundmotionparameter}{
 	name = ground-motion parameter,
 	description={A scalar or vector quantity describing a relevant property
-	of the shaking such as intensity (e.g. PGA or Spectral Acceleration) 
-	or duration, equivalent number of cycles 
-	\citep[see for example][]{hancock2005})
+	    of the shaking such as intensity (e.g. PGA or Spectral Acceleration) 
+	    or duration, equivalent number of cycles 
+	    \citep[see for example][]{hancock2005})
 	}
 }
 \newglossaryentry{groundmotionpredictioneq}{
@@ -227,9 +239,16 @@
 % ------- I 
 \newglossaryentry{initialseismicsourceinputmodel}{
 	name = initial seismic source input model,
+<<<<<<< HEAD
 	description={An initial seismic source input model is a 
     \gls{seismicsourceinputmodel} included in the first 
 	branching level of a seismic source logic tree}
+=======
+	description={It's the ensable of information needed to fully describe 
+        the seismic sources composing a seismic source input model. The 
+        initial seismic source input model is included in the first 
+	    branching level of a seismic source logic tree}
+>>>>>>> haz-marco
 }
 \newglossaryentry{investigationtime}{
 	name = investigation time,
@@ -273,16 +292,18 @@
 }
 %
 % ------- O
-\newacronym{acr:hazlib}{oq-hazardlib}{OpenQuake hazard library}
+\newacronym{acr:hazlib}{oq-hazardlib}{OpenQuake hazard library \hfill \\
+	(online repository at 
+	\href{oq-hazardlib online repository}{http://github.com/gem/oq-hazardlib})}
 \newglossaryentry{opensha}{
 	name = OpenSHA,
 	description = {OpenSHA is an open-source, advanced Java-based 
 	platform for conducting Seismic Hazard Analysis - 
-	(see \href{http://opensha.org}{OpenSHA website}). \gls{acr:oq}-hazard 
-	relies on a distilled version of OpenSHA}
+	(see \href{http://opensha.org}{OpenSHA website})}
 }
-\newacronym{acr:oq}{OQ}{OpenQuake}
-\newacronym{acr:oqe}{OQe}{OpenQuake-engine}
+\newacronym{acr:oqe}{oq-en\-gine}{OpenQuake-engine	\hfill \\
+	(online repository at 
+	\href{oq-engine online repository}{http://github.com/gem/oq-engine})}
 %
 % ------- P
 \newacronym{acr:pga}{PGA}{Peak Ground Acceleration}
@@ -309,12 +330,23 @@
 }
 %
 % ------- R
+<<<<<<< HEAD
 \newacronym{acr:rjb}{r$_{\text{jb}}$}{Joyner and Boore distance}
+=======
+\newacronym{acr:rrup}{$\text{r}_{\text{rup}}$}{closest distance between 
+	the site and rupture}
+>>>>>>> haz-marco
 \newglossaryentry{rupture}{
 	name=earthquake rupture, 
 	description={A 3D surface - representing a portion or the entire 
     fault surface - over which a slip event (i.e. an earthquake) 
     occurs.
+	}	
+}
+\newglossaryentry{ruptureaspectratio}{
+	name=rupture aspect ratio, 
+	description={It's the ratio between the lenght and the width of an
+		earthquake rupture
 	}	
 }
 \newglossaryentry{rake}{
@@ -363,8 +395,9 @@
 	structured and systematic way the epistemic uncertainties 
 	characterizing the seismic source model. The first 
 	branching level in the logic tree by definition contains one or
-	several alternative \gls{initialseismicsourcemodel}}
+	several alternative \gls{initialseismicsourceinputmodel}}
 }
+<<<<<<< HEAD
 \newacronym[description={\glslink{seismicsourceinputmodel}{Seismic 
     Source Input Model}}]{acr:ssim}{SSIM}{Seismic Source Input Model}
 \newglossaryentry{seismicsourceinputmodel}{
@@ -380,11 +413,30 @@
         (see \href{SeismicSource} 
         {https://github.com/gem/oq-hazardlib/blob/master/openquake/hazardlib/source/base.py})
     }
+=======
+\newacronym{acr:ssim}{SSIM}{Seismic Source Input Model}
+\newglossaryentry{seismicsourceinputmodel}{
+	name = seismic source input model,
+	description={An object containing a list of \gls{seismicsourcedata}.
+    In the OpenQuake-engine a seismic source model doesn't contain 
+    epistemic uncertainty}
+>>>>>>> haz-marco
+}
+\newglossaryentry{seismicsource}{
+	name = seismic source,
+    description={An object that can generate}
+}
+\newacronym{acr:ssm}{SSM}{Seismic Source Model}
+\newglossaryentry{seismicsourcemodel}{
+	name = seismic source model,
+	description={An object containing a list of \glspl{seismicsource}
+    objects}
 }
 \newacronym{acr:scec}{SCEC}{Southern California Earthquake Center}
 \newglossaryentry{seismicsourcesystem}{
 	name = seismic source system,
-	description={An object containing a list of \glspl{initialseismicsourcemodel}
+	description={An object containing a list of 
+        \glspl{initialseismicsourceinputmodel}
 	and the \gls{seismicsourcelogictree}}
 }
 \newglossaryentry{simplefaultsource}{
@@ -402,7 +454,10 @@
 }
 \newglossaryentry{strike}{
 	name = strike,
-	description={The strike
+	description={
+	The strike direction correspond to the angle between the north and
+	the direction you take so that when you walk along the \gls{faulttrace}
+	the fault dips on your right. 
 	}
 }
 \newacronym{acr:sa}{S$_a$}{Spectral Acceleration}

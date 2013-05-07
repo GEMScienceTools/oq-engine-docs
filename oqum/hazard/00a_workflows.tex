@@ -41,23 +41,21 @@ The main calculators used to perform this analysis are:
 \item \emph{Logic Tree Processor} \hfill \\
 The Logic Tree Processor (LTP) takes as an input the \gls{acr:psha} 
 Input Model and creates a Seismic Source Model. The LTP uses the 
-information in the Initial Seismic Source Models and by 'harvesting' 
-the information contained in the Seismic Source Logic Tree - that is 
-to sample the epistemic uncertainties - it creates a Seismic Source 
+information in the Initial Seismic Source Models and  
+the Seismic Source Logic Tree - i.e. sampling 
+epistemic uncertainties - to create a Seismic Source Input
 Model (i.e. a model describing geometry and activity rates of each 
 source without any epistemic uncertainty). 
 %
-Following the procedure just described the Logic Tree Processor creates a 
-Ground Motion model (i.e. a data structure that associates to each tectonic 
-region considered in the calculation a \gls{acr:gmpe}).
+Following a procedure similar to the one just described the Logic Tree Processor creates a Ground Motion model (i.e. a data structure that associates to each tectonic region considered in the calculation a \gls{acr:gmpe}).
 %
 \item \emph{Earthquake Rupture Forecast Calculator} \hfill \\
-The produced Seismic Source Model is then used as input for the Earthquake 
-Rupture Forecast (ERF) calculator which computes the probability of occurrence, 
-over a specified time span, for each earthquake rupture produced by the source 
-model.
+The produced Seismic Source Input Model is then used as input for the
+Earthquake Rupture Forecast (ERF) calculator which creates a list 
+earthquake rupture produced by the source model, each one characterized
+by a probability of occurrence, over a specified time span.
 \item \emph{Classical PSHA Calculator} \hfill \\
-The classical \gls{acr:psha} uses the ERF and the Ground Motion model 
+The classical PSHA calculator uses the ERF and the Ground Motion model 
 to compute hazard curves on each site specified in the calculation settings.
 \end{enumerate} 
 %
@@ -65,9 +63,9 @@ to compute hazard curves on each site specified in the calculation settings.
 \subsection{Event-Based Probabilistic Seismic Hazard Analysis}
 \index{OpenQuake-engine!Hazard calculation workflows!Event-based PSHA} 
 \label{section:event-basedPSHA}
-Input data for the Event-Based \gls{acr:psha} - as in the case of the 
+Input data for the Event-Based PSHA - as in the case of the 
 Classical \gls{acr:psha} calculator - consist of a PSHA Input Model 
-supplied to OQ together with a set of calculation settings.
+and a set of calculation settings.
 %
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
@@ -87,8 +85,8 @@ The main calculators  used to perform this analysis are:
 \begin{enumerate}
 %
 \item \emph{Logic Tree Processor} \hfill \\
-The Logic Tree Processor was already 
-introduced in the description of the Classical \gls{acr:psha} workflow 
+The Logic Tree Processor works in the same way described in 
+the description of the Classical \gls{acr:psha} workflow 
 (see section \ref{section:classicalPSHA} at page 
 \pageref{section:classicalPSHA}).
 %
@@ -98,42 +96,33 @@ introduced in the description of the PSHA workflow (see section
 \ref{section:classicalPSHA} at page \pageref{section:classicalPSHA}).
 %
 \item \emph{Stochastic Event Set Calculator} \hfill \\
-The Stochastic Event Set Calculator generates a Stochastic Event set 
-by sampling each rupture contained in the ERF according to its 
-probability of occurrence. Usually a Stochastic Event Set (SES) contains
-a large number of seismicity histories each one representative of a  
-possible collection of events that can be produced by the seismic source
-considered in an analysis during the time span fixed for the calculation
-of hazard (normally corresponding to 50 years).
+The Stochastic Event Set Calculator generates a collection of Stochastic Event sets by sampling each rupture contained in the ERF according to its 
+probability of occurrence. A Stochastic Event Set (SES) represents
+a potential realisation of the seismicity (i.e. a list of ruptures) 
+over the time span fixed for the calculation
+of hazard (normally corresponding to 50 years) by the set of seismic sources considered in the analysis. 
 %
 \item \emph{Ground Motion Field Calculator} \hfill \\
 The Ground Motion Field Calculator computes for each event contained in a 
-Stochastic Event Set - provided as an input - a realization of the 
-ground shaking taking into account the aleatory uncertainties in 
+Stochastic Event Set a realization of the geographic distribution of the shaking by taking into account the aleatory uncertainties in 
 the ground-motion model. Eventually, the Ground Motion Field calculator 
 can consider the spatial correlation of the ground-motion during the 
-generation of the GMF.
+generation of the \gls{acr:gmf}.
 %
 \item \emph{Event-based PSHA Calculator} \hfill \\
 The event-based PSHA calculator takes a (large) set of ground-motion 
-fields representative of the possible shaking that the investigated 
-area can eventually experience over a (large) time span and for each 
-grid node in a ground-motion fields computes the corresponding hazard 
-curve. 
+fields representative of the possible shaking scenarios that the investigated area can experience over a (long) time span and for each 
+site computes the corresponding hazard curve. 
 %
 This procedure is computationally intensive and is not recommended for 
 investigating the hazard over large areas. 
 \end{enumerate}
-
-The Logic Tree Processor and the Earthquake rupture forecast were already 
-introduced during the descrption of the PSHA workflow (see section 
-\ref{section:classicalPSHA} at page \pageref{section:classicalPSHA}).
 %
 %  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 \subsection{Scenario based Seismic Hazard Analysis}
 \index{OpenQuake-engine!Hazard calculation workflows!Scenario-based SHA} 
 \label{section:deterministicSHA}
-For \gls{acr:ssha}, the input data consist of a single earthquake 
+In case of \gls{acr:ssha}, the input data consist of a single earthquake 
 rupture model and a single ground-motion model. Using the Ground Motion Field 
 Calculator, multiple realizations of ground shaking can be computed, each 
 realization sampling the aleatory uncertainties in the ground-motion model.
@@ -142,8 +131,8 @@ The main calculators used to perform this analysis are:
 \begin{enumerate}
 \item \emph{Ground Motion Field Calculator} \hfill \\
 The Ground Motion Field Calculator was already 
-introduced during the descrption of the event based PSHA workflow (see section 
-\ref{section:event-basedPSHA} at page \pageref{section:classicalPSHA}).
+introduced during the description of the event based PSHA workflow (see 
+section \ref{section:event-basedPSHA} at page \pageref{section:classicalPSHA}).
 \end{enumerate}
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure

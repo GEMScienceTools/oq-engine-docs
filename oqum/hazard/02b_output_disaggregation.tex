@@ -1,6 +1,13 @@
 \section{Output from Disaggregation}
+The output from an \gls{acr:oqe} disaggregation analysis  
+correspond to the combination of a hazard curve and a multidimensional 
+matrix containing the results of the disaggregation.
 
-
+The example below shows the list of disaggregation results obtained 
+for four logic tree realisations. 
+For each realisation, disaggregation has been completed for two  
+intensity measure levels corresponding to different probabilities of 
+exceedence in the specified \texttt{investigation time}.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 user@ubuntu:~$ openquake --lho <calc_id> 
 id | output_type | name
@@ -17,3 +24,43 @@ id | output_type | name
 29 | disagg_matrix | disagg(0.02)-rlz-4-PGA-POINT(10.1 40.1)
 30 | disagg_matrix | disagg(0.1)-rlz-4-PGA-POINT(10.1 40.1)
 \end{Verbatim}
+
+In the following (see Inset \ref{vrb:disaggr}) we show 
+%\begin{nrmlsmp}
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+<?xml version='2.0' encoding='UTF-8'?>
+<nrml xmlns:gml="http://www.opengis.net/gml" 
+      xmlns="http://openquake.org/xmlns/nrml/0.4">
+  <disaggMatrices sourceModelTreePath="b1" gsimTreePath="b1" IMT="PGA" 
+        investigationTime="50.0" lon="10.1" lat="40.1" 
+        magBinEdges="5.0, 6.0, 7.0, 8.0" 
+        distBinEdges="0.0, 25.0, 50.0, 75.0, 100.0" 
+        lonBinEdges="9.0, 10.5, 12.0" 
+        latBinEdges="39.0, 40.5" 
+        epsBinEdges="-3.0, -1.0, 1.0, 3.0" 
+        tectonicRegionTypes="Active Shallow Crust">
+    <disaggMatrix type="Mag" dims="3" poE="0.1" iml="0.033424622602">
+    <disaggMatrix type="Mag" dims="3" poE="0.1" iml="0.033424622602">
+      <prob index="0" value="0.987374744394"/>
+      <prob index="1" value="0.704295394366"/>
+      <prob index="2" value="0.0802318409498"/>
+    </disaggMatrix>
+    <disaggMatrix type="Dist" dims="4" poE="0.1" iml="0.033424622602">
+      <prob index="0" value="0.700851969171"/>
+      <prob index="1" value="0.936680387051"/>
+      <prob index="2" value="0.761883595568"/>
+      <prob index="3" value="0.238687565571"/>
+    </disaggMatrix>
+    <disaggMatrix type="TRT" dims="1" poE="0.1" iml="0.033424622602">
+      <prob index="0" value="0.996566187011"/>
+    </disaggMatrix>
+    <disaggMatrix type="Mag,Dist" dims="3,4" poE="0.1" iml="0.033424622602">
+      <prob index="2,3" value="0.0"/>
+    </disaggMatrix>
+    <disaggMatrix type="Mag,Dist,Eps" dims="3,4,3" poE="0.1" iml="0.033424622602">
+      <prob index="0,0,0" value="0.0785857271425"/>
+\end{Verbatim}
+%\caption{Hazard map: nrml sample file}
+%\label{vrb:disaggr}
+%\end{nrmlsmp}
+

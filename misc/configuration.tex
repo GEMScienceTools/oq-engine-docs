@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+\setlength{\parskip}{0.5\baselineskip}%
+\setlength{\parindent}{0pt}%
+
+>>>>>>> haz-marco
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3}
 % This is used to create the cover and to plot trees
@@ -7,6 +13,16 @@
 \usepackage{geometry}
 \usepackage{moresize}
 
+<<<<<<< HEAD
+=======
+%\usepackage{chappg}
+
+\usepackage{float}
+\floatstyle{plaintop}
+\newfloat{nrmlsmp}{th}{lop}[chapter]
+\floatname{nrmlsmp}{Nrml sample}
+
+>>>>>>> haz-marco
 %
 %\usepackage{algorithmic}
 % 
@@ -41,15 +57,19 @@
 \usepackage{framed}
 \usepackage[utf8]{inputenc}
 
+<<<<<<< HEAD
 
 % Page numbering by chapter - for compatibility with glossary see
 % http://tex.stackexchange.com/questions/32686/ledmac-pagelinesep-and-makeindex
 %\usepackage{chappg}
 %\renewcommand{\chappgsep}{-}%
+=======
+>>>>>>> haz-marco
 %
 % Package to create a glossary - It must be uploaded after hyperref
 % to produce the glossary: makeglossaries OQB
 %\usepackage[toc,acronym,nonumberlist,style=altlist]{glossaries}
+<<<<<<< HEAD
 %\usepackage[xindy,toc,nonumberlist,style=altlist]{glossaries}
 %\usepackage[toc,nonumberlist,style=altlist,number=none]{glossaries}
 \usepackage[toc,
@@ -60,6 +80,9 @@
 \renewcommand*{\glsgroupskip}{}
 \renewcommand*{\glsseeformat}[3][\seename]{%
 (\xmakefirstuc{#1} \glsseelist{#2}.)}
+=======
+\usepackage[toc,nonumberlist,style=altlist,acronym]{glossaries}
+>>>>>>> haz-marco
 \glstoctrue
 \makeglossaries
 %

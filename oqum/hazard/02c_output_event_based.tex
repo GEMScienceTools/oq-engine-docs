@@ -1,21 +1,30 @@
 \section{Output from Event Based PSHA}\label{EventBasedOutput}
 %
 The Event Based PSHA calculator computes and stores stochastic 
-event sets and the corresponding ground motion fields. 
+event sets and the corresponding ground motion fields. In case,
+this calculator can also compute hazard curves and hazard maps
+exactly in the same way is done using the Classical PSHA calculator.
 
+A stochastic event set is a set of ruptures representing a possible
+realisation of the seismicity produced by the seismic sources 
+included in the PSHA input model, given an \texttt{investigation time}.
+%
 A ground motion field is defined in a \Verb+GMF+ element, which 
 consists of a sequence of \Verb+GMFNode+ elements, 
 each containing a geographical location and the associated ground 
 motion value.
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+
+The inset below shows an example of the list of results provided by 
+\gls{acr:oqe} at the end of an event-based PSHA calculation:
+\begin{Verbatim}[frame=single, commandchars=\\\{\}]
 user@ubuntu:~$ openquake --lho <calc_id> 
 id | output_type | name
-31 | ses | ses-coll-rlz-19
-32 | gmf | gmf-rlz-19
-33 | ses | ses-coll-rlz-20
-34 | gmf | gmf-rlz-20
-35 | complete_lt_ses | complete logic tree SES
-36 | complete_lt_gmf | complete logic tree GMF
+\textcolor{red}{31 | ses | ses-coll-rlz-19}
+\textcolor{green}{32 | gmf | gmf-rlz-19}
+\textcolor{red}{33 | ses | ses-coll-rlz-20}
+\textcolor{green}{34 | gmf | gmf-rlz-20}
+\textcolor{red}{35 | complete_lt_ses | complete logic tree SES}
+\textcolor{green}{36 | complete_lt_gmf | complete logic tree GMF}
 37 | hazard_curve | hazard-curve-rlz-19-SA(0.1)
 38 | hazard_curve | hazard-curve-rlz-20-SA(0.1)
 39 | hazard_curve | hazard-curve-rlz-19-PGA
@@ -29,4 +38,8 @@ id | output_type | name
 47 | hazard_curve | quantile curve (poe >= 0.5) for imt PGA
 48 | hazard_curve | quantile curve (poe >= 0.85) for imt PGA
 \end{Verbatim}
-
+This list contains two sets of stochastic events (in red in the example 
+above) two sets of ground motion fields (in blue in the example above).
+The whole group of stochastic event set and ground motion fields can 
+be exported immediately using the results with \texttt{id} 35 and 25,
+respectively.

@@ -147,6 +147,22 @@
   timestamp = {2011.08.18}
 }
 
+<<<<<<< HEAD
+=======
+@ARTICLE{atkinson2003,
+  author = {Atkinson, G. A. and Boore},
+  title = {Empirical Ground-Motion Relations for Subduction-Zone Earthquakes
+	and Their Application to Cascadia and Other Regions},
+  journal = {Bu},
+  year = {2003},
+  volume = {93},
+  pages = {1703-1729},
+  number = {4},
+  owner = {marcop},
+  timestamp = {2013.03.24}
+}
+
+>>>>>>> haz-marco
 @ARTICLE{atkinson2006,
   author = {Atkinson, G. A. and Boore, D. M.},
   title = {{Earthquake Ground-Motion Prediction Equations for Eastern North
@@ -621,7 +637,11 @@
 
 @INPROCEEDINGS{faccioli2010,
   author = {Faccioli, E. and Bianchini, A. and Villani, M.},
+<<<<<<< HEAD
   title = {New ground motion prediction equations for T $>$ 1 s and their influence
+=======
+  title = {New ground motion prediction equations for T > 1 s and their influence
+>>>>>>> haz-marco
 	on seismic hazard assessment},
   booktitle = {Proceedings of the University of Tokyo Symposium on Long-Period Ground
 	Motion and Urban Disaster Mitigation},
