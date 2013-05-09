@@ -1,7 +1,7 @@
 \section{Running OpenQuake engine for risk calculations}
 Using the command line interface, risk calculations can be launched and the resulting outputs can be extracted. This section describes all the currently implemented commands and presents examples for each of the calculators.   
 One of the first tasks that needs to be performed is the definition of the seismic hazard input. As mentioned in section \ref{sec:riskCalculators}, the risk calculations can use the results produced by the hazard component of the OpenQuake engine. Moreover, for the two scenario-based calculators, users also have the option of loading a set of ground motion fields that might have been produced using the OpenQuake engine, or other software. 
-In order to load ground motion fields based on a single earthquake event, it is fundamental to ensure that the ground motion values have been stored according to the appropriate NRML schema, as presented in section (TO BE ADDED). Then, the following command can be used:
+In order to load ground motion fields based on a single earthquake event, it is fundamental to ensure that the ground motion values have been stored according to the appropriate NRML schema, as presented in section \ref{EventBasedOutput}. Then, the following command can be used:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 user@ubuntu:~\$ openquake --loadgmf <gml_directory>
