@@ -5,18 +5,10 @@ event sets and the corresponding ground motion fields. In case,
 this calculator can also compute hazard curves and hazard maps
 exactly in the same way is done using the Classical PSHA calculator.
 
-A stochastic event set is a set of ruptures representing a possible
-realisation of the seismicity produced by the seismic sources 
-included in the PSHA input model, given an \texttt{investigation time}.
-%
-A ground motion field is defined in a \Verb+GMF+ element, which 
-consists of a sequence of \Verb+GMFNode+ elements, 
-each containing a geographical location and the associated ground 
-motion value.
-
 The inset below shows an example of the list of results provided by 
 \gls{acr:oqe} at the end of an event-based PSHA calculation:
-\begin{Verbatim}[frame=single, commandchars=\\\{\}]
+%
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --lho <calc_id> 
 id | output_type | name
 \textcolor{red}{31 | ses | ses-coll-rlz-19}
@@ -38,8 +30,79 @@ id | output_type | name
 47 | hazard_curve | quantile curve (poe >= 0.5) for imt PGA
 48 | hazard_curve | quantile curve (poe >= 0.85) for imt PGA
 \end{Verbatim}
-This list contains two sets of stochastic events (in red in the example 
-above) two sets of ground motion fields (in blue in the example above).
+This list contains two sets of stochastic events (in red) two sets of ground motion fields (in blue).
+
 The whole group of stochastic event set and ground motion fields can 
 be exported immediately using the results with \texttt{id} 35 and 25,
 respectively.
+
+In the remaining part of this Section we show an example of a file
+containing a stochastic event set and a file containing a ground 
+motion field.
+
+This is an example showing a nrml file containing two a collection of 
+stochastic event sets 
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+<?xml version='1.0' encoding='UTF-8'?>
+<nrml xmlns:gml="http://www.opengis.net/gml" 
+	  xmlns="http://openquake.org/xmlns/nrml/0.4">
+  <stochasticEventSetCollection sourceModelTreePath="b1" 
+          gsimTreePath="b1">
+    \textcolor{red}{<stochasticEventSet id="12" investigationTime="50.0">}
+      <rupture id="533" magnitude="4.55" strike="90.0" dip="90.0" 
+              rake="90.0" tectonicRegion="Active Shallow Crust">
+        <planarSurface>
+          <topLeft lon="12.233903801" lat="43.256198599" 
+                  depth="11.3933265259"/>
+          <topRight lon="12.263958243" lat="43.2562025344" 
+                  depth="11.3933265259"/>
+          <bottomLeft lon="12.233903801" lat="43.256198599" 
+                  depth="12.6066734741"/>
+          <bottomRight lon="12.263958243" lat="43.2562025344" 
+                  depth="12.6066734741"/>
+        </planarSurface>
+      </rupture>
+      <rupture id="535" magnitude="4.65" strike="135.0" dip="90.0" 
+              rake="90.0" tectonicRegion="Active Shallow Crust">
+        <planarSurface>
+          <topLeft lon="11.45858812" lat="42.7429056814" 
+                  depth="11.3208667302"/>
+          <topRight lon="11.4822820715" lat="42.7256333907" 
+                  depth="11.3208667302"/>
+          <bottomLeft lon="11.45858812" lat="42.7429056814" 
+                  depth="12.6791332698"/>
+          <bottomRight lon="11.4822820715" lat="42.7256333907" 
+                  depth="12.6791332698"/>
+        </planarSurface>
+      </rupture>
+    \textcolor{red}{</stochasticEventSet>}
+  </stochasticEventSetCollection>
+</nrml>
+\end{Verbatim}
+This is an example showing a nrml file containing a collection of
+ground motion fields:
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+<?xml version='1.0' encoding='UTF-8'?>
+<nrml xmlns:gml="http://www.opengis.net/gml" 
+      xmlns="http://openquake.org/xmlns/nrml/0.4">
+  <gmfCollection sourceModelTreePath="b1" gsimTreePath="b1">
+    <gmfSet investigationTime="50.0" stochasticEventSetId="12">
+      <gmf IMT="PGA" ruptureId="533">
+        <node gmv="0.0105891230432" lon="11.1240023202" 
+            lat="43.5107462335"/>
+        <node gmv="0.00905803920023" lon="11.1241875202" 
+            lat="43.6006783941"/>
+        <node gmv="0.00637664420977" lon="11.124373581" 
+            lat="43.6906105547"/>
+        <node gmv="0.00476533134789" lon="11.1245605075" 
+            lat="43.7805427153"/>
+        <node gmv="0.00452594698469" lon="11.1247483046" 
+            lat="43.8704748759"/>
+        ...
+        <node gmv="0.000173010769646" lon="11.3782630185" 
+            lat="44.5"/>
+      </gmf>
+    </gmfSet>
+  </gmfCollection>
+</nrml>
+\end{Verbatim}

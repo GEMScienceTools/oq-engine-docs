@@ -79,17 +79,16 @@
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Load the glossary
 \input{"misc/glossary.tex"}
 % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Cover
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Cover
 \newgeometry{hmargin={-0.4cm,0cm},height=29.7cm}
 \thispagestyle{empty}
 \psset{unit=1cm}
 \begin{pspicture}(0,0)(21cm,29.7cm)
-	\rput[l](0cm,14.85cm){\includegraphics[width=21cm,height=29.7cm]{./figures/cover.eps}}
-	% Title
-
-	% Logos
-	%
-
+	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
+		(0.0cm,15.0cm)(21cm,29.7cm)	
+	\rput[l](0cm,15cm){\includegraphics[width=21cm,height=29.7cm]{./Figures/OQ_user_manual.ps}}
 \end{pspicture}
+
 %  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Second page
 \restoregeometry
 \cleardoublepage
@@ -168,11 +167,7 @@
 \chapter{Supported ground motion prediction equations}
 	\input{./oqum/hazard/appendix/gmpes.tex}
 % ------------------------------------------------------------------------------
-<<<<<<< HEAD
-\chapter{Supported magnitude-area scaling relationships}
-=======
 \chapter{Supported magnitude-scaling relationships}
->>>>>>> haz-marco
 	\input{./oqum/hazard/appendix/msr.tex}
 % ------------------------------------------------------------------------------
 %\chapter{Magnitude Scaling Relationships in OpenQuake}

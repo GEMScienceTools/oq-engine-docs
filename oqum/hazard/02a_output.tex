@@ -25,18 +25,20 @@ When the PSHA input model doesn't contain epistemic uncertainties
 the results will consist on a set of hazard curves (one for each 
 investigated site). 
 The command below illustrates how is possible to retrieve the group
-of hazard curves obtained for a calcualtion with a given calculation
-identifies \texttt{<calc\_id>}:
+of hazard curves obtained for a calculation with a given
+identifier \texttt{<calc\_id>} (see Section \ref{sec:getting_results}
+for an explanation about how obtaining the list of calculations 
+performed with their corresponding ID):
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --lho <calc_id>
 id | output_type | name
 \textcolor{red}{3 | hazard_curve | hc-rlz-6}
 \end{Verbatim}
 In this case \gls{acr:oqe} produced a group of hazard curves with 
-identifier \texttt{3}.
+result ID equal to \texttt{3}.
 % 
-On the contrary, if \texttt{number\_of\_logic\_tree\_samples}, 
-N hazard curves files are generated:
+On the contrary, if the parameter \texttt{number\_of\_logic\_tree\_samples}
+in the configuration file is different than zero, N hazard curves files are generated as shown in the example below:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --lho <calc_id>
 id | output_type | name
@@ -53,8 +55,7 @@ one of the items above through the following command
 user@ubuntu:~$ openquake --eh <output_id> <output_directory>
 \end{Verbatim}
 we will obtain a nrml formatted file as represented in the example
-in the inset \ref{vrb:haz_curves}.
-\begin{nrmlsmp}
+in the inset below.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 <?xml version='1.0' encoding='UTF-8'?>
 <nrml xmlns:gml="http://www.opengis.net/gml" 
@@ -78,22 +79,15 @@ in the inset \ref{vrb:haz_curves}.
   </hazardCurves>
 </nrml>
 \end{Verbatim}
-\caption{Hazard curves: nrml sample file}
-\label{vrb:haz_curves}
-\end{nrmlsmp}
 Not\-with\-stand\-ing the intuitiveness of this file, let's have a brief 
 overview of the information included.
 
 The overall content of this file is a list of hazard curves, one for
-each investigated site, computed using a PSHA input model which 
-can be either the single PSHA input model (if epistemic 
-uncertainties are not accounted) or one possible realisation of 
-the complete logic tree structure. In the current example these 
-hazard curves corresponds to one of a set of results produced to 
-account for epistemic uncertainties.
+each investigated site, computed using a PSHA input model representing
+one possible realisation obtained using the complete logic tree structure. 
 
 The attributes of the \texttt{hazardCurves} element (see text in 
-red in the example above) specify the path in the logic tree 
+red) specify the path of the logic tree 
 used to create the seismic source model (\texttt{source\-Model\-TreePath}) 
 and the ground motion model (\texttt{gsim\-Tree\-Path}) plus the 
 intensity measure type and the investigation time used to compute 
@@ -102,14 +96,14 @@ the probability of exceedance.
 The \texttt{IMLs} element (in green in the example above) contains the 
 values of shaking for which the engine computed the probability of 
 exceedance in the investigation time.
-For each site this file contains a \texttt{hazardCurve} element which 
-includes the coordinates (longitude and latitude in decimal degrees) 
+For each site this file comprises a \texttt{hazardCurve} element which 
+has the coordinates (longitude and latitude in decimal degrees) 
 of the site and the values of the probability of exceedance for all the 
 intensity measure levels specified in the \texttt{IMLs} element.
 
 If in the configuration file the calculation of mean hazard curves 
 and hazard curves corresponding to one or several percentiles have 
-been specified, the list of outputs we should expect from OpenQuake 
+been specified, the list of outputs that we should expect from OpenQuake 
 corresponds to:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --lho <calc_id> 
@@ -130,12 +124,11 @@ id | output_type | name
 \textcolor{red}{30 | hazard_map | hazard-map(0.1)-PGA-quantile(0.5)}
 \end{Verbatim}
 In this example \gls{acr:oqe} produced hazard curves and hazard maps for 
-six logic tree realisations plus median hazard curves (highlited in red)
-and median hazard map (also highlighted in red).
+six logic tree realisations plus median hazard curves (highlighted in red)
+and a median hazard map (also highlighted in red).
 
-In the inset \ref{vrb:haz_map} we show a sample nrml file used 
+The following inset shows a sample of the nrml file used 
 to describe a hazard map.
-\begin{nrmlsmp}
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 <?xml version='1.0' encoding='UTF-8'?>
 <nrml xmlns:gml="http://www.opengis.net/gml" 
@@ -149,6 +142,3 @@ to describe a hazard map.
   </hazardMap>
 </nrml>
 \end{Verbatim}
-\caption{Hazard map: nrml sample file}
-\label{vrb:haz_map}
-\end{nrmlsmp}
