@@ -1,0 +1,2 @@
+This OpenQuake book and the OpenQuake User Manual are licensed under a 
+Creative Commons Attribution Share Alike license.
