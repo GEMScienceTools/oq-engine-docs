@@ -10,10 +10,14 @@ The OpenQuake engine requires an \gls{exposure model} that needs to be stored ac
 \item Number: A numerical value describing the number of units at the given location (e.g. building count).
 \item Area: This parameter specifies the built-up area of the asset, and can be defined in the two following ways: the aggregated area (i.e. the total built-up area of all the units at a given location, with a certain \gls{taxonomy}); area per unit (i.e. the average built-up area for a single building);
 \item Structural cost: This parameter represents the structural replacement cost of the \gls{asset}. This value can be defined in three possible ways: the aggregated structural cost (i.e. the total economic value of all the units with a certain \gls{taxonomy} at a given location); the cost per unit (i.e. the average value for a single building); the cost per unit of area. Further information about how the structural cost is handled within the OpenQuake engine can be found in the OpenQuake Engine User Manual.
+\item Non-structural cost: This parameter is used to define the cost of the non-structural components. This cost defined in the same way as the structural cost.
+\item Contents cost: This parameter is used to define the contents cost, and it can be defined in the same way as the structural cost.
 \item Retrofitting cost: This parameter is used to define the economic structural cost due to the implementation of a retrofitting/strengthening intervention. The retrofitting cost can be defined in the same way as the structural cost.
+\item Occupants: This parameter defines the number of people that might exist inside of a given structure. Different values of occupants can be stored according to the time of the day (e.g day, night, transit).  
+\item Deductible: This parameter is used in the computation of the \gls{insuredLosses}, and it establishes the economic value that needs to be deducted from the ground-up losses. A deductible needs to be defined for each cost type (structural, non-structural and contents). This threshold can be defined in two ways: 1) the direct (absolute) value that will be deducted; 2) the fraction (relative) of the total cost that will be deduted. 
+\item Limit: This parameter establishes the maximum economic amount that can be insured, and it also needs to be defined for each cost type. As described in the previous parameters, the limit can also be define as an absolute or relative quantity.  
 \end{itemize}
 
-This list of parameters will be further extended in future releases of the OpenQuake engine once more complex data will need to be stored (e.g. value of contents or number of occupants per building at different times of the day).
 
 \section{Physical Vulnerability}
 \index{Physical Vulnerability}

@@ -83,14 +83,20 @@
 } 
 %
 % ------- D
+\newglossaryentry{deductible}{
+	name = deductible,
+	description = {A parameter used in the calculation of \gls{insuredLosses} that establishes the economic value that needs to be deducted from the \glspl{groundupLosses}.}
+}
 \newglossaryentry{seismichazarddisaggregation}{
 	name =  seismic hazard disaggregation,
 	description = {
 	A methodology to investigate the contributions to a specific
 	level of hazard in terms of fundamental variables commonly used
 	to characterize seismic sources and ground motion models (e.g. 
-	magnitude, source-site distance, \gls{epsilon}}
+	magnitude, source-site distance, \gls{epsilon})}
 }
+
+
 \newglossaryentry{dip}{
 	name = dip,
 	description={
@@ -135,6 +141,12 @@
 	description={
 	normalized residual of the ground motion}
 }
+
+\newglossaryentry{eventLossTable}{
+	name = event loss table,
+	description={A list of ruptures from a number of \glspl{stochasticeventset} and respective aggregated losses.}
+}
+
 \newglossaryentry{exposure model}{
 	name = exposure model,
 	description={
@@ -232,6 +244,12 @@
 	name = ground-motion system,
 	description={An object containing a list of \gls{groundmotionlogictree}}
 }
+\newglossaryentry{groundupLosses}{
+	name = ground-up losses,
+	description={Direct losses from a collection of assets due to a seismic event.}
+}
+
+
 %
 % ------- I 
 \newglossaryentry{initialseismicsourceinputmodel}{
@@ -240,6 +258,10 @@
     \gls{seismicsourceinputmodel} included in the first 
 	branching level of a seismic source logic tree}
 }
+\newglossaryentry{insuredLosses}{
+	name = insured losses,
+	description = {Fraction of the ground-up losses that can be covered by the insurance industry, according to a certain policy.}
+}
 \newglossaryentry{investigationtime}{
 	name = investigation time,
 	description={The time interval considered to calculate hazard; usually 
@@ -247,6 +269,10 @@
 }
 %
 % ------- L
+\newglossaryentry{limit}{
+	name = limit,
+	description = {A parameter used in the calculation of \gls{insuredLosses} that establishes the maximum economic amount that can be covered by the insurance industry, according to a certain insurance policy.}
+}
 \newglossaryentry{logictree}{
 	name = logic tree,
 	description={Data structure used to systematically describe uncertainties
@@ -258,6 +284,14 @@
 	many realisations of a \gls{seismicsourcemodel} and of a 
 	\gls{groundmotionmodel}}
 } 
+
+\newglossaryentry{lossdisaggregation}{
+	name =  loss disaggregation,
+	description = {
+	A methodology to investigate what are the characteristics of the seismic events that are contributing more significantly to the losses at a given location, in terms of fundamental variables commonly used
+	to characterize seismic sources (e.g. magnitude, source-site distance, location).}
+}
+
 \newacronym{acr:ltmcs}{LTMCS}{Logic Tree Monte Carlo Sampler}
 %
 %
