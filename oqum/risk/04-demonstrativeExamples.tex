@@ -39,8 +39,8 @@ leading to the following results:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 11 results:
 id | output_type | name
-21 | aggregate_loss | Aggregate Loss
-22 | loss_map | Loss Map
+21 | aggregate_loss | Aggregate Loss type=structural
+22 | loss_map | loss maps. type=structural
 \end{Verbatim}
 
 \section{Scenario Damage demo}
@@ -88,9 +88,9 @@ and the following outputs are expected:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 14 results:
 id | output_type | name
-28 | loss_curve | Loss Curve set for hazard 27
-29 | loss_map | Loss Map Set with poe 0.1 for hazard 27
-30 | loss_map | Loss Map Set with poe 0.01 for hazard 27
+28 | loss_curve | loss curves. type=structural, hazard=27
+29 | loss_map | loss maps. type=structural poe=0.1, hazard=27
+30 | loss_map | loss maps. type=structural poe=0.01, hazard=27
 \end{Verbatim}
 
 \section{Probabilistic Event-based demo}
@@ -120,10 +120,10 @@ leading to the following outputs:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 16 results:
 id | output_type | name
-33 | loss_curve | Loss Curve set for hazard 31
-34 | loss_map | Loss Map Set with poe 0.1 for hazard 31
-35 | loss_map | Loss Map Set with poe 0.01 for hazard 31
-36 | agg_loss_curve | Aggregated loss curve for hazard 31
+28 | loss_curve | loss curves. type=structural, hazard=31
+29 | loss_map | loss maps. type=structural poe=0.1, hazard=31
+30 | loss_map | loss maps. type=structural poe=0.01, hazard=31
+36 | agg_loss_curve | Aggregated curve type=structural, hazard=31
 \end{Verbatim}
 
 \section{Retrofitting Benefit/cost ratio demo}

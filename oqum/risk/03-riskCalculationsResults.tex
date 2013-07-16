@@ -94,9 +94,10 @@ Which will display a list of risk calculations as presented below.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 4 results:
 id | output_type | name
-29 | loss_curve | Loss Curve set for hazard 32
-30 | loss_map | Loss Map Set with poe 0.1 for hazard 32
+29 | loss_curve | loss curves. type=structural, hazard=32
+30 | loss_map | loss maps. type=structural poe=0.1, hazard=32
 \end{Verbatim}
+
 
 Then, in order to export the risk calculation outputs in the appropriate xml format, the following command can be used.
 
@@ -115,7 +116,7 @@ user@ubuntu:~\$ openquake --er <risk_output_id> <output_directory>
 This section describes how the different risk outputs are being stored using the Natural Hazards risk Markup Language (NRML). For each output, the various attributes are discussed, and example schema is provided.
 
 \subsection{Loss statistics}
-This output is produced by the Scenario Risk calculator and is comprised by a mean total loss and associated standard deviation. These results are stored in a comma separate value (csv) file as follows: 
+This output is produced by the Scenario Risk calculator and is comprised by a mean total loss and associated standard deviation. These results are stored in a comma separate value (.csv) file as follows: 
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Mean,Standard Deviation
@@ -408,3 +409,55 @@ Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exce
 \item  \Verb+assetLifeExpectancy+: a parameter specifying the life expectancy (or design life) of the \glspl{asset} considered for the calculations;
 \item  \Verb+node+: this schema follows the same \Verb+node+ structure already presented for the loss maps, however, instead of losses for each \gls{asset}, the benefit/cost ratio (\Verb+ratio+), the average annual loss considering the original vulnerability (\Verb+aalOrig+) and the average annual loss for the retrofitted (\Verb+aalRetr+) configuration  of the \glspl{asset} are provided. 
 \end{itemize}
+
+\subsection{Loss disaggregation}
+Currently the loss disaggregation can only be performed using the Probabilistic Event-based Risk calculator. Thus, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ have been included in the NRML schema. Additional information can also be comprised such as the \Verb+investigationTime+, \Verb+lossCategory+ and \Verb+unit+ of the losses. The OpenQuake-engine can perform loss disaggregation in terms of magnitude/distance or latitude/longitude. An example of the former type of output is presented below.  
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.4">
+<\textcolor{red}{lossFraction} investigationTime ="50.00" sourceModelTreePath="b1" 
+  gsimTreePath="b1" lossCategory="buildings" unit="EUR" 
+  variable="magnitude_distance"> 
+    <\textcolor{green}{map}>
+      <\textcolor{blue}{node} lon="85.07916667" lat="27.4625">
+        <bin value="5.00,5.50|220.00,240.0000" 
+          absoluteLoss="150000" fraction="0.75"/>
+        <bin value="6.50,7.00|480.00,500.0000" 
+          absoluteLoss="50000" fraction="0.25"/>        
+      <\textcolor{green}{/node}>
+    ...
+      <\textcolor{blue}{node} lon="85.67" lat="27.58">
+        <bin value="5.00,5.50|220.00,240.00" 
+          absoluteLoss="100000" fraction="0.50"/>
+        <bin value="6.50,7.00|480.00,500.00" 
+          absoluteLoss="50000" fraction="0.25"/>   
+        <bin value="7.00,7.50|350.00,370.00" 
+          absoluteLoss="50000" fraction="0.25"/>             
+      <\textcolor{green}{/node}>
+<\textcolor{red}{/map}>
+</nrml>
+\end{Verbatim}
+
+\begin{itemize}
+\item  \Verb+variable+: The type of disaggregation is defined by this attribute, and it can assume the value \Verb+magnitude_distance+ or \Verb+coordinate+;
+\item  \Verb+bin+: Each \Verb+bin+ is identified by edges of the corresponding pair of parameter that it represents (e.g. lower and upper bounds of a given combination of magnitude and distance, as illustrated in the previous example). Then, the aggregated losses associated with this pair of parameters are stored in the field \Verb+absoluteLoss+, and their percentage with respect to the overall loss are defined on the field \Verb+fraction+.
+\end{itemize}
+
+\subsection{Event loss tables}
+Unlike what was described for the other outputs, the event loss tables are exported using a coma separated value (.csv) file format. In this structure, each row contains the rupture id, magnitude and aggregated loss (sum of the losses from the collection of assets within the region of interest), for each event within the stochastic event sets. The following example depicts an example of this output.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+Rupture,Magnitude,Aggregate Loss
+1,8.25,79197
+2,8.25,74478
+3,7.75,46458
+4,7.75,45153
+5,7.75,42569
+6,8.25,40649
+7,7.75,38868
+8,7.75,37707
+9,7.75,37141
+...
+\end{Verbatim}
