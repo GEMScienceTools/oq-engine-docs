@@ -2,7 +2,7 @@
 
 \section{Introduction}
 \index{Scenario Damage}
-The scenario damage calculator can be employed to estimate the distribution of damage due to a single earthquake, for a spatially distribute building portfolio. Similarly to what has been described for the scenario risk calculator, a finite \gls{rupture} should be used to derive sets of \glspl{groundmotionfield}. 
+The scenario damage calculator can be employed to estimate the distribution of damage due to a single earthquake, for a spatially distributed building portfolio. Similarly to what has been described for the scenario risk calculator, a finite \gls{rupture} should be used to derive sets of \glspl{groundmotionfield}. 
 
 In this calculator, each \gls{groundmotionfield} is combined with a \gls{fragility model} (discrete or continuous), in order to compute the fractions of buildings in each damage state. These fractions are calculated based on the difference in probabilities of exceedance between consecutive limit state curves at a given intensity measure level. This process is repeated for each \gls{groundmotionfield}, leading to a list of fractions for each \gls{asset}. These results can then be multiplied by the respective number or area of buildings in order to obtain the absolute building damage distribution.
 
@@ -42,7 +42,7 @@ Where $m$ stands for the number of \glspl{groundmotionfield} simulated.
 \end{enumerate}
 
 \section{Calculator Output}
-The output of the Scenario Damage Calculator currently comprises damage distributions at three levels: per \gls{asset}, per building \gls{taxonomy} and total. In addition, with this calculator, is it also possible to extract collapse maps, which contain the spatial distribution of the number or area of collapsed buildings throughout the region of interest (see Figure \ref{fig:CollapseMap}). In the figures shown herein, examples of the outputs are depicted for a scenario event of magnitude 7.0Mw in the central region of Nepal.
+The output of the Scenario Damage Calculator currently comprises damage distributions at three levels: per \gls{asset}, per building \gls{taxonomy} and total. In addition, with this calculator, it is also possible to extract collapse maps, which contain the spatial distribution of the number or area of collapsed buildings throughout the region of interest (see Figure \ref{fig:CollapseMap}). In the figures shown herein, examples of the outputs are depicted for a scenario event of magnitude 7.0Mw in the central region of Nepal.
 
 \begin{figure}[ht]
 \centering
