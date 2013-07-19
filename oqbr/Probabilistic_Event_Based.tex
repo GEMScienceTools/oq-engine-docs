@@ -4,7 +4,7 @@ The probabilistic event-based risk calculator uses \glspl{stochasticeventset} an
 
 For each \glspl{groundmotionfield}, the intensity measure level at a given site is combined with a \gls{vulnerability function}, from which a loss ratio is randomly sampled, for each \gls{asset} contained in the \gls{exposure model}. The loss ratios that are sampled for \glspl{asset} of a given \gls{taxonomy} classification at different locations are considered to be either independent or correlated. The losses for a given asset are calculated using all of the \glspl{groundmotionfield}, leading to list of events and associated loss ratios. This list is then sorted from the highest loss ratio to the lowest. The rate of exceedance of each loss ratio is calculated by dividing the number of exceedances of that loss ratio by the number of \glspl{stochasticeventset} multiplied by the length of each event set. By assuming a Poissionian distribution of the occurrence model, the probability of exceedance of each loss ratio is calculated. If a total loss curve for a portfolio of \glspl{asset} is required, a secondary module is used in order to sum the losses from all the \glspl{asset} in the exposure file, per event, before calculating the exceedance distribution of loss. This distribution of the total losses per event can also be extracted, and it is termed here as an \gls{eventLossTable}.
 
-Similarly to what has been described for the Scenario Risk Calculator (see section \ref{chap:scenario_risk}), this module can compute \gls{insuredLosses} following the same approach (i.e. modifying the  based on the \gls{deductible} and \gls{limit} for each cost type).
+Similarly to what has been described for the Scenario Risk Calculator (see section \ref{chap:scenario_risk}), this module can compute \gls{insuredLosses} following the same approach (i.e. modifying the  loss based on the \gls{deductible} and \gls{limit} for each cost type).
 
 This calculator is also capable of performing \gls{lossdisaggregation} in terms of magnitude/distance or latitude/longitude. In order to do so, the losses at each location are disaggregated based on the aforementioned parameters, and a loss percentage for each possible combination is calculated.
 
@@ -69,7 +69,7 @@ To perform the loss disaggregation:
 \label{fig:SetLosses}
 \end{figure} 
 
-\item The oq-engine calculates the range (maximum and minimum values) of the list of magnitudes, distances, latitudes and longitudes across all the events, and using the increment defined for each parameter, a set of linearly spaced bins is calculated. Then, the losses from every seismic event are aggregated depending on which combination of magnitude/distance or latitude/longitude they fall. The previously presented losses have been disaggregated according to these two combinations as presented in Figure \ref{fig:Dis}:
+\item The oq-engine calculates the range (maximum and minimum values) of the list of magnitudes, distances, latitudes and longitudes across all the events, and using the increment defined for each parameter, a set of linearly spaced bins is calculated. Then, the losses from every seismic event are aggregated depending into which combination of magnitude/distance or latitude/longitude they fall. The previously presented losses have been disaggregated according to these two combinations as presented in Figure \ref{fig:Dis}:
 
 \begin{figure}[ht]
 \centering
