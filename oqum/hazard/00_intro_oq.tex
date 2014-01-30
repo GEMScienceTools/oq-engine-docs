@@ -4,7 +4,7 @@ The hazard component of the OpenQuake-engine builds on top of the
 \gls{acr:hazlib}, a python-based library containing
 tools for PSHA calculation. 
 %
-The web repository of this library is available at the following address: 
+The web repository of this library is accessible at the following address: 
 \href{http://gitub.com/gem/oq-hazardlib}{http://gitub.com/gem/oq-hazardlib}.
 
 In this section we briefly illustrate the main properties of the 
@@ -15,19 +15,19 @@ and the main calculation workflows available.
 %
 \section{Source typologies}
 \index{Source type}
-A general \gls{acr:oqe} \gls{seismicsourceinputmodel} contains a list
+An \gls{acr:oqe} \gls{seismicsourceinputmodel} contains a list
 of sources belonging to a finite set of possible typologies. 
 Each source type is defined by a set of parameters - called 
-source data - essential for specifying source geometry and 
-seismicity occurrence characteristics.
-%
+source data - which are used to specify the source geometry and 
+the properties of seismicity occurrence.
+ 
 Currently the \gls{acr:oqe} supports the following source types: 
 \begin{itemize}
 	\item Sources for modelling distributed seismicity:
 	\begin{itemize}
 		\item \Gls{pointsource} - The elemental source type used to model 
-			distributed seismicity. Grid and area sources described below
-			are basically two different containers of point sources.
+            distributed seismicity. Grid and area sources (described below)
+			are different containers of point sources.
 		\item \Gls{areasource} - So far, the most frequently adopted source 
     		type in national and regional PSHA models.
 		\item \Gls{gridsource} - A replacement for area sources admitting 
@@ -35,24 +35,27 @@ Currently the \gls{acr:oqe} supports the following source types:
 	\end{itemize}
 	\item Fault sources with floating ruptures:
 	\begin{itemize}
-		\item \Gls{simplefaultsource} - The simplest fault model in OpenQuake. 
-    		This typology is habitually used to describe shallow seismogenic 
+		\item \Gls{simplefaultsource} - The simplest fault model in the 
+            OpenQuake-engine.
+    		This source is habitually used to describe shallow seismogenic 
     		faults.
 		\item \Gls{complexfaultsource} - Often used to model subduction interface 
 			sources with a complex geometry. 
 	\end{itemize}
-	\item Fault sources with ruptures always covering the entire fault surface:
+	\item Fault sources without floating ruptures:
+        surface:
 	\begin{itemize}
 		\item \Gls{charfaultsource} - A typology of source where ruptures
 		always fill the entire fault surface.
 	\end{itemize}
 \end{itemize}
-In the OpenQuake-engine there are some basic assumptions accepted in the 
-definition of these source typologies such as:
+
+The OpenQuake-engine contains some basic assumptions for the 
+definition of these source typologies:
 \begin{itemize}
-	\item In the case of area and fault sources, the seismicity is homogeneously 
-		distributed over the source; 	
-	\item Seismicity temporal occurrence follows a Poissonian model; 
+	\item In the case of area and fault sources, the seismicity 
+        is homogeneously distributed over the source; 	
+	\item Seismicity temporal occurrence follows a Poissonian model. 
 \end{itemize}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{Source typologies for modelling distributed seismicity}
