@@ -33,8 +33,8 @@ introduced, without affecting the overall calculation workflow.
 \index{OpenQuake-engine!Hazard calculation workflows!Classical PSHA} 
 \label{section:classicalPSHA}
 %
-Input data for the classical PSHA consist of a PSHA input model
-provided together with a set of calculation settings. 
+Input data for the classical \gls{acr:psha} consist of a PSHA input model
+provided together with calculation settings. 
 
 The main calculators used to perform this analysis are the following:
 \begin{enumerate}
@@ -67,22 +67,8 @@ to compute hazard curves on each site specified in the calculation settings.
 \label{section:event-basedPSHA}
 Input data for the Event-Based PSHA - as in the case of the 
 Classical \gls{acr:psha} calculator - consist of a PSHA Input Model 
-and a set of calculation settings.
-%
-% ..............................................................................
-% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
-% \begin{figure}
-% \centering
-% \includegraphics[width=14cm]{./figures/event_based_workflow.eps}
-% \caption{Workflow for event-based PSHA. Similar to the classical PSHA workflow 
-% (Figure \ref{classical_psha_workflow}), an ERF is computed, which is then used 
-% to generate a stochastic event set (representative of the seismic activity of 
-% a region in a given time span). Each event is then utilized to calculate a 
-% ground-motion field over a region of interest.}
-% \label{event_based_workflow}
-% \end{figure}
-% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . < Figure
-% ..............................................................................
+and calculation settings.
+
 The main calculators  used to perform this analysis are:
 \begin{enumerate}
 %
@@ -98,22 +84,27 @@ introduced in the description of the PSHA workflow (see section
 \ref{section:classicalPSHA} at page \pageref{section:classicalPSHA}).
 %
 \item \emph{Stochastic Event Set Calculator} \hfill \\
-The Stochastic Event Set Calculator generates a collection of Stochastic Event sets by sampling each rupture contained in the ERF according to its 
-probability of occurrence. A Stochastic Event Set (SES) represents
-a potential realisation of the seismicity (i.e. a list of ruptures) 
-over the time span fixed for the calculation
-of hazard (normally corresponding to 50 years) by the set of seismic sources considered in the analysis. 
+The Stochastic Event Set Calculator generates a collection of Stochastic 
+event sets by sampling the ruptures contained in the ERF according to their 
+probability of occurrence. 
+%
+A Stochastic Event Set (SES) thus represents a potential realisation of the 
+seismicity (i.e. a list of ruptures) produced by the set of seismic sources 
+considered in the analysis over the time span fixed for the 
+calculation of hazard. 
 %
 \item \emph{Ground Motion Field Calculator} \hfill \\
 The Ground Motion Field Calculator computes for each event contained in a 
-Stochastic Event Set a realization of the geographic distribution of the shaking by taking into account the aleatory uncertainties in 
+Stochastic Event Set a realization of the geographic distribution of the 
+shaking by taking into account the aleatory uncertainties in 
 the ground-motion model. Eventually, the Ground Motion Field calculator 
 can consider the spatial correlation of the ground-motion during the 
 generation of the \gls{acr:gmf}.
 %
 \item \emph{Event-based PSHA Calculator} \hfill \\
 The event-based PSHA calculator takes a (large) set of ground-motion 
-fields representative of the possible shaking scenarios that the investigated area can experience over a (long) time span and for each 
+fields representative of the possible shaking scenarios that the investigated
+area can experience over a (long) time span and for each 
 site computes the corresponding hazard curve. 
 %
 This procedure is computationally intensive and is not recommended for 
