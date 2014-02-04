@@ -2,9 +2,26 @@ The main components of a logic tree structure in the OpenQuake engine are
 the following:
 \begin{description}
     \item[branch]: the simplest component of a logic tree structure. 
-    A branch represent a possible interpretation/value assignment of 
-    a type of uncertainty. It is fully described by the tuple 
-    (parameter/model, weight).
+    A branch represent a possible interpretation of a value assignment for
+    a specific type of uncertainty. It is fully described by the tuple 
+    (parameter or model, weight).
+
+    %\def\psedge#1#2{\ncdiagg[armA=0,angleB=180,armB=1cm]{#2}{#1}} 
+    \begin{center}
+    \renewcommand{\psedge}{\ncdiag[armA=0,angleB=180,armB=.5cm]}
+    \pstree[treemode=R,levelsep=*1cm,nodesep=0pt]{
+        \TR{}}{
+            \pstree[nodesep=2pt,levelsep=2.0cm,framesep=2pt, thistreesep=2cm]{
+            \Tr{\shortstack{SSM1\\w=0.4}}}{
+            \Tr{\shortstack{b=1\\w=0.7}}
+                \Tr{\shortstack{b=1.1\\w=0.3}}} 
+            \pstree[nodesep=2pt,levelsep=2.0cm,framesep=2pt,thistreesep=2cm]{
+            \Tr{\shortstack{SSM2\\w=0.6}}}{
+            \Tr{\shortstack{b=1\\w=0.7}} \Tr{\shortstack{b=1.1\\w=0.2}}
+            \Tr{\shortstack{b=1.2\\w=0.1}}
+            }
+        }
+    \end{center}
     
     \item[branching set]: it's a key component in the logic tree structure 
     used by the \gls{acr:oqe}. It groups a set of branches i.e. 
@@ -18,8 +35,8 @@ the following:
     \end{itemize}
     
     This set of uncertainties can be applied to the whole initial 
-    seismic source input model or just to a subset of seismic source
-    data. The sum of the weights/probabilities assigned to the set 
+    seismic source input model or just to a subset of seismic sources.
+    The sum of the weights/probabilities assigned to the set 
     of branches always correspond to one.
 
     \item[branching level]: it's the largest container. It's not used in 
@@ -27,8 +44,8 @@ the following:
     order in the structure of the tree.
 \end{description}
 
-Below we provide a simple schema illustrating the skeleton of the 
-\gls{acr:oqe} logic tree:
+Below we provide a simple schema illustrating the skeleton of xml file 
+containing the desciption of a logic tree:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 \textcolor{green}{<logicTreeBranchingLevel branchingLevelID=ID>}
     \textcolor{blue}{<logicTreeBranchSet branchSetID=ID}
@@ -40,14 +57,14 @@ Below we provide a simple schema illustrating the skeleton of the
     \textcolor{blue}{</logicTreeBranchSet>}
 \textcolor{green}{</logicTreeBranchingLevel>}
 \end{Verbatim}
-As it clearly appears from this example the structure of a logic 
-tree is a set nested elements, from the largest to the smallest 
-containers.
+As it appears from this example, the structure of a logic 
+tree is a set of nested elements.
 
 A schematic representation of the elemental components of a logic tree 
 structure is provided in Figure \ref{glts}. 
 A branching level identifies the position where branching occurs while 
-a branch set identifies a collection of branches (i.e. individual branches) whose weights sum to 1.
+a branch set identifies a collection of branches (i.e. individual branches) 
+whose weights sum to 1.
 %
 \begin{figure}[!h]
 \centering
@@ -89,16 +106,16 @@ the tree, and so on.
 	</\textcolor{green}{logicTreeBranchingLevel}>
 </\textcolor{red}{logicTree}>
 \end{Verbatim}
-No restrictions are present on the number of tree levels that can 
+There are no restrictions on the number of tree levels that can 
 be defined.
 
 A \Verb+logicTreeBranchingLevel+ is defined as a sequence of 
-\Verb+logicTreeBranchSet+ elements. Each \Verb+logicTreeBranchSet+ 
+\Verb+logicTreeBranchSet+ elements where each \Verb+logicTreeBranchSet+ 
 defines a particular epistemic uncertainty inside a branching level. 
 
-A branch set has two required attributes \Verb+branchSetID+ and 
-\Verb+uncertaintyType+ (defining the type of epistemic uncertainty 
-the branch set is modelling)
+A branch set has two required attributes: \Verb+branchSetID+ and 
+\Verb+uncertaintyType+. The latter defines the type of epistemic uncertainty 
+this branch set is describing.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}]
 <\textcolor{red}{logicTree} logicTreeID="ID">
 ...
@@ -123,22 +140,22 @@ the branch set is modelling)
 Possible values for the \Verb+uncertaintyType+ attribute are:
 \label{list_epistemic_unc}
 \begin{itemize}
-\item \Verb+gmpeModel+: identifying epistemic uncertainties on ground 
+\item \Verb+gmpeModel+: indicates epistemic uncertainties on ground 
 motion prediction equations
-\item \Verb+sourceModel+: identifying epistemic uncertainties on source models
-\item \Verb+maxMagGRRelative+: identifying relative (i.e. increments)
+\item \Verb+sourceModel+: indicates epistemic uncertainties on source models
+\item \Verb+maxMagGRRelative+: indicates relative (i.e. increments)
 	epistemic uncertainties to be added (or subtracted, depending on 
 	the sign of the increment) to the Guten\-berg-Richter maximum 
 	magnitude value.
-\item \Verb+bGRRelative+: identifying relative epistemic uncertainties 
+\item \Verb+bGRRelative+: indicates relative epistemic uncertainties 
 	to be applied to the Guten\-berg-Richter b value.
-\item \Verb+abGRAbsolute+:identifying absolute (i.e. values used to replace
+\item \Verb+abGRAbsolute+: indicates absolute (i.e. values used to replace
  	original values) epistemic uncertainties on the 
 	Guten\-berg-Richter a and b values.
-\item \Verb+maxMagGRAbsolute+: identifying (absolute) epistemic 
+\item \Verb+maxMagGRAbsolute+: indicates (absolute) epistemic 
 	uncertainties on the Guten\-berg-Richter maximum magnitude.
 \end{itemize}
-No restrictions are given on the number of branch sets that can be defined 
+There are no restrictions on the number of branch sets that can be defined 
 inside a branching level.
 
 A \Verb+branchSet+ is defined as a sequence of \Verb+logicTreeBranch+ 
@@ -221,7 +238,7 @@ MAX_MAGNITUDE
 \end{Verbatim}
 \end{itemize}
 %
-No restrictions are given on the number of \Verb+logicTreeBranch+ elements 
+There are no restrictions on the number of \Verb+logicTreeBranch+ elements 
 that can be defined in a \Verb+logicTreeBranchSet+, as long as the uncertainty 
 weights sum to 1.0.
 
