@@ -1,7 +1,7 @@
 \subsubsection{Event based PSHA}
 %
-In the following we describe the sections of the logic tree that are 
-required to complete event based PSHA calculations 
+In the following we describe the sections of the configuration file 
+that are required to complete event based PSHA calculations 
 \begin{enumerate}
 \item \textbf{Calculation type and model info} \hfill \\
     This part is almost identical to the corresponding one 
@@ -17,12 +17,12 @@ random_seed = 1024
 \end{Verbatim}
 %
 \item \textbf{Event based} \hfill \\
-This is an additional part used to specify the number of stochastic 
+This is section is used to specify the number of stochastic 
 event sets to be generated for each logic tree realisation 
 (each stochastic event set represents a potential realisation of seismicity
 during the \texttt{in\-ves\-ti\-gation\_time} specified in the 
 \texttt{calculation\_configuration} part).
-Additionaly in this section the user can specify the spatial correlation
+Additionally, in this section the user can specify the spatial correlation
 model to be used in case for the generation of ground motion fields. 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 [event_based_params]
@@ -33,7 +33,8 @@ ground_motion_correlation_params = {"vs30_clustering": true}
 %
 \item \textbf{Output} \hfill \\
 This part substitutes the \texttt{Output} part described in 
-configuration file example descibed in section \ref{sec:config_classical_PSHA}
+the configuration file example described in the section 
+\ref{sec:config_classical_PSHA}
 at page \pageref{sec:config_classical_PSHA}.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 [output]
