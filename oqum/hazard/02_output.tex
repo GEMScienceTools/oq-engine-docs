@@ -4,15 +4,14 @@ represent the results of the analyses.
 
 A general introduction to the use of OpenQuake-engine is provided in Section 
 \ref{sec:intro} at page \pageref{sec:intro}.
-The reader is invited to consult this part before moving into
-the details of this section.
+The reader is invited to consult this part before diving into this section.
 % -----------------------------------------------------------------------------
 \section{Running OpenQuake-engine for hazard calculations}
 \index{Running OpenQuake!hazard} 
 The execution of a hazard analysis using the OpenQuake-engine 
 is straightforward. Below we provide an example of the simplest 
-command that can be used to launch a hazard calculation which 
-consists in the invocation of \texttt{openquake} together with 
+command that can be used to launch a hazard calculation. 
+It consists in the invocation of \texttt{openquake} together with 
 the \texttt{--rh} option which stands for ``run hazard'' and 
 the name of a configuration file (in the example below
 it corresponds to \texttt{job.ini}):
@@ -21,7 +20,7 @@ user@ubuntu:~$ openquake --rh job.ini
 \end{Verbatim}
 
 The amount of information prompted during the execution of the 
-analysis is controlled by means of the \texttt{--log-level} flag 
+analysis can be controlled through the \texttt{--log-level} flag 
 as shown in the example below:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --rh job.ini --log-level debug
@@ -33,19 +32,19 @@ Alternative options are: \texttt{debug}, \texttt{info}, \texttt{progress},
 % -----------------------------------------------------------------------------
 \subsection{Getting results}
 \label{sec:getting_results}
-There are two alternative ways to get results from the OpenQuake engine:
+There are two alternative ways to get results from the OpenQuake-engine:
 directly through the calculation or by exporting them from the 
 internal \gls{acr:oqe} database once a calculation is completed. 
 
-The first option is activated at the OpenQuake engine invocation by 
-the flag \texttt{--exports xml} as shown in the example below
+The first option is defined at the OpenQuake-engine invocation through 
+the flag \texttt{--exports xml}, as shown in the example below
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --rh job.ini \textcolor{red}{--exports xml}
 \end{Verbatim}
 
-The second option, allows the user to export the computed results at 
-their's disposal.
-In order to get the list of results of the hazard calculations stored 
+The second option, allows the user to export the computed results or just 
+a subset of them whenever they want.
+In order to obtain the list of results of the hazard calculations stored 
 in the \gls{acr:oqe} database the user can utilize the following command:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ openquake --lhc
