@@ -338,7 +338,7 @@ As previously mentioned, in this example only three costs are being stored, and 
 
 The number of occupants for each asset is stored under the \Verb+occupancies+ field, as part of the \Verb+occupancy+ instance. The number and type of periods of the day is not a fixed variable, and a user can provide as many as needed (e.g. morning, afternoon, night, transit, 9am-17pm). The descriptions used to define each \Verb+period+ are used to specify the time of the day for which the human losses should be estimated in the Scenario Risk calculator (see section INCLUDE LATER).
 
-The way this information is being stored is constantly being modified, as further feedback from users and experts is received. Hence, it is important to understand which version of NRML the engine is using, in order to avoid incompatibility issues. NRML is currenly v0.4 and documentation about each release can be found on GitHub (see \href{http://gitub.com/gem/oq-nrmllib}{oq-nrmllib}). Several examples of \glspl{exposure model} containing different types of information are presented below. 
+The way this information is being stored is constantly being modified, as further feedback from users and experts is received. Hence, it is important to understand which version of NRML the engine is using, in order to avoid incompatibility issues. NRML is currenly v0.4 and documentation about each release can be found on GitHub (see \href{http://gitub.com/gem/oq-nrmllib}{oq-nrmllib}). Several examples of \glspl{exposure model} containing different types of information are presented below.
 
 \subsection{Physical vulnerability model definition}
 In this section, the NRML schema for the \gls{vulnerability model} is described in detail. In order to do so, a graphical representation of a \gls{vulnerability model} (mean loss ratio for a set of intensity measure levels) is illustrated in Figure \ref{fig:vulModel}, and the equivalent NRML file is then presented. Note that although the uncertainty for each loss ratio is not represented in the aforementioned figure, it has been considered in the input NRML file, by means of a coefficient of variation per loss ratio and a probabilistic distribution, which can currently be set to lognormal or beta. This model is comprised of two discrete \glspl{vulnerability function} and uses spectral acceleration for a given period of vibration as the intensity measure type.
@@ -366,7 +366,7 @@ At the top of the NRML schema, the following metadata are being stored:
 \begin{itemize}
 \item  \Verb+vulnerabilitySetID+: A unique key used to identify the \gls{vulnerability model} instance within the OpenQuake engine;
 \item  \Verb+assetCategory+: An attribute that describes the asset typology (e.g.: population, buildings, contents);
-\item  \Verb+lossCategory+: An attribute that describes the type of loss being modelled for the assetCategory (e.g. fatalities, structural replacement cost, contents replacement cost). 
+\item  \Verb+lossCategory+: An attribute that describes the type of loss being modelled for the assetCategory (e.g. fatalities, structural replacement cost, contents replacement cost).
 \end{itemize}
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
@@ -384,17 +384,17 @@ Within this component, an attribute specifying the intensity measure type (e.g.:
         probabilisticDistribution="LN">
             <\textcolor{magenta}{lossRatio}> 0.002 0.007 0.014 0.028 0.058 0.118
             0.223 0.370 0.446 0.523 <\textcolor{magenta}{/lossRatio}>
-            <\textcolor{magenta}{coefficientsVariation}> 0.012 0.058 0.079 0.159 0.265 
+            <\textcolor{magenta}{coefficientsVariation}> 0.012 0.058 0.079 0.159 0.265
             0.244 0.211 0.152 0.088 0.082 <\textcolor{magenta}{/coefficientsVariation}>
         <\textcolor{blue}{/discreteVulnerability}>
-        <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="typeB" 
+        <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="typeB"
         probabilisticDistribution="LN">
-            <\textcolor{magenta}{lossRatio}> 0.006 0.025 0.052 0.108 0.215 0.391 
+            <\textcolor{magenta}{lossRatio}> 0.006 0.025 0.052 0.108 0.215 0.391
             0.613 0.820 0.894 0.967 <\textcolor{magenta}{/lossRatio}>
-            <\textcolor{magenta}{coefficientsVariation}> 0.010 0.054 0.082 0.167 0.285 
+            <\textcolor{magenta}{coefficientsVariation}> 0.010 0.054 0.082 0.167 0.285
             0.278 0.261 0.132 0.084 0.021 <\textcolor{magenta}{/coefficientsVariation}>
         <\textcolor{blue}{/discreteVulnerability}>
-    <\textcolor{green}{/discreteVulnerabilitySet} 
+    <\textcolor{green}{/discreteVulnerabilitySet}
 <\textcolor{red}{/vulnerabilityModel}>
 </nrml>
 \end{Verbatim}
@@ -417,41 +417,41 @@ In the previously described \gls{vulnerability model} all of the \glspl{vulnerab
     <\textcolor{green}{discreteVulnerabilitySet} vulnerabilitySetID="Nepal13_PGA"
     assetCategory="buildings"    lossCategory="economic loss">
         <\textcolor{blue}{IML}  IMT = "PGA"> 0.1 0.2 0.4 0.7 1.0 1.3 <\textcolor{blue}{/IML}>
-       <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="RC1" 
+       <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="RC1"
         probabilisticDistribution="LN">
             <\textcolor{magenta}{lossRatio}> 0.02 0.1 0.3 0.6 0.8 0.9 <\textcolor{magenta}{/lossRatio}>
-            <\textcolor{magenta}{coefficientsVariation}> 0.7 0.5 0.3 0.2 0.1 0.05 
+            <\textcolor{magenta}{coefficientsVariation}> 0.7 0.5 0.3 0.2 0.1 0.05
             <\textcolor{magenta}{/coefficientsVariation}>
         <\textcolor{blue}{/discreteVulnerability}>
-    <\textcolor{green}{/discreteVulnerabilitySet} 
+    <\textcolor{green}{/discreteVulnerabilitySet}
     <\textcolor{green}{discreteVulnerabilitySet} vulnerabilitySetID="Nepal13_PGV"
     assetCategory="buildings"    lossCategory="economic loss">
         <\textcolor{blue}{IML}  IMT = "PGV"> 5 20 40 60 80 100 <\textcolor{blue}{/IML}>
-       <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="RC2" 
+       <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="RC2"
         probabilisticDistribution="LN">
             <\textcolor{magenta}{lossRatio}> 0.05 0.2 0.3 0.4 0.5 0.6 <\textcolor{magenta}{/lossRatio}>
-            <\textcolor{magenta}{coefficientsVariation}> 0.6 0.3 0.2 0.1 0.05 0.05 
+            <\textcolor{magenta}{coefficientsVariation}> 0.6 0.3 0.2 0.1 0.05 0.05
             <\textcolor{magenta}{/coefficientsVariation}>
         <\textcolor{blue}{/discreteVulnerability}>
-    <\textcolor{green}{/discreteVulnerabilitySet} 
+    <\textcolor{green}{/discreteVulnerabilitySet}
     <\textcolor{green}{discreteVulnerabilitySet} vulnerabilitySetID="Nepal13_SA"
     assetCategory="buildings"    lossCategory="economic loss">
         <\textcolor{blue}{IML}  IMT = "SA(0.3)"> 0.1 0.3 0.6 0.9 1.2 1.5 <\textcolor{blue}{/IML}>
        <\textcolor{blue}{discreteVulnerability}  vulnerabilityFunctionID="RC3" 
         probabilisticDistribution="LN">
             <\textcolor{magenta}{lossRatio}> 0.01 0.06 0.12 0.17 0.24 0.33 <\textcolor{magenta}{/lossRatio}>
-            <\textcolor{magenta}{coefficientsVariation}> 1.5 1.1 1.0 0.9 0.8 0.5 
+            <\textcolor{magenta}{coefficientsVariation}> 1.5 1.1 1.0 0.9 0.8 0.5
             <\textcolor{magenta}{/coefficientsVariation}>
         <\textcolor{blue}{/discreteVulnerability}>
-    <\textcolor{green}{/discreteVulnerabilitySet} 
-<\textcolor{red}{/vulnerabilityModel}>  
+    <\textcolor{green}{/discreteVulnerabilitySet}
+<\textcolor{red}{/vulnerabilityModel}>
 </nrml>
 \end{Verbatim}
 
 Several methodologies to derive vulnerability functions are currently being evaluated by \gls{acr:gem} and will be a part of a set of modelling tools. Scripts to convert \glspl{vulnerability function} stored in Excel or ASCII files into NRML have already being developed, and can be found at the GEM Science tools repository at GitHub (\textcolor{blue}{\Verb+http://github.com/GEMScienceTools+}).
 
 \subsection{Fragility model definition}
-This section describes the schema currently used to store \glspl{fragility model}, which are required for the Scenario Damage Calculator. A \gls{fragility model} can be comprised of several \glspl{fragility function}, describing the probability of exceeding a set of limit, or damage, states. These \glspl{fragility function} can be defined in two ways: discrete or continuous. In the former manner, sets of probabilities of exceedance (one set per limit state) are defined for a list of intensity measure levels, as illustrated in Figure \ref{fig:fragModelDiscrete}. 
+This section describes the schema currently used to store \glspl{fragility model}, which are required for the Scenario Damage Calculator. A \gls{fragility model} can be comprised of several \glspl{fragility function}, describing the probability of exceeding a set of limit, or damage, states. These \glspl{fragility function} can be defined in two ways: discrete or continuous. In the former manner, sets of probabilities of exceedance (one set per limit state) are defined for a list of intensity measure levels, as illustrated in Figure \ref{fig:fragModelDiscrete}.
 
 \begin{figure}[ht]
 \centering
@@ -478,7 +478,7 @@ Similarly to what has been described for the \glspl{vulnerability model}, the NR
 
 \begin{itemize}
 \item  \Verb+description+: represents an attribute that can be used to include  some information about the \gls{fragility model}, for example, what building typologies are being covered or the source of the \gls{fragility model};
-\item  \Verb+limitStates+: this field is used to define the number and nomenclature of each limit state. Despite the fact that three limit states are being employed in this example, it is possible to use any number of states, as long as a fragility curve is always defined for each limit state. 
+\item  \Verb+limitStates+: this field is used to define the number and nomenclature of each limit state. Despite the fact that three limit states are being employed in this example, it is possible to use any number of states, as long as a fragility curve is always defined for each limit state.
 \end{itemize}
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
@@ -556,7 +556,7 @@ The configuration file (or job.ini file) represents the location where the paths
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 [general]
 description = Scenario Risk Nepal
-calculation_mode = scenario
+calculation_mode = scenario_risk
 
 exposure_file = exposure_model.xml
 region_constraint = 78.0 31.5,89.5 31.5,89.5 25.5,78 25.5
@@ -575,7 +575,7 @@ maximum_distance = 10
 Depending on the type of calculations, other parameters besides the aforementioned ones need to be provided, as will be described in the following sections.
 
 \subsubsection{Scenario Risk Calculator}
-In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+scenario+. The remaining parameters are illustrated bellow.
+In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+scenario_risk+. The remaining parameters are illustrated bellow.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 ...
@@ -614,7 +614,7 @@ fragility_file = fragility_model.xml
 \end{itemize}
 
 \subsubsection{Probabilistic Event-based Risk Calculator}
-The parameter \Verb+calculation_mode+ needs to be set to \Verb+event_based+ in order to use this calculator. Similarly to that described for the Scenario Risk Calculator, a Monte Carlo sampling process is also employed within this module to take into account the loss ratio uncertainty. Hence, the parameters \Verb+asset_correlation+ and \Verb+master_seed+ need to be defined as previously described. This calculator is also capable of estimating insured losses and therefore, the \Verb+insured_losses+ attribute should be established as well.
+The parameter \Verb+calculation_mode+ needs to be set to \Verb+event_based_risk+ in order to use this calculator. Similarly to that described for the Scenario Risk Calculator, a Monte Carlo sampling process is also employed within this module to take into account the loss ratio uncertainty. Hence, the parameters \Verb+asset_correlation+ and \Verb+master_seed+ need to be defined as previously described. This calculator is also capable of estimating insured losses and therefore, the \Verb+insured_losses+ attribute should be established as well.
 For what concerns the loss disaggregation, the Probabilistic Event-based Risk Calculator can disaggregate the losses based on magnitude/distance and location (longitude/latitude) of the events. In order to do so, it is necessary to define the bin width of each of these parameters, as illustrated in the following example.
 
  The remaining parameters are presented below.
@@ -652,7 +652,7 @@ conditional_loss_poes = 0.01, 0.05, 0.1
 The definition of the parameters for the loss disaggregation follow the same rules established for the seismic hazard disaggregation described in section (TO BE INCLUDED).
 
 \subsubsection{Classical PSHA-based Risk Calculator}
-In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical+. With this calculator it is also possible to extract loss maps, so the parameter \Verb+conditional_loss_poes+ needs to be defined as explained in the previous sub-section. The remaining parameter is illustrated below.
+In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical_risk+. With this calculator it is also possible to extract loss maps, so the parameter \Verb+conditional_loss_poes+ needs to be defined as explained in the previous sub-section. The remaining parameter is illustrated below.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 ...
 structural_vulnerability_file = struct_vul_model.xml
@@ -670,7 +670,7 @@ conditional_loss_poes = 0.01, 0.05, 0.1
 \end{itemize}
 
 \subsubsection{Retrofitting Benefit/Cost Ratio Calculator}
-As previously explained, this calculator uses loss exceedance curves which can be calculated using the Classical PSHA-based Risk or the Probabilistic Event-based Risk calculators. Therefore, depending on which calculator a user chooses to employ, the configuration file will be different. If the Classical PSHA-based Risk calculator is employed, then the \Verb+calculation_mode+ should be set to \texttt{clas\-si\-cal\_bcr} and the calculator-specific part of the configuration file should be defined as presented below.
+As previously explained, this calculator uses loss exceedance curves which can be calculated using the Classical PSHA-based Risk or the Probabilistic Event-based Risk calculators. Therefore, depending on which calculator a user chooses to employ, the configuration file will be different. If the Classical PSHA-based Risk calculator is employed, then the \Verb+calculation_mode+ should be set to \Verb+classical_bcr+ and the calculator-specific part of the configuration file should be defined as presented below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 ...
