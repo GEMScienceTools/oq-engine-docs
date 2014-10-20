@@ -28,8 +28,11 @@ model to be used in case for the generation of ground motion fields.
 [event_based_params]
 ses_per_logic_tree_path = 5
 ground_motion_correlation_model = JB2009
-ground_motion_correlation_params = {"vs30_clustering": true}
+ground_motion_correlation_params = {"vs30_clustering": True}
 \end{Verbatim}
+The acceptable flags for the parameter \verb+vs30_clustering+ are \verb+False+ 
+and \verb+True+, with a capital \verb+F+ and \verb+T+ respectively. \verb+0+ 
+and \verb+1+ are also acceptable flags.
 %
 \item \textbf{Output} \hfill \\
 This part substitutes the \texttt{Output} part described in 
