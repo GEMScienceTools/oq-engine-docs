@@ -1,4 +1,4 @@
 oq-engine-docs
 ==============
 
-2013 version of the OQ-engine documentation
+Documentation and user manual for the OQ-engine v1.2
