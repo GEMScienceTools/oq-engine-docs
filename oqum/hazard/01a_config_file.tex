@@ -15,6 +15,7 @@ description = A demo OpenQuake-engine .ini file for classical PSHA
 calculation_mode = classical
 random_seed = 1024
 \end{Verbatim}
+
 In this section the user specifies the following parameters:
 \begin{itemize}
     \item \texttt{description}: a parameter that can be used to designate 
@@ -51,17 +52,14 @@ the hazard will be computed. An example is provided below.
     firstnumber=5, numbers=left, numbersep=2pt]
 [geometry]
 sites = 10.0 43.0, 12.0 43.0, 12.0 46.0, 10.0 46.0
-
-
 \end{Verbatim}
+
 If the list of sites is too long the user can specify the name 
 of a .csv file as it is snown below
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=5, numbers=left, numbersep=2pt]
 [geometry]
 sites\_csv = <name_of_the_csv_file>
-
-
 \end{Verbatim}
 %
 \item \textbf{Logic tree sampling} \hfill \\
@@ -74,7 +72,7 @@ sites\_csv = <name_of_the_csv_file>
     In this example we set the \texttt{number\-\_of\-\_logic\_tree\_samples}
     to 0. \gls{acr:oqe} will perform a complete enumeration of all 
     the possible paths from the roots to the leaves of the logic tree 
-    structure. 
+    structure.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=9, numbers=left, numbersep=2pt]
 [logic_tree]
@@ -121,10 +119,8 @@ then assign to each investigation site the appropriate characteristics.
     firstnumber=17, numbers=left, numbersep=2pt]
 [site_params]
 site_model_file = ../_site_model/site_model.xml
-
-
-
 \end{Verbatim}
+
 The file containing the site model has the following 
 structure:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]

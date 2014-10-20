@@ -24,7 +24,7 @@ usage: oq-engine [-h] [--version] [--log-file LOG_FILE]
 OpenQuake Seismic Hazard and Risk Analysis Engine
 
 optional arguments:
-  -h, --help            show this help message and exit
+  -h, --help            Show this help message and exit
 
 General:
   --version             Display version information
