@@ -1,0 +1,110 @@
+This book aims to provide an explanation of the scientific basis 
+and the methodologies adopted in the implementation of the OpenQuake engine, an open source code for seismic hazard and physical risk calculation. 
+%
+The book follows the traditional openness and transparency features of the 
+\gls{acr:gem} as clearly indicated in the development principles of 
+the OpenQuake engine. 
+
+%
+The \gls{acr:gem} initiative is a global collaborative effort with the aim to provide organisations and people with tools and resources for transparent assessment of earthquake risk anywhere in the world.
+%
+The OpenQuake engine is a fully integrated, flexible and scalable hazard and physical risk 
+calculation engine whose development is at the core of \gls{acr:gem}'s
+overall objectives.
+% ------------------------------------------------------------------------------
+\section{Basics of the Engine}
+The implementation of the OpenQuake software officially started in Summer 2010 
+following the experience gained in \gls{acr:gem}'s kick-off project GEM1 
+\citep{gemfoundation2010}, during which an extensive appraisal of existing hazard 
+and physical risk codes was performed \citep{danciu2010,crowley2010}
+and prototype hazard and risk software were selected, designed and
+implemented \citep{pagani2010,crowley2010a}.
+
+The current version of the OpenQuake engine is Python code developed 
+following the most common requirements of Open Source 
+software development, such as a public repository, IRC channel and open mailing lists. 
+The source code, released under an open source software license,
+is freely and openly accessible on a web based repository 
+(see \href{http://github.com/gem}{github.com/gem}) while the 
+development process is managed so that the community can participate 
+to the day by day development as well as in the mid- and long-term 
+design process. 
+%
+The software development also leverages on a number of open source projects 
+such as \href {http://celeryproject.org}{Celeryd} and \href{http://www.rabbitmq.com}{RabbitMQ}, just to mention a few.
+
+The hazard component of the engine largely relies on classes belonging to the OpenQuake Hazard library (see \href{https://github.com/gem/oq-hazardlib}{oq-hazardlib}) a comprehensive library for performing state-of-the-art PSHA. This library has been designed and implemented following the successful collaboration and important lessons learnt working with the \href{http://www.opensha.org}{OpenSHA} software and the developing teams at \gls{acr:usgs} and 
+\gls{acr:scec} in GEM1. 
+%
+The risk component of the engine was designed in GEM1, prototyped in Java and eventually
+coded in Python by the team operating at the \gls{acr:gem} 
+Model Facility. This scientific code was originally integrated with the engine, but in late 2012 it was extracted to form the OpenQuake Risk Library (see \href{https://github.com/gem/oq-risklib}{oq-risklib}).
+
+%A schema that illustrates the structure of the engine is 
+%represented in Figure \ref{fig:openquake_schema}; the schema contains:
+%purple boxes representing the main modules of the hazard component, 
+%green boxes showing the modules of the risk component, white boxes
+%with main outputs computed by the distinct modules and orange rectangles
+%displaying the main input information that should be entered into the calculation engine. 
+%
+% ------------------------------------------------------------------------------
+%\subsection{Brief description of the OpenQuake IT architecture}
+%\input{./Part_Introduction/it.tex}
+
+%
+% ------------------------------------------------------------------------------
+\section{Structure of the Book}
+The OpenQuake Engine Book is organized into two volumes, one which describes the science behind the hazard component of the engine
+and another which illustrates the theory of the physical risk calculators incorporated into the software. Readers that are interested in learning how to run calculations using the OpenQuake engine are referred to the OpenQuake Engine User Manual.
+
+\hfill \\
+%\emph{Part II: Hazard}
+The GEM Hazard Team is currently updating the volume on hazard. In the meantime, interested readers are referred to the OpenQuake Engine User Manual, or they can contact the coordinator, Dr Marco Pagani, for further information. 
+%\begin{itemize}
+%\item Chapter \ref{chap:inthaz} offers an introduction to the hazard 
+%topics discussed in the following chapters. In particular, in this 
+%Chapter we discuss the main OpenQuake concepts and we illustrate the 
+%calculation workflows currently available in the hazard component of 
+%OpenQuake.
+%\item Chapter \ref{chap:hazinp} focuses on the structure and the 
+%characteristics of the information necessary to define a 
+%comprehensive PSHA input model. This Chapter also includes
+%descriptions of the main seismic source typologies and of the logic 
+%tree structure.
+%\item We dedicate Chapter \ref{chap:erf} to the explanation of the
+%methodology adopted for the processing of the logic tree structures
+%supported by OpenQuake and for the creation of the 
+%\gls{earthquakeruptureforecast}
+%\item The last Chapter of the hazard part (chapter \ref{chap:hazcalc}) 
+%illustrates the main calculators available: the classical-PSHA calculator,
+%the event-based calculator and the disaggregation calculator. 
+%\end{itemize}
+\hfill \\
+\hfill \\
+%\emph{Part III: Risk}
+This volume on risk is organised as follows:
+\begin{itemize}
+\item Chapter \ref{chap:intrisk} introduces the main physical risk concepts and workflows. 
+\item Chapter \ref{chap:riskinput} contains an explanation of the exposure, physical vulnerability and fragility concepts, which are input to the calculations.
+\item Chapter \ref{chap:scenario_risk} describes the scenario risk 
+methodology, for estimating loss distributions for single events.
+\item Chapter \ref{chap:scenario_damage} describes the scenario damage 
+methodology, for estimating damage ditributions for single events.
+\item Chapter \ref{chap:risk_prob_event_based} provides an overview of the probabilistic event-based risk calculation methodology, which produces loss exceedance curves for portfolios of buildings.
+\item Chapter \ref{chap:risk_psha_based} illustrates single-asset risk calculations based on the hazard curves from classical PSHA.
+\item Chapter \ref{chap:bcr} outlines the benefit/cost ratio calculations based on loss curves for structures with and without retrofitting.
+\end{itemize}
+%
+%In the closing part, the Book contains a glossary that aims to define a 
+%clear and unique terminology.
+%
+% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
+%\begin{landscape}
+%\begin{figure}
+%\includegraphics[width=20cm,angle=0]{./Figures/Part_Introduction/engine9_20110130.eps}
+%\caption{OpenQuake Engine schema. Purple boxes are the calculators included in the  
+%the hazard part of OQ; green boxes are the physical risk calculators.}
+%\label{fig:openquake_schema}
+%\end{figure}
+%\end{landscape}
+% . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . < Figure

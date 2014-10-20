@@ -21,14 +21,14 @@ This information is common to all the assets and needs to be incorporated at the
 ...
 \end{Verbatim}
 
-The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake Engine Book (Risk). 
-\ \\
+The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake Engine Book (Risk).
+\\
 The way the information about the characteristics of the \glspl{asset} in an \gls{exposure model} are stored can vary strongly depending on how and why the data was compiled. As an example, if national census information is used to estimated the distribution of assets in a given region, it is likely that the number of buildings within a given geographical area will be used to define the dataset, and will be used for estimating the number of collapsed buildings for a scenario earthquake. On the other hand, if simplified methodologies based on proxy data such as population distribution are used to develop the exposure model, then it is likely that the built up area or economic cost of each building typology will be directly derived, and will be used for the estimation of economic losses. Thus, the following set of attributes exist within the schema for the exposure model:
 
 \begin{itemize}
 \item  \Verb+number+: number of units of a given \gls{asset} at a given location;
 \item  \Verb+area+: area of the \gls{asset}, at a given location;
-\item  \Verb+cost+: structural replacement cost of the \gls{asset} at a given location; 
+\item  \Verb+cost+: structural replacement cost of the \gls{asset} at a given location;
 \end{itemize}
 
 The set of required attributes depends on what and how a user wants to store the information about the assets in the exposure model. While the attribute \Verb+number+ might be a rather simple parameter, the other two (area and cost) can be ambiguous, as different ways to define them might be used. With regards to the attribute \Verb+area+, one can either choose to provide the aggregated built up area of the \glspl{asset} per location or the average built up area for a single building unit (noting that an \gls{asset} might be made up of a number of individual buildings). Similarly, the \Verb+cost+ can also be defined as the aggregated structural replacement cost, the cost of replacing a single unit or even the structural replacement cost per unit of area. For the purposes of performing a retrofitting benefit/cost analysis, it is also necessary to define the retrofitting cost (\Verb+reco+). The combination between the possible options in which these three attributes can be defined leads to four ways of storing the information about the assets. For each of these cases a brief explanation and example is provided in this section.
@@ -345,7 +345,7 @@ In this section, the NRML schema for the \gls{vulnerability model} is described 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=10cm,height=6cm]{./figures/risk/vulnerabilityModel.eps}
+\includegraphics[width=10cm,height=6cm]{./figures/risk/vulnerabilityModel.pdf}
 \caption{Graphical representation of a vulnerability model.}
 \label{fig:vulModel}
 \end{figure}
@@ -448,14 +448,14 @@ In the previously described \gls{vulnerability model} all of the \glspl{vulnerab
 </nrml>      
 \end{Verbatim}
 
-Several methodologies to derive vulnerability functions are currently being evaluated by \gls{acr:gem} and will be a part of a set of modelling tools. Scripts to convert \glspl{vulnerability function} stored in Excel or ASCII files into NRML have already being developed, and can be found at the GEM Science tools repository at GitHub (\textcolor{blue01}{\Verb+http://github.com/GEMScienceTools+}).
+Several methodologies to derive vulnerability functions are currently being evaluated by \gls{acr:gem} and will be a part of a set of modelling tools. Scripts to convert \glspl{vulnerability function} stored in Excel or ASCII files into NRML have already being developed, and can be found at the GEM Science tools repository at GitHub (\textcolor{blue}{\Verb+http://github.com/GEMScienceTools+}).
 
 \subsection{Fragility model definition}
 This section describes the schema currently used to store \glspl{fragility model}, which are required for the Scenario Damage Calculator. A \gls{fragility model} can be comprised of several \glspl{fragility function}, describing the probability of exceeding a set of limit, or damage, states. These \glspl{fragility function} can be defined in two ways: discrete or continuous. In the former manner, sets of probabilities of exceedance (one set per limit state) are defined for a list of intensity measure levels, as illustrated in Figure \ref{fig:fragModelDiscrete}. 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=8cm,height=6cm]{./figures/risk/DisFragilityModel.eps}
+\includegraphics[width=8cm,height=6cm]{./figures/risk/DisFragilityModel.pdf}
 \caption{Graphical representation of a discrete fragility model.}
 \label{fig:fragModelDiscrete}
 \end{figure}
@@ -480,13 +480,13 @@ Similarly to what has been described for the \glspl{vulnerability model}, the NR
 \item  \Verb+description+: represents an attribute that can be used to include  some information about the \gls{fragility model}, for example, what building typologies are being covered or the source of the \gls{fragility model};
 \item  \Verb+limitStates+: this field is used to define the number and nomenclature of each limit state. Despite the fact that three limit states are being employed in this example, it is possible to use any number of states, as long as a fragility curve is always defined for each limit state. 
 \end{itemize}
-    
+
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-    ...  
+    ...
     <\textcolor{green}{ffs noDamageLimit= 0.05}> 
         <\textcolor{blue}{taxonomy} RC <\textcolor{blue}{/taxonomy}>
         <\textcolor{blue}{IML} IMT="PGA" imlUnit="g"> 0.0 0.25 0.50 0.75 1.00 <\textcolor{blue}{/IML}>
-        
+
         <\textcolor{blue}{ffd} ls="slight damage">
             <\textcolor{magenta}{poes}> 0.0 0.85 0.98 0.99 1.00 < \textcolor{magenta}{/poes}>
         <\textcolor{blue}{/ffd}
@@ -495,17 +495,17 @@ Similarly to what has been described for the \glspl{vulnerability model}, the NR
         <\textcolor{blue}{/ffd}
         <\textcolor{blue}{ffd} ls="collapse">
             <\textcolor{magenta}{poes}> 0.0 0.07 0.37 0.64 0.80 < \textcolor{magenta}{/poes}>
-        <\textcolor{blue}{/ffd}      
-    <\textcolor{green}{/ffs}> 
-<\textcolor{red}{/fragilityModel}>  
-</nrml>      
+        <\textcolor{blue}{/ffd}
+    <\textcolor{green}{/ffs}>
+<\textcolor{red}{/fragilityModel}>
+</nrml>
 \end{Verbatim}
 
 For each building typology, a set of limit state curves need to be stored within the field \Verb+ffs+ (fragility function set). The following attributes are currently being employed to define this input:
 
 \begin{itemize}
-\item  \Verb+noDamageLimit+: this attribute defines the intensity measure level below which the probability of exceedance for all curves is zero;  
-\item  \Verb+taxonomy+: a unique key that is used to relate each \gls{fragility function} with the relevant \glspl{asset} in the \gls{exposure model}; 
+\item  \Verb+noDamageLimit+: this attribute defines the intensity measure level below which the probability of exceedance for all curves is zero;
+\item  \Verb+taxonomy+: a unique key that is used to relate each \gls{fragility function} with the relevant \glspl{asset} in the \gls{exposure model};
 \item  \Verb+IML+: this attribute serves the purposes of defining the list of intensity measure levels for which the limit state curves are defined. In addition, it is also necessary to define the intensity measure type (\Verb+IMT+) being used and the respective units (\Verb+imlUnit+);
 \item  \Verb+ffd+: this field (fragility function discrete) is used to define the probabilities of exceedance (\Verb+poes+) of each limit state curve. It is also necessary to include which limit state is being defined in the attribute \Verb+ls+.
 \end{itemize}
@@ -514,7 +514,7 @@ As previously mentioned, the user may choose to define the \glspl{fragility func
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=8cm,height=6cm]{./figures/risk/ConFragilityModel.eps}
+\includegraphics[width=8cm,height=6cm]{./figures/risk/ConFragilityModel.pdf}
 \caption{Graphical representation of a continuous fragility model.}
 \label{fig:fragModelContinuous}
 \end{figure}
@@ -661,12 +661,12 @@ contents_vulnerability_file = cont_vul_model.xml
 business_interruption_vulnerability_file = bus_int_vul_model.xml
 occupants_vulnerability_file = occ_vul_model.xml
 
-lrem_steps_per_interval = 2
+lrem_stpdf_per_interval = 2
 conditional_loss_poes = 0.01, 0.05, 0.1
 \end{Verbatim}
 
 \begin{itemize}
-\item  \Verb+lrem_steps_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake engine assumes the \Verb+lrem_steps_per_interval+ to be equal to 5. More details are provided in the OpenQuake Engine Book (Risk).  
+\item  \Verb+lrem_stpdf_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake engine assumes the \Verb+lrem_stpdf_per_interval+ to be equal to 5. More details are provided in the OpenQuake Engine Book (Risk).  
 \end{itemize}
 
 \subsubsection{Retrofitting Benefit/Cost Ratio Calculator}
@@ -677,7 +677,7 @@ As previously explained, this calculator uses loss exceedance curves which can b
 structural_vulnerability_file = struct_vul_model.xml
 vulnerability_retrofitted_file = retrof_vul_model.xml
 
-lrem_steps_per_interval = 2
+lrem_stpdf_per_interval = 2
 
 interest_rate= 0.005
 asset_life_expectancy = 50

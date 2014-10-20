@@ -1,0 +1,237 @@
+% ------------------------------------------------------------------------------
+% OpenQuake Engine Book 
+% 
+% Authors: 
+% 	H. Crowley 		- Executive Committee - GEM Foundation, Pavia, Italy
+% 	D. Monelli 		- GEM Model Facility, ETH-SED, Zurich, Switzerland
+% 	M. Pagani 		- Executive Committee - GEM Foundation, Pavia, Italy
+% 	V. Silva 		- GEM Model Facility, Pavia, Italy
+%	G. Weatherhill 	- GEM Model Facility, Pavia, Italy
+% 
+% Document distributed under the Common Creative License 
+% © GEM Foundation, Pavia, February 2011
+% ------------------------------------------------------------------------------
+\documentclass[11pt,a4paper,headings=small,dvips]{scrbook}
+% --------------------------------------------------------------------- Packages
+\input{configuration.tex}
+%
+% ------------------------------------------------------------------------------
+\uppertitleback{
+   \textbf{Authors:} \\
+   Helen Crowley$^1$, Vitor Silva$^2$ \\ \hfill \\
+   \small
+   \begin{tabular}{p{4cm}p{4cm}p{4cm}}
+   $^1$ GEM Foundation \hfill \newline
+   via Ferrata, 1 \hfill \newline 
+   20133 Pavia \hfill \newline
+   Italy \hfill \newline
+   & 
+   $^2$ GEM Model Facility \hfill \newline 
+   via Ferrata, 1 \hfill \newline 
+   20133 Pavia \hfill \newline
+   Italy \hfill \newline   
+	\end{tabular} \hfill \newline
+   %
+	Email address (for all the authors):\hfill\\
+   $<$name.surname$>$@globalquakemodel.org
+   %
+   \vspace{0.2cm} \hfill \\
+   {\bf{Disclaimer}} \hfill \\
+   The OpenQuake Engine Book is distributed in the hope that it will be useful, 
+   but without any warranty: without even the implied warranty of 
+   merchantability or fitness for a particular purpose. While every 
+   precaution has been taken in the preparation of this document, in 
+   no event shall the authors of the book and the GEM Foundation be 
+   liable to any party for direct, indirect, special, incidental, or 
+   consequential damages, including lost profits, arising out of the 
+   use of information contained in this document or from the use of 
+   programs and source code that may accompany it, even if the authors 
+   and GEM Foundation have been advised of the possibility of such damage. 
+   The Book provided hereunder is on as "as is" basis, and the authors 
+   and GEM Foundation have no obligations to provide maintenance, support,
+   updates, enhancements, or modifications. 
+   \hfill \\
+   The current version of the book has been revised only by members of 
+   the GEM Model Facility and it must be considered a draft copy.
+   %
+   \vspace{0.2cm} \hfill \\
+   {\bf{License}} \hfill \\
+   This Book is distributed under the Creative Common License 
+   Attribution 3.0 Unported (CC BY 3.0) 
+   (see link below). You can download this Book and share it with others 
+   as long as you provide proper 
+   credit, but you cannot change it in any way.
+   \hfill \\
+   \href{http://creativecommons.org/licenses/by/3.0/}
+   {http://creativecommons.org/licenses/by/3.0/}  
+   
+   \hfill \\
+   {\bf{Credit}} \hfill \\
+   Crowley, H., V. Silva (2013). OpenQuake Engine Book: Risk v1.0.0. GEM Foundation, Pavia, Italy.   
+   \normalsize
+}  
+%
+% =============================================================== BEGIN DOCUMENT
+% -------------------------------------------------- Title and table of contents
+\begin{document}
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Cover
+\newgeometry{hmargin={-0.4cm,0cm},height=29.7cm}
+\thispagestyle{empty}
+\psset{unit=1cm}
+\begin{pspicture}(0,0)(21cm,29.7cm)
+	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
+		(0.0cm,15.0cm)(21cm,29.7cm)	
+	\rput[l](0cm,14.85cm){\includegraphics[width=21cm,height=29.7cm]{./figures/risk_cover.eps}}
+	% Title
+		% Logos
+	
+%	\rput(4cm,27.5cm){\includegraphics[height=2.0cm]
+%		{./Figures/openquake_logo1.eps}}
+	%
+%	\rput[r](19.5cm,2cm){\sffamily\large\color{cyan}{Version 0.9}}
+\end{pspicture}
+%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Second page
+\restoregeometry
+\thispagestyle{empty}
+\cleardoublepage
+% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Load the glossary
+\input{./oqb/part_Introduction/glossary.tex}
+%
+% - - - - - - - - - - - - - - - - - - - - - - -  This is the internal title page
+\setcounter{page}{1}
+\begin{titlepage}
+	\titlehead{\emph{``OpenQuake: Shaken not stirred''}}
+	\title{ \textcolor{blue01}{\textsf{\bfseries\Huge OpenQuake Engine Book: Risk}}  }
+	\date{July 2013}
+	\publishers{GEM Foundation, Pavia}
+\end{titlepage}
+\pagestyle{scrheadings}
+\maketitle
+%
+\input{./oqbr/acknowledgements.tex}
+\cleardoublepage
+%  
+\tableofcontents
+%
+% --------------------------------------------------------- Symbols and acronyms
+% \chapter*{Symbols and Acronyms}
+%	\input{./oqb/part_Introduction/symbolsAcronyms.tex}
+% ==============================================================================
+% ------------------------------------------------------------------------- Part
+%\thispagestyle{empty}
+%\part{Introduction}
+% ------------------------------------------------------------------------------
+\chapter{Motivation and Basics of the OpenQuake Engine}
+	\input{./oqbr/introduction.tex}
+% ==============================================================================
+% ------------------------------------------------------------------------- Part
+%\part{Hazard}
+% ------------------------------------------------------------------------------
+%\chapter{Introduction}
+%	\label{chap:inthaz}
+%	\input{./oqb/part_hazard/introduction.tex}
+% ------------------------------------------------------------------------------
+%\chapter{Hazard Input Description}
+%	\label{chap:hazinp}
+%	\input{./oqb/part_hazard/unifiedSeismicSourceDescription.tex}
+% ------------------------------------------------------------------------------
+%\chapter{Logic Tree Processor and Earthquake Rupture Forecast 
+%	calculator}
+%	\label{chap:erf}
+%	\input{./oqb/part_hazard/logicTreeProcessor.tex}
+%	\input{./oqb/part_hazard/eqk_Rupture_Forecast_Calculator.tex}
+% ------------------------------------------------------------------------------
+%\chapter{SHA Calculators}
+%	\label{chap:hazcalc}
+%	\input{./oqb/part_hazard/kernel/intro.tex}
+%	\input{./oqb/part_hazard/kernel/classical_PSHA.tex}
+%	\input{./oqb/part_hazard/kernel/event_based_PSHA.tex}
+%	\input{./oqb/part_hazard/kernel/disaggregation.tex}
+% ------------------------------------------------------------------------------
+%\chapter{Wesson et al. [2009] risk calculation implementation}
+%	\input{./oqb/part_Hazard/wessonMethod.tex}
+% ==============================================================================
+% ------------------------------------------------------------------------- Part
+%\part{Physical Risk}
+% ------------------------------------------------------------------------------
+\chapter{Introduction to Physical Risk}
+	\label{chap:intrisk}
+	\input{./oqbr/introduction.tex}
+% ------------------------------------------------------------------------------
+\chapter{Physical Risk Input Description}
+	\label{chap:riskinput}
+	\input{./oqbr/Risk_Input_Description.tex}
+% ------------------------------------------------------------------------------
+\chapter{Scenario Risk Calculator}
+	\label{chap:scenario_risk}
+	\input{./oqbr/Scenario_Risk_Based.tex}
+% ------------------------------------------------------------------------------
+\chapter{Scenario Damage Calculator}
+	\label{chap:scenario_damage}
+	\input{./oqbr/Scenario_Damage_Based.tex}
+% ------------------------------------------------------------------------------
+\chapter{Probabilistic Event-Based Risk Calculator}
+	\label{chap:risk_prob_event_based}
+	\input{./oqbr/Probabilistic_Event_Based.tex}
+% ------------------------------------------------------------------------------
+\chapter{Classical PSHA-Based Risk Calculator}
+	\label{chap:risk_psha_based}
+	\input{./oqbr/Classical_PSHA_Based.tex}
+% ------------------------------------------------------------------------------
+\chapter{Retrofitting Benefit/Cost Ratio Calculator}
+	\label{chap:bcr}
+	\input{./oqbr/BCR.tex}
+% ==============================================================================
+% ------------------------------------------------------------------------- Part
+%\part{Socio-Economic Impact Assessment}
+%	\input{./oqb/part_SEIA/introduction.tex}
+% ==============================================================================
+% ------------------------------------------------------------------------- Part
+%\part{Modeller's Toolkit}
+% ------------------------------------------------------------------------------
+%\chapter{Introduction}
+%	\input{./oqb/part_Modellers_Toolkit/introduction.tex}
+% ------------------------------------------------------------------------------
+%\chapter{Input visualization and preparation}
+%	\input{./oqb/part_Modellers_Toolkit/input.tex}
+% ==============================================================================
+% ------------------------------------------------------------------------------
+% ------------------------------------------------------------------------- Part
+%\part{Appendixes}
+%\appendix
+% ------------------------------------------------------------------------------
+%\chapter{nrML}
+%	\input{./oqb/part_Appendix/nrML.tex}
+% ------------------------------------------------------------------------------
+%\chapter{Example of OpenQuake risk calculation configuration file}
+%	\input{./oqb/part_Appendix/appendixHazardInputExample.tex}
+% ==============================================================================
+% ----------------------------------------------------------------- Bibliography
+\small
+\bibliographystyle{apalike}
+\bibliography{./Bibliography/hazard,./Bibliography/risk,./Bibliography/sei.bib}
+\normalsize
+% ==============================================================================
+% ------------------------------------------------------------------------ Index
+\printglossaries
+\printindex
+\cleardoublepage
+% Final empty page
+\hfill \\ \thispagestyle{empty} \clearpage 
+% ==============================================================================
+% ------------------------------------------------------------------- Back Cover
+\newgeometry{hmargin={0cm,-0.4cm},height=29.7cm}
+\thispagestyle{empty}
+\psset{unit=1cm}
+\begin{pspicture}(0,0)(21cm,29.7cm)
+	\psframe[fillstyle=solid,linecolor=cyan,fillcolor=white]
+		(0.0cm,0.0cm)(21cm,15.0cm)
+	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
+		(0.0cm,15.0cm)(21cm,29.7cm)
+	\psframe[fillstyle=solid,linecolor=blue01,fillcolor= blue01]
+		(0.0cm,15.0cm)(21cm,15.5cm)
+	\psframe[fillstyle=solid,linecolor=blue01,fillcolor= blue01]
+		(0.0cm,25.0cm)(21cm,25.1cm)
+\end{pspicture}
+%
+\end{document}

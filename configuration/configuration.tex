@@ -1,0 +1,119 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The Legrand Orange Book
+% LaTeX Template
+% Version 1.4 (12/4/14)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Mathias Legrand (legrand.mathias@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Compiling this template:
+% This template uses biber for its bibliography and makeindex for its index.
+% When you first open the template, compile it from the command line with the 
+% commands below to make sure your LaTeX distribution is configured correctly:
+%
+% 1) pdflatex oq-manual
+% 2) makeindex oq-manual.idx -s StyleInd.ist
+% 3) biber oq-manual
+% 4  makeglossaries oq-manual
+% 4) pdflatex oq-manual x 2
+%
+% After this, when you wish to update the bibliography/index use the appropriate
+% command above and make sure to compile with pdflatex several times 
+% afterwards to propagate your changes to the document.
+%
+% This template also uses a number of packages which may need to be
+% updated to the newest versions for the template to compile. It is strongly
+% recommended you update your LaTeX distribution if you have any
+% compilation errors.
+%
+% Important note:
+% Chapter heading images should have a 2:1 width:height ratio,
+% e.g. 920px width and 460px height.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,a4paper]{geometry} % Page margins
+
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{ocre}{RGB}{243,102,25} % Define the orange color used for highlighting throughout the book
+
+% Font Settings
+\usepackage{avant} % Use the Avantgarde font for headings
+%\usepackage{times} % Use the Times font for headings
+\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[utf8]{inputenc} % Required for including letters with accents
+\usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
+
+% Bibliography
+\usepackage{csquotes}
+\usepackage[style=alphabetic,
+            sorting=nyt,
+            sortcites=true,
+            natbib=true,
+            style=authoryear,
+            maxcitenames=2,
+            maxbibnames=100,
+            autopunct=true,
+            babel=hyphen,
+            hyperref=true,
+            doi=true,
+            abbreviate=false,
+            backref=true,
+            backend=biber,
+	    	uniquename=false,
+	    	uniquelist=false]{biblatex}
+\addbibresource{./bibliography/hazard.bib} % BibTeX bibliography file
+\addbibresource{./bibliography/risk.bib} % BibTeX bibliography file
+\defbibheading{bibempty}{}
+
+% Figure caption settings
+\usepackage[textfont=it,margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
+\usepackage{subcaption}
+\usepackage{rotating}
+
+% Table - colors from
+\usepackage{verbatim}
+\usepackage{fancyvrb}
+\usepackage{color, colortbl}
+\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
+\definecolor{ashgrey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{anti-flashwhite}{rgb}{0.95, 0.95, 0.96}
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+
+% Index
+\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+\usepackage{makeidx} % Required to make an index
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}    % entries down to \subsubsections in the TOC
+\makeindex % Tells LaTeX to create the files required for indexing
+
+\usepackage{todonotes}
+\usepackage{geometry}
+\usepackage{marginnote}
+
+%
+% Package to create a glossary - must be loaded after hyperref
+% to produce the glossary: makeglossaries oq-manual
+\usepackage[acronym,nonumberlist,style=altlist]{glossaries}
+\glstoctrue
+\makeglossaries
+
+% package for bold symbols
+\usepackage{bm}
+
+% for better looking tables
+\usepackage{ctable}
+\usepackage{microtype}
+%
+%----------------------------------------------------------------------------------------
+% Trees
+% \usepackage{auto-pst-pdf}
+% \usepackage[pdf]{pstricks}
+% \usepackage{pst-tree}
