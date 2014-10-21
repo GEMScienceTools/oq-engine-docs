@@ -8,7 +8,7 @@ This section provides a brief description of the calculators currently implement
 The oq-engine is currently comprised of five risk calculation workflows: two that calculate losses and damage distributions due to a single earthquake, another two that calculate seismic risk using probabilistic seismic hazard, and a fifth one that uses loss exceedance curves to assess whether retrofitting measures would be economically viable or not.
 
 \subsection{Scenario Risk Calculator}
-This calculator computes loss maps and loss statistics due to a single seismic event, for a collection of assets. The hazard input can be a single ground motion field (e.g. the median distribution of ground motion in the region of interest) or a set of ground motion fields allowing the characterisation of the inter- and intra-event variability from the GMPE. It is noted that the hazard input can either be calculated using the hazard component of OpenQuake engine (oq-hazardlib), or provided to the risk component in an external file following the respective Natural hazards' Risk Markup Language (NRML) schema (see \href{http://gitub.com/gem/oq-nrmllib}{oq-nrmllib}).
+This calculator computes loss maps and loss statistics due to a single seismic event, for a collection of assets. The hazard input can be a single ground motion field (e.g. the median distribution of ground motion in the region of interest) or a set of ground motion fields allowing the characterisation of the inter- and intra-event variability from the GMPE. It is noted that the hazard input can either be calculated using the hazard component of OpenQuake engine (oq-hazardlib), or provided to the risk component in an external file following the respective Natural hazards' Risk Markup Language (NRML) schema (see \href{http://github.com/gem/oq-nrmllib}{oq-nrmllib}).
 A vulnerability model is combined with the distribution of the ground motions at each asset location to calculate the loss distribution for each asset, as well as the statistics of the total loss throughout the region of interest. The required input files and resulting output files are depicted in Figure \ref{fig:ScnRisk}.
 
 \begin{figure}[ht]
@@ -40,13 +40,13 @@ In this calculator, loss exceedance curves and loss maps for various return peri
 \end{figure}
 
 \subsection{Classical PSHA-based Risk Calculator}
-In this calculator, probabilistic seismic hazard is employed to calculate a loss exceedance curve for each asset, through the usage of seismic hazard curves. A convolution between the vulnerability function and the hazard curve at location of the asset is performed, leading to the probability of exceeding a set of loss ratios. Each loss ratio is multiplied by the asset value to obtain the final loss exceedance curve. Furthermore, probabilistic loss maps can be extracted by interpolating the loss curves at each location by various probabilities of exceedance. Unlike what was described in the previous calculator, a total loss curve (considering all assets in the exposure model) can not be extracted using this calculator, as the correlation of the ground motion residuals and vulnerability uncertainty is not taken into consideration. The input and output files involved in this calculator are presented in Figure \ref{fig:ClassialPSHA}.
+In this calculator, probabilistic seismic hazard is employed to calculate a loss exceedance curve for each asset, through the usage of seismic hazard curves. A convolution between the vulnerability function and the hazard curve at location of the asset is performed, leading to the probability of exceeding a set of loss ratios. Each loss ratio is multiplied by the asset value to obtain the final loss exceedance curve. Furthermore, probabilistic loss maps can be extracted by interpolating the loss curves at each location by various probabilities of exceedance. Unlike what was described in the previous calculator, a total loss curve (considering all assets in the exposure model) can not be extracted using this calculator, as the correlation of the ground motion residuals and vulnerability uncertainty is not taken into consideration. The input and output files involved in this calculator are presented in Figure \ref{fig:ClassicalPSHA}.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=9cm,height=7cm]{./figures/risk/ClassicalPSHA.pdf}
 \caption{Classical PSHA-based Risk Calculator input/output structure.}
-\label{fig:ClassialPSHA}
+\label{fig:ClassicalPSHA}
 \end{figure}
 
 \subsection{Retrofitting Benefit/Cost Ratio Calculator}
