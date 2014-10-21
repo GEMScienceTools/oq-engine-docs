@@ -1,6 +1,6 @@
 \section{Input data definition}
 \subsection{Exposure model definition}
-All risk calculators in the OpenQuake engine require an \gls{exposure model} that needs to be stored in NRML. There are a number of parameters that compose the metadata, and provides general information regarding the \glspl{asset} within the \gls{exposure model}, as described below:
+All risk calculators in the OpenQuake-engine require an \gls{exposure model} that needs to be stored in NRML. There are a number of parameters that compose the metadata, and provides general information regarding the \glspl{asset} within the \gls{exposure model}, as described below:
 
 \begin{itemize}
 \item  \Verb+id+: a unique key used to identify the \gls{exposure model};
@@ -21,7 +21,7 @@ This information is common to all the assets and needs to be incorporated at the
 ...
 \end{Verbatim}
 
-The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake Engine Book (Risk).
+The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake-engine Book (Risk).
 \\
 The way the information about the characteristics of the \glspl{asset} in an \gls{exposure model} are stored can vary strongly depending on how and why the data was compiled. As an example, if national census information is used to estimated the distribution of assets in a given region, it is likely that the number of buildings within a given geographical area will be used to define the dataset, and will be used for estimating the number of collapsed buildings for a scenario earthquake. On the other hand, if simplified methodologies based on proxy data such as population distribution are used to develop the exposure model, then it is likely that the built up area or economic cost of each building typology will be directly derived, and will be used for the estimation of economic losses. Thus, the following set of attributes exist within the schema for the exposure model:
 
@@ -79,7 +79,7 @@ In this case, the cost \Verb+type+ of each component as been defined as \Verb+ag
 </nrml>
 \end{Verbatim}
 
-Each \gls{asset} is uniquely identified by its \Verb+id+, which is used by the OpenQuake engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \Verb+location+ where the asset is assumed to exist is defined. Each asset must be classified according to a \Verb+taxonomy+, so that the OpenQuake engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \Verb+type+ are stored within the \Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \Verb+number+ or \Verb+area+. This mode of representing an exposure model is probably the simplest one.
+Each \gls{asset} is uniquely identified by its \Verb+id+, which is used by the OpenQuake-engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \Verb+location+ where the asset is assumed to exist is defined. Each asset must be classified according to a \Verb+taxonomy+, so that the OpenQuake-engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \Verb+type+ are stored within the \Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \Verb+number+ or \Verb+area+. This mode of representing an exposure model is probably the simplest one.
 
 \paragraph{Example 2}
 In this example an \gls{exposure model} containing the number of units (buildings) and the associated costs per unit of each building typology is presented.
@@ -127,7 +127,7 @@ For this case, the cost \Verb+type+ has been set to \Verb+per_unit+. Then, the i
 </nrml>
 \end{Verbatim}
 
-In this example, the various costs for each asset is not provided directly, as happened in the previous example. In order to carry out the risk calculations in which the economic cost of each asset is required, the OpenQuake engine multiplies, for each asset, the number of units (buildings) by the "per unit" replacement cost. Note that in this case, there is no need to specify the attribute \Verb+area+.
+In this example, the various costs for each asset is not provided directly, as happened in the previous example. In order to carry out the risk calculations in which the economic cost of each asset is required, the OpenQuake-engine multiplies, for each asset, the number of units (buildings) by the "per unit" replacement cost. Note that in this case, there is no need to specify the attribute \Verb+area+.
 
 \paragraph{Example 3}
 This example is comprised of an \gls{exposure model} containing the built up area of each building typology for a set of locations, and the associated costs per area.
@@ -176,7 +176,7 @@ In order to compile an \gls{exposure model} with this structure, it is required 
 </nrml>
 \end{Verbatim}
 
-Once again, the OpenQuake engine needs to carry out some calculations in order to compute the different costs per asset. In this case, this value is computed by multiplying the aggregated built up \Verb+area+ of each building typology by the associated cost per unit of area. Notice that in this case, there is no need to specify the attribute \Verb+number+.
+Once again, the OpenQuake-engine needs to carry out some calculations in order to compute the different costs per asset. In this case, this value is computed by multiplying the aggregated built up \Verb+area+ of each building typology by the associated cost per unit of area. Notice that in this case, there is no need to specify the attribute \Verb+number+.
 
 \paragraph{Example 4}
 This example is comprised of an \gls{exposure model} containing the number of buildings for each location, the average built up area per building unit and the associated costs per area.
@@ -225,7 +225,7 @@ Similarly to what was described in the previous example, the various costs \Verb
 </nrml>
 \end{Verbatim}
 
-In this example, the OpenQuake engine will make use of all the parameters to estimate the various costs of each asset, by multiplying the number of buildings by its average built up area, and then by the respective cost per unit of area.
+In this example, the OpenQuake-engine will make use of all the parameters to estimate the various costs of each asset, by multiplying the number of buildings by its average built up area, and then by the respective cost per unit of area.
 
 \paragraph{Example 5}
 In this example, additional information will be included, which is required for other risk analysis besides loss estimation, such as the calculation of insured losses or benefit/cost analysis. For the former assessment, it is necessary to establish how the insured limit and deductible is going to be define, according to the format below. 
@@ -286,7 +286,7 @@ Moreover, in order to perform a benefit/cost assessment, it is also fundamental 
 Despite the fact that for the demonstration of how the insurance parameters and retrofitting cost can be stored it was used the aggregated type of cost (structure described in example 1), it is important to mention that any of the other storing approaches can also be employed (example 2 -4).
 
 \paragraph{Example 6}
-The OpenQuake engine is also capable of estimating human losses, based on a number of occupants within an asset, at a certain time of the day. In this example, it is demonstrated how this parameter is defined for each asset. In addition, this example also serves the purpose of presenting an \gls{exposure model} in which three cost types have been defined following different structures.
+The OpenQuake-engine is also capable of estimating human losses, based on a number of occupants within an asset, at a certain time of the day. In this example, it is demonstrated how this parameter is defined for each asset. In addition, this example also serves the purpose of presenting an \gls{exposure model} in which three cost types have been defined following different structures.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -364,7 +364,7 @@ Each component of the associated NRML file is presented herein:
 
 At the top of the NRML schema, the following metadata are being stored:
 \begin{itemize}
-\item  \Verb+vulnerabilitySetID+: A unique key used to identify the \gls{vulnerability model} instance within the OpenQuake engine;
+\item  \Verb+vulnerabilitySetID+: A unique key used to identify the \gls{vulnerability model} instance within the OpenQuake-engine;
 \item  \Verb+assetCategory+: An attribute that describes the asset typology (e.g.: population, buildings, contents);
 \item  \Verb+lossCategory+: An attribute that describes the type of loss being modelled for the assetCategory (e.g. fatalities, structural replacement cost, contents replacement cost).
 \end{itemize}
@@ -402,9 +402,9 @@ Within this component, an attribute specifying the intensity measure type (e.g.:
 Finally, for each discrete \gls{vulnerability function} the following parameters are required:
 \begin{itemize}
 \item  \Verb+ vulnerabilityFunctionID +: A unique key that is used to relate each \gls{vulnerability function} with the \glspl{asset} in the \gls{exposure model};
-\item  \Verb+ probabilisticDistribution +: An attribute that establishes the type of probabilistic distribution used to model the uncertainty in loss ratio. At the moment, the OpenQuake engine supports lognormal (\Verb+LN+) and beta (\Verb+BT+) distributions;
+\item  \Verb+ probabilisticDistribution +: An attribute that establishes the type of probabilistic distribution used to model the uncertainty in loss ratio. At the moment, the OpenQuake-engine supports lognormal (\Verb+LN+) and beta (\Verb+BT+) distributions;
 \item  \Verb+ lossRatio +: A set of mean loss ratios (one for each intensity measure level defined previously). These values can represent different losses such as fatality rates (ratio between the number of fatalities and total population exposed) or so-called damage ratio (ratio between the repair cost and the replacement cost of a given structure).
-\item  \Verb+ coefficientsVariation +: A set of coefficients of variation (one per loss ratio) that describes the uncertainty in the loss ratio. If users do not want to consider the uncertainty, this set of parameters can be set to zero, and the OpenQuake engine assumes each loss ratio as a deterministic value.
+\item  \Verb+ coefficientsVariation +: A set of coefficients of variation (one per loss ratio) that describes the uncertainty in the loss ratio. If users do not want to consider the uncertainty, this set of parameters can be set to zero, and the OpenQuake-engine assumes each loss ratio as a deterministic value.
 \end{itemize}
 
 In the previously described \gls{vulnerability model} all of the \glspl{vulnerability function} were defined in terms of a single intensity measure type (Sa for 0.3 seconds). However, the current version of the engine also allows the employment of a \gls{vulnerability model} that is comprised of \glspl{vulnerability function} that each use distinct intensity measure types. In the following example, the schema of a \gls{vulnerability model} in which three intensity measure types were used (PGA, PGV and Sa for 0.3 seconds) is presented.
@@ -551,7 +551,7 @@ Again, the set of limit state curves for each building typology needs to be stor
 \end{itemize}
 
 \subsection{Configuration file}
-The configuration file (or job.ini file) represents the location where the paths to the input files, the parameters controlling the risk calculations and the type of outputs are defined. Some initial parameters common to all the risk calculators are presented below. The remaining parameters that are specific to each risk calculator are discussed in subsequent sections. For additional information about how each parameter is being used within the methodologies implemented in the oq-engine, users advised to consult the OpenQuake Engine Book (Risk).
+The configuration file (or job.ini file) represents the location where the paths to the input files, the parameters controlling the risk calculations and the type of outputs are defined. Some initial parameters common to all the risk calculators are presented below. The remaining parameters that are specific to each risk calculator are discussed in subsequent sections. For additional information about how each parameter is being used within the methodologies implemented in the oq-engine, users advised to consult the OpenQuake-engine Book (Risk).
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 [general]
@@ -596,7 +596,7 @@ insured_losses = true
 \item  \Verb+contents_vulnerability_file +: this parameter is used to specify the path to the contents \gls{vulnerability model} file;
 \item  \Verb+business_interruption_vulnerability_file +: this parameter is used to specify the path to the business interruption \gls{vulnerability model} file;
 \item  \Verb+vulnerability_file+: this parameter is used to specify the path to the occupants \gls{vulnerability model} file;
-\item \texttt{asset\_cor\-re\-la\-tion} if the uncertainty in the loss ratios has been defined within the \gls{vulnerability model}, users can specify a coefficient of correlation that will be used in the Monte Carlo sampling process of the loss ratios, between the assets that share the same \gls{taxonomy}. If the \texttt{asset\_cor\-re\-la\-tion} is set to one, the loss ratio residuals will be perfectly correlated. On the other hand, if this parameter is set to zero, the loss ratios will be sampled independently. Any value between zero and one will lead to increasing levels of correlation. If this parameter is not defined, the OpenQuake engine assumes no correlation in the vulnerability;
+\item \texttt{asset\_cor\-re\-la\-tion} if the uncertainty in the loss ratios has been defined within the \gls{vulnerability model}, users can specify a coefficient of correlation that will be used in the Monte Carlo sampling process of the loss ratios, between the assets that share the same \gls{taxonomy}. If the \texttt{asset\_cor\-re\-la\-tion} is set to one, the loss ratio residuals will be perfectly correlated. On the other hand, if this parameter is set to zero, the loss ratios will be sampled independently. Any value between zero and one will lead to increasing levels of correlation. If this parameter is not defined, the OpenQuake-engine assumes no correlation in the vulnerability;
 \item  \Verb+master_seed+: this parameter is used to control the random generator in the loss ratio sampling process. This way, if the same \Verb+master_seed+ is defined at each calculation run, the same random loss ratios will be generated, thus allowing replicability of the results;
 \item  \Verb+insured_losses+: this parameter is used to define if insured losses should be calculated (\Verb+true ) or not (\Verb+false+).
 \end{itemize}
@@ -641,7 +641,7 @@ conditional_loss_poes = 0.01, 0.05, 0.1
 \end{Verbatim}
 
 \begin{itemize}
-\item \Verb+loss_curve_resolution+: since this calculator uses an event\--based ap\-proach, a large number of levels of loss (and associated probabilities of exceedance) is computed (one per event) for each asset. The oq-risklib will use this large set of results to extrapolate a loss curve, whose number of points are controlled by this parameter. By default, the OpenQuake engine assumes the \Verb+loss_curve_resolution+ equal to 20;
+\item \Verb+loss_curve_resolution+: since this calculator uses an event\--based ap\-proach, a large number of levels of loss (and associated probabilities of exceedance) is computed (one per event) for each asset. The oq-risklib will use this large set of results to extrapolate a loss curve, whose number of points are controlled by this parameter. By default, the OpenQuake-engine assumes the \Verb+loss_curve_resolution+ equal to 20;
 \item  \Verb+conditional_loss_poes+: this parameter is used to define the probabilities of exceedance at which loss maps are to be produced;
 \item  \Verb+sites_disagg+: list of locations (pairs of longitude and latitude) where the loss disaggregation should be carried out. Notice that in order to perform the loss disaggregation, assets needs to exist at those locations;
 \item  \Verb+mag_bin_width+: this parameter specifies the with of the magnitude bins (in Mw);
@@ -666,7 +666,7 @@ conditional_loss_poes = 0.01, 0.05, 0.1
 \end{Verbatim}
 
 \begin{itemize}
-\item  \Verb+lrem_stpdf_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake engine assumes the \Verb+lrem_stpdf_per_interval+ to be equal to 5. More details are provided in the OpenQuake Engine Book (Risk).
+\item  \Verb+lrem_stpdf_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake-engine assumes the \Verb+lrem_stpdf_per_interval+ to be equal to 5. More details are provided in the OpenQuake-engine Book (Risk).
 \end{itemize}
 
 \subsubsection{Retrofitting Benefit/Cost Ratio Calculator}
