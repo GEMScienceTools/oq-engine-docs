@@ -49,9 +49,9 @@
 \titlecontents{chapter}
 			  [1.25cm] % Indentation
 			  {\addvspace{18pt}\large\sffamily\bfseries} % Spacing and font options for chapters
-			  {\color{ocre!80}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{ocre}} % Chapter number
-			  {\color{ocre}}
-			  {\color{ocre!40}\large\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\color{ocre!80}\thecontentspage} % Page number
+			  {\color{darkgray!80}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{darkgray}} % Chapter number
+			  {\color{darkgray}}
+			  {\color{darkgray!40}\large\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\color{darkgray!80}\thecontentspage} % Page number
 			  []
 
 % Section text styling
@@ -322,7 +322,19 @@ innerbottommargin=5pt]{cBox}
 
 % For an unclear reason, the package should be loaded now and not later
 \usepackage{hyperref}
-\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor= ocre,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,
+breaklinks=true,citecolor=darkblue,linkcolor=darkgray,urlcolor=ocre,bookmarks=true,
+bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+
+%----------------------------------------------------------------------------------------
+%	GLOSSARY
+%----------------------------------------------------------------------------------------
+
+% Package to create a glossary - must be loaded after hyperref
+% to produce the glossary: makeglossaries oq-manual
+\usepackage[acronym,nonumberlist,style=altlist]{glossaries}
+\glstoctrue
+\makeglossaries
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER HEADINGS
