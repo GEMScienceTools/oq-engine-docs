@@ -117,13 +117,13 @@ Hazard maps for the different demos are show in figure \ref{fig:hazard_maps1} an
 \begin{figure} 
 \centering 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/point.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/point.pdf}} 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/area.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/area.pdf}} 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/simple_fault.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/simple_fault.pdf}} 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/complex_fault.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/complex_fault.pdf}} 
 \caption{Hazard maps (for PGA, 10\% in 50 years) as obtained from the different \gls{acr:oqe} source typologies. (a) Point Source. (b) Area source. 
 The solid black line represents the area boundary. (c) Simple Fault Source. The dashed line represents the fault trace, while the solid line the fault
 surface projection. (d) Complex Fault Source. The solid line represent the fault surface projection (d)}
@@ -133,11 +133,11 @@ surface projection. (d) Complex Fault Source. The solid line represent the fault
 \begin{figure} 
 \centering 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/char_fault2.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/char_fault2.pdf}} 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/char_fault3.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/char_fault3.pdf}} 
 \subcaptionbox{}
-{\includegraphics[width=7cm]{./figures/hazard/char_fault1.eps}} 
+{\includegraphics[width=7cm]{./figures/hazard/char_fault1.pdf}} 
 \caption{Hazard maps (for PGA, 10\% in 50 years) as obtained from characteristic fault sources with simple fault
 geometry (e), complex fault geometry (f), and collection of planar surfaces (g)}
 \label{fig:hazard_maps2}
@@ -346,17 +346,17 @@ hazard results are obtained for 324 paths (1 source model x 3 (a, b) pairs for s
 for source 1 x 3 max magnitude values for source 2 x 2 GMPEs for Active Shallow Crust X 2 GMPEs for Stable Continental Crust), see
 figure \ref{fig:hazard_curves}.\\
 
-\begin{figure} 
-\centering 
+\begin{figure}
+\centering
 \subcaptionbox{}
-{\includegraphics[width=9cm]{./figures/hazard/hazard-curves-ltcase2.eps}} 
+{\includegraphics[width=9cm]{./figures/hazard/hazard-curves-ltcase2.pdf}}
 \caption{Hazard curves as obtained from the LogicTreeCase2 demo. Solid gray lines represent individual hazard curves from the different
 logic tree path (a total of 324 curves). The red dashed line represents the mean hazard curve, while the red dotted lines depict the quantile levels
 (0.15, 0.5, 0.95).}
 \label{fig:hazard_curves}
 \end{figure}
 
-LogicTreeCas3ClassicalPSHA illustrates an example of logic tree defining relative uncertainties on G-R maximum magnitude and b value.
+LogicTreeCase3ClassicalPSHA illustrates an example of logic tree defining relative uncertainties on G-R maximum magnitude and b value.
 A single source model is considered containing two sources belonging to different tectonic region types and both characterized by a G-R 
 magnitude frequency distribution. The source model logic tree is as follows:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\normalsize]
@@ -457,7 +457,6 @@ reference_depth_to_1pt0km_per_sec = 100.0
 source_model_logic_tree_file = source_model_logic_tree.xml
 gsim_logic_tree_file = gmpe_logic_tree.xml
 investigation_time = 50.0
-intensity_measure_types = PGA
 intensity_measure_types_and_levels = {"PGA": [...]}
 truncation_level = 3
 maximum_distance = 200.0
@@ -486,7 +485,7 @@ Corresponding hazard maps for 0.1 probability are additionally calculated (\text
 \begin{figure} 
 \centering 
 \subcaptionbox{}
-{\includegraphics[width=9cm]{./figures/hazard/ses.eps}} 
+{\includegraphics[width=9cm]{./figures/hazard/ses.pdf}} 
 \caption{A stochastic event set generated in the event based PSHA demo. The area source defines a nodal plane distribution which distributes events among vertical and
 dipping (50 degrees) faults with equal weights. Vertical ruptures are then distributed equally in the range 0-180 degrees while the dipping ones in the range 0-360, both
 with a step of 45 degrees.}
@@ -496,9 +495,9 @@ with a step of 45 degrees.}
 \begin{figure} 
 \centering 
 \subcaptionbox{}
-{\includegraphics[width=6cm]{./figures/hazard/gmf-no-corr.eps}} 
+{\includegraphics[width=6cm]{./figures/hazard/gmf-no-corr.pdf}} 
 \subcaptionbox{}
-{\includegraphics[width=6cm]{./figures/hazard/gmf-corr.eps}} 
+{\includegraphics[width=6cm]{./figures/hazard/gmf-corr.pdf}} 
 \caption{Ground motion fields (PGA) with no spatial correlations (a) and with spatial correlation (b)}
 \label{fig:gmfs}
 \end{figure}
@@ -588,7 +587,7 @@ number_of_logic_tree_samples = 0
 
 Let's now run the OpenQuake:
 \begin{Verbatim}[frame=single, fontsize=\normalsize]
-user@ubuntu:~/demos/classical_psha_simple_lt$ openquake \ 
+user@ubuntu:~/demos/classical_psha_simple_lt$ oq-engine \ 
 --rh job_1strike.ini 
 \end{Verbatim}
 

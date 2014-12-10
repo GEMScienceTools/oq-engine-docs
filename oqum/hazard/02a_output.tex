@@ -30,7 +30,7 @@ identifier \texttt{<calc\_id>} (see Section \ref{sec:getting_results}
 for an explanation about how obtaining the list of calculations 
 performed with their corresponding ID):
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lho <calc_id>
+user@ubuntu:~$ oq-engine --lho <calc_id>
 id | output_type | name
 \textcolor{red}{3 | hazard_curve | hc-rlz-6}
 \end{Verbatim}
@@ -40,7 +40,7 @@ result ID equal to \texttt{3}.
 On the contrary, if the parameter \texttt{number\_of\_logic\_tree\_samples}
 in the configuration file is different than zero, N hazard curves files are generated as shown in the example below:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lho <calc_id>
+user@ubuntu:~$ oq-engine --lho <calc_id>
 id | output_type | name
 \textcolor{red}{5 | hazard_curve | hc-rlz-10}
 \textcolor{red}{6 | hazard_curve | hc-rlz-7}
@@ -52,7 +52,7 @@ id | output_type | name
 If we export from the database the hazard curves contained in 
 one of the items above through the following command
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --eh <output_id> <output_directory>
+user@ubuntu:~$ oq-engine --eh <output_id> <output_directory>
 \end{Verbatim}
 we will obtain a nrml formatted file as represented in the example
 in the inset below.
@@ -106,7 +106,7 @@ and hazard curves corresponding to one or several percentiles have
 been specified, the list of outputs that we should expect from OpenQuake 
 corresponds to:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lho <calc_id> 
+user@ubuntu:~$ oq-engine --lho <calc_id> 
 id | output_type | name
 17 | hazard_curve | hc-rlz-17
 18 | hazard_curve | hc-rlz-18
