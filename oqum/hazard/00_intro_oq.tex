@@ -15,19 +15,19 @@ and the main calculation workflows available.
 %
 \section{Source typologies}
 \index{Source type}
-A general \gls{acr:oqe} \gls{seismicsourceinputmodel} contains a list
+An \gls{acr:oqe} \gls{seismicsourceinputmodel} contains a list
 of sources belonging to a finite set of possible typologies. 
 Each source type is defined by a set of parameters - called 
-source data - essential for specifying source geometry and 
-seismicity occurrence characteristics.
-%
+source data - which are used to specify the source geometry and 
+the properties of seismicity occurrence.
+ 
 Currently the \gls{acr:oqe} supports the following source types: 
 \begin{itemize}
 	\item Sources for modelling distributed seismicity:
 	\begin{itemize}
 		\item \Gls{pointsource} - The elemental source type used to model 
-			distributed seismicity. Grid and area sources described below
-			are basically two different containers of point sources.
+            distributed seismicity. Grid and area sources (described below)
+			are different containers of point sources.
 		\item \Gls{areasource} - So far, the most frequently adopted source 
     		type in national and regional PSHA models.
 		\item \Gls{gridsource} - A replacement for area sources admitting 
@@ -35,24 +35,27 @@ Currently the \gls{acr:oqe} supports the following source types:
 	\end{itemize}
 	\item Fault sources with floating ruptures:
 	\begin{itemize}
-		\item \Gls{simplefaultsource} - The simplest fault model in OpenQuake. 
-    		This typology is habitually used to describe shallow seismogenic 
+		\item \Gls{simplefaultsource} - The simplest fault model in the 
+            OpenQuake-engine.
+    		This source is habitually used to describe shallow seismogenic 
     		faults.
 		\item \Gls{complexfaultsource} - Often used to model subduction interface 
 			sources with a complex geometry.
 	\end{itemize}
-	\item Fault sources with ruptures always covering the entire fault surface:
+	\item Fault sources without floating ruptures:
+        surface:
 	\begin{itemize}
 		\item \Gls{charfaultsource} - A typology of source where ruptures
 		always fill the entire fault surface.
 	\end{itemize}
 \end{itemize}
-In the OpenQuake-engine there are some basic assumptions accepted in the 
-definition of these source typologies such as:
+
+The OpenQuake-engine contains some basic assumptions for the 
+definition of these source typologies:
 \begin{itemize}
-	\item In the case of area and fault sources, the seismicity is homogeneously 
-		distributed over the source;
-	\item Seismicity temporal occurrence follows a Poissonian model;
+	\item In the case of area and fault sources, the seismicity 
+        is homogeneously distributed over the source; 	
+	\item Seismicity temporal occurrence follows a Poissonian model. 
 \end{itemize}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{Source typologies for modelling distributed seismicity}
@@ -70,13 +73,17 @@ definition of these source typologies such as:
 \end{figure}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . < Figure
 % ..............................................................................
-Point source is the elemental source type adopted in the OpenQuake-engine 
-to model distributed seismicity. These are the basic assumptions used to 
-generate finite ruptures with point sources:
+The point source is the elemental source type adopted in the OpenQuake-engine 
+to model distributed seismicity. The OpenqQuake-engine even in the case of 
+point sources always performs calculations considering finite ruptures.
+
+These are the basic assumptions used to generate ruptures with point 
+sources:
+%
 \begin{itemize}
-	\item ruptures have a rectangular shape
-	\item rupture's hypocenter is located in the middle of the rupture
-	\item ruptures are limited at the top and at the bottom by two planes 
+	\item Ruptures have a rectangular shape
+	\item Rupture's hypocenter is located in the middle of the rupture
+	\item Ruptures are limited at the top and at the bottom by two planes 
 	parallel to the topographic surface and placed at two characteristic 
 	depths named upper and lower seismogenic depths, respectively (see 
 	Figure \ref{fig:single_rupture})
@@ -85,7 +92,7 @@ generate finite ruptures with point sources:
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 \paragraph{Source data}
 %
-For the definition of each point source (i.e. grid node) the following 
+For the definition of a point source the following 
 parameters are requested (Figure \ref{fig:single_rupture} shows some of 
 the parameters described below, together with an example of the 
 surface of a generated rupture):
@@ -107,8 +114,9 @@ surface of a generated rupture):
 \end{itemize}
 %
 Figure \ref{fig:point_source_multiple_ruptures} shows ruptures 
-generated for a range of magnitudes. Each rupture is centered at the 
-only hypocenter position admitted by this point source. 
+generated by a point source for a range of magnitudes. 
+Each rupture is centered on the single hypocentral position 
+admitted by this point source. 
 Ruptures are created by conserving the area computed
 using the specified mag\-ni\-tude-area scaling relatioship and the
 corresponding value of magnitude.
@@ -125,7 +133,7 @@ ratio once the rupture width fills the entire seismogenic layer.}
 % ..............................................................................
 
 Below we provide the excerpt of an .xml file used to describe the 
-properties of a point source included in a seismic source model.
+properties of a point source. 
 \label{page:xml_point}
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
     numbers=left, numbersep=2pt]
@@ -151,16 +159,18 @@ properties of a point source included in a seismic source model.
     \textcolor{magenta}{</hypoDepthDist>}
 </pointSource>
 \end{Verbatim}
-The red part in the sample xml above shows the the parameter used to 
-describe the geometry of the area source, the blue part is the description
+The red part shows the the parameters used to 
+describe the geometry of the point source, the blue part is the description
 of the magnitude-frequency distribution, the green text shows the nodal 
-plane distribution and the magenta one the hypocentral depth distribution.
-The text in black describes paramters needed to generate the ruptures 
+plane distribution and the text in magenta illustrates the hypocentral depth 
+distribution.
+%
+The text in black describes the parameters needed to generate the ruptures 
 such as the \gls{msr} and the aspect ratio.
 
-In this example, ruptures occur on two possible nodal planes and two 
-hypocentral depths. Figure \ref{fig:point_source_ruptures} shows all 
-the possible ruptures generated by the point source specified above.
+Note that in this example, ruptures occur on two possible nodal planes 
+and two hypocentral depths. Figure \ref{fig:point_source_ruptures} shows 
+the ruptures generated by the point source specified above.
 
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
@@ -186,11 +196,12 @@ longitude and latitude).
 %
 In \gls{psha} a grid source can be considered a model alternative to area 
 sources, since they both model distributed seismicity. 
-corollary
-Grid source is a typology used to reproduce more faithfully 
-the spatial variability of the seismicity occurrence process; 
-usually only events of low and intermediate magnitudes are 
-considered. 
+%
+Grid sources are generally used to reproduce more faithfully 
+the spatial pattern of seismicity depicted by the earthquakes 
+occurred in the past; in some models (e.g. \citet{petersen2008})
+only events of low and intermediate magnitudes are considered. 
+%
 Grid sources are generally computed using seismicity smoothing algorithms 
 \citep[][amongst many others]{frankel1995,woo1996}. 
 
@@ -200,41 +211,43 @@ unavoidable degree of subjectivity due to
 the definition of the geometries of the area sources and (2) it produces
 a spatial pattern of seismicity that is usually closer to what observed in 
 the reality. 
-Nevertheless, some smoothing algorithms require an a-priori definition of 
-some setup parameters that expose the calculation to a certain degree of 
-partiality.
+Nevertheless, in many cases smoothing algorithms require an a-priori 
+definition of some setup parameters that expose the calculation to a 
+certain degree of partiality.
 
-Grid sources are modelled in \gls{acr:oqe} simply as a set of point sources;
-in other words, a grid source is just a long list point sources specified 
+Grid sources are modeled in \gls{acr:oqe} simply as a set of point sources;
+in other words, a grid source is just a long list of point sources specified 
 as described in the previous section (see page 
 \pageref{hazard:seismic_source_types:gridSources}).
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 \subsubsection{Area sources}
-\label{hazarcorollarydefinitiond:seismic_source_types:areaSources}
+\label{hazard:seismic_source_types:areaSources}
 \index{Source type!area} 
-\index{Area definitioncorollarydefinition|see{Source type}}
+\index{Area definition|see{Source type}}
 %
-Area sources describe the seismicity occurring over wide areas where  
+Area sources are usually adopted to describe the seismicity occurring over 
+wide areas where  
 the identification and characterization - i.e. the unambiguous definition 
 of position, geometry and seismicity occurrence parameters - of single 
 fault structures is difficult. 
 
 From a computation standpoint, area sources are comparable to grid sources
 since they are both represented in the engine by a list of point sources.
+%
 The \gls{acr:oqe} using the source data parameters (see below)  
 creates an equally spaced in distance grid of point sources where
 each point has the same seismicity occurrence properties (i.e. rate
 of events generated).
 
 Below we provide a brief description of the parameters necessary to 
-completely describe an area source:
+completely describe an area source.
 %
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 \paragraph{Source data}
 \begin{itemize}
 \item A polygon defining the external border of the area (i.e. a list of 
-Longitude-Latitude tuples) The current version of OQ doesn't support the 
-definition of internal borders.  [degrees]
+Longitude-Latitude tuples) The current version of the OQ-engine doesn't 
+support the definition of internal borders.  [degrees]
 \item The upper and lower seismogenic depths [km];
 \item One \gls{mfd};
 \item One \gls{msr};
@@ -250,7 +263,7 @@ definition of internal borders.  [degrees]
 \end{itemize}
 
 Below we provide the exerpt of an .xml file used to describe the properties of
-an area source included in a seismic source model.
+an area source.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
 numbers=left, numbersep=2pt]
 <areaSource id="1" name="Quito" tectonicRegion="Active Shallow Crust">
@@ -286,15 +299,18 @@ numbers=left, numbersep=2pt]
     \textcolor{magenta}{</hypoDepthDist>}
 </areaSource>
 \end{Verbatim}
-The red part in the sample xml above shows the the parameter used to 
-describe the geometry of the area source, the blue part is the description
-of the magnitude-frequency distribution, the green text shows the nodal 
-plane distribution and the magenta one the hypocentral depth distribution.
-The text in gray describes paramters needed to generate the ruptures 
+The red text describes the parameters used to describe the geometry of 
+the area source, the blue part is the description
+of the magnitude-frequency distribution, the green text displays the nodal 
+plane distribution and the part in magenta illustrated the hypocentral depth 
+distribution.
+%
+The text in gray describes the parameters required to generate the ruptures 
 such as the \gls{msr} and the aspect ratio.
 
-The ruptures generated inside this area source follow to possible nodal 
-planes and have hypocenters at two depths.
+The ruptures generated by the area source described in the example above 
+are controlled by two nodal planes and have hypocenters at localized 
+at two distinct depths. 
 %
 %  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{Fault source with floating ruptures}
@@ -306,15 +322,16 @@ Two are the option currently supported:
     \item With the first option, ruptures with a surface lower than the 
 		whole fault surface are floated so as to cover as much as 
 		possible homogeneously the fault surface.
-        This model is compatible with almost all the possible 
+        This model is compatible with all the supported 
         magnitude-frequency distributions.
     \item With the second option, ruptures always fill the entire fault 
 		surface. This model is 
-        compatible mainly with characteristic models (\`{a} la 
-        \cite{schwartz1984}).
+        compatible  with magnitude-frequency distributions similar to a
+        characteristic model (\`{a} la \cite{schwartz1984}).
 \end{itemize}
-In this Section we discuss fault source types that support floating ruptures
-in the following one we will illustrate the typology of fault available to 
+In the following section we discuss the different fault source types 
+that support floating ruptures.
+In the next section we will illustrate the fault typology available to 
 model a characteristic rupturing behaviour.
 %
 \subsubsection{Simple faults}
@@ -323,7 +340,7 @@ model a characteristic rupturing behaviour.
 %
 Simple Faults are the most common source type used to model shallow 
 faults; the ``simple'' adjective relates to the geometry description 
-of the source which is basically obtained by projecting a trace 
+of the source which is obtained by projecting the fault trace 
 (i.e. a polyline) along a characteristic dip direction. 
 
 The parameters used to create an instance of this 
@@ -337,7 +354,7 @@ source type are described in the following paragraph.
 	longitude-latitude tuples [degrees]; 
 \item A \gls{frequencymagnitudedistribution};
 \item A \gls{msr};
-\item A representative value of the dip angle (specified following 
+\item A representative value of the dip angle (spec\-i\-fied following 
 the Aki-Richards convention; see \citet{aki2002}) [degrees];
 \item Rake angle (spec\-i\-fied following the Aki-Rich\-ards convention; 
 see \citet{aki2002}) [degrees]; 
@@ -370,7 +387,7 @@ properties of a simple fault source.
 </simpleFaultSource>
 \end{Verbatim}
 \label{example_incremental_mfd}
-As with the previous examples the red text in the sample xml hightlights 
+As with the previous examples, the red text hightlights 
 the parameters used to specify the source geometry, in green parameters 
 describing the rupture mechanism, in blue the magnitude-frequency 
 distribution and in gray parameters describing rupture properties. 
@@ -380,8 +397,8 @@ distribution and in gray parameters describing rupture properties.
 \index{Source type!fault!complex geometry}
 \index{Complex fault|see{Source type}}
 %
-Complex fault differ from simple fault just by the way the geometry of 
-the fault surface is defined and by the process the fault surface is later 
+A complex fault differs from simple fault just by the way the geometry of 
+the fault surface is defined and the fault surface is later 
 created. 
 The input parameters used to describe complex faults are, for the most 
 part, the same used to describe the simple fault typology. 
@@ -395,7 +412,7 @@ geometry.
 Usually, we use complex faults to model intraplate megathrust faults such 
 as the big subduction structures active in the Pacific (Sumatra, South 
 America, Japan) but this source typology can be used also to create - for
-example - realistic listric fault sources.
+example - listric fault sources with a realistic geometry.
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
     numbers=left, numbersep=2pt]
@@ -446,7 +463,7 @@ example - realistic listric fault sources.
 \textcolor{green}{   <rake>30.0</rake>}
 </complexFaultSource>
 \end{Verbatim}
-As with the previous examples the text in red hightlights the parameters
+As with the previous examples, the text in red hightlights the parameters
 used to specify the source geometry, in green parameters describing the 
 rupture mechanism, in blue the magnitude-frequency distribution and in 
 gray parameters describing rupture properties. 
@@ -457,7 +474,7 @@ gray parameters describing rupture properties.
 \index{Source type!fault!characteristic}
 \index{Characteristic fault|see{Source type}}
 The charactercistic fault source is a particular typology of fault
-created following the assumption that ruptures will always cover 
+created following the assumption that its ruptures will always cover 
 the entire fault surface. 
 
 In this case, the fault surface can be represented as a 

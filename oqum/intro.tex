@@ -1,22 +1,25 @@
 % -----------------------------------------------------------------------------
 \section{OpenQuake-engine introduction}
-\gls{acr:oqe} is the seismic hazard and risk calculation software developed by
-the Global Earthquake Model. By following current standards in software developments, like test-driven development and continuous
-integration, OpenQuake aims a becoming an open, and community-driven tool for
+\gls{acr:oqe} is the seismic hazard and risk calculation software developed 
+by the Global Earthquake Model. By following current standards in software 
+developments, like test-driven development and continuous
+integration, OpenQuake-engine aims a becoming an open, and community-driven tool for
 seismic hazard and risk analysis.
 
-The source code of the OpenQuake-engine is available on a public web-based repository
-at the following address \href{http://github.com/gem/oq-engine}{http://github.com/gem/oq-engine}.
+The source code of the OpenQuake-engine is available on a public web-based
+repository at the following address
+\href{http://github.com/gem/oq-engine}{http://github.com/gem/oq-engine}.
 % -----------------------------------------------------------------------------
 \section{Running the OpenQuake-engine}
 \index{Running OpenQuake!introduction}
 \label{sec:intro}
-The execution of an analysis using the OpenQuake-engine is launched from 
-the command line of a terminal. A schematic list of the options that 
-can be used for the execution of the \gls{acr:oqe} can be obtained 
-with the following command:
+An oq-engine analysis is launched from the command line of a terminal. 
+%
+A schematic list of the options that can be used for the execution of the 
+\gls{acr:oqe} can be obtained with the following command:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ oq-engine --help
 \end{Verbatim}
 The result is the following:
-\VerbatimInput[frame=single, commandchars=\\\{\}, fontsize=\scriptsize]{./oqum/hazard/verbatim/help.txt}
+\VerbatimInput[frame=single, commandchars=\\\{\},
+   fontsize=\scriptsize]{./oqum/hazard/verbatim/help.txt}
