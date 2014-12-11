@@ -6,7 +6,7 @@ Since only a few parts of the standard configuration file need to
 be changed we'll use the description given in Section 
 \ref{sec:config_classical_PSHA} at page 
 \pageref{sec:config_classical_PSHA} as a reference and we'll 
-emphasize in the following major differences.
+emphasize herein major differences.
 %
 \begin{itemize}
 %
@@ -24,9 +24,8 @@ The calculation mode parameter in this case is set as
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 [geometry]
 sites = 11.0 44.5
-
-
 \end{Verbatim}
+
 In the section it will be necessary to specify the geographic 
 coordinates of the site (or the sites) where the disaggregation
 will be performed.
@@ -46,4 +45,17 @@ measure levels with 10\% and 2\% probability of exceedance using the
 \texttt{in\-ves\-ti\-gation\_time} and the intensity measure types 
 defined in the ``Calculation configuration'' section of the OpenQuake
 configuration file (see page \pageref{sec:calculation_configuration}). 
+
+The parameters \texttt{mag\_bin\_width},  \texttt{distance\_bin\_width},
+\texttt{coordinate\_bin\_width} control the level of discretization of the
+disaggregation matrix computed. \texttt{num\_epsilon\_bins} indicates the 
+number of bins used to represent the contributions provided by different
+values of epsilon.
+
+If the user is interested in a specific type of disaggregation,
+we suggest to use a very coarse gridding for the parameters that are 
+not necessary. For example, if the user is interested in a magnitude-distance 
+disaggregation, we suggest the use of very large value for the 
+\texttt{coordinate\_\-bin\_\-width} and to set  \texttt{num\_epsilon\_bins}
+equal to 1.
 \end{itemize}

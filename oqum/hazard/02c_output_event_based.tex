@@ -1,47 +1,46 @@
 \section{Output from Event Based PSHA}\label{EventBasedOutput}
 %
 The Event Based PSHA calculator computes and stores stochastic 
-event sets and the corresponding ground motion fields. In case,
-this calculator can also compute hazard curves and hazard maps
+event sets and the corresponding ground motion fields. 
+%
+This calculator can also produce hazard curves and hazard maps
 exactly in the same way is done using the Classical PSHA calculator.
 
 The inset below shows an example of the list of results provided by 
-\gls{acr:oqe} at the end of an event-based PSHA calculation:
+the \gls{acr:oqe} at the end of an event-based PSHA calculation:
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lho <calc_id> 
+user@ubuntu:~$ oq-engine --lho <calc_id> 
 id | output_type | name
 \textcolor{red}{31 | ses | ses-coll-rlz-19}
 \textcolor{green}{32 | gmf | gmf-rlz-19}
 \textcolor{red}{33 | ses | ses-coll-rlz-20}
 \textcolor{green}{34 | gmf | gmf-rlz-20}
-\textcolor{red}{35 | complete_lt_ses | complete logic tree SES}
-\textcolor{green}{36 | complete_lt_gmf | complete logic tree GMF}
-37 | hazard_curve | hazard-curve-rlz-19-SA(0.1)
-38 | hazard_curve | hazard-curve-rlz-20-SA(0.1)
-39 | hazard_curve | hazard-curve-rlz-19-PGA
-40 | hazard_curve | hazard-curve-rlz-20-PGA
-41 | hazard_curve | mean curve for SA(0.1)
-42 | hazard_curve | quantile curve (poe >= 0.15) for imt SA(0.1)
-43 | hazard_curve | quantile curve (poe >= 0.5) for imt SA(0.1)
-44 | hazard_curve | quantile curve (poe >= 0.85) for imt SA(0.1)
-45 | hazard_curve | mean curve for PGA
-46 | hazard_curve | quantile curve (poe >= 0.15) for imt PGA
-47 | hazard_curve | quantile curve (poe >= 0.5) for imt PGA
-48 | hazard_curve | quantile curve (poe >= 0.85) for imt PGA
+35 | hazard_curve | hazard-curve-rlz-19-SA(0.1)
+36 | hazard_curve | hazard-curve-rlz-20-SA(0.1)
+37 | hazard_curve | hazard-curve-rlz-19-PGA
+38 | hazard_curve | hazard-curve-rlz-20-PGA
+39 | hazard_curve | mean curve for SA(0.1)
+40 | hazard_curve | quantile curve (poe >= 0.15) for imt SA(0.1)
+41 | hazard_curve | quantile curve (poe >= 0.5) for imt SA(0.1)
+42 | hazard_curve | quantile curve (poe >= 0.85) for imt SA(0.1)
+43 | hazard_curve | mean curve for PGA
+44 | hazard_curve | quantile curve (poe >= 0.15) for imt PGA
+45 | hazard_curve | quantile curve (poe >= 0.5) for imt PGA
+46 | hazard_curve | quantile curve (poe >= 0.85) for imt PGA
 \end{Verbatim}
-This list contains two sets of stochastic events (in red) two sets of ground motion fields (in blue).
+This list in the inset above contains two sets of stochastic events 
+(in red) and two sets of ground motion fields (in blue).
 
 The whole group of stochastic event set and ground motion fields can 
 be exported immediately using the results with \texttt{id} 35 and 25,
 respectively.
 
-In the remaining part of this Section we show an example of a file
-containing a stochastic event set and a file containing a ground 
-motion field.
+\subsection{Example of files containing a stochastic event set and a 
+ground motion field}
 
-This is an example showing a nrml file containing two a collection of 
-stochastic event sets 
+This is an example showing a nrml file containing a collection of 
+stochastic event sets (2 ruptures)
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 <?xml version='1.0' encoding='UTF-8'?>
 <nrml xmlns:gml="http://www.opengis.net/gml" 
@@ -49,19 +48,19 @@ stochastic event sets
   <stochasticEventSetCollection sourceModelTreePath="b1" 
           gsimTreePath="b1">
     \textcolor{red}{<stochasticEventSet id="12" investigationTime="50.0">}
-      <rupture id="533" magnitude="4.55" strike="90.0" dip="90.0" 
-              rake="90.0" tectonicRegion="Active Shallow Crust">
-        <planarSurface>
-          <topLeft lon="12.233903801" lat="43.256198599" 
-                  depth="11.3933265259"/>
-          <topRight lon="12.263958243" lat="43.2562025344" 
-                  depth="11.3933265259"/>
-          <bottomLeft lon="12.233903801" lat="43.256198599" 
-                  depth="12.6066734741"/>
-          <bottomRight lon="12.263958243" lat="43.2562025344" 
-                  depth="12.6066734741"/>
-        </planarSurface>
-      </rupture>
+\textcolor{green}{     <rupture id="533" magnitude="4.55" strike="90.0" dip="90.0"}
+\textcolor{green}{              rake="90.0" tectonicRegion="Active Shallow Crust">}
+\textcolor{green}{       <planarSurface>}
+\textcolor{green}{         <topLeft lon="12.233903801" lat="43.256198599"}
+\textcolor{green}{                  depth="11.3933265259"/>}
+\textcolor{green}{         <topRight lon="12.263958243" lat="43.2562025344"}
+\textcolor{green}{                  depth="11.3933265259"/>}
+\textcolor{green}{         <bottomLeft lon="12.233903801" lat="43.256198599"}
+\textcolor{green}{                  depth="12.6066734741"/>}
+\textcolor{green}{         <bottomRight lon="12.263958243" lat="43.2562025344"}
+\textcolor{green}{                  depth="12.6066734741"/>}
+\textcolor{green}{       </planarSurface>}
+\textcolor{green}{     </rupture>}
       <rupture id="535" magnitude="4.65" strike="135.0" dip="90.0" 
               rake="90.0" tectonicRegion="Active Shallow Crust">
         <planarSurface>
@@ -79,8 +78,16 @@ stochastic event sets
   </stochasticEventSetCollection>
 </nrml>
 \end{Verbatim}
-This is an example showing a nrml file containing a collection of
-ground motion fields:
+
+The text in red shows the part which describes the id of the generated
+stochastic event set and the investigation time covered.
+%
+The text in green emphasises the portion of the text used to describe 
+a rupture. The informtion provided describes entirely the geometry of
+the rupture as well as its rupturing properties (e.g. rake, magnitude).
+
+This is an example of a nrml file containing one 
+ground motion field:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 <?xml version='1.0' encoding='UTF-8'?>
 <nrml xmlns:gml="http://www.opengis.net/gml" 

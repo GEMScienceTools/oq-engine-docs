@@ -1,4 +1,5 @@
-\subsubsection{Calculation of a hazard map and hazard curves using 
+\subsubsection[Calculation of a hazard map and hazard curves using 
+    classical PSHA]{Calculation of a hazard map and hazard curves using 
     the classical PSHA methodology}
 \label{sec:config_classical_PSHA}
 %
@@ -14,6 +15,7 @@ description = A demo OpenQuake-engine .ini file for classical PSHA
 calculation_mode = classical
 random_seed = 1024
 \end{Verbatim}
+
 In this section the user specifies the following parameters:
 \begin{itemize}
     \item \texttt{description}: a parameter that can be used to designate 
@@ -23,7 +25,8 @@ In this section the user specifies the following parameters:
         We'll describe alternative options later on.
     \item \texttt{random\_seed}: is used to control the random generator 
         so that when montecarlo procedures are used calculations are 
-        replicable (if the same \texttt{random\_seed} is used).
+        replicable (if the same \texttt{random\_seed} is used you get 
+        exactly the same results).
 \end{itemize}
 %
 \item \textbf{Geometry of the area (or the sites) where hazard is computed}
@@ -50,30 +53,38 @@ the hazard will be computed. An example is provided below.
     firstnumber=5, numbers=left, numbersep=2pt]
 [geometry]
 sites = 10.0 43.0, 12.0 43.0, 12.0 46.0, 10.0 46.0
-
-
 \end{Verbatim}
+
 If the list of sites is too long the user can specify the name 
-of a .csv file as it is snown below
+of a .csv file as it is shown below
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=5, numbers=left, numbersep=2pt]
 [geometry]
 sites\_csv = <name_of_the_csv_file>
-
-
 \end{Verbatim}
+The format of the csv file containing the list of sites 
+is a sequence of points (one per row) specified in terms 
+of the longitude, latitude tuple. An example is provided below,
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
+    firstnumber=1, numbers=left, numbersep=2pt]
+179.0,90.0
+178.0,89.0
+177.0,88.0
+\end{Verbatim}
+
+
 %
 \item \textbf{Logic tree sampling} \hfill \\
     The \gls{acr:oqe} provides two options for processing the whole 
     logic tree structure. The first option uses Montecarlo sampling;
-    the user in this case specifies a number of realisations. 
+    the user in this case specifies a number of realizations. 
 
-    In the second option all the possible realisations are created. 
+    In the second option all the possible realizations are created. 
     Below we provide an example for the latter option.
-    In this example we set the \texttt{number\-\_of\-\_logic\_tree\_samples}
+    In this case we set the \texttt{number\-\_of\-\_logic\_tree\_samples}
     to 0. \gls{acr:oqe} will perform a complete enumeration of all 
     the possible paths from the roots to the leaves of the logic tree 
-    structure. 
+    structure.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=9, numbers=left, numbersep=2pt]
 [logic_tree]
@@ -95,11 +106,11 @@ width_of_mfd_bin = 0.1
 area_source_discretization = 10
 \end{Verbatim}
 This section of the configuration file is used to specify the 
-level of discretization of the mesh representing faults, of the grid
-used to delineate the area sources and, of the magnitude-frequency 
+level of discretization of the mesh representing faults, the grid
+used to delineate the area sources and, the magnitude-frequency 
 distribution. 
-Note that the lower is the mesh spacing (or the bin width) the higher 
-are the precision in the representation and the computation demand.
+Note that the smaller is the mesh spacing (or the bin width) the larger 
+are (1) the precision in the calculation and (2) the computation demand.
 %
 \item \textbf{Parameters describing site conditions}
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
@@ -112,18 +123,17 @@ reference_depth_to_1pt0km_per_sec = 100.0
 \end{Verbatim}
 In this section the user specifies local soil conditions. The simplest
 solution is to define uniform site conditions (i.e. all the sites have 
-the same soil conditions). Alternatively it's possible to define 
+the same characteristics). Alternatively it's possible to define 
 spatially variable soil properties in a separate file; the engine will
-then assign to each investigation site the appropriate characteristics.
+then assign to each investigation location the values of the closest point
+used to specify site conditions.
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=17, numbers=left, numbersep=2pt]
 [site_params]
 site_model_file = ../_site_model/site_model.xml
-
-
-
 \end{Verbatim}
+
 The file containing the site model has the following 
 structure:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
@@ -162,7 +172,6 @@ source_model_logic_tree_file = source_model_logic_tree.xml
 gsim_logic_tree_file = gmpe_logic_tree.xml
 # years
 investigation_time = 50.0
-intensity_measure_types = PGA, SA(0.1)
 intensity_measure_types_and_levels = \{"PGA": [0.005, ..., 2.13]\} 
 truncation_level = 3
 # km
