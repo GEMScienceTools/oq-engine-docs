@@ -669,6 +669,19 @@ conditional_loss_poes = 0.01, 0.05, 0.1
 \item  \Verb+lrem_stpdf_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake-engine assumes the \Verb+lrem_stpdf_per_interval+ to be equal to 5. More details are provided in the OpenQuake-engine Book (Risk).
 \end{itemize}
 
+
+\subsubsection{Classical PSHA-based Damage Calculator}
+In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical_damage+. Similar to the Scenario Damage calculator, there is only one parameter specific to this calculator, which is the \gls{fragility model} file path, as presented below.
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+...
+fragility_file = fragility_model.xml
+\end{Verbatim}
+
+\begin{itemize}
+\item  \Verb+lrem_stpdf_per_interval+: this parameter controls the number of intermediate values between consecutive loss ratios (as defined in the \gls{vulnerability model}) that are considered in the risk calculations. A larger number of loss ratios than those defined in each \gls{vulnerability function} should be considered, in order to better account for the uncertainty in the loss ratio distribution. If this parameter is not defined in the configuration file, the OpenQuake-engine assumes the \Verb+lrem_stpdf_per_interval+ to be equal to 5. More details are provided in the OpenQuake-engine Book (Risk).
+\end{itemize}
+
+
 \subsubsection{Retrofitting Benefit/Cost Ratio Calculator}
 As previously explained, this calculator uses loss exceedance curves which can be calculated using the Classical PSHA-based Risk or the Probabilistic Event-based Risk calculators. Therefore, depending on which calculator a user chooses to employ, the configuration file will be different. If the Classical PSHA-based Risk calculator is employed, then the \Verb+calculation_mode+ should be set to \Verb+classical_bcr+ and the calculator-specific part of the configuration file should be defined as presented below.
 
