@@ -135,26 +135,28 @@ and the following results are expected:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 15 results:
-id | output_type | name
-31 | gmf | gmf-rlz-72
-32 | ses | ses-coll-rlz-72
+  id | output_type | name
+ 414 | Ground Motion Field | GMF rlz-101
+ 412 | Stochastic Event Set | SES Collection 0
+ 413 | Stochastic Event Set | SES Collection 1
 \end{Verbatim}
 
 Again, since there is only one branch in the logic tree, only one set of ground motion fields will be used in the risk calculations, which can be launched through the following command:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --rr job_risk.ini --hazard-output-id 31
+user@ubuntu:~\$ oq-engine --rr job_risk.ini --hc 15
 \end{Verbatim}
 
 leading to the following outputs:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 16 results:
-id | output_type | name
-28 | loss_curve | loss curves. type=structural, hazard=31
-29 | loss_map | loss maps. type=structural poe=0.1, hazard=31
-30 | loss_map | loss maps. type=structural poe=0.01, hazard=31
-36 | agg_loss_curve | Aggregated curve type=structural, hazard=31
+  id | output_type | name
+ 415 | Event Loss Table | Event Loss Table type=structural, hazard=414
+ 416 | Event Loss Asset | Event Loss Asset type=structural, hazard=414
+ 417 | Loss Curve | loss curves. type=structural, hazard=414
+ 418 | Aggregate Loss Curve | aggregate loss curves. loss_type=structural 
+ hazard=414||gmf||GMF rlz-101
 \end{Verbatim}
 
 \section{Retrofitting Benefit/cost ratio demo}
