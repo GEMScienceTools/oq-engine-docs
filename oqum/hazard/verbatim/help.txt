@@ -18,10 +18,10 @@ usage: oq-engine [-h] [--version] [--log-file LOG_FILE]
                  [--export-output OUTPUT_ID TARGET_DIR]
                  [--export-hazard-output OUTPUT_ID TARGET_DIR]
                  [--export-risk-output OUTPUT_ID TARGET_DIR]
-                 [--export-outputs HAZARD_CALCULATION_ID TARGET_DIR]
-                 [--export-stats HAZARD_CALCULATION_ID TARGET_DIR OUTPUT_TYPE]
+                 [--export-outputs CALCULATION_ID TARGET_DIR]
+                 [--export-stats CALCULATION_ID TARGET_DIR OUTPUT_TYPE]
                  [--export-hazard-outputs HAZARD_CALCULATION_ID TARGET_DIR]
-                 [--export-risk-outputs HAZARD_CALCULATION_ID TARGET_DIR]
+                 [--export-risk-outputs RISK_CALCULATION_ID TARGET_DIR]
                  [--save-hazard-calculation HAZARD_CALCULATION_ID DUMP_DIR]
                  [--load-hazard-calculation DUMP_DIR] [--load-gmf GMF_FILE]
                  [--load-curve CURVE_FILE] [--list-imported-outputs]
@@ -102,16 +102,16 @@ Export:
   --export-risk-output OUTPUT_ID TARGET_DIR, --er OUTPUT_ID TARGET_DIR
                         Export the output to the specified directory
                         [deprecated]
-  --export-outputs HAZARD_CALCULATION_ID TARGET_DIR, --eos HAZARD_CALCULATION_ID TARGET_DIR
+  --export-outputs CALCULATION_ID TARGET_DIR, --eos CALCULATION_ID TARGET_DIR
                         Export all the calculation outputs to the specified
                         directory
-  --export-stats HAZARD_CALCULATION_ID TARGET_DIR OUTPUT_TYPE, --es HAZARD_CALCULATION_ID TARGET_DIR OUTPUT_TYPE
+  --export-stats CALCULATION_ID TARGET_DIR OUTPUT_TYPE, --es CALCULATION_ID TARGET_DIR OUTPUT_TYPE
                         Export the statistical outputs to the specified
                         directory
   --export-hazard-outputs HAZARD_CALCULATION_ID TARGET_DIR, --eho HAZARD_CALCULATION_ID TARGET_DIR
                         Export all the outputs to the specified directory
                         [deprecated]
-  --export-risk-outputs HAZARD_CALCULATION_ID TARGET_DIR, --ero HAZARD_CALCULATION_ID TARGET_DIR
+  --export-risk-outputs RISK_CALCULATION_ID TARGET_DIR, --ero RISK_CALCULATION_ID TARGET_DIR
                         Export all the outputs to the specified directory
                         [deprecated]
 

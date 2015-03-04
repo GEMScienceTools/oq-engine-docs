@@ -13,7 +13,7 @@ A vulnerability model is combined with the distribution of the ground motions at
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=9cm,height=7cm]{./figures/risk/ScenarioRisk.pdf}
+\includegraphics[width=9cm,height=7cm]{figures/risk/ScenarioRisk.pdf}
 \caption{Scenario Risk Calculator input/output structure.}
 \label{fig:ScnRisk}
 \end{figure}
@@ -24,7 +24,7 @@ In this calculator, a fragility model is combined with the distribution of groun
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=9cm,height=7cm]{./figures/risk/ScenarioDamage.pdf}
+\includegraphics[width=9cm,height=7cm]{figures/risk/ScenarioDamage.pdf}
 \caption{Scenario Damage Calculator input/output structure.}
 \label{fig:ScnDamage}
 \end{figure}
@@ -34,19 +34,29 @@ In this calculator, loss exceedance curves and loss maps for various return peri
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=9cm,height=7cm]{./figures/risk/ProbEvent.pdf}
+\includegraphics[width=9cm,height=7cm]{figures/risk/ProbEvent.pdf}
 \caption{Probabilistic Event-based Risk Calculator input/output structure.}
 \label{fig:ProbEvent}
 \end{figure}
 
 \subsection{Classical PSHA-based Risk Calculator}
-In this calculator, probabilistic seismic hazard is employed to calculate a loss exceedance curve for each asset, through the usage of seismic hazard curves. A convolution between the vulnerability function and the hazard curve at location of the asset is performed, leading to the probability of exceeding a set of loss ratios. Each loss ratio is multiplied by the asset value to obtain the final loss exceedance curve. Furthermore, probabilistic loss maps can be extracted by interpolating the loss curves at each location by various probabilities of exceedance. Unlike what was described in the previous calculator, a total loss curve (considering all assets in the exposure model) can not be extracted using this calculator, as the correlation of the ground motion residuals and vulnerability uncertainty is not taken into consideration. The input and output files involved in this calculator are presented in Figure \ref{fig:ClassicalPSHA}.
+In this calculator, probabilistic seismic hazard is employed to calculate a loss exceedance curve for each asset, through the usage of seismic hazard curves. A convolution between the vulnerability function and the hazard curve at location of the asset is performed, leading to the probability of exceeding a set of loss ratios. Each loss ratio is multiplied by the asset value to obtain the final loss exceedance curve. Furthermore, probabilistic loss maps can be extracted by interpolating the loss curves at each location by various probabilities of exceedance. Unlike what was described in the previous calculator, a total loss curve (considering all assets in the exposure model) can not be extracted using this calculator, as the correlation of the ground motion residuals and vulnerability uncertainty is not taken into consideration. The input and output files involved in this calculator are presented in Figure \ref{fig:ClassicalRisk}.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=9cm,height=7cm]{./figures/risk/ClassicalPSHA.pdf}
+\includegraphics[width=9cm,height=7cm]{figures/risk/ClassicalRisk.pdf}
 \caption{Classical PSHA-based Risk Calculator input/output structure.}
-\label{fig:ClassicalPSHA}
+\label{fig:ClassicalRisk}
+\end{figure}
+
+\subsection{Classical PSHA-based Damage Calculator}
+The classical PSHA-based damage calculator convolves through numerical integration, the discrete or continuous damage state fragility functions for an asset with the seismic hazard curve at the location of the asset, to give the damage distribution for the asset within a specified time period. The main results of this calculator are damage distribution statistics for each asset, which describe the expected fraction of buildings in each asset in each damage state. Furthermore, a probabilistic collapse map can be extracted giving the proability of collapse for each asset within the specified time period. Damage distribution aggregated by taxonomy or of the total portfolio (considering all assets in the exposure model) can not be extracted using this calculator, as the spatial correlation of the ground motion residuals is not taken into consideration. The input and output files involved in this calculator are presented in Figure \ref{fig:ClassicalDamage}.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=9cm,height=7cm]{figures/risk/ClassicalDamage.pdf}
+\caption{Classical PSHA-based Damage Calculator input/output structure.}
+\label{fig:ClassicalDamage}
 \end{figure}
 
 \subsection{Retrofitting Benefit/Cost Ratio Calculator}
@@ -54,7 +64,7 @@ This calculator represents a decision-support tool for deciding whether the empl
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=10.5cm,height=7cm]{./figures/risk/BCR.pdf}
+\includegraphics[width=10.5cm,height=7cm]{figures/risk/BCR.pdf}
 \caption{Retrofitting Benefit/Cost Ratio Calculator input/output structure.}
 \label{fig:BCR}
 \end{figure}

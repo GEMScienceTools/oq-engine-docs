@@ -93,6 +93,37 @@ id | output_type | name
 30 | loss_map | loss maps. type=structural poe=0.01, hazard=27
 \end{Verbatim}
 
+\section{Classical PSHA-based Damage demo}
+\label{sec:classical_damage_demo}
+The same hazard input as described in the Classical PSHA-based Risk demo was used for this demo. Thus, the workflow to produce the set of hazard curves described in \ref{sec:classical_risk_demo} is also valid herein. Then, to run the Classical PSHA-based Damage demo, users should navigate to the folder containing the demo input models and configuration files and employ the following command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rh job_hazard.ini
+\end{Verbatim}
+
+which will produce the following sample hazard output:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 5 results:
+  id | output_type | name
+ 420 | Hazard Curve | Hazard Curve rlz-102-PGA
+ 419 | Hazard Curve (multiple imts) | hc-multi-imt-rlz-102
+\end{Verbatim}
+
+In this demo, the damage distribution for each asset in the exposure model is produced. The following command launches the risk calculations:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rr job_risk.ini --hazard-output-id 419
+\end{Verbatim}
+
+and the following sample outputs are obtained:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 6 results:
+ id | output_type | name
+ 421 | Damage Per Asset | Damage distribution for hazard=419
+\end{Verbatim}
+
 \section{Probabilistic Event-based demo}
 This demo uses the same probabilistic seismic hazard assessment (PSHA) model described in the previous example. However, instead of hazard curves, sets of ground motion fields are required. To trigger the hazard calculations the following command needs to be used:
 
