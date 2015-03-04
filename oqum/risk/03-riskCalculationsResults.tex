@@ -459,7 +459,7 @@ Currently the loss disaggregation can only be performed using the Probabilistic 
 \end{itemize}
 
 \subsection{Event loss tables}
-Unlike what was described for the other outputs, the event loss tables are exported using a coma separated value (.csv) file format. In this structure, each row contains the rupture id, magnitude and aggregated loss (sum of the losses from the collection of assets within the region of interest), for each event within the stochastic event sets. The following example depicts an example of this output.
+Unlike what was described for the other outputs, the event loss tables are exported using a comma separated value (.csv) file format. In this structure, each row contains the rupture id, magnitude and aggregated loss (sum of the losses from the collection of assets within the region of interest), for each event within the stochastic event sets. The following example depicts an example of this output.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 Rupture,Magnitude,Aggregate Loss
@@ -473,4 +473,18 @@ Rupture,Magnitude,Aggregate Loss
 8,7.75,37707
 9,7.75,37141
 ...
+\end{Verbatim}
+
+The asset event loss tables provide calculated losses for each of the assets in the exposure model, for each event within the stochastic event sets. In these tables, each row contains the rupture id, the asset id, magnitude and asset loss. Note that only assets that sustain nonzero losses in a rupture are listed in the asset event loss table. An example of this output type is provided below:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+Rupture, Asset, Magnitude, Loss
+col=00|ses=0239|src=1727-356|rup=001-01, asset_10, 4.7, 13785407.3791
+col=00|ses=0239|src=1727-356|rup=001-01, asset_11, 4.7, 17124507.6341
+col=00|ses=0239|src=1727-356|rup=001-01, asset_12, 4.7, 16654913.6026
+.
+.
+.
+col=01|ses=6905|src=1120-2|rup=011-01, asset_53, 6.7, 18506576.0384
+col=01|ses=6905|src=1120-2|rup=011-01, asset_58, 6.7, 12095498.7066
 \end{Verbatim}
