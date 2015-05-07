@@ -5,9 +5,12 @@ The magnitude-frequency distributions currently supported by the
     \item[A discrete incremental magnitude-frequency distribution] \hfill \\
     It's the simplest distribution supported. It's defined by the 
     minimum value of magnitude (representing the mid point of the first
-    bin) and by the bin width. The distribution itself is simply a 
-    sequence of floats describing the annual number of events for 
-    different bins. 
+    bin) and the bin width. 
+    The distribution itself is simply a sequence of floats describing the 
+    annual number of events for different bins. The maximum magnitude 
+    admitted by this magnitude-frequency distribution is just the sum of 
+    the minimum magnitude and the product of the bin width by the number 
+    annual rate values.
 
     Below we provide an example of the xml that should
     be incorporated in a seismic source description in order to define 
@@ -34,17 +37,16 @@ The magnitude-frequency distributions currently supported by the
 \item[A double truncated Gutenberg-Richter distribution] \hfill \\
     This distribution is de\-scribed by means of a minimum \texttt{minMag}
     and maximum magnitude \texttt{maxMag} and by the $a$ and $b$ values 
-    of the Gutenberg-Richter relationship necessary to specify the annual 
-    rate of occurrence equal or larger than a given magnitude value. 
+    of the Gutenberg-Richter relationship. 
     
-    The synthax of the xml used to describe this magnitude-frequency 
+    The syntax of the xml used to describe this magnitude-frequency 
     distribution is rather compact as demonstrated in the following example
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize]
 <truncGutenbergRichterMFD aValue="5.0" bValue="1.0" minMag="5.0" 
         maxMag="6.0"/>
 \end{Verbatim}
-    Figure \ref{fig:dt_gr_mfd} the magnitude-frequency distribution 
-    obtained using the parameters of the considered example.
+    Figure \ref{fig:dt_gr_mfd} shows the magnitude-frequency distribution 
+    obtained using the parameters of the xml example.
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
 \begin{figure}[!ht]
