@@ -1,8 +1,9 @@
 usage: oq-engine [-h] [--version] [--log-file LOG_FILE]
                  [--log-level {debug,info,progress,warn,error,critical}]
-                 [--no-distribute] [--list-inputs INPUT_TYPE] [--yes]
+                 [--no-distribute] [--run CONFIG_FILE]
+                 [--list-inputs INPUT_TYPE] [--yes]
                  [--config-file CONFIG_FILE]
-                 [--make-html-report YYYY-MM-DD|today] [--upgrade-db]
+                 [--make-html-report YYYY-MM-DD|today] [--lite] [--upgrade-db]
                  [--version-db] [--what-if-I-upgrade]
                  [--run-hazard CONFIG_FILE] [--list-hazard-calculations]
                  [--delete-hazard-calculation HAZARD_CALCULATION_ID]
@@ -42,6 +43,9 @@ General:
                         Disable calculation task distribution and run the
                         computation in a single process. This is intended for
                         use in debugging and profiling.
+  --run CONFIG_FILE     Run a job with the specified configuration file; you
+                        can also pass a comma-separated pair of files for
+                        hazard and risk
   --list-inputs INPUT_TYPE, --li INPUT_TYPE
                         List inputs of a specific input type
   --yes, -y             Automatically answer "yes" when asked to confirm an
@@ -52,6 +56,7 @@ General:
   --make-html-report YYYY-MM-DD|today, -r YYYY-MM-DD|today
                         Build an HTML report of the computation at the given
                         date
+  --lite                Use lite version of the calculator, if possible
 
 Database:
   --upgrade-db          Upgrade the openquake database
