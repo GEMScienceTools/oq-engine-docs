@@ -1,4 +1,4 @@
-oq-engine-docs
-==============
+OpenQuake-engine User Manual
+============================
 
-Documentation and user manual for the OQ-engine v1.4
+Documentation and user manual for the OpenQuake-engine v1.4.
