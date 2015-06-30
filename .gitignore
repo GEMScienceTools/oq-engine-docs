@@ -1,7 +1,9 @@
+.DS_store
 *.acn
 *.acr
 *.alg
 *.aux
+oq-manual-blx.bib
 *.bbl
 *.blg
 *.dvi
@@ -30,3 +32,4 @@
 *.vrb
 *.xdy
 *.tdo
+*.DS_Store

@@ -1,13 +1,13 @@
-\section{Running OpenQuake engine for risk calculations}
-Using the command line interface, risk calculations can be launched and the resulting outputs can be extracted. This section describes all the currently implemented commands and presents examples for each of the calculators.   
-One of the first tasks that needs to be performed is the definition of the seismic hazard input. As mentioned in section \ref{sec:riskCalculators}, the risk calculations can use the results produced by the hazard component of the OpenQuake engine. Moreover, for the two scenario-based calculators, users also have the option of loading a set of ground motion fields that might have been produced using the OpenQuake engine, or other software. 
+\section{Running OpenQuake-engine for risk calculations}
+Using the command line interface, risk calculations can be launched and the resulting outputs can be extracted. This section describes all the currently implemented commands and presents examples for each of the calculators.
+One of the first tasks that needs to be performed is the definition of the seismic hazard input. As mentioned in section \ref{sec:riskCalculators}, the risk calculations can use the results produced by the hazard component of the OpenQuake-engine. Moreover, for the two scenario-based calculators, users also have the option of loading a set of ground motion fields that might have been produced using the OpenQuake-engine, or other software.
 In order to load ground motion fields based on a single earthquake event, it is fundamental to ensure that the ground motion values have been stored according to the appropriate NRML schema, as presented in section \ref{EventBasedOutput}. Then, the following command can be used:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --loadgmf <gml_directory>
+user@ubuntu:~\$ oq-engine --loadgmf <gml_directory>
 \end{Verbatim}
 
-Whether a user chooses to load pre-computed ground motion fields, or calculate this input using the hazard component of the OpenQuake engine, a unique \verb+id+ is associated to the set of ground motion fields, as depicted below. 
+Whether a user chooses to load pre-computed ground motion fields, or calculate this input using the hazard component of the OpenQuake-engine, a unique \verb+id+ is associated to the set of ground motion fields, as depicted below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 3 results:
@@ -32,39 +32,39 @@ id | output_type | name
 In this case, since the logic tree had four branches, fours sets of hazard curves were produced, each one with its own \verb+id+. In addition, mean and quantile hazard curves were also produced. A user may choose to run risk calculations using results from one of the branches or mean/quantile curves. To do so, the id of the respective hazard result should be employed when launching the risk calculations, as depicted below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --run-risk job.ini --hazard-output-id 
+user@ubuntu:~\$ oq-engine --run-risk job.ini --hazard-output-id
 <hazard_output_id>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --rr job.ini --ho <hazard_output_id>
+user@ubuntu:~\$ oq-engine --rr job.ini --ho <hazard_output_id>
 \end{Verbatim}
 
 On the other hand, a user might also want to run the risk calculations considering all the hazard results from a certain calculation run. In this case, rather than providing the \verb+hazard-output-id+, users need to provide the id of the hazard calculation as follows.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --run-risk job.ini --hazard-calculation-id 
+user@ubuntu:~\$ oq-engine --run-risk job.ini --hazard-calculation-id
 <hazard_calculation_id>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --rr job.ini --co <hazard_calculation_id>
+user@ubuntu:~\$ oq-engine --rr job.ini --co <hazard_calculation_id>
 \end{Verbatim}
 
 For further information about consulting the \verb+id+ of hazard results or calculations, users are referred to section \ref{sec:riskCalculators}. To obtain a list of all the risk calculations, the following command can be employed.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --list-risk-calculations
+user@ubuntu:~\$ oq-engine --list-risk-calculations
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --lrc
+user@ubuntu:~\$ oq-engine --lrc
 \end{Verbatim}
 
 Which will display a list of risk calculations as presented below.
@@ -80,13 +80,13 @@ calc_id | num_jobs | latest_job_status | last_update | description
 Then, in order to display a list of the risk outputs from a given job, the following command can be used
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --list-risk-outputs <risk_calculation_id>
+user@ubuntu:~\$ oq-engine --list-risk-outputs <risk_calculation_id>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --lro <risk_calculation_id>
+user@ubuntu:~\$ oq-engine --lro <risk_calculation_id>
 \end{Verbatim}
 
 Which will display a list of risk calculations as presented below.
@@ -102,21 +102,21 @@ id | output_type | name
 Then, in order to export the risk calculation outputs in the appropriate xml format, the following command can be used.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --export-risk <risk_output_id>  
+user@ubuntu:~\$ oq-engine --export-risk <risk_output_id>
 <output_directory>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ openquake --er <risk_output_id> <output_directory>
+user@ubuntu:~\$ oq-engine --er <risk_output_id> <output_directory>
 \end{Verbatim}
 
 \section{Description of the outputs}
 This section describes how the different risk outputs are being stored using the Natural Hazards risk Markup Language (NRML). For each output, the various attributes are discussed, and example schema is provided.
 
 \subsection{Loss statistics}
-This output is produced by the Scenario Risk calculator and is comprised by a mean total loss and associated standard deviation. These results are stored in a comma separate value (.csv) file as follows: 
+This output is produced by the Scenario Risk calculator and is comprised by a mean total loss and associated standard deviation. These results are stored in a comma separate value (.csv) file as follows:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Mean,Standard Deviation
@@ -125,7 +125,7 @@ Mean,Standard Deviation
 
 \subsection{Loss maps}
 A loss map contains the spatial distribution of the losses throughout the region of interest. This result can be produced by the Scenario Risk calculator (representing the losses from a single event), or from the Probabilistic Event-based Risk or Classical PSHA-based Risk calculators (representing the expected losses from probabilistic seismic hazard). In the former case, the loss map is comprised of a mean loss and respective standard deviation for each \gls{asset}, whilst for the latter, a single value is provided, representing the expected loss for a given return period (or probability of exceedance for a certain time span, or investigation interval). In the following example, a loss map due to a single earthquake is presented.
- 
+
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
 <nrml xmlns:gml="http://www.opengis.net/gml"
@@ -159,13 +159,13 @@ A loss map contains the spatial distribution of the losses throughout the region
 \item  \Verb+node+: each loss map is comprised by various nodes, each node possibly containing a number of \glspl{asset}. The location of the node is defined by a latitude and longitude in decimal degrees within the field \Verb+gml:Point+. The mean loss (\Verb+mean+) and associated standard deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter \Verb+assetRef+) is stored in the \Verb+loss+ field.
 \end{itemize}
 
-For the probabilistic loss maps (expected losses for a given return period), a set of additional parameters need to be considered as depicted in the following example. 
+For the probabilistic loss maps (expected losses for a given return period), a set of additional parameters need to be considered as depicted in the following example.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
 <nrml xmlns:gml="http://www.opengis.net/gml"
       xmlns="http://openquake.org/xmlns/nrml/0.4">
-<\textcolor{red}{lossMap} investigationTime="50" poE="0.1" sourceModelTreePath="b1" 
+<\textcolor{red}{lossMap} investigationTime="50" poE="0.1" sourceModelTreePath="b1"
         gsimTreePath="b1" lossCategory="buildings" unit="EUR">
      <\textcolor{green}{node}>
           <gml:Point>
@@ -205,10 +205,10 @@ The damage distribution is part of the outputs from the Scenario Damage calculat
 <nrml xmlns:gml="http://www.opengis.net/gml"
       xmlns="http://openquake.org/xmlns/nrml/0.4">
 <\textcolor{red}{dmgDistPerAsset}>
-     <\textcolor{green}{damageStates}> 
-         no_damage 
-         slight 
-         moderate 
+     <\textcolor{green}{damageStates}>
+         no_damage
+         slight
+         moderate
          complete
      <\textcolor{green}{/damageStates}>
      <\textcolor{green}{DDNode}>
@@ -246,7 +246,7 @@ The damage distribution is part of the outputs from the Scenario Damage calculat
 
 \begin{itemize}
 \item  \Verb+damageStates+: this field serves the purposes of storing the set of damage states, as defined in the \gls{fragility model} employed in the calculations;
-\item  \Verb+DDNode+: this attribute is used to store the damage distribution of a number of \glspl{asset}, at a given location (defined within the attribute \Verb+gml:Point+). For each \gls{asset}, the mean number of buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+) in each damage state is defined. 
+\item  \Verb+DDNode+: this attribute is used to store the damage distribution of a number of \glspl{asset}, at a given location (defined within the attribute \Verb+gml:Point+). For each \gls{asset}, the mean number of buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+) in each damage state is defined.
 \end{itemize}
 
 The Scenario Damage calculator can also estimate the total number of buildings with a certain \gls{taxonomy}, in each damage state. This  distribution of damage per building \gls{taxonomy} is depicted in the following example.
@@ -256,10 +256,10 @@ The Scenario Damage calculator can also estimate the total number of buildings w
 <nrml xmlns:gml="http://www.opengis.net/gml"
       xmlns="http://openquake.org/xmlns/nrml/0.4">
 <\textcolor{red}{dmgDistPerAsset}>
-     <\textcolor{green}{damageStates}> 
-         no_damage 
-         slight 
-         moderate 
+     <\textcolor{green}{damageStates}>
+         no_damage
+         slight
+         moderate
          complete
      <\textcolor{green}{/damageStates}>
      <\textcolor{green}{DDNode}>
@@ -281,18 +281,18 @@ The Scenario Damage calculator can also estimate the total number of buildings w
 </nrml>
 \end{Verbatim}
 
-In the damage distribution per \gls{taxonomy}, each \Verb+DDNode+ contains the statistics of the number of buildings in each damage state, belonging to a given building class as specified in the \Verb+taxonomy+ attribute. 
-Finally, a total damage distribution can also be calculated, which contains the mean and standard deviation of the total number of buildings in each damage state, as illustrated bellow.
+In the damage distribution per \gls{taxonomy}, each \Verb+DDNode+ contains the statistics of the number of buildings in each damage state, belonging to a given building class as specified in the \Verb+taxonomy+ attribute.
+Finally, a total damage distribution can also be calculated, which contains the mean and standard deviation of the total number of buildings in each damage state, as illustrated below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
 <nrml xmlns:gml="http://www.opengis.net/gml"
       xmlns="http://openquake.org/xmlns/nrml/0.4">
 <\textcolor{red}{totalDmgDist}>
-     <\textcolor{green}{damageStates}> 
-         no_damage 
-         slight 
-         moderate 
+     <\textcolor{green}{damageStates}>
+         no_damage
+         slight
+         moderate
          complete
      <\textcolor{green}{/damageStates}>
      <\textcolor{green}{damage} ds="no_damage" mean="456450.2" stddev="26376.62"/>
@@ -301,6 +301,19 @@ Finally, a total damage distribution can also be calculated, which contains the 
      <\textcolor{green}{damage} ds="complete" mean="275891.1" stddev="26676.8"/>
 <\textcolor{red}{/totalDmgDist}>
 </nrml>
+\end{Verbatim}
+
+Similarly, the Classical PSHA-based Damage calculator provides the expected damage distribution per asset as a csv file, as illustrated below:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+asset_ref, no_damage, slight, moderate, extreme, complete
+a1, 4.4360E-06, 6.3482E-03, 3.4851E-01, 4.7628E-01, 1.6884E-01
+a2, 1.0391E-05, 9.1856E-03, 3.7883E-01, 4.6140E-01, 1.5056E-01
+.
+.
+.
+a998, 6.9569E-02, 6.4106E+00, 7.4108E+01, 5.7563E+01, 1.7848E+01
+a999, 1.2657E-01, 8.1294E+00, 7.6249E+01, 5.4701E+01, 1.6792E+01
 \end{Verbatim}
 
 \subsection{Collapse maps}
@@ -334,7 +347,7 @@ Collapse maps are part of the Scenario Damage calculator outputs. These results 
 \end{Verbatim}
 
 This schema follows the same structure of the loss maps presented previously. Thus, the results for a number of \glspl{asset} at a given location are stored within the field \Verb(+CMNode+). This field is associated with a location (defined within the \Verb+gml:Point+ attribute) and it contains the mean number of collapses (\Verb+mean+) and respective standard deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter \Verb+assetRef+).
-   
+
 \subsection{Loss exceedance curves}
 Loss exceedance curves can be calculated using the Classical PSHA-based Risk or Probabilistic Event-based Risk calculators, and they provide the probability of exceeding a set of levels of loss, within a given time span (or investigation interval). Similarly to what has been described for the probabilistic loss maps, also here it is necessary to define the parameters \Verb+investigationTime+, \Verb+sourceModelTreePath+, \Verb+gsimTreePath+ and \Verb+unit+. Then, the set of loss exceedance curves are stored as presented in the following example.
 
@@ -346,7 +359,7 @@ Loss exceedance curves can be calculated using the Classical PSHA-based Risk or 
      <\textcolor{green}{lossCurve} assetRef="a1">
           <gml:Point>
             <gml:pos>83.31 29.46</gml:pos>
-          </gml:Point>     
+          </gml:Point>
           <\textcolor{blue}{poE}> 0.970 0.297 0.137 0.019 0.005 0.001</\textcolor{blue}{poE}>
           <\textcolor{blue}{losses}> 235 477 989 4102 7444 15631</\textcolor{blue}{losses}>
           <\textcolor{blue}{lossRatios}> 0.02 0.03 0.06 0.26 0.48 1.0</\textcolor{blue}{lossRatios}>
@@ -355,16 +368,16 @@ Loss exceedance curves can be calculated using the Classical PSHA-based Risk or 
      <\textcolor{green}{lossCurve} assetRef="a999">
           <gml:Point>
             <gml:pos>83.33 28.71</gml:pos>
-          </gml:Point>     
+          </gml:Point>
           <\textcolor{blue}{poE}> 0.99 0.714 0.112 0.020 0.004 0.001</\textcolor{blue}{poE}>
           <\textcolor{blue}{losses}>58 402 819 3664 8001 13540</\textcolor{blue}{losses}>
           <\textcolor{blue}{lossRatios}> 0.02 0.04 0.07 0.32 0.59 1.0</\textcolor{blue}{lossRatios}>
      <\textcolor{green}{/lossCurve}>
-<\textcolor{red}{/lossCurves}>      
+<\textcolor{red}{/lossCurves}>
 </nrml>
 \end{Verbatim}
 
-Each \Verb+lossCurve+ is associated with a location (defined within the \Verb+gml:Point+ attribute) and a reference to the \gls{asset} (\Verb+assetRef+) whose loss is being represented. Then, three lists of values are stored: the probabilities of exceedance (\Verb+poE+), levels of absolute loss (\Verb+losses+) and percentages of loss (\Verb+lossRatios+). 
+Each \Verb+lossCurve+ is associated with a location (defined within the \Verb+gml:Point+ attribute) and a reference to the \gls{asset} (\Verb+assetRef+) whose loss is being represented. Then, three lists of values are stored: the probabilities of exceedance (\Verb+poE+), levels of absolute loss (\Verb+losses+) and percentages of loss (\Verb+lossRatios+).
 
 \subsection{Retrofitting Benefit/cost ratio maps}
 Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exceedance curves, which can be calculated using the Classical PSHA-based Risk or Probabilistic Event-based Risk calculators. For this reason, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ are also included in this NRML schema, so the whole calculation process can be tracked back. The results for each \gls{asset} are being stored as depicted below.
@@ -373,31 +386,31 @@ Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exce
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
 <nrml xmlns:gml="http://www.opengis.net/gml"
       xmlns="http://openquake.org/xmlns/nrml/0.4">
-<\textcolor{red}{bcrMap} interestRate="0.05" assetLifeExpectancy="50.0" 
+<\textcolor{red}{bcrMap} interestRate="0.05" assetLifeExpectancy="50.0"
     sourceModelTreePath="b1" gsimTreePath="b1" unit="EUR">
      <\textcolor{green}{node}>
           <gml:Point>
             <gml:pos>83.31 29.46</gml:pos>
           </gml:Point>
-          <\textcolor{blue}{bcr} assetRef="a1" ratio="1.96" aalOrig="1466.9" 
+          <\textcolor{blue}{bcr} assetRef="a1" ratio="1.96" aalOrig="1466.9"
               aalRetr="253.0"/>
-          <\textcolor{blue}{bcr} assetRef="a2" ratio="2.33" aalOrig="937.9" 
+          <\textcolor{blue}{bcr} assetRef="a2" ratio="2.33" aalOrig="937.9"
               aalRetr="215.7"/>
-          <\textcolor{blue}{bcr} assetRef="a3" ratio="1.32" aalOrig="492.0" 
+          <\textcolor{blue}{bcr} assetRef="a3" ratio="1.32" aalOrig="492.0"
               aalRetr="83.7"/>
-          <\textcolor{blue}{bcr} assetRef="a4" ratio="0.76" aalOrig="294.1" 
-              aalRetr="57.9"/>          
+          <\textcolor{blue}{bcr} assetRef="a4" ratio="0.76" aalOrig="294.1"
+              aalRetr="57.9"/>
      <\textcolor{green}{/node}>
     ...
      <\textcolor{green}{node}>
           <gml:Point>
             <gml:pos>83.33 28.71</gml:pos>
           </gml:Point>
-          <\textcolor{blue}{bcr} assetRef="a997" ratio="0.84" aalOrig="18323.1" 
+          <\textcolor{blue}{bcr} assetRef="a997" ratio="0.84" aalOrig="18323.1"
               aalRetr="7340.7"/>
-          <\textcolor{blue}{bcr} assetRef="a998" ratio="1.36" aalOrig="152027.6" 
+          <\textcolor{blue}{bcr} assetRef="a998" ratio="1.36" aalOrig="152027.6"
               aalRetr="29123.5"/>
-          <\textcolor{blue}{bcr} assetRef="a999" ratio="0.83" aalOrig="60727.3" 
+          <\textcolor{blue}{bcr} assetRef="a999" ratio="0.83" aalOrig="60727.3"
               aalRetr="12676.1"/>
      <\textcolor{green}{/node}>
 <\textcolor{red}{/bcrMap}>
@@ -407,34 +420,34 @@ Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exce
 \begin{itemize}
 \item  \Verb+interestRate+: this parameter represents the inflation rate of the economic value of the \glspl{asset};
 \item  \Verb+assetLifeExpectancy+: a parameter specifying the life expectancy (or design life) of the \glspl{asset} considered for the calculations;
-\item  \Verb+node+: this schema follows the same \Verb+node+ structure already presented for the loss maps, however, instead of losses for each \gls{asset}, the benefit/cost ratio (\Verb+ratio+), the average annual loss considering the original vulnerability (\Verb+aalOrig+) and the average annual loss for the retrofitted (\Verb+aalRetr+) configuration  of the \glspl{asset} are provided. 
+\item  \Verb+node+: this schema follows the same \Verb+node+ structure already presented for the loss maps, however, instead of losses for each \gls{asset}, the benefit/cost ratio (\Verb+ratio+), the average annual loss considering the original vulnerability (\Verb+aalOrig+) and the average annual loss for the retrofitted (\Verb+aalRetr+) configuration  of the \glspl{asset} are provided.
 \end{itemize}
 
 \subsection{Loss disaggregation}
-Currently the loss disaggregation can only be performed using the Probabilistic Event-based Risk calculator. Thus, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ have been included in the NRML schema. Additional information can also be comprised such as the \Verb+investigationTime+, \Verb+lossCategory+ and \Verb+unit+ of the losses. The OpenQuake-engine can perform loss disaggregation in terms of magnitude/distance or latitude/longitude. An example of the former type of output is presented below.  
+Currently the loss disaggregation can only be performed using the Probabilistic Event-based Risk calculator. Thus, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ have been included in the NRML schema. Additional information can also be comprised such as the \Verb+investigationTime+, \Verb+lossCategory+ and \Verb+unit+ of the losses. The OpenQuake-engine can perform loss disaggregation in terms of magnitude/distance or latitude/longitude. An example of the former type of output is presented below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
 <nrml xmlns:gml="http://www.opengis.net/gml"
       xmlns="http://openquake.org/xmlns/nrml/0.4">
-<\textcolor{red}{lossFraction} investigationTime ="50.00" sourceModelTreePath="b1" 
-  gsimTreePath="b1" lossCategory="buildings" unit="EUR" 
-  variable="magnitude_distance"> 
+<\textcolor{red}{lossFraction} investigationTime ="50.00" sourceModelTreePath="b1"
+  gsimTreePath="b1" lossCategory="buildings" unit="EUR"
+  variable="magnitude_distance">
     <\textcolor{green}{map}>
       <\textcolor{blue}{node} lon="85.07916667" lat="27.4625">
-        <bin value="5.00,5.50|220.00,240.0000" 
+        <bin value="5.00,5.50|220.00,240.0000"
           absoluteLoss="150000" fraction="0.75"/>
-        <bin value="6.50,7.00|480.00,500.0000" 
-          absoluteLoss="50000" fraction="0.25"/>        
+        <bin value="6.50,7.00|480.00,500.0000"
+          absoluteLoss="50000" fraction="0.25"/>
       <\textcolor{green}{/node}>
     ...
       <\textcolor{blue}{node} lon="85.67" lat="27.58">
-        <bin value="5.00,5.50|220.00,240.00" 
+        <bin value="5.00,5.50|220.00,240.00"
           absoluteLoss="100000" fraction="0.50"/>
-        <bin value="6.50,7.00|480.00,500.00" 
-          absoluteLoss="50000" fraction="0.25"/>   
-        <bin value="7.00,7.50|350.00,370.00" 
-          absoluteLoss="50000" fraction="0.25"/>             
+        <bin value="6.50,7.00|480.00,500.00"
+          absoluteLoss="50000" fraction="0.25"/>
+        <bin value="7.00,7.50|350.00,370.00"
+          absoluteLoss="50000" fraction="0.25"/>
       <\textcolor{green}{/node}>
 <\textcolor{red}{/map}>
 </nrml>
@@ -446,7 +459,7 @@ Currently the loss disaggregation can only be performed using the Probabilistic 
 \end{itemize}
 
 \subsection{Event loss tables}
-Unlike what was described for the other outputs, the event loss tables are exported using a coma separated value (.csv) file format. In this structure, each row contains the rupture id, magnitude and aggregated loss (sum of the losses from the collection of assets within the region of interest), for each event within the stochastic event sets. The following example depicts an example of this output.
+Unlike what was described for the other outputs, the event loss tables are exported using a comma separated value (.csv) file format. In this structure, each row contains the rupture id, magnitude and aggregated loss (sum of the losses from the collection of assets within the region of interest), for each event within the stochastic event sets. The following example depicts an example of this output.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 Rupture,Magnitude,Aggregate Loss
@@ -460,4 +473,18 @@ Rupture,Magnitude,Aggregate Loss
 8,7.75,37707
 9,7.75,37141
 ...
+\end{Verbatim}
+
+The asset event loss tables provide calculated losses for each of the assets in the exposure model, for each event within the stochastic event sets. In these tables, each row contains the rupture id, the asset id, magnitude and asset loss. Note that only assets that sustain nonzero losses in a rupture are listed in the asset event loss table. An example of this output type is provided below:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+Rupture, Asset, Magnitude, Loss
+col=00|ses=0239|src=1727-356|rup=001-01, asset_10, 4.7, 13785407.3791
+col=00|ses=0239|src=1727-356|rup=001-01, asset_11, 4.7, 17124507.6341
+col=00|ses=0239|src=1727-356|rup=001-01, asset_12, 4.7, 16654913.6026
+.
+.
+.
+col=01|ses=6905|src=1120-2|rup=011-01, asset_53, 6.7, 18506576.0384
+col=01|ses=6905|src=1120-2|rup=011-01, asset_58, 6.7, 12095498.7066
 \end{Verbatim}
