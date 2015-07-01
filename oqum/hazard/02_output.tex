@@ -2,29 +2,28 @@ In this Chapter we provide a desciption of the main commands available
 for running hazard with the \gls{acr:oqe} and the file formats used to 
 represent the results of the analyses.
 
-A general introduction to the use of OpenQuake is provided in Section 
+A general introduction to the use of OpenQuake-engine is provided in Section 
 \ref{sec:intro} at page \pageref{sec:intro}.
-The reader is invited to consult this part before moving into
-the details of this section.
+The reader is invited to consult this part before diving into this section.
 % -----------------------------------------------------------------------------
 \section{Running OpenQuake-engine for hazard calculations}
-\index{Running OpenQuake!hazard} 
+\index{Running OpenQuake!hazard}
 The execution of a hazard analysis using the OpenQuake-engine 
 is straightforward. Below we provide an example of the simplest 
-command that can be used to launch a hazard calculation which 
-consists in the invocation of \texttt{openquake} together with 
+command that can be used to launch a hazard calculation. 
+It consists in the invocation of \texttt{openquake} together with 
 the \texttt{--rh} option which stands for ``run hazard'' and 
 the name of a configuration file (in the example below
 it corresponds to \texttt{job.ini}):
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --rh job.ini
+user@ubuntu:~$ oq-engine --rh job.ini
 \end{Verbatim}
 
 The amount of information prompted during the execution of the 
-analysis is controlled by means of the \texttt{--log-level} flag 
+analysis can be controlled through the \texttt{--log-level} flag 
 as shown in the example below:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --rh job.ini --log-level debug
+user@ubuntu:~$ oq-engine --rh job.ini --log-level debug
 \end{Verbatim}
 In this example we ask the engine to provide an extensive amount
 of information (usually not justified for a standard analysis). 
@@ -33,27 +32,27 @@ Alternative options are: \texttt{debug}, \texttt{info}, \texttt{progress},
 % -----------------------------------------------------------------------------
 \subsection{Getting results}
 \label{sec:getting_results}
-There are two alternative ways to get results from the OpenQuake engine:
+There are two alternative ways to get results from the OpenQuake-engine:
 directly through the calculation or by exporting them from the 
 internal \gls{acr:oqe} database once a calculation is completed. 
 
-The first option is activated at the OpenQuake engine invocation by 
-the flag \texttt{--exports xml} as shown in the example below
+The first option is defined at the OpenQuake-engine invocation through 
+the flag \texttt{--exports xml}, as shown in the example below
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --rh job.ini \textcolor{red}{--exports xml}
+user@ubuntu:~$ oq-engine --rh job.ini \textcolor{red}{--exports xml}
 \end{Verbatim}
 
-The second option, allows the user to export the computed results at 
-their's disposal.
-In order to get the list of results of the hazard calculations stored 
+The second option, allows the user to export the computed results or just 
+a subset of them whenever they want.
+In order to obtain the list of results of the hazard calculations stored 
 in the \gls{acr:oqe} database the user can utilize the following command:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lhc
+user@ubuntu:~$ oq-engine --lhc
 \end{Verbatim}
 The execution of this command will produce a list similar to the 
 one provided below (the numbers in red are the calculations IDs).
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lhc
+user@ubuntu:~$ oq-engine --lhc
 calc_id | num_jobs | latest_job_status | last_update | description
 \textcolor{red}{1} | 1 | failed | 2013-03-01 09:49:34  | Classical PSHA
 \textcolor{red}{2} | 1 | successful | 2013-03-01 09:49:56  | Classical PSHA
@@ -68,13 +67,13 @@ Subsequently the user can get the list of result stored for a specific
 hazard analysis as in the example below (note that the number in blue 
 emphasizes the result ID)
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --lho <calc_id>
+user@ubuntu:~$ oq-engine --lho <calc_id>
 id | output_type | name
 \textcolor{blue}{3} | hazard_curve | hc-rlz-6
 \end{Verbatim}
 and finally extract an xml file for a specific hazard result 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ openquake --eh <result_id> <path_to_the_output_folder>
+user@ubuntu:~$ oq-engine --eh <result_id> <path_to_the_output_folder>
 \end{Verbatim}
 % -----------------------------------------------------------------------------
 \input{./oqum/hazard/02a_output.tex}

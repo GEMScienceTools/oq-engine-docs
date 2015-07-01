@@ -1,208 +1,261 @@
 % ------------------------------------------------------------------------------
-% OpenQuake-engine Users Manual
-% 
-% Authors: 
+% The OpenQuake-engine Users Manual
+%
+% Authors:
 % 	H. Crowley 		- Executive Committee - GEM Foundation, Pavia, Italy
 % 	D. Monelli 		- GEM Model Facility, Zurich, Switzerland
 % 	M. Pagani 		- Executive Committee - GEM Foundation, Pavia, Italy
 % 	V. Silva 		- GEM Model Facility, Pavia, Italy
-%	G. Weatherhill 	- GEM Model Facility, Pavia, Italy
-% 
-% Document distributed under the Common Creative License 
-% © GEM Foundation, Pavia, February 2013
-% ------------------------------------------------------------------------------
-\documentclass[12pt,a4paper,headings=small,version=last,dvips]{scrbook}
-%\documentclass[12pt,a4paper,headings=small,version=first,dvips]{scrbook}
-% --------------------------------------------------------------------- Packages
-\input{misc/configuration.tex}
-% ------------------------------------------------------------------------------
-\uppertitleback{
-   \textbf{Authors:} \\
+%	G. Weatherill 	- GEM Model Facility, Pavia, Italy
+%  A. Rao         - GEM Model Facility, Pavia, Italy
+%
+% License:
+% Document distributed under the CC BY-NC-SA 4.0 License
+% Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+% http://creativecommons.org/licenses/by-nc-sa/4.0/
+%
+% Copyright:
+% © GEM Foundation, Pavia, Italy. March 2015.
+%
+%-------------------------------------------------------------------------------
+%  PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%-------------------------------------------------------------------------------
+
+\documentclass[11pt,fleqn]{book} % ------------------ Left-justified equations -
+\input{configuration/configuration.tex} % -------------------- Load packages -
+\input{configuration/structure.tex} % ------------------------ Load template -
+
+\begin{document}
+\input{oqum/glossary.tex} % ---------------------------------- Load glossary -
+
+%-------------------------------------------------------------------------------
+%  COVER PAGE
+%-------------------------------------------------------------------------------
+
+\includepdf[pages=-]{figures/OQ_user_manual.pdf}
+
+%-------------------------------------------------------------------------------
+%  TITLE PAGE
+%-------------------------------------------------------------------------------
+
+\begingroup
+\thispagestyle{empty}
+%\AddToShipoutPicture*{\put(6,5){\includegraphics[scale=1]{background}}}
+\par\normalfont\fontsize{15}{15}\sffamily\selectfont
+“OpenQuake: Calculate, share, explore”
+\centering
+\vspace*{9cm}
+\par\normalfont\fontsize{35}{35}\sffamily\selectfont
+The OpenQuake-engine User Manual\par % Book title
+\endgroup
+
+%-------------------------------------------------------------------------------
+%  COPYRIGHT PAGE
+%-------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+\noindent
+   \textbf{Authors} \\
    Helen Crowley$^1$, Damiano Monelli$^2$, 
-   Marco Pagani$^1$, Vitor Silva$^3$, Graeme Weatherill$^3$ \\ \hfill \\
+   Marco Pagani$^1$, Vitor Silva$^3$, Graeme Weatherill$^3$, 
+   Anirudh Rao$^3$ \hfill \\
+   \hfill \\
    \small
    \begin{tabular}{p{4cm}p{4cm}p{4cm}}
    $^1$ GEM Foundation \hfill \newline
-   via Ferrata, 1 \hfill \newline 
+   via Ferrata, 1 \hfill \newline
    20133 Pavia \hfill \newline
    Italy \hfill \newline
    & 
    $^2$ GEM Model Facility \hfill \newline
-   SED - ETHZ \hfill \newline  
+   SED - ETHZ \hfill \newline
    Sonneggstrasse, 5 \hfill \newline
    CH-8092 Zurich\hfill \newline
    Switzerland \hfill \newline
    &
-   $^3$ GEM Model Facility \hfill \newline 
-   via Ferrata, 1 \hfill \newline 
+   $^3$ GEM Model Facility \hfill \newline
+   via Ferrata, 1 \hfill \newline
    20133 Pavia \hfill \newline
-   Italy \hfill \newline   
-	\end{tabular} \hfill \newline
+   Italy \hfill \newline
+   \end{tabular} \hfill \newline
    %
-	Email address (for all the authors):\hfill\\
-   $<$name.surname$>$@globalquakemodel.org
-   %
-   \vspace{0.4cm} \hfill \\
-   {\bf{Disclaimer}} \hfill \\
-   The OpenQuake Engine User Instruction Manual is distributed in the hope that it will be useful, 
-   but without any warranty: without even the implied warranty of 
-   merchantability or fitness for a particular purpose. While every 
-   precaution has been taken in the preparation of this document, in 
-   no event shall the authors of the manual and the GEM Foundation be 
-   liable to any party for direct, indirect, special, incidental, or 
-   consequential damages, including lost profits, arising out of the 
-   use of information contained in this document or from the use of 
-   programs and source code that may accompany it, even if the authors 
-   and GEM Foundation have been advised of the possibility of such damage. 
-   The Manual provided hereunder is on as "as is" basis, and the authors 
-   and GEM Foundation have no obligations to provide maintenance, support,
-   updates, enhancements, or modifications. 
-   \hfill \\
-   The current version of the manual has been revised only by members of 
-   the GEM model facility and it must be considered a draft copy. 
-   %
-   \vspace{0.4cm} \hfill \\
-   {\bf{License}} \hfill \\
-   This Manual is distributed under the Creative Common License 
-   Attribution-NonCommercial-NoDerivs 3.0 Unported (CC BY-NC-ND 3.0) (see link below). 
-   You can download this Book and share it with others as long as you provide proper 
-   credit, but you cannot change it in any way or use it commercially 
-   \hfill \\
-   \href{http://creativecommons.org/licenses/by-nc-nd/3.0/}
-   {http://creativecommons.org/licenses/by-nc-nd/3.0/}  
+   Email address (for all the authors):\hfill\\
+   $<$name.surname$>$@globalquakemodel.org\hfill\\
    \normalsize
-}  
-%
-% =============================================================== BEGIN DOCUMENT
-% -------------------------------------------------- Title and table of contents
-\begin{document}
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Load the glossary
-\input{"misc/glossary.tex"}
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Cover
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  Cover
-\newgeometry{hmargin={-0.4cm,0cm},height=29.7cm}
-\thispagestyle{empty}
-\psset{unit=1cm}
-\begin{pspicture}(0,0)(21cm,29.7cm)
-	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
-		(0.0cm,15.0cm)(21cm,29.7cm)	
-	\rput[l](0cm,15cm){\includegraphics[width=21cm,height=29.7cm]{./Figures/OQ_user_manual.eps}}
-\end{pspicture}
 
-%  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - Second page
-\restoregeometry
-\cleardoublepage
-%
-% - - - - - - - - - - - - - - - - - - - - - - -  This is the internal title page
-\setcounter{page}{1}
-\begin{titlepage}
-	\titlehead{\emph{``OpenQuake: Calculate, share, explore''}}
-	\title{ \textcolor{blue01}{\textsf{\bfseries\Huge OpenQuake Engine User Instruction Manual}}  }
-	\date{}
-\end{titlepage}
-\pagestyle{scrheadings}
-\maketitle
-%
-%\input{./Part_Introduction/acknowledgements.tex}
-\cleardoublepage
-%
-\tableofcontents
-% ==============================================================================
-% ------------------------------------------------------------------------- Part
+\noindent \copyright\ \textsc{2015 GEM Foundation}\\ % Copyright notice
+\noindent \textsc{globalquakemodel.org/openquake}\\ % URL
+\noindent \hfill\\
+\noindent
+   {\textbf{Citation}} \hfill \\
+   Please cite this document as: \hfill \\
+   Crowley, H., Monelli, D., Pagani, M., Silva, V., 
+   Weatherill, G., and Rao, A. (2015). 
+   The OpenQuake-engine User Manual. 
+   \textit{Global Earthquake Model (GEM) Technical Report 2015-05.\\ 
+   doi: 10.13117/GEM.OPENQUAKE.MAN.ENGINE.1.4/01, 127 pages.} \hfill \\
+\noindent \hfill\\
+\noindent
+   {\bf{Disclaimer}} \hfill \\
+   The OpenQuake-engine User Manual is distributed in the hope that it will be 
+   useful, but without any warranty: without even the implied warranty of 
+   merchantability or fitness for a particular purpose. While every precaution 
+   has been taken in the preparation of this document, in no event shall the 
+   authors of the Manual and the GEM Foundation be liable to any party for 
+   direct, indirect, special, incidental, or consequential damages, including 
+   lost profits, arising out of the use of information contained in this 
+   document or from the use of programs and source code that may accompany it, 
+   even if the authors and GEM Foundation have been advised of the possibility 
+   of such damage. The Manual provided hereunder is on as ``as is'' basis, and the 
+   authors and GEM Foundation have no obligations to provide maintenance, 
+   support, updates, enhancements, or modifications. \hfill \\
+\noindent \hfill\\
+\noindent
+   {\bf{License}} \hfill \\
+   This Manual is distributed under the Creative Commons License 
+   Attribution-NonCommercial-ShareAlike 4.0 International 
+   (\href{http://creativecommons.org/licenses/by-nc-sa/4.0/}
+   {CC BY-NC-SA 4.0}). 
+   You can download this Manual and share it with 
+   others as long as you provide proper credit, but you cannot change 
+   it in any way or use it commercially.\hfill \\
+
+\noindent \textit{Fourth printing, May 2015} % Printing/edition date
+
+%-------------------------------------------------------------------------------
+%  TABLE OF CONTENTS
+%-------------------------------------------------------------------------------
+
+\chapterimage{figures/chapter_head_1.pdf} % Table of contents heading image
+\pagestyle{empty} % No headers
+\tableofcontents % Print the table of contents itself
+\cleardoublepage % Forces the first chapter to start on the right
+\pagestyle{fancy} % Print headers again
+
+%-------------------------------------------------------------------------------
+%  FOREWORD
+%-------------------------------------------------------------------------------
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
+\input{oqum/preamble.tex}
+
+%-------------------------------------------------------------------------------
+%  THE MANUAL
+%-------------------------------------------------------------------------------
+
+% ------------------------------------------------------- Part I: Introduction -
 \part{Introduction}
-% ------------------------------------------------------------------------------
-\chapter{OpenQuake engine background}
-	\input{./oqum/intro.tex}
-%\chapter{Getting started}
-%	\input{./oqum/part_introduction/gettingStarted.tex}
-% ==============================================================================
-% ------------------------------------------------------------------------- Part
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{OpenQuake-engine Background}
+	\input{oqum/intro.tex}
+% \chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+% \chapter{Getting started}
+% 	\input{oqum/part_introduction/gettingStarted.tex}
+
+% ----------------------------------------------------- Part II: Hazard Module -
 \thispagestyle{empty}
 \part{Hazard}
-% ------------------------------------------------------------------------------
-\chapter{Introduction to the hazard module}
-    \label{chap:oqhazintro}
-	\input{./oqum/hazard/00_intro_oq.tex}
-    \input{./oqum/hazard/00b_mfds.tex}
-    \input{./oqum/hazard/00a_workflows.tex}
-\chapter{Using the hazard module}
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Introduction to the Hazard Module}
+   \label{chap:oqhazintro}
+	\input{oqum/hazard/00_intro_oq.tex}
+   \input{oqum/hazard/00b_mfds.tex}
+   \input{oqum/hazard/00a_workflows.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Using the Hazard Module}
 	\label{chap:hazinp}
-	\input{./oqum/hazard/01_using_oq.tex}
-\chapter{Hazard calculation and results provided}
+	\input{oqum/hazard/01_using_oq.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Hazard Calculation and Results Provided}
 	\label{chap:hazout}
-	\input{./oqum/hazard/02_output.tex}
-\chapter{Demonstrative examples}
+	\input{oqum/hazard/02_output.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Demonstrative Examples}
 	\label{chap:hazdemo}
-	\input{./oqum/hazard/03_demos.tex}
-% ==============================================================================
-% ------------------------------------------------------------------------- Part
-\part{Risk}
-% ------------------------------------------------------------------------------
-\chapter{Introduction to the risk module}
-	\input{./oqum/risk/01-introduction.tex}
-% ------------------------------------------------------------------------------
-\chapter{Using the risk module}
-	\label{chap:riskmodule}
-	\input{./oqum/risk/02-usingRiskModule.tex}
-% ------------------------------------------------------------------------------
-\chapter{Risk calculations and results}	
-	\label{chap:riskout}
-	\input{./oqum/risk/03-riskCalculationsResults.tex}
-%
-\chapter{Demonstrative examples}
-	\label{chap:riskexamples}
-	\input{./oqum/risk/04-demonstrativeExamples.tex}
-% ==============================================================================
-% ------------------------------------------------------------------------- Part
-%\part{Modeller's Toolkit}
-% ------------------------------------------------------------------------------
-%\chapter{Introduction}
-%	\input{./oqum/part_modellers_toolkit/introduction.tex}
-% ==============================================================================
-% ------------------------------------------------------------------------------
-% ------------------------------------------------------------------------- Part
-\part{Appendixes}
-\appendix
-% ------------------------------------------------------------------------------
-\chapter{Supported ground motion prediction equations}
-	\input{./oqum/hazard/appendix/gmpes.tex}
-% ------------------------------------------------------------------------------
-\chapter{Supported magnitude-scaling relationships}
-	\input{./oqum/hazard/appendix/msr.tex}
-% ------------------------------------------------------------------------------
-%\chapter{Magnitude Scaling Relationships in OpenQuake}
-%	\input{./oqum/part_appendix/OQ_MSR.tex}
-% ------------------------------------------------------------------------------
-%\chapter{Demos: Hazard}
-%	\input{./oqum/part_Appendix/smokeTestHaz.tex}
-% ------------------------------------------------------------------------------
-%\chapter{Demos: Risk}
-%	\input{./oqum/part_appendix/smokeTestRisk.tex}
-% ==============================================================================
-% ----------------------------------------------------------------- Bibliography
-\bibliographystyle{apalike}
-\bibliography{./misc/hazard}
-% ==============================================================================
-% ------------------------------------------------------------------------ Index
-\printglossaries
-\printindex
-\cleardoublepage
-% Final empty page
-\hfill \\ \thispagestyle{empty} \clearpage 
-% ==============================================================================
-% ------------------------------------------------------------------- Back Cover
-\newgeometry{hmargin={0cm,-0.4cm},height=29.7cm}
+	\input{oqum/hazard/03_demos.tex}
+   \cleardoublepage
+
+% ------------------------------------------------------ Part III: Risk Module -
 \thispagestyle{empty}
-\psset{unit=1cm}
-\begin{pspicture}(0,0)(21cm,29.7cm)
-	\psframe[fillstyle=solid,linecolor=cyan,fillcolor=white]
-		(0.0cm,0.0cm)(21cm,15.0cm)
-	\psframe[fillstyle=solid,linecolor=white,fillcolor=white]
-		(0.0cm,15.0cm)(21cm,29.7cm)
-	\psframe[fillstyle=solid,linecolor= blue01,fillcolor= blue01]
-		(0.0cm,15.0cm)(21cm,15.5cm)
-	\psframe[fillstyle=solid,linecolor= blue01,fillcolor= blue01]
-		(0.0cm,25.0cm)(21cm,25.1cm)
-\end{pspicture}
-%
+\part{Risk}
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Introduction to the Risk Module}
+   \label{chap:oqriskintro}
+	\input{oqum/risk/01-introduction.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Using the Risk Module}
+	\label{chap:riskmodule}
+	\input{oqum/risk/02-usingRiskModule.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Risk Calculations and Results}
+	\label{chap:riskout}
+	\input{oqum/risk/03-riskCalculationsResults.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Demonstrative Examples}
+	\label{chap:riskexamples}
+	\input{oqum/risk/04-demonstrativeExamples.tex}
+   \cleardoublepage
+
+% -------------------------------------------------------- Part IV: Appendices -
+\thispagestyle{empty}
+\part*{Appendices}
+\appendix
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Supported Ground Motion Prediction Equations}
+	\input{oqum/hazard/appendix/gmpes.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Supported Magnitude-Scaling Relationships}
+	\input{oqum/hazard/appendix/msr.tex}
+   \cleardoublepage
+
+%-------------------------------------------------------------------------------
+%  BIBLIOGRAPHY
+%-------------------------------------------------------------------------------
+
+\chapter*{Bibliography}
+\addcontentsline{toc}{chapter}{\textcolor{darkgray}{Bibliography}}
+\section*{Books}
+\addcontentsline{toc}{section}{Books}
+\printbibliography[heading=bibempty,type=book]
+\section*{Articles}
+\addcontentsline{toc}{section}{Articles}
+\printbibliography[heading=bibempty,type=article]
+\section*{Other Sources}
+\addcontentsline{toc}{section}{Reports}
+\printbibliography[heading=bibempty,nottype=book,nottype=article]
+
+%-------------------------------------------------------------------------------
+%  INDEX & GLOSSARY
+%-------------------------------------------------------------------------------
+
+\cleardoublepage
+\phantomsection
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{darkgray}{Index}}
+\printindex
+\printglossary
+\hfill \\ \thispagestyle{empty} \clearpage % ---------------- Final empty page -
+
 \end{document}
