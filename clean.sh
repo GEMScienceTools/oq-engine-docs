@@ -2,7 +2,7 @@ rm *.blg
 rm *.acn
 rm *.acr
 rm *.alg
-rm *.aux
+find . -name \*.aux -delete
 rm *.bbl
 rm *.bcf
 rm *.blg
@@ -19,4 +19,5 @@ rm *.log
 rm *.out
 rm *.ptc
 rm *.run.xml
+find . -name \*.swp -delete
 rm *.toc
