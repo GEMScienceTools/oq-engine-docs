@@ -22,7 +22,7 @@ for the OpenQuake-engine and the relationships between the different files.
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . > Figure
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=14cm]{./figures/hazard/psha_input_structure.pdf}
+\includegraphics[width=14cm]{figures/hazard/psha_input_structure.pdf}
 \caption{PSHA Input Model structure}
 \label{fig:psha_input}
 \end{figure}
@@ -30,7 +30,7 @@ for the OpenQuake-engine and the relationships between the different files.
 % ..............................................................................
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{Defining Logic Trees in the OpenQuake-engine}
-\input{./oqum/hazard/01a_logic_trees.tex}
+\input{oqum/hazard/01a_logic_trees.tex}
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{The Seismic Source System}
 The Seismic Source System contains the model (or the models) describing 
@@ -51,7 +51,7 @@ structure that can be defined in a \gls{pshainputmodel} for \gls{acr:oqe}.
 It's a logic tree with just one branching level containing 
 one \gls{branchset} with one branch used to define the initial seismic source 
 model (its weight will be equal to one).
-\input{./oqum/hazard/verbatim/sslt_example.tex}
+\input{oqum/hazard/verbatim/sslt_example.tex}
 
 The optional branching levels will contain rules that modify parameters 
 of the sources in the initial seismic source model.
@@ -63,7 +63,7 @@ different definition of the geometry of sources) and one branching level
 accounting for the epistemic uncertainty on the maximum magnitude.
 
 Below we provide an example of such logic tree structure.
-\input{./oqum/hazard/verbatim/sslt_example_simpleLT.tex}
+\input{oqum/hazard/verbatim/sslt_example_simpleLT.tex}
 Note that the uncertainty on the maximum magnitude is specified in terms 
 of relative increments with respect to the initial maximum magnitude 
 defined for each source in the initial seismic source models.
@@ -75,7 +75,7 @@ The structure of the xml file representing the seismic source
 model corresponds to a list of sources, each one modelled using 
 one out of the five typologies currently supported.
 Below we provide a schematic example of a seismic source model.
-\input{./oqum/hazard/verbatim/ssm_sample.tex}
+\input{oqum/hazard/verbatim/ssm_sample.tex}
 %
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
 \subsection{The Ground Motion System}
@@ -96,7 +96,7 @@ The example below shows a simple \gls{groundmotionlogictree}.
 This logic tree assumes that all the sources in the PSHA input model 
 belong to ``Active Shallow Crust'' and uses for calculation the 
 \citet{chiou2008} \gls{acr:gmpe}.
-\input{./oqum/hazard/verbatim/gmlt_example.tex}
+\input{oqum/hazard/verbatim/gmlt_example.tex}
 %
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 % . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -108,6 +108,6 @@ definition of the input model as well as parameters governing the
 calculation. We illustrate in the following different examples of 
 the configuration file addressing different typologies of seismic 
 hazard calculation.
-\input{./oqum/hazard/01a_config_file.tex}
-\input{./oqum/hazard/01c_config_file_disaggregation.tex}
-\input{./oqum/hazard/01b_config_file_event_based.tex}
+\input{oqum/hazard/01a_config_file.tex}
+\input{oqum/hazard/01c_config_file_disaggregation.tex}
+\input{oqum/hazard/01b_config_file_event_based.tex}
