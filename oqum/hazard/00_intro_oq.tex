@@ -359,9 +359,30 @@ the Aki-Richards convention; see \citet{aki2002}) [degrees];
 \item Rake angle (spec\-i\-fied following the Aki-Rich\-ards convention; 
 see \citet{aki2002}) [degrees]; 
 \item Upper and lower depth values limiting the seismogenic interval [km]; 
-\end{itemize} 
+\end{itemize}
+For computing near-fault probabilistic seismic hazard analysis, two additional
+parameters must be used to characterise seismic sources.
+\item A hypocentre list. It is a list of the possible hypocentral positions,
+and the corresponding weights, e.g., alongStrike="0.25" downDip="0.25"
+weight="0.25". Each hypocentral position is defined in relative terms using
+as a reference the upper left corner of the rupture and by specifying the
+fraction of rupture length and rupture width.
+
+\item A slip list. It is a list of the possible rupture slip directions
+[degrees], and their corresponding weights. The angle describing each slip
+direction is measured counterclockwise using as reference the fault strike
+direction.
+
+In the near-fault PSHA calculation, the hypocentre list and the slip list
+are mandatory. The sum of the weights in each list must always sums to one.
+The available GMPE which currently supports the near-falt directivity PSHA
+calculation in OQ-engine is the ChiouYoungs2014NearFaultEffect GMPE developed 
+by \citet{chiou2014update}(associated to an \texttt{Active Shallow Crust} type).
+
 Below we provide the excerpt of an .xml file used to describe the 
-properties of a simple fault source.
+properties of a simple fault source and an .xml file used to describe the
+properties of a simple fault source that can be used to perform a PSHA
+calculation taking into account directivity effects.
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
     numbers=left, numbersep=2pt]
 <simpleFaultSource id="1" name="Mount Diablo Thrust" 
@@ -387,6 +408,42 @@ properties of a simple fault source.
 </simpleFaultSource>
 \end{Verbatim}
 \label{example_incremental_mfd}
+For near-fault directivity PSHA, the excerpt of an .xml file,
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\footnotesize,
+    numbers=left, numbersep=2pt]
+<simpleFaultSource id="1" name="Mount Diablo Thrust" 
+        tectonicRegion="Active Shallow Crust">
+    \textcolor{red}{<simpleFaultGeometry>}
+        \textcolor{red}{<gml:LineString>}
+            \textcolor{red}{<gml:posList>}
+                \textcolor{red}{-121.82290 37.73010}
+                \textcolor{red}{-122.03880 37.87710}
+            \textcolor{red}{</gml:posList>}
+        \textcolor{red}{</gml:LineString>}
+        \textcolor{red}{<dip>45.0</dip>}
+        \textcolor{red}{<upperSeismoDepth>10.0</upperSeismoDepth>}
+        \textcolor{red}{<lowerSeismoDepth>20.0</lowerSeismoDepth>}
+    \textcolor{red}{</simpleFaultGeometry>}
+    \textcolor{gray}{<magScaleRel>WC1994</magScaleRel>}
+    \textcolor{gray}{<<ruptAspectRatio>1.5</ruptAspectRatio>}
+    \textcolor{blue}{<incrementalMFD minMag="5.0" binWidth="0.1">}
+        \textcolor{blue}{<occurRates>0.0010614989 8.8291627E-4 7.3437777E-4 6.108288E-4 }
+                \textcolor{blue}{5.080653E-4</occurRates>}
+    \textcolor{blue}{</incrementalMFD>}
+    \textcolor{green}{<rake>30.0</rake}
+    \textcolor{gray}{<hypoList>}
+        \textcolor{gray}{<hypo alongStrike="0.25" downDip="0.25" weight="0.25"/>}
+        \textcolor{gray}{<hypo alongStrike="0.25" downDip="0.75" weight="0.25"/>}
+        \textcolor{gray}{<hypo alongStrike="0.75" downDip="0.25" weight="0.25"/>}
+        \textcolor{gray}{<hypo alongStrike="0.75" downDip="0.75" weight="0.25"/>}
+    \textcolor{gray}{</hypoList>}
+    \textcolor{gray}{<slipList>}
+        \textcolor{gray}{<slip weight="0.333"> 0.0 </slip>}
+        \textcolor{gray}{<slip weight="0.333"> 45.0 </slip>}
+        \textcolor{gray}{<slip weight="0.334"> 90.0 </slip>}
+    \textcolor{gray}{</slipList>}
+</simpleFaultSource>
+\end{Verbatim}
 As with the previous examples, the red text hightlights 
 the parameters used to specify the source geometry, in green parameters 
 describing the rupture mechanism, in blue the magnitude-frequency 
