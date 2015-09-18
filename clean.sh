@@ -21,3 +21,4 @@ rm *.ptc
 rm *.run.xml
 find . -name \*.swp -delete
 rm *.toc
+rm log.md
