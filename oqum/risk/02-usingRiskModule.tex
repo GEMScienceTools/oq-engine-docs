@@ -336,12 +336,12 @@ As previously mentioned, in this example only three costs are being stored, and 
 </nrml>
 \end{Verbatim}
 
-The number of occupants for each asset is stored under the \Verb+occupancies+ field, as part of the \Verb+occupancy+ instance. The number and type of periods of the day is not a fixed variable, and a user can provide as many as needed (e.g. morning, afternoon, night, transit, 9am-17pm). The descriptions used to define each \Verb+period+ are used to specify the time of the day for which the human losses should be estimated in the Scenario Risk calculator (see section INCLUDE LATER).
+The number of occupants for each asset is stored under the \Verb+occupancies+ field, as part of the \Verb+occupancy+ instance. The number and type of periods of the day is not a fixed variable, and a user can provide as many as needed (e.g. morning, afternoon, night, transit, 9am-17pm). The descriptions used to define each \Verb+period+ are used to specify the time of the day for which the human losses should be estimated in the Scenario Risk calculator.
 
 The way this information is being stored is constantly being modified, as further feedback from users and experts is received. Hence, it is important to understand which version of NRML the engine is using, in order to avoid incompatibility issues. NRML is currenly v0.4 and documentation about each release can be found on GitHub (see \href{http://gitub.com/gem/oq-nrmllib}{oq-nrmllib}). Several examples of \glspl{exposure model} containing different types of information are presented below.
 
 \subsection{Physical vulnerability model definition}
-In this section, the NRML schema for the \gls{vulnerability model} is described in detail. In order to do so, a graphical representation of a \gls{vulnerability model} (mean loss ratio for a set of intensity measure levels) is illustrated in Figure \ref{fig:vulModel}, and the equivalent NRML file is then presented. Note that although the uncertainty for each loss ratio is not represented in the aforementioned figure, it has been considered in the input NRML file, by means of a coefficient of variation per loss ratio and a probabilistic distribution, which can currently be set to lognormal or beta. This model is comprised of two discrete \glspl{vulnerability function} and uses spectral acceleration for a given period of vibration as the intensity measure type.
+In this section, the NRML schema for the \gls{vulnerability model} is described in detail. In order to do so, a graphical representation of a \gls{vulnerability model} (mean loss ratio for a set of intensity measure levels) is illustrated in Figure~\ref{fig:vulModel}, and the equivalent NRML file is then presented. Note that although the uncertainty for each loss ratio is not represented in the aforementioned figure, it has been considered in the input NRML file, by means of a coefficient of variation per loss ratio and a probabilistic distribution, which can currently be set to lognormal or beta. This model is comprised of two discrete \glspl{vulnerability function} and uses spectral acceleration for a given period of vibration as the intensity measure type.
 
 \begin{figure}[ht]
 \centering
@@ -451,7 +451,7 @@ In the previously described \gls{vulnerability model} all of the \glspl{vulnerab
 Several methodologies to derive vulnerability functions are currently being evaluated by \gls{acr:gem} and will be a part of a set of modelling tools. Scripts to convert \glspl{vulnerability function} stored in Excel or ASCII files into NRML have already being developed, and can be found at the GEM Science tools repository at GitHub (\textcolor{blue}{\Verb+http://github.com/GEMScienceTools+}).
 
 \subsection{Fragility model definition}
-This section describes the schema currently used to store \glspl{fragility model}, which are required for the Scenario Damage Calculator. A \gls{fragility model} can be comprised of several \glspl{fragility function}, describing the probability of exceeding a set of limit, or damage, states. These \glspl{fragility function} can be defined in two ways: discrete or continuous. In the former manner, sets of probabilities of exceedance (one set per limit state) are defined for a list of intensity measure levels, as illustrated in Figure \ref{fig:fragModelDiscrete}.
+This section describes the schema currently used to store \glspl{fragility model}, which are required for the Scenario Damage Calculator. A \gls{fragility model} can be comprised of several \glspl{fragility function}, describing the probability of exceeding a set of limit, or damage, states. These \glspl{fragility function} can be defined in two ways: discrete or continuous. In the former manner, sets of probabilities of exceedance (one set per limit state) are defined for a list of intensity measure levels, as illustrated in Figure~\ref{fig:fragModelDiscrete}.
 
 \begin{figure}[ht]
 \centering
@@ -510,7 +510,7 @@ For each building typology, a set of limit state curves need to be stored within
 \item  \Verb+ffd+: this field (fragility function discrete) is used to define the probabilities of exceedance (\Verb+poes+) of each limit state curve. It is also necessary to include which limit state is being defined in the attribute \Verb+ls+.
 \end{itemize}
 
-As previously mentioned, the user may choose to define the \glspl{fragility function} in a continuous manner, through the use of cumulative lognormal functions. In Figure \ref{fig:fragModelContinuous}, a continuous fragility model is presented.
+As previously mentioned, the user may choose to define the \glspl{fragility function} in a continuous manner, through the use of cumulative lognormal functions. In Figure~\ref{fig:fragModelContinuous}, a continuous fragility model is presented.
 
 \begin{figure}[ht]
 \centering

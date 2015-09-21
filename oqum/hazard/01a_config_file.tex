@@ -19,20 +19,20 @@ random_seed = 1024
 In this section the user specifies the following parameters:
 \begin{itemize}
     \item \texttt{description}: a parameter that can be used to designate 
-        the model 
+        the model
     \item \texttt{calculation\_mode}: it is used to set the kind 
         of calculation. In this case it corresponds to \texttt{classical}.
-        We'll describe alternative options later on.
+        Alternative options for the calculation\_mode are described later in this manual.
     \item \texttt{random\_seed}: is used to control the random generator 
-        so that when montecarlo procedures are used calculations are 
+        so that when Monte Carlo procedures are used calculations are 
         replicable (if the same \texttt{random\_seed} is used you get 
         exactly the same results).
 \end{itemize}
 %
 \item \textbf{Geometry of the area (or the sites) where hazard is computed}
     \hfill \\
-This section is used to specify where hazard will be computed. Two 
-option are available. 
+This section is used to specify where the hazard will be computed. Two 
+options are available:
 
 The first one consists on defining a polygon 
 (usually a rectangle) and a distance (in km) used to discretize the 
@@ -108,8 +108,7 @@ area_source_discretization = 10
 This section of the configuration file is used to specify the 
 level of discretization of the mesh representing faults, the grid
 used to delineate the area sources and, the magnitude-frequency 
-distribution. 
-Note that the smaller is the mesh spacing (or the bin width) the larger 
+distribution. Note that the smaller is the mesh spacing (or the bin width) the larger 
 are (1) the precision in the calculation and (2) the computation demand.
 %
 \item \textbf{Parameters describing site conditions}
@@ -134,8 +133,7 @@ used to specify site conditions.
 site_model_file = ../_site_model/site_model.xml
 \end{Verbatim}
 
-The file containing the site model has the following 
-structure:
+The file containing the site model has the following structure:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 <?xml version="1.0" encoding="utf-8"?>
 <nrml xmlns:gml="http://www.opengis.net/gml"
@@ -184,7 +182,7 @@ the two files containing the Seismic Source System and the Ground
 Motion System, the duration of the time window used to compute the 
 hazard, the ground motion intensity measure types and levels for 
 which the probability of exceedence will be computed, the level of
-truncation of the gaussian 
+truncation of the Gaussian 
 distribution of the logarithm of ground motion used in the calculation 
 of hazard and the maximum integration distance (i.e. the distance within 
 which sources will contribute to the computation of the hazard).
