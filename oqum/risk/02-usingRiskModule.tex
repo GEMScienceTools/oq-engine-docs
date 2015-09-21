@@ -50,7 +50,7 @@ This example is comprised of an \gls{exposure model} in which the aggregated cos
 ...
 \end{Verbatim}
 
-In this case, the cost \Verb+type+ of each component as been defined as \Verb+aggregated+. Once the way in which each cost is going to be defined has been established, the values for each asset can be stored according to the following format.
+In this case, the cost \Verb+type+ of each component as been defined as \Verb+aggregated+. Once the way in which each cost is going to be defined has been established, the values for each asset can be stored according to the following format:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -79,7 +79,7 @@ In this case, the cost \Verb+type+ of each component as been defined as \Verb+ag
 </nrml>
 \end{Verbatim}
 
-Each \gls{asset} is uniquely identified by its \Verb+id+, which is used by the OpenQuake-engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \Verb+location+ where the asset is assumed to exist is defined. Each asset must be classified according to a \Verb+taxonomy+, so that the OpenQuake-engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \Verb+type+ are stored within the \Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \Verb+number+ or \Verb+area+. This mode of representing an exposure model is probably the simplest one.
+Each \gls{asset} is uniquely identified by its \Verb+id+, which is used by the OpenQuake-engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \Verb+location+ where the asset is assumed to exist is defined. \footnote{Within the OpenQuake-engine, longitude and latitude coordinates are internally rounded to a precision of 5 digits after the decimal point.} Each asset must be classified according to a \Verb+taxonomy+, so that the OpenQuake-engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \Verb+type+ are stored within the \Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \Verb+number+ or \Verb+area+. This mode of representing an exposure model is probably the simplest one.
 
 \paragraph{Example 2}
 In this example an \gls{exposure model} containing the number of units (buildings) and the associated costs per unit of each building typology is presented.
