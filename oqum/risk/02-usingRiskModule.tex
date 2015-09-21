@@ -681,14 +681,14 @@ fragility_file = fragility_model.xml
 \end{Verbatim}
 
 \subsubsection{Retrofitting Benefit/Cost Ratio Calculator}
-As previously explained, this calculator uses loss exceedance curves which can be calculated using the Classical PSHA-based Risk or the Probabilistic Event-based Risk calculators. Therefore, depending on which calculator a user chooses to employ, the configuration file will be different. If the Classical PSHA-based Risk calculator is employed, then the \Verb+calculation_mode+ should be set to \Verb+classical_bcr+ and the calculator-specific part of the configuration file should be defined as presented below.
+As previously explained, this calculator uses loss exceedance curves which are calculated using the Classical PSHA-based Risk calculator. The \Verb+calculation_mode+ should be set to \Verb+classical_bcr+ and the calculator-specific part of the configuration file should be defined as presented below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 ...
-structural_vulnerability_file = struct_vul_model.xml
-vulnerability_retrofitted_file = retrof_vul_model.xml
+structural_vulnerability_file = structural_vulnerability_model.xml
+vulnerability_retrofitted_file = retrofitted_vulnerability_model.xml
 
-lrem_stpdf_per_interval = 2
+lrem_steps_per_interval = 2
 
 interest_rate= 0.005
 asset_life_expectancy = 50
@@ -699,18 +699,3 @@ asset_life_expectancy = 50
 \item  \Verb+interest_rate+: this parameter represents the interest rate and it serves the purposes of taking into account the variation of building value throughout time;
 \item  \Verb+asset_life_expectancy+: this variable defines the life expectancy, or design life, of the assets.
 \end{itemize}
-
-Alternatively, if a user decides to employ the Probabilistic Event-based Risk calculator for the calculation of the loss curves, then the \Verb+calculation_mode+ should be set to \Verb+event_based_bcr+ and the remaining portion of the configuration file should be defined as follows.
-
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-...
-vulnerability_file = vulnerability_model.xml
-vulnerability_retrofitted_file = vulnerability_model_retrof.xml
-asset_correlation = 0.7
-master_seed = 3
-
-loss_curve_resolution = 20
-
-interest_rate= 0.005
-asset_life_expectancy = 50
-\end{Verbatim}

@@ -380,7 +380,7 @@ Loss exceedance curves can be calculated using the Classical PSHA-based Risk or 
 Each \Verb+lossCurve+ is associated with a location (defined within the \Verb+gml:Point+ attribute) and a reference to the \gls{asset} (\Verb+assetRef+) whose loss is being represented. Then, three lists of values are stored: the probabilities of exceedance (\Verb+poE+), levels of absolute loss (\Verb+losses+) and percentages of loss (\Verb+lossRatios+).
 
 \subsection{Retrofitting Benefit/cost ratio maps}
-Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exceedance curves, which can be calculated using the Classical PSHA-based Risk or Probabilistic Event-based Risk calculators. For this reason, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ are also included in this NRML schema, so the whole calculation process can be tracked back. The results for each \gls{asset} are being stored as depicted below.
+Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exceedance curves, which can be calculated using the Classical PSHA-based Risk calculator. For this reason, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ are also included in this NRML schema, so the whole calculation process can be traced back. The results for each \gls{asset} are stored as depicted below:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
