@@ -614,7 +614,7 @@ fragility_file = fragility_model.xml
 \end{itemize}
 
 \subsubsection{Probabilistic Event-based Risk Calculator}
-The parameter \Verb+calculation_mode+ needs to be set to \Verb+event_based_risk+ in order to use this calculator. Similarly to that described for the Scenario Risk Calculator, a Monte Carlo sampling process is also employed within this module to take into account the loss ratio uncertainty. Hence, the parameters \Verb+asset_correlation+ and \Verb+master_seed+ need to be defined as previously described. This calculator is also capable of estimating insured losses and therefore, the \Verb+insured_losses+ attribute should be specified as well. The parameter ``risk_investigation_time'' specifies the time period for which the event loss tables and loss exceedance curves will be calculated. If this parameter is not provided in the risk job configuration file, the time period used is the same as that specifed in the hazard calculation. The Probabilistic Event-based Risk Calculator can disaggregate the losses based on magnitude/distance and location (longitude/latitude) of the events. In order to do so, it is necessary to define the bin width of each of these parameters, as illustrated in the following example.
+The parameter \Verb+calculation_mode+ needs to be set to \Verb+event_based_risk+ in order to use this calculator. Similarly to that described for the Scenario Risk Calculator, a Monte Carlo sampling process is also employed within this module to take into account the loss ratio uncertainty. Hence, the parameters \Verb+asset_correlation+ and \Verb+master_seed+ need to be defined as previously described. This calculator is also capable of estimating insured losses and therefore, the \Verb+insured_losses+ attribute should be specified as well. The parameter ``risk\_investigation\_time'' specifies the time period for which the event loss tables and loss exceedance curves will be calculated. If this parameter is not provided in the risk job configuration file, the time period used is the same as that specifed in the hazard calculation. The Probabilistic Event-based Risk Calculator can disaggregate the losses based on magnitude/distance and location (longitude/latitude) of the events. In order to do so, it is necessary to define the bin width of each of these parameters, as illustrated in the following example.
 
 The remaining parameters are presented below.
 
@@ -652,7 +652,7 @@ conditional_loss_poes = 0.01, 0.05, 0.10
 \item  \Verb+specific_assets+: this parameter specifies the set of assets for which the asset event loss table will be generated;
 \end{itemize}
 
-The definition of the parameters for the loss disaggregation follow the same rules established for the seismic hazard disaggregation described in section (TO BE INCLUDED).
+The definition of the parameters for the loss disaggregation follow the same rules established for the seismic hazard disaggregation described in section~\ref{sec:disaggregation}.
 
 \subsubsection{Classical PSHA-based Risk Calculator}
 In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical_risk+. With this calculator it is also possible to extract loss maps, so the parameter \Verb+conditional_loss_poes+ needs to be defined as explained in the previous sub-section. The remaining parameters are illustrated below:

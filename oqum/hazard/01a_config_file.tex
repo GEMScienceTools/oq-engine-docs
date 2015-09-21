@@ -122,10 +122,10 @@ reference_depth_to_1pt0km_per_sec = 100.0
 \end{Verbatim}
 In this section the user specifies local soil conditions. The simplest
 solution is to define uniform site conditions (i.e. all the sites have 
-the same characteristics). Alternatively it's possible to define 
+the same characteristics). Alternatively it is possible to define 
 spatially variable soil properties in a separate file; the engine will
 then assign to each investigation location the values of the closest point
-used to specify site conditions.
+used to specify site conditions. If the closest available site with soil conditions is at a distance greater than 5~km from the investigation location, a warning is generated.
 %
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small,
     firstnumber=17, numbers=left, numbersep=2pt]
