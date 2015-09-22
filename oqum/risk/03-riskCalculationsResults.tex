@@ -4,7 +4,7 @@ One of the first tasks that needs to be performed is the definition of the seism
 In order to load ground motion fields based on a single earthquake event, it is fundamental to ensure that the ground motion values have been stored according to the appropriate NRML schema, as presented in section \ref{EventBasedOutput}. Then, the following command can be used:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --loadgmf <gml_directory>
+user@ubuntu:~\$ oq-engine --load-gmf <gml_directory>
 \end{Verbatim}
 
 Whether a user chooses to load pre-computed ground motion fields, or calculate this input using the hazard component of the OpenQuake-engine, a unique \verb+id+ is associated to the set of ground motion fields, as depicted below.
@@ -346,7 +346,7 @@ Collapse maps are part of the Scenario Damage calculator outputs. These results 
 </nrml>
 \end{Verbatim}
 
-This schema follows the same structure of the loss maps presented previously. Thus, the results for a number of \glspl{asset} at a given location are stored within the field \Verb(+CMNode+). This field is associated with a location (defined within the \Verb+gml:Point+ attribute) and it contains the mean number of collapses (\Verb+mean+) and respective standard deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter \Verb+assetRef+).
+This schema follows the same structure of the loss maps presented previously. Thus, the results for a number of \glspl{asset} at a given location are stored within the field \Verb+CMNode+. This field is associated with a location (defined within the \Verb+gml:Point+ attribute) and it contains the mean number of collapses (\Verb+mean+) and respective standard deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter \Verb+assetRef+).
 
 \subsection{Loss exceedance curves}
 Loss exceedance curves can be calculated using the Classical PSHA-based Risk or Probabilistic Event-based Risk calculators, and they provide the probability of exceeding a set of levels of loss, within a given time span (or investigation interval). Similarly to what has been described for the probabilistic loss maps, also here it is necessary to define the parameters \Verb+investigationTime+, \Verb+sourceModelTreePath+, \Verb+gsimTreePath+ and \Verb+unit+. Then, the set of loss exceedance curves are stored as presented in the following example.
@@ -380,7 +380,7 @@ Loss exceedance curves can be calculated using the Classical PSHA-based Risk or 
 Each \Verb+lossCurve+ is associated with a location (defined within the \Verb+gml:Point+ attribute) and a reference to the \gls{asset} (\Verb+assetRef+) whose loss is being represented. Then, three lists of values are stored: the probabilities of exceedance (\Verb+poE+), levels of absolute loss (\Verb+losses+) and percentages of loss (\Verb+lossRatios+).
 
 \subsection{Retrofitting Benefit/cost ratio maps}
-Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exceedance curves, which can be calculated using the Classical PSHA-based Risk or Probabilistic Event-based Risk calculators. For this reason, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ are also included in this NRML schema, so the whole calculation process can be tracked back. The results for each \gls{asset} are being stored as depicted below.
+Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss exceedance curves, which can be calculated using the Classical PSHA-based Risk calculator. For this reason, the parameters \Verb+sourceModelTreePath+ and \Verb+gsimTreePath+ are also included in this NRML schema, so the whole calculation process can be traced back. The results for each \gls{asset} are stored as depicted below:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}

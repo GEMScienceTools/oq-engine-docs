@@ -40,7 +40,6 @@
 
 \begingroup
 \thispagestyle{empty}
-%\AddToShipoutPicture*{\put(6,5){\includegraphics[scale=1]{background}}}
 \par\normalfont\fontsize{15}{15}\sffamily\selectfont
 “OpenQuake: Calculate, share, explore”
 \centering
@@ -95,8 +94,8 @@ The OpenQuake-engine User Manual\par % Book title
    Crowley, H., Monelli, D., Pagani, M., Silva, V., 
    Weatherill, G., and Rao, A. (2015). 
    The OpenQuake-engine User Manual. 
-   \textit{Global Earthquake Model (GEM) Technical Report 2015-05.\\ 
-   doi: 10.13117/GEM.OPENQUAKE.MAN.ENGINE.1.4/01, 127 pages.} \hfill \\
+   \textit{Global Earthquake Model (GEM) Technical Report 2015-09.\\ 
+   doi: 10.13117/GEM.OPENQUAKE.MAN.ENGINE.1.5/01, 146 pages.} \hfill \\
 \noindent \hfill\\
 \noindent
    {\bf{Disclaimer}} \hfill \\
@@ -123,7 +122,7 @@ The OpenQuake-engine User Manual\par % Book title
    others as long as you provide proper credit, but you cannot change 
    it in any way or use it commercially.\hfill \\
 
-\noindent \textit{Fourth printing, May 2015} % Printing/edition date
+\noindent \textit{Fifth printing, September 2015} % Printing/edition date
 
 %-------------------------------------------------------------------------------
 %  TABLE OF CONTENTS
@@ -153,9 +152,6 @@ The OpenQuake-engine User Manual\par % Book title
 \chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
 \chapter{OpenQuake-engine Background}
 	\input{oqum/intro.tex}
-% \chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
-% \chapter{Getting started}
-% 	\input{oqum/part_introduction/gettingStarted.tex}
 
 % ----------------------------------------------------- Part II: Hazard Module -
 \thispagestyle{empty}
@@ -221,13 +217,19 @@ The OpenQuake-engine User Manual\par % Book title
 \appendix
 
 \chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
-\chapter{Supported Ground Motion Prediction Equations}
+\chapter{Ground Shaking Intensity Models}
 	\input{oqum/hazard/appendix/gmpes.tex}
    \cleardoublepage
 
 \chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
-\chapter{Supported Magnitude-Scaling Relationships}
+\chapter{Magnitude-Scaling Relationships}
 	\input{oqum/hazard/appendix/msr.tex}
+   \cleardoublepage
+
+\chapterimage{figures/chapter_head_2.pdf} % Chapter heading image
+\chapter{Concurrent Computing with OpenQuake}
+   \label{chap:concurrent_tasks}
+   \input{oqum/hazard/appendix/concurrent.tex}
    \cleardoublepage
 
 %-------------------------------------------------------------------------------
