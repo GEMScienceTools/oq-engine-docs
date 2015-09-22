@@ -598,7 +598,7 @@ insured_losses = true
 \item  \Verb+vulnerability_file+: this parameter is used to specify the path to the occupants \gls{vulnerability model} file;
 \item \texttt{asset\_cor\-re\-la\-tion} if the uncertainty in the loss ratios has been defined within the \gls{vulnerability model}, users can specify a coefficient of correlation that will be used in the Monte Carlo sampling process of the loss ratios, between the assets that share the same \gls{taxonomy}. If the \texttt{asset\_cor\-re\-la\-tion} is set to one, the loss ratio residuals will be perfectly correlated. On the other hand, if this parameter is set to zero, the loss ratios will be sampled independently. Any value between zero and one will lead to increasing levels of correlation. If this parameter is not defined, the OpenQuake-engine assumes no correlation in the vulnerability;
 \item  \Verb+master_seed+: this parameter is used to control the random generator in the loss ratio sampling process. This way, if the same \Verb+master_seed+ is defined at each calculation run, the same random loss ratios will be generated, thus allowing replicability of the results;
-\item  \Verb+insured_losses+: this parameter is used to define if insured losses should be calculated (\Verb+true ) or not (\Verb+false+).
+\item  \Verb+insured_losses+: this parameter is used to define if insured losses should be calculated (\Verb+true+) or not (\Verb+false+).
 \end{itemize}
 
 \subsubsection{Scenario Damage Calculator}
