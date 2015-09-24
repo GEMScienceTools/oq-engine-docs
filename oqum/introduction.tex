@@ -1,0 +1,82 @@
+\gls{acr:oqe} is the seismic hazard and risk calculation software developed by
+the Global Earthquake Model. By following current standards in software
+developments like test-driven development and continuous integration,
+OpenQuake-engine aims at becoming an open, and community-driven tool for
+seismic hazard and risk analysis.
+
+The source code of the OpenQuake-engine is available on a public web-based
+repository at the following address:
+
+\href{http://github.com/gem/oq-engine}{http://github.com/gem/oq-engine}.
+
+
+% ------------------------------------------------------------------------------
+\section{Running the OpenQuake-engine}
+\index{Running OpenQuake!introduction}
+\label{sec:running_oq_engine}
+
+An oq-engine analysis is launched from the command line of a terminal.
+
+A schematic list of the options that can be used for the execution of the
+\gls{acr:oqe} can be obtained with the following command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+user@ubuntu:~$ oq-engine --help
+\end{Verbatim}
+
+The result is the following:
+
+\VerbatimInput[frame=single, commandchars=\\\{\},
+   fontsize=\scriptsize]{oqum/help.txt}
+
+
+% ------------------------------------------------------------------------------
+\section{Concurrent Computing with OpenQuake}
+\label{sec:concurrent_tasks}
+
+The OpenQuake-engine supports concurrent computing on both standalone
+computers and computer clusters.
+
+The OpenQuake-engine works by splitting a computation into a number of tasks
+which are then processed in parallel. The user has the ability to control the
+splitting procedure, at least to a certain extent, by setting the parameter
+`concurrent\_tasks` in the job.ini file. The engine will try to produce a
+number of tasks close to `concurrent\_tasks`: it could be more, it could be
+less. The details of the algorithm used can change depending on the release of
+the engine and this is why they are not documented here. Instead, we will
+document how you can set the parameter to a sensible value.
+
+For instance, suppose you have a standard PC with an i7 processor with 8
+hyperthreaded cores, i.e. 4 real cores. You could set:
+
+concurrent\_tasks = 16
+
+and then each hyperthreaded core would process around 2 tasks, which is a
+reasonable value. If your computation consumes a lot of memory, you could
+increase `concurrent\_tasks`, thus producing more tasks of smaller size,
+requiring less memory.
+
+If you don't set the parameter, a default value is used. Currently the default
+is set to 8 times the number of cores in your controller machine. This default
+value for `concurrent\_tasks` is likely to change in the future and you should
+not rely on it if you are using a computer cluster. If you are not using a
+cluster, the default value should be a reasonable choice.
+
+Now, suppose you have have a cluster with a controller node and 10 workers,
+each of which has 8 hyperthreaded cores, making for 80 cores in total. In this
+scenario you could set:
+
+concurrent\_tasks = 160
+
+If you did not set the parameter, the default (assuming 8 cores on the
+controller machine) would be 8 * 8 = 64 tasks, which is not enough. The number
+of available cores on the workers is 80, so 16 cores will remain unused. Our
+suggestion is to provide a value:
+
+concurrent\_tasks = 2 * number of (hyperthread) cores in the workers
+
+or more, if the computation has memory issues. With more tasks, less memory is
+used, but more data is transferred and the computation becomes slower.
+
+If `concurrent\_tasks` is set to zero, the parallelization is disabled and the
+job is executed by using a single core. This is useful when debugging errors.
