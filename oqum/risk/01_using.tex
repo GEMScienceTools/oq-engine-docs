@@ -14,15 +14,15 @@ This information is common to all the assets and needs to be incorporated at the
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 <?xml version="1.0" encoding="UTF-8"?>
 <nrml xmlns="http://openquake.org/xmlns/nrml/0.4">
-<\textcolor{red}{exposureModel} id="ex1"
+<\textcolor{red}{exposureModel} id="exposure_model"
       category="buildings"
       taxonomySource="GEM taxonomy">
-    <\textcolor{green}{description}> Buildings in Pavia </\textcolor{green}{description}>
+    <\textcolor{green}{description}>Buildings in Pavia</\textcolor{green}{description}>
 ...
 \end{Verbatim}
 
 The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake-engine Book (Risk).
-\\
+
 The way the information about the characteristics of the \glspl{asset} in an \gls{exposure model} are stored can vary strongly depending on how and why the data was compiled. As an example, if national census information is used to estimated the distribution of assets in a given region, it is likely that the number of buildings within a given geographical area will be used to define the dataset, and will be used for estimating the number of collapsed buildings for a scenario earthquake. On the other hand, if simplified methodologies based on proxy data such as population distribution are used to develop the exposure model, then it is likely that the built up area or economic cost of each building typology will be directly derived, and will be used for the estimation of economic losses. Thus, the following set of attributes exist within the schema for the exposure model:
 
 \begin{itemize}
@@ -652,7 +652,7 @@ conditional_loss_poes = 0.01, 0.05, 0.10
 \item  \Verb+specific_assets+: this parameter specifies the set of assets for which the asset event loss table will be generated;
 \end{itemize}
 
-The definition of the parameters for the loss disaggregation follow the same rules established for the seismic hazard disaggregation described in section~\ref{sec:disaggregation}.
+The definition of the parameters for the loss disaggregation follow the same rules established for the seismic hazard disaggregation described in section~\ref{subsec:config_hazard_disaggregation}.
 
 \subsubsection{Classical PSHA-based Risk Calculator}
 In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical_risk+. With this calculator it is also possible to extract loss maps, so the parameter \Verb+conditional_loss_poes+ needs to be defined as explained in the previous sub-section. The remaining parameters are illustrated below:
