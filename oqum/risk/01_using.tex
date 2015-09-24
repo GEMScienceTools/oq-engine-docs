@@ -654,6 +654,20 @@ conditional_loss_poes = 0.01, 0.05, 0.10
 
 The definition of the parameters for the loss disaggregation follow the same rules established for the seismic hazard disaggregation described in section~\ref{subsec:config_hazard_disaggregation}.
 
+\paragraph{Note regarding the new event-based risk calculators}
+
+Starting from this release some of the scientific calculators are saving their inputs and outputs in a single HDF5 file, called the datastore. The HDF5 format is a well known standard in the scientific community, can be read/written by a variety of programming languages and with different tools and it is a state-of-the-art technology when it comes to managing large numeric datasets. The change to the HDF5 technology provides huge performance benefits compared to the earlier approach used by the engine, which involved storing arrays in PostgreSQL.
+
+In OpenQuake 1.5 the event based calculators based on Postgres (both hazard and risk) are officially deprecated. They are still present and work as before, but they are being replaced with new versions of the calculators based on the HDF5 technology. The actual removal of the old calculators is scheduled for OpenQuake 1.6. The change will have no impact on regular users, who will simply notice a definite improvement in erformance. Nonetheless, the change will affect power users who are performing queries on the OpenQuake database, since there will be nothing left in the database once we remove the old calculators.
+
+In order to make the transition easier, OpenQuake 1.5 already includes the new versions of the event based calculators based on HDF5, so it is possible to use them right now. The new calculators can be run in OpenQuake 1.5 with the command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+user@ubuntu:~$ oq-engine --lite --run job_haz.ini,job_risk.ini
+\end{Verbatim}
+
+If you do not pass the --lite flag the old calculators will be run by default. In future releases of the engine, the remaining calculators based on Postgres will be progressively replaced by the new calculators based on HDF5. At the end of this process, which will be spread over several upcoming releases, the --lite flag will be removed. All of the old calculators relying on the database will be replaced internally by the newer ``lite'' versions based on HDF5 and the old calculators will not be available anymore. The OpenQuake database will only contain accessory information (essentially a table with the users and references to the outputs of each user) but nothing relevant for the scientific computation.
+
 \subsubsection{Classical PSHA-based Risk Calculator}
 In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical_risk+. With this calculator it is also possible to extract loss maps, so the parameter \Verb+conditional_loss_poes+ needs to be defined as explained in the previous sub-section. The remaining parameters are illustrated below:
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
