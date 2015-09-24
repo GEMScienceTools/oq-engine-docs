@@ -136,17 +136,17 @@ Export:
 
 Save/Load:
   --save-hazard-calculation, --shc HAZARD_CALCULATION_ID DUMP_DIR
-                        Save a hazard calculation to a new created directory.
+                        Save a hazard calculation to a new created directory
   --load-hazard-calculation DUMP_DIR
                         Load a hazard calculation from a saved import. Only
-                        SES outputs currently supported
+                        SES outputs currently supported.
 
 Import:
   --load-gmf GMF_FILE   Load gmf from a file. Only single-source gmf are
                         supported currently. The file can be xml or tab-
                         separated.
   --load-curve CURVE_FILE
-                        Load hazard curves from an XML file.
+                        Load hazard curves from an XML file
   --list-imported-outputs
                         List outputs which were imported from a file, not
                         calculated from a job

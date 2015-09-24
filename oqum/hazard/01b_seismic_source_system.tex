@@ -1,0 +1,48 @@
+The Seismic Source System contains the model (or the models) describing
+position, geometry and activity of seismic sources of engineering importance
+for a set of sites as well as the possible epistemic uncertainties to be
+incorporated into the calculation of seismic hazard.
+
+
+
+\subsection{The Seismic Source Logic Tree}
+
+The structure of the Seismic Source Logic Tree consists of at least one
+\gls{branchinglevel}. This branching level is the one used to define the
+\gls{initialseismicsourceinputmodel} (or a number of initial seismic source
+models, see Figure~\ref{fig:psha_input}).
+
+The example provided below shows the simplest Seismic Source Logic Tree
+structure that can be defined in a \gls{pshainputmodel} for \gls{acr:oqe}.
+It's a logic tree with just one branching level containing one \gls{branchset}
+with one branch used to define the initial seismic source model (its weight
+will be equal to one). \input{oqum/hazard/verbatim/input_sslt.tex}
+
+The optional branching levels will contain rules that modify parameters of the
+sources in the initial seismic source model.
+
+For example, if the epistemic uncertainties to be considered are source
+geometry and maximum magnitude, the modeller can create a logic tree structure
+with three initial seismic source models (each one exploring a different
+definition of the geometry of sources) and one branching level accounting for
+the epistemic uncertainty on the maximum magnitude.
+
+Below we provide an example of such logic tree structure:
+
+\input{oqum/hazard/verbatim/input_sslt_simple_lt.tex}
+
+Note that the uncertainty on the maximum magnitude is specified in terms of
+relative increments with respect to the initial maximum magnitude defined for
+each source in the initial seismic source models.
+
+
+
+\subsection{The Seismic Source Model}
+\index{Input!Configuration file}
+
+The structure of the xml file representing the seismic source model
+corresponds to a list of sources, each one modelled using one out of the five
+typologies currently supported. Below we provide a schematic example of a
+seismic source model:
+
+\input{oqum/hazard/verbatim/input_ssm.tex}
