@@ -21,7 +21,7 @@
 % 2) bibtex oq-manual
 % 3) pdflatex -interaction=nonstopmode oq-manual.tex
 % 4) pdflatex -interaction=nonstopmode oq-manual.tex
-% 5) makeindex oq-manual.idx -s configuration/StyleInd.ist
+% 5) makeindex oq-manual.idx
 % 6) makeglossaries oq-manual
 % 7) pdflatex -interaction=nonstopmode oq-manual.tex
 %
@@ -101,10 +101,10 @@
 
 % Index settings
 \usepackage{calc} % Infix notation for \setcounter, \addtocounter, \setlength, \addtolength
-\usepackage{makeidx} % Required to make an index
+\usepackage{imakeidx} % Required to make an index
 \setcounter{secnumdepth}{3}
 \setcounter{tocdepth}{3} % Entries down to \subsubsections in the TOC
-\makeindex % Tells LaTeX to create the files required for indexing
+\makeindex[title=Index,columns=2,intoc] % Create the files required for indexing
 
 \usepackage{todonotes}
 \usepackage{marginnote}
@@ -140,8 +140,7 @@
 \hypersetup{hidelinks,colorlinks=true,breaklinks=true,citecolor=oqblue,linkcolor=gembrown,urlcolor=oqblue,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
 
 % Package to create a glossary - must be loaded after hyperref
-\usepackage[acronym,nonumberlist,style=altlist]{glossaries}
-\glstoctrue
+\usepackage[acronym,nonumberlist,style=altlist,section=section,toc]{glossaries}
 \makeglossaries
 
 
@@ -334,11 +333,10 @@
 \begin{tikzpicture}[remember picture,overlay]
 \node at (current page.north west)
 {\begin{tikzpicture}[remember picture,overlay]
-\node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
-\draw[anchor=west] (2.6cm,-11cm) node [fill=white,text opacity=1,draw=white,draw opacity=1,line width=1.5pt,fill opacity=.6,inner sep=12pt]{\huge\sffamily\bfseries\textcolor{oqblue}{#1\strut\makebox[22cm]{}}};
+\draw[anchor=west] (2.6cm,-4.2cm) node [fill=white,text opacity=1,draw=white,draw opacity=1,line width=1.5pt,fill opacity=.6,inner sep=12pt]{\huge\sffamily\bfseries\textcolor{oqblue}{#1\strut\makebox[22cm]{}}};
 \end{tikzpicture}};
 \end{tikzpicture}}
-\par\vspace*{230\p@}
+\par\vspace*{40\p@}
 \fi
 \fi
 }

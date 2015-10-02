@@ -15,7 +15,7 @@
 % http://creativecommons.org/licenses/by-nc-sa/4.0/
 %
 % Copyright:
-% © GEM Foundation, Pavia, Italy. 2011-2015.
+% © GEM Foundation, Pavia, Italy. 2013--2015.
 % ------------------------------------------------------------------------------
 
 %-------------------------------------------------------------------------------
@@ -23,8 +23,8 @@
 %-------------------------------------------------------------------------------
 
 \documentclass[11pt,fleqn]{book} % ------------------ Left-justified equations -
-\input{configuration/configuration} % -------------------------- Load packages -
-\input{configuration/structure} % ------------------------------ Load template -
+\input{configuration/configuration} % ------------- Load packages and template -
+\graphicspath{{figures/}} % -------------- Directory where pictures are stored -
 
 \begin{document}
 \input{oqum/glossary} % ---------------------------------------- Load glossary -
@@ -41,12 +41,16 @@
 
 \begingroup
 \thispagestyle{empty}
+\begin{center}
 \par\normalfont\fontsize{15}{15}\sffamily\selectfont
-“OpenQuake: Calculate, share, explore”
-\centering
+\textcolor{oqblue}{OpenQuake: calculate, share, explore}
 \vspace*{9cm}
-\par\normalfont\fontsize{35}{35}\sffamily\selectfont
-The OpenQuake-engine User Manual\par % ---------------------------- Book title -
+\par\bfseries\fontsize{35}{35}\sffamily\selectfont
+\textcolor{gembrown}{The OpenQuake-engine\\User Instruction Manual}\par
+\vspace*{9cm}
+\par\normalfont\fontsize{15}{15}\sffamily\selectfont
+\href{http://globalquakemodel.org/openquake/}{\textcolor{oqblue}{globalquakemodel.org/openquake}}
+\end{center}
 \endgroup
 
 %-------------------------------------------------------------------------------
@@ -81,20 +85,17 @@ The OpenQuake-engine User Manual\par % ---------------------------- Book title -
    Italy \hfill \newline
    \end{tabular} \hfill \newline
    %
-   Email address (for all the authors):\hfill\\
+   Email address for all the authors:\hfill\\
    $<$name.surname$>$@globalquakemodel.org\hfill\\
    \normalsize
 
-\noindent \copyright\ \textsc{2015 GEM Foundation}\\ % ------ Copyright notice -
-\noindent \textsc{globalquakemodel.org/openquake}\\ % -------------------- URL -
-\noindent \hfill\\
 \noindent
    {\textbf{Citation}} \hfill \\
    Please cite this document as: \hfill \\
    Crowley, H., Monelli, D., Pagani, M., Silva, V., Weatherill, G.,
    and Rao, A. (2015). The OpenQuake-engine User Manual.
-   \textit{Global Earthquake Model (GEM) Technical Report 2015-09.\\
-   doi: 10.13117/GEM.OPENQUAKE.MAN.ENGINE.1.5/01, 146 pages.} \hfill \\
+   \textit{Global Earthquake Model (GEM) Technical Report 2015-11.\\
+   doi: 10.13117/GEM.OPENQUAKE.MAN.ENGINE.1.6/01, 148 pages.} \hfill \\
 \noindent \hfill\\
 \noindent
    {\bf{Disclaimer}} \hfill \\
@@ -120,7 +121,8 @@ The OpenQuake-engine User Manual\par % ---------------------------- Book title -
    provide proper credit, but you cannot change it in any way or use it
    commercially.\hfill \\
 
-\noindent \textit{Fifth printing, September 2015} % Printing/edition date
+\noindent \copyright\ \textsc{2013--2015 GEM Foundation}\\
+\noindent \textit{Sixth printing, November 2015} % Printing/edition date
 
 %-------------------------------------------------------------------------------
 %  TABLE OF CONTENTS
@@ -226,25 +228,22 @@ The OpenQuake-engine User Manual\par % ---------------------------- Book title -
 \chapter*{Bibliography}
 \addcontentsline{toc}{chapter}{\textcolor{darkgray}{Bibliography}}
 \section*{Books}
-\addcontentsline{toc}{section}{Books}
 \printbibliography[heading=bibempty,type=book]
 \section*{Articles}
-\addcontentsline{toc}{section}{Articles}
 \printbibliography[heading=bibempty,type=article]
 \section*{Other Sources}
-\addcontentsline{toc}{section}{Reports}
 \printbibliography[heading=bibempty,nottype=book,nottype=article]
+\cleardoublepage
 
 %-------------------------------------------------------------------------------
 %  INDEX & GLOSSARY
 %-------------------------------------------------------------------------------
 
-\cleardoublepage
-\phantomsection
-\setlength{\columnsep}{0.75cm}
-\addcontentsline{toc}{chapter}{\textcolor{darkgray}{Index}}
 \printindex
-\printglossary
+\chapter*{Glossary}
+\addcontentsline{toc}{chapter}{\textcolor{darkgray}{Glossary}}
+\printglossary[type=acronym, title=List of Acronyms]
+\printglossary[title=List of Terms]
 \hfill \\ \thispagestyle{empty} \clearpage % ---------------- Final empty page -
 
 \end{document}

@@ -1,14 +1,18 @@
-\section{Introduction}
-The seismic risk results are being calculated using the OpenQuake risk library (oq-risklib), an open-source suite of tools for seismic risk assessment and loss estimation. This library is written in the Python programming language and available in the form of a ``developers'' release, that can be executed through a command line interface. The code  of the library can be found on a public repository at GitHub at the following address \href{http://github.com/gem/oq-risklib}{http://github.com/gem/oq-risklib}.
+\index{OpenQuake-engine!risk}
+
+The seismic risk results are being calculated using the OpenQuake risk library (oq-risklib), an open-source suite of tools for seismic risk assessment and loss estimation. This library is written in the Python programming language and available in the form of a ``developers'' release, that can be executed through a command line interface. The code of the library can be found on a public repository at GitHub at the following address \href{http://github.com/gem/oq-risklib}{http://github.com/gem/oq-risklib}.
 
 This section provides a brief description of the calculators currently implemented in oq-risklib, and an initial presentation of the input and output files is provided. In the following sections, the contents and structure of these files are discussed in detail. For further information regarding the methodologies behind each calculator, users are referred to the OpenQuake-engine Book (Risk).
 
+
+
+
 \section{Calculation workflows}
-\label{sec:riskCalculators}
+\label{sec:risk_calculators}
 The oq-engine is currently comprised of five risk calculation workflows: two that calculate losses and damage distributions due to a single earthquake, another two that calculate seismic risk using probabilistic seismic hazard, and a fifth one that uses loss exceedance curves to assess whether retrofitting measures would be economically viable or not.
 
 \subsection{Scenario Risk Calculator}
-This calculator computes loss maps and loss statistics due to a single seismic event, for a collection of assets. The hazard input can be a single ground motion field (e.g. the median distribution of ground motion in the region of interest) or a set of ground motion fields allowing the characterisation of the inter- and intra-event variability from the GMPE. It is noted that the hazard input can either be calculated using the hazard component of OpenQuake-engine (oq-hazardlib), or provided to the risk component in an external file following the respective Natural hazards' Risk Markup Language (NRML) schema (see \href{http://github.com/gem/oq-nrmllib}{oq-nrmllib}).
+This calculator computes loss maps and loss statistics due to a single seismic event, for a collection of assets. The hazard input can be a single ground motion field (e.g. the median distribution of ground motion in the region of interest) or a set of ground motion fields allowing the characterisation of the inter- and intra-event variability from the GMPE. It is noted that the hazard input can either be calculated using the hazard component of OpenQuake-engine (oq-hazardlib), or provided to the risk component iian external file following the respective Natural hazards' Risk Markup Language (NRML) schema (see \href{http://github.com/gem/oq-nrmllib}{oq-nrmllib}).
 A vulnerability model is combined with the distribution of the ground motions at each asset location to calculate the loss distribution for each asset, as well as the statistics of the total loss throughout the region of interest. The required input files and resulting output files are depicted in Figure~\ref{fig:ScnRisk}.
 
 \begin{figure}[ht]
