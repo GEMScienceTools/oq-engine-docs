@@ -1,9 +1,0 @@
-pdflatex -interaction=nonstopmode oq-manual.tex &> log.md
-bibtex oq-manual > log.md
-pdflatex -interaction=nonstopmode oq-manual.tex &> log.md
-pdflatex -interaction=nonstopmode oq-manual.tex &> log.md
-makeglossaries oq-manual &> log.md
-pdflatex -interaction=nonstopmode oq-manual.tex &> log.md
-cat log.md | egrep "Error|Warning"
-./clean.sh
-open oq-manual.pdf
