@@ -1,30 +1,32 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% The Legrand Orange Book
-% LaTeX Template
-% Version 1.4 (12/4/14)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The GEM Technical Documentation LaTeX Template
+% Version 1.0 (12/4/14)
 %
 % Original author:
 % Mathias Legrand (legrand.mathias@gmail.com)
+%
+% Adapted for use by the GEM Foundation by:
+% James Brown (james.brown@globalquakemodel.org)
+% Anirudh Rao (anirudh.rao@globalquakemodel.org)
 %
 % License:
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %
 % Compiling this template:
-% This template uses biber for its bibliography and makeindex for its index.
-% When you first open the template, compile it from the command line with the 
+% This template uses bibtex for its bibliography and makeindex for its index.
+% When you first open the template, compile it from the command line with the
 % commands below to make sure your LaTeX distribution is configured correctly:
 %
-% 1) pdflatex oq-manual
-% 2) makeindex oq-manual.idx -s StyleInd.ist
-% 3) biber oq-manual
-% 4  makeglossaries oq-manual
-% 4) pdflatex oq-manual x 2
+% 1) pdflatex -interaction=nonstopmode oq-manual.tex
+% 2) bibtex oq-manual
+% 3) pdflatex -interaction=nonstopmode oq-manual.tex
+% 4) pdflatex -interaction=nonstopmode oq-manual.tex
+% 5) makeindex oq-manual.idx -s configuration/StyleInd.ist
+% 6) makeglossaries oq-manual
+% 7) pdflatex -interaction=nonstopmode oq-manual.tex
 %
 % After this, when you wish to update the bibliography/index use the appropriate
-% command above and make sure to compile with pdflatex several times 
+% command above and make sure to compile with pdflatex several times
 % afterwards to propagate your changes to the document.
 %
 % This template also uses a number of packages which may need to be
@@ -36,23 +38,28 @@
 % Chapter heading images should have a 2:1 width:height ratio,
 % e.g. 920px width and 460px height.
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\linespread{1.2} % Increase default line spacing
-\usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,a4paper]{geometry} % Page margins
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\usepackage{xcolor} % Required for specifying colors by name
-\definecolor{ocre}{RGB}{243,102,25} % Define the orange color used for highlighting throughout the book
+% Page layout and margins
+\usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,a4paper]{geometry}
+\linespread{1.25}
 
-% Font Settings
-\usepackage{avant} % Use the Avantgarde font for headings
-%\usepackage{times} % Use the Times font for headings
-\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
-
+% Font settings
+\usepackage[condensed]{roboto} % Use the Roboto font for headings
+\usepackage[bitstream-charter]{mathdesign} % Use the Bitstream Charter font for text
+% \usepackage{amsmath,amsfonts,amssymb,amsthm} % For math equations, theorems, symbols, etc
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
 \usepackage[utf8]{inputenc} % Required for including letters with accents
 \usepackage[T1]{fontenc} % Use 8-bit encoding that has 256 glyphs
 
-% Bibliography
+% Color settings
+\usepackage{color, colortbl}
+\usepackage{xcolor} % Required for specifying colors by name
+\definecolor{oqblue}{RGB}{27,117,165} % From the GEM Brand Guidelines
+\definecolor{darkblue}{rgb}{.2,.2,.8}
+\definecolor{darkgray}{gray}{0.25}
+
+% Bibliography settings
 \usepackage{csquotes}
 \usepackage[style=alphabetic,
             sorting=nyt,
@@ -72,35 +79,64 @@
             firstinits=true,
 	    	uniquename=false,
 	    	uniquelist=false]{biblatex}
-\addbibresource{bibliography/hazard.bib} % BibTeX bibliography file
-\addbibresource{bibliography/risk.bib} % BibTeX bibliography file
+\addbibresource{bibliography/hazard.bib} % Hazard BibTeX bibliography file
+\addbibresource{bibliography/risk.bib} % Risk BibTeX bibliography file
 \defbibheading{bibempty}{}
 
-% Figure~caption settings
+% Figure caption settings
 \usepackage[textfont=it,margin=10pt,font=small,labelfont=bf,labelsep=endash]{caption}
 \usepackage{subcaption}
+
+% Rotate any object
 \usepackage{rotating}
 
-% Table - colors from
+% Verbatim environments
 \usepackage{verbatim}
 \usepackage{fancyvrb}
-\usepackage{color, colortbl}
-\definecolor{darkblue}{rgb}{.2, .2, .8}
-\definecolor{darkgray}{gray}{0.25}
 
-
-% Index
-\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+% Index settings
+\usepackage{calc} % Infix notation for \setcounter, \addtocounter, \setlength, \addtolength
 \usepackage{makeidx} % Required to make an index
 \setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{3}    % entries down to \subsubsections in the TOC
+\setcounter{tocdepth}{3} % Entries down to \subsubsections in the TOC
 \makeindex % Tells LaTeX to create the files required for indexing
 
 \usepackage{todonotes}
 \usepackage{marginnote}
 
-% package for bold symbols
+% Access bold symbols in maths mode
 \usepackage{bm}
 
-% for better looking tables
+% Flexible typesetting of tables and figures
 \usepackage{ctable}
+\usepackage{booktabs}
+
+% Customization of section titles and table of contents
+\usepackage{titlesec}
+\usepackage{titletoc}
+
+% Header and footer customization
+\usepackage{fancyhdr}
+\usepackage{etoolbox}
+
+\usepackage{graphicx} % Required for including pictures
+\usepackage{tikz} % Required for drawing custom shapes
+\usepackage{eso-pic} % Required for specifying an image background in the title page
+\usepackage{pdfpages} % Needed to load .pdf pages, used for the cover page
+
+% English language hyphenation
+\usepackage[english]{babel}
+
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+\usepackage{listings} % Required for embedding code snippets
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,colorlinks=true,breaklinks=true,citecolor=darkblue,linkcolor=darkgray,urlcolor=oqblue,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+
+% Package to create a glossary - must be loaded after hyperref
+\usepackage[acronym,nonumberlist,style=altlist]{glossaries}
+\glstoctrue
+\makeglossaries
+
+
