@@ -345,7 +345,6 @@
 %----------------------------------------------------------------------------------------
 %     PYTHON ENVIRONMENT
 %----------------------------------------------------------------------------------------
-\lstset{language=Python}
 \definecolor{Code}{rgb}{0,0,0}
 \definecolor{Decorators}{rgb}{0.5,0.5,0.5}
 \definecolor{Numbers}{rgb}{0.5,0,0}
@@ -362,6 +361,7 @@
 
 \lstnewenvironment{python}[1][]{
 \lstset{
+language=Python,
 numbers=left,
 numberstyle=\footnotesize,
 numbersep=1em,
@@ -375,15 +375,54 @@ frame=l,
 tabsize=4,
 basicstyle=\ttfamily\footnotesize,
 backgroundcolor=\color{Background},
-language=Python,
 commentstyle=\color{Comments}\slshape,
 stringstyle=\color{Strings},
 morecomment=[s][\color{Strings}]{"""}{"""},
 morecomment=[s][\color{Strings}]{'''}{'''},
-morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
+morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
 keywordstyle={\color{Keywords}\bfseries},
 morekeywords={[2]@invariant},
 keywordstyle={[2]\color{Decorators}\slshape},
 emph={self},
 emphstyle={\color{self}\slshape},
 }}{}
+
+%----------------------------------------------------------------------------------------
+%     NRML ENVIRONMENT
+%----------------------------------------------------------------------------------------
+\definecolor{darkred}{rgb}{0.6,0.0,0.0}
+\definecolor{darkgreen}{rgb}{0,0.6,0.0}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{lightred}{rgb}{1.0,0.7,0.5}
+\definecolor{lightgreen}{rgb}{0.6,1.0,0.6}
+\definecolor{lightblue}{rgb}{0.0,0.7,1.0}
+\definecolor{darkviolet}{rgb}{0.6,0.0,0.8}
+\definecolor{lightviolet}{rgb}{0.9,0.7,0.9}
+
+\lstdefinelanguage{NRML}
+{
+    morestring=[s][\color{darkviolet}]{"}{"},
+    morestring=[s][\color{black}]{>}{<},
+    morecomment=[s]{<?}{?>},
+    morecomment=[s][\color{lightblue}]{<!--}{-->},
+    identifierstyle={\color{darkred}\bfseries},
+    backgroundcolor=\color{Background},
+    commentstyle=\color{lightblue}\slshape,
+    stringstyle=\color{lightblue},
+    morekeywords=[1]{nrml,exposureModel},
+    keywordstyle=[1]{\color{darkblue}\bfseries},
+    morekeywords=[2]{description},
+    keywordstyle=[2]{\color{darkgreen}\bfseries},
+    numbers=left,
+    numberstyle=\footnotesize,
+    numbersep=1em,
+    xleftmargin=1em,
+    framextopmargin=2em,
+    framexbottommargin=2em,
+    showspaces=false,
+    showtabs=false,
+    showstringspaces=false,
+    frame=l,
+    tabsize=4,
+    basicstyle=\ttfamily\footnotesize
+}
