@@ -26,7 +26,7 @@ The information in the metadata section is common to all of the assets in the
 portfolio and needs to be incorporated at the beginning of every exposure
 model file as illustrated in the following example:
 
-\input{oqum/risk/Verbatim/input_exposure_metadata}
+\input{oqum/risk/Verbatim/input_exposure_example}
 
 
 The NRML schema for the exposure model allows the definition of various types
@@ -62,16 +62,16 @@ within the schema for the exposure model:
 
 The set of required attributes depends on what and how a user wants to store
 the information about the assets in the exposure model. While the attribute
-\\Verb+number+ might be a rather simple parameter, the other two (area and
+\Verb+number+ might be a rather simple parameter, the other two (area and
 cost) can be ambiguous, as different ways to define them might be used. With
-regards to the attribute \\Verb+area+, one can either choose to provide the
+regards to the attribute \Verb+area+, one can either choose to provide the
 aggregated built up area of the \glspl{asset} per location or the average
 built up area for a single building unit (noting that an \gls{asset} might be
-made up of a number of individual buildings). Similarly, the \\Verb+cost+ can
+made up of a number of individual buildings). Similarly, the \Verb+cost+ can
 also be defined as the aggregated structural replacement cost, the cost of
 replacing a single unit or even the structural replacement cost per unit of
 area. For the purposes of performing a retrofitting benefit/cost analysis, it
-is also necessary to define the retrofitting cost (\\Verb+reco+). The
+is also necessary to define the retrofitting cost (\Verb+reco+). The
 combination between the possible options in which these three attributes can
 be defined leads to four ways of storing the information about the assets. For
 each of these cases a brief explanation and example is provided in this
@@ -94,7 +94,7 @@ This example is comprised of an \gls{exposure model} in which the aggregated cos
 ...
 \end{Verbatim}
 
-In this case, the cost \\Verb+type+ of each component as been defined as \\Verb+aggregated+. Once the way in which each cost is going to be defined has been established, the values for each asset can be stored according to the following format:
+In this case, the cost \Verb+type+ of each component as been defined as \Verb+aggregated+. Once the way in which each cost is going to be defined has been established, the values for each asset can be stored according to the following format:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -123,7 +123,7 @@ In this case, the cost \\Verb+type+ of each component as been defined as \\Verb+
 </nrml>
 \end{Verbatim}
 
-Each \gls{asset} is uniquely identified by its \\Verb+id+, which is used by the OpenQuake-engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \\Verb+location+ where the asset is assumed to exist is defined. \footnote{Within the OpenQuake-engine, longitude and latitude coordinates are internally rounded to a precision of 5 digits after the decimal point.} Each asset must be classified according to a \\Verb+taxonomy+, so that the OpenQuake-engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \\Verb+type+ are stored within the \\Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \\Verb+number+ or \\Verb+area+. This mode of representing an exposure model is probably the simplest one.
+Each \gls{asset} is uniquely identified by its \Verb+id+, which is used by the OpenQuake-engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \Verb+location+ where the asset is assumed to exist is defined. \footnote{Within the OpenQuake-engine, longitude and latitude coordinates are internally rounded to a precision of 5 digits after the decimal point.} Each asset must be classified according to a \Verb+taxonomy+, so that the OpenQuake-engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \Verb+type+ are stored within the \Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \Verb+number+ or \Verb+area+. This mode of representing an exposure model is probably the simplest one.
 
 \paragraph{Example 2}
 In this example an \gls{exposure model} containing the number of units (buildings) and the associated costs per unit of each building typology is presented.
@@ -142,7 +142,7 @@ In this example an \gls{exposure model} containing the number of units (building
 ...
 \end{Verbatim}
 
-For this case, the cost \\Verb+type+ has been set to \\Verb+per_unit+. Then, the information from each asset can be stored following the format below:
+For this case, the cost \Verb+type+ has been set to \Verb+per_unit+. Then, the information from each asset can be stored following the format below:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -171,7 +171,7 @@ For this case, the cost \\Verb+type+ has been set to \\Verb+per_unit+. Then, the
 </nrml>
 \end{Verbatim}
 
-In this example, the various costs for each asset is not provided directly, as happened in the previous example. In order to carry out the risk calculations in which the economic cost of each asset is required, the OpenQuake-engine multiplies, for each asset, the number of units (buildings) by the ``per unit'' replacement cost. Note that in this case, there is no need to specify the attribute \\Verb+area+.
+In this example, the various costs for each asset is not provided directly, as happened in the previous example. In order to carry out the risk calculations in which the economic cost of each asset is required, the OpenQuake-engine multiplies, for each asset, the number of units (buildings) by the ``per unit'' replacement cost. Note that in this case, there is no need to specify the attribute \Verb+area+.
 
 \paragraph{Example 3}
 This example is comprised of an \gls{exposure model} containing the built up area of each building typology for a set of locations, and the associated costs per area.
@@ -191,7 +191,7 @@ This example is comprised of an \gls{exposure model} containing the built up are
 ...
 \end{Verbatim}
 
-In order to compile an \gls{exposure model} with this structure, it is required to set the cost \\Verb+type+ to \\Verb+per_area+. In addition, it is also necessary to specify if the \\Verb+area+ that is being store represents the aggregated area of number of units within an asset, or the average area of a single unit. In this particular case, the \\Verb+area+ that is being stored is the aggregated built up area per asset, and thus this attribute was set to \\Verb+aggregated+.
+In order to compile an \gls{exposure model} with this structure, it is required to set the cost \Verb+type+ to \Verb+per_area+. In addition, it is also necessary to specify if the \Verb+area+ that is being store represents the aggregated area of number of units within an asset, or the average area of a single unit. In this particular case, the \Verb+area+ that is being stored is the aggregated built up area per asset, and thus this attribute was set to \Verb+aggregated+.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -220,7 +220,7 @@ In order to compile an \gls{exposure model} with this structure, it is required 
 </nrml>
 \end{Verbatim}
 
-Once again, the OpenQuake-engine needs to carry out some calculations in order to compute the different costs per asset. In this case, this value is computed by multiplying the aggregated built up \\Verb+area+ of each building typology by the associated cost per unit of area. Notice that in this case, there is no need to specify the attribute \\Verb+number+.
+Once again, the OpenQuake-engine needs to carry out some calculations in order to compute the different costs per asset. In this case, this value is computed by multiplying the aggregated built up \Verb+area+ of each building typology by the associated cost per unit of area. Notice that in this case, there is no need to specify the attribute \Verb+number+.
 
 \paragraph{Example 4}
 This example is comprised of an \gls{exposure model} containing the number of buildings for each location, the average built up area per building unit and the associated costs per area.
@@ -240,7 +240,7 @@ This example is comprised of an \gls{exposure model} containing the number of bu
 ...
 \end{Verbatim}
 
-Similarly to what was described in the previous example, the various costs \\Verb+type+ also need to be establish as \\Verb+per_area+, but the \\Verb+type+ of area is now defined as \\Verb+per_unit+.
+Similarly to what was described in the previous example, the various costs \Verb+type+ also need to be establish as \Verb+per_area+, but the \Verb+type+ of area is now defined as \Verb+per_unit+.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -289,7 +289,7 @@ In this example, additional information will be included, which is required for 
 ...
 \end{Verbatim}
 
-In this example, both the insurance limit and the deductible were defined as a fraction of the costs, by setting the attribute \\Verb+isAbsolute+ to \\Verb+false+. On the other hand, a user could define one or both of these parameters as the absolute threshold, by setting the aforementioned attribute to \\Verb+true+. Then, for each type of cost, the limit and deductible value can be stored for each asset.
+In this example, both the insurance limit and the deductible were defined as a fraction of the costs, by setting the attribute \Verb+isAbsolute+ to \Verb+false+. On the other hand, a user could define one or both of these parameters as the absolute threshold, by setting the aforementioned attribute to \Verb+true+. Then, for each type of cost, the limit and deductible value can be stored for each asset.
 Moreover, in order to perform a benefit/cost assessment, it is also fundamental to indicate the retrofitting cost. This parameter is handled in the same manner as the structural cost, and it should be stored according to the following structure.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
@@ -345,7 +345,7 @@ The OpenQuake-engine is also capable of estimating human losses, based on a numb
 ...
 \end{Verbatim}
 
-As previously mentioned, in this example only three costs are being stored, and each one follows a different approach. The \\Verb+structural+ cost is being defined as the replacement cost per unit (example 2), the \\Verb+non_structural+ cost is established as the cost per area (example 3), and the \\Verb+contents+ cost is provided directly as the aggregated value per asset (example 1). The information about each asset is presented bellow, along with the number of occupants at different times of the day.
+As previously mentioned, in this example only three costs are being stored, and each one follows a different approach. The \Verb+structural+ cost is being defined as the replacement cost per unit (example 2), the \Verb+non_structural+ cost is established as the cost per area (example 3), and the \Verb+contents+ cost is provided directly as the aggregated value per asset (example 1). The information about each asset is presented bellow, along with the number of occupants at different times of the day.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 ...
@@ -380,6 +380,6 @@ As previously mentioned, in this example only three costs are being stored, and 
 </nrml>
 \end{Verbatim}
 
-The number of occupants for each asset is stored under the \\Verb+occupancies+ field, as part of the \\Verb+occupancy+ instance. The number and type of periods of the day is not a fixed variable, and a user can provide as many as needed (e.g. morning, afternoon, night, transit, 9am-17pm). The descriptions used to define each \\Verb+period+ are used to specify the time of the day for which the human losses should be estimated in the Scenario Risk calculator.
+The number of occupants for each asset is stored under the \Verb+occupancies+ field, as part of the \Verb+occupancy+ instance. The number and type of periods of the day is not a fixed variable, and a user can provide as many as needed (e.g. morning, afternoon, night, transit, 9am-17pm). The descriptions used to define each \Verb+period+ are used to specify the time of the day for which the human losses should be estimated in the Scenario Risk calculator.
 
 The way this information is being stored is constantly being modified, as further feedback from users and experts is received. Hence, it is important to understand which version of NRML the engine is using, in order to avoid incompatibility issues. NRML is currenly v0.4 and documentation about each release can be found on GitHub (see \href{http://gitub.com/gem/oq-nrmllib}{oq-nrmllib}). Several examples of \glspl{exposure model} containing different types of information are presented below.

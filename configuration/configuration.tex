@@ -60,6 +60,7 @@
 \usepackage{color, colortbl}
 \usepackage{xcolor} % Required for specifying colors by name
 \definecolor{darkgray}{gray}{.25}
+\definecolor{lightgray}{gray}{.99}
 % Colors from the GEM Brand Guidelines
 \definecolor{oqblue}{RGB}{27,117,165}
 \definecolor{gembrown}{cmyk}{.53,.54,.55,.54}
@@ -135,6 +136,7 @@
 \usepackage{enumitem} % Customize lists
 \setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
 \usepackage{listings} % Required for embedding code snippets
+\usepackage{minted} % Syntax highlighting for xml
 
 \usepackage{hyperref}
 \hypersetup{hidelinks,colorlinks=true,breaklinks=true,citecolor=oqblue,linkcolor=gembrown,urlcolor=oqblue,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
@@ -341,88 +343,3 @@
 \fi
 }
 \makeatother
-
-%----------------------------------------------------------------------------------------
-%     PYTHON ENVIRONMENT
-%----------------------------------------------------------------------------------------
-\definecolor{Code}{rgb}{0,0,0}
-\definecolor{Decorators}{rgb}{0.5,0.5,0.5}
-\definecolor{Numbers}{rgb}{0.5,0,0}
-\definecolor{MatchingBrackets}{rgb}{0.25,0.5,0.5}
-\definecolor{Keywords}{rgb}{0,0,1}
-\definecolor{self}{rgb}{0,0,0}
-\definecolor{Strings}{rgb}{0,0.63,0}
-\definecolor{Comments}{rgb}{0,0.63,1}
-\definecolor{Backquotes}{rgb}{0,0,0}
-\definecolor{Classname}{rgb}{0,0,0}
-\definecolor{FunctionName}{rgb}{0,0,0}
-\definecolor{Operators}{rgb}{0,0,0}
-\definecolor{Background}{rgb}{0.98,0.98,0.98}
-
-\lstnewenvironment{python}[1][]{
-\lstset{
-language=Python,
-numbers=left,
-numberstyle=\footnotesize,
-numbersep=1em,
-xleftmargin=1em,
-framextopmargin=2em,
-framexbottommargin=2em,
-showspaces=false,
-showtabs=false,
-showstringspaces=false,
-frame=l,
-tabsize=4,
-basicstyle=\ttfamily\footnotesize,
-backgroundcolor=\color{Background},
-commentstyle=\color{Comments}\slshape,
-stringstyle=\color{Strings},
-morecomment=[s][\color{Strings}]{"""}{"""},
-morecomment=[s][\color{Strings}]{'''}{'''},
-morekeywords={import,from,class,def,for,while,if,is,in,elif,else,not,and,or,print,break,continue,return,True,False,None,access,as,del,except,exec,finally,global,import,lambda,pass,print,raise,try,assert},
-keywordstyle={\color{Keywords}\bfseries},
-morekeywords={[2]@invariant},
-keywordstyle={[2]\color{Decorators}\slshape},
-emph={self},
-emphstyle={\color{self}\slshape},
-}}{}
-
-%----------------------------------------------------------------------------------------
-%     NRML ENVIRONMENT
-%----------------------------------------------------------------------------------------
-\definecolor{darkred}{rgb}{0.6,0.0,0.0}
-\definecolor{darkgreen}{rgb}{0,0.6,0.0}
-\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
-\definecolor{lightred}{rgb}{1.0,0.7,0.5}
-\definecolor{lightgreen}{rgb}{0.6,1.0,0.6}
-\definecolor{lightblue}{rgb}{0.0,0.7,1.0}
-\definecolor{darkviolet}{rgb}{0.6,0.0,0.8}
-\definecolor{lightviolet}{rgb}{0.9,0.7,0.9}
-
-\lstdefinelanguage{NRML}
-{
-    morestring=[s][\color{darkviolet}]{"}{"},
-    morestring=[s][\color{black}]{>}{<},
-    morecomment=[s]{<?}{?>},
-    morecomment=[s][\color{lightblue}]{<!--}{-->},
-    identifierstyle={\color{darkred}\bfseries},
-    backgroundcolor=\color{Background},
-    commentstyle=\color{lightblue}\slshape,
-    stringstyle=\color{lightblue},
-    morekeywords=[1]{nrml,exposureModel},
-    keywordstyle=[1]{\color{darkblue}\bfseries},
-    morekeywords=[2]{description},
-    keywordstyle=[2]{\color{darkgreen}\bfseries},
-    numbers=left,
-    numberstyle=\footnotesize,
-    numbersep=1em,
-    xleftmargin=1em,
-    framextopmargin=2em,
-    framexbottommargin=2em,
-    showspaces=false,
-    showtabs=false,
-    showstringspaces=false,
-    frame=l,
-    tabsize=4,
-    basicstyle=\ttfamily\footnotesize
-}
