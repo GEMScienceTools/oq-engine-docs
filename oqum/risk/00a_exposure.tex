@@ -1,35 +1,81 @@
-All risk calculators in the OpenQuake-engine require an \gls{exposure model} that needs to be stored in NRML. There are a number of parameters that compose the metadata, and provides general information regarding the \glspl{asset} within the \gls{exposure model}, as described below:
+All risk calculators in the OpenQuake-engine require an \gls{exposure model}
+that needs to be provided in the NRML format. The information included in an
+exposure model comprises a metadata section, followed by data regarding each
+individual asset in the portfolio.
+
+There are a number of parameters that compose the metadata, and provides
+general information regarding the \glspl{asset} within the \gls{exposure
+model}, as described below:
 
 \begin{itemize}
-\item  \Verb+id+: a unique key used to identify the \gls{exposure model};
-\item  \Verb+category+: a string used to define the type of \glspl{asset} being stored (e.g: buildings, population, contents);
-\item  \Verb+taxonomySource+: attribute used to define the \gls{taxonomy} being used to classify the  \glspl{asset};
-\item  \Verb+description+: brief string with further information about the \gls{exposure model};
+
+    \item Verb+id+: a unique key used to identify the gls{exposure model};
+
+    \item Verb+category+: a string used to define the type of glspl{asset}
+    being stored (e.g: buildings, lifelines);
+
+    \item Verb+taxonomySource+: attribute used to define the gls{taxonomy}
+    being used to classify the glspl{asset};
+
+    \item Verb+description+: brief string with further information about the
+    \gls{exposure model};
+
 \end{itemize}
 
-This information is common to all the assets and needs to be incorporated at the beginning of the exposure model file according to the following example:
+The information in the metadata section is common to all of the assets in the
+portfolio and needs to be incorporated at the beginning of every exposure
+model file as illustrated in the following example:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
-<?xml version="1.0" encoding="UTF-8"?>
-<nrml xmlns="http://openquake.org/xmlns/nrml/0.4">
-<\textcolor{red}{exposureModel} id="exposure_model"
-      category="buildings"
-      taxonomySource="GEM taxonomy">
-    <\textcolor{green}{description}>Buildings in Pavia</\textcolor{green}{description}>
-...
-\end{Verbatim}
+\input{oqum/risk/verbatim/input_exposure_metadata}
 
-The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake-engine Book (Risk).
 
-The way the information about the characteristics of the \glspl{asset} in an \gls{exposure model} are stored can vary strongly depending on how and why the data was compiled. As an example, if national census information is used to estimated the distribution of assets in a given region, it is likely that the number of buildings within a given geographical area will be used to define the dataset, and will be used for estimating the number of collapsed buildings for a scenario earthquake. On the other hand, if simplified methodologies based on proxy data such as population distribution are used to develop the exposure model, then it is likely that the built up area or economic cost of each building typology will be directly derived, and will be used for the estimation of economic losses. Thus, the following set of attributes exist within the schema for the exposure model:
+The NRML schema for the exposure model allows the definition of various types
+of costs (structural cost, nonstructural cost, contents cost, business
+interruption cost). Further explanation regarding the cost types and values
+used to define the exposure elements can be found in the OpenQuake-engine Book 
+(Risk).
+
+The way the information about the characteristics of the \glspl{asset} in an
+\gls{exposure model} are stored can vary strongly depending on how and why the
+data was compiled. As an example, if national census information is used to
+estimated the distribution of assets in a given region, it is likely that the
+number of buildings within a given geographical area will be used to define
+the dataset, and will be used for estimating the number of collapsed buildings
+for a scenario earthquake. On the other hand, if simplified methodologies
+based on proxy data such as population distribution are used to develop the
+exposure model, then it is likely that the built up area or economic cost of
+each building typology will be directly derived, and will be used for the
+estimation of economic losses. Thus, the following set of attributes exist
+within the schema for the exposure model:
 
 \begin{itemize}
-\item  \Verb+number+: number of units of a given \gls{asset} at a given location;
-\item  \Verb+area+: area of the \gls{asset}, at a given location;
-\item  \Verb+cost+: structural replacement cost of the \gls{asset} at a given location;
+
+    \item  Verb+number+: number of units of a given gls{asset} at a given
+    location;
+
+    \item  Verb+area+: area of the gls{asset}, at a given location;
+
+    \item  Verb+cost+: structural replacement cost of the gls{asset} at a given
+    location;
+
 \end{itemize}
 
-The set of required attributes depends on what and how a user wants to store the information about the assets in the exposure model. While the attribute \Verb+number+ might be a rather simple parameter, the other two (area and cost) can be ambiguous, as different ways to define them might be used. With regards to the attribute \Verb+area+, one can either choose to provide the aggregated built up area of the \glspl{asset} per location or the average built up area for a single building unit (noting that an \gls{asset} might be made up of a number of individual buildings). Similarly, the \Verb+cost+ can also be defined as the aggregated structural replacement cost, the cost of replacing a single unit or even the structural replacement cost per unit of area. For the purposes of performing a retrofitting benefit/cost analysis, it is also necessary to define the retrofitting cost (\Verb+reco+). The combination between the possible options in which these three attributes can be defined leads to four ways of storing the information about the assets. For each of these cases a brief explanation and example is provided in this section.
+The set of required attributes depends on what and how a user wants to store
+the information about the assets in the exposure model. While the attribute
+\Verb+number+ might be a rather simple parameter, the other two (area and
+cost) can be ambiguous, as different ways to define them might be used. With
+regards to the attribute \Verb+area+, one can either choose to provide the
+aggregated built up area of the \glspl{asset} per location or the average
+built up area for a single building unit (noting that an \gls{asset} might be
+made up of a number of individual buildings). Similarly, the \Verb+cost+ can
+also be defined as the aggregated structural replacement cost, the cost of
+replacing a single unit or even the structural replacement cost per unit of
+area. For the purposes of performing a retrofitting benefit/cost analysis, it
+is also necessary to define the retrofitting cost (\Verb+reco+). The
+combination between the possible options in which these three attributes can
+be defined leads to four ways of storing the information about the assets. For
+each of these cases a brief explanation and example is provided in this
+section.
 
 \paragraph{Example 1}
 This example is comprised of an \gls{exposure model} in which the aggregated cost (structural, nonstructural, contents and business interruption) of the buildings of each taxonomy for a set of locations is directly provided. Thus, in order to indicate how the various costs will be defined, the following information needs to be stored in the exposure model file:
