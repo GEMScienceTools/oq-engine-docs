@@ -1,0 +1,57 @@
+The configuration file (or job.ini file) represents the location where the
+paths to the input files, the parameters controlling the risk calculations and
+the type of outputs are defined. Some initial parameters common to all the
+risk calculators are presented below. The remaining parameters that are
+specific to each risk calculator are discussed in subsequent sections. For
+additional information about how each parameter is being used within the
+methodologies implemented in the oq-engine, users advised to consult the
+OpenQuake-engine Book (Risk).
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+[general]
+description = Scenario Risk Nepal
+calculation_mode = scenario_risk
+
+exposure_file = exposure_model.xml
+region_constraint = 78.0 31.5,89.5 31.5,89.5 25.5,78 25.5
+asset_hazard_distance = 10
+...
+\end{Verbatim}
+
+\begin{itemize}
+\item  \Verb+description+: a parameter that can be used to include some information about the type of calculations that are going to be performed;
+\item  \Verb+calculation_mode+: this parameter sets the type of calculations. The key word for each risk calculator is described in the following sections;
+\item  \Verb+exposure_file+: this parameter is used to specify the path to the \gls{exposure model} file;
+\item  \Verb+region_constraint+: this field is used to define the polygon enclosing the region of interest. Assets outside of this region will not be considered in the risk calculations. This region is defined using pairs of coordinates (longitude and latitude in decimal degrees) that indicate the vertices of the polygon;
+\item  \Verb+asset_hazard_distance+: this parameter indicates the maximum allowable distance between an \gls{asset} and the closest hazard input. If no hazard input is found within this distance, the \gls{asset} is skipped and a message is provided mentioning the id of the asset that is affected by this issue. If this parameter is not provided, the OpenQuake-Engine assumes the maximum allowable distance as 5 km.
+\end{itemize}
+
+Depending on the type of calculations, other parameters besides the
+aforementioned ones need to be provided, as will be described in the following
+sections.
+
+\subsection{Scenario Damage Calculator}
+\label{subsec:config_scenario_damage}
+\input{oqum/risk/01a_config_scenario_damage}
+
+\subsection{Scenario Risk Calculator}
+\label{subsec:config_scenario_risk}
+\input{oqum/risk/01a_config_scenario_risk}
+
+\subsection{Classical Probabilistic Seismic Damage Calculator}
+\label{subsec:config_classical_damage}
+\input{oqum/risk/01a_config_classical_damage}
+
+\subsection{Classical Probabilistic Seismic Risk Calculator}
+\label{subsec:config_classical_risk}
+\input{oqum/risk/01a_config_classical_risk}
+
+\subsection{Event-Based Probabilistic Seismic Risk Calculator}
+\label{subsec:config_event_based_risk}
+\input{oqum/risk/01a_config_event_based_risk}
+
+\subsection{Retrofit Benefit-Cost Ratio Calculator}
+\label{subsec:config_benefit_cost}
+\input{oqum/risk/01a_config_benefit_cost}
+
+\cleardoublepage

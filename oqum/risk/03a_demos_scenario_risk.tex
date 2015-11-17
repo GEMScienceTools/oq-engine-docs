@@ -1,0 +1,35 @@
+A rupture of magnitude 7 Mw in the central part of Nepal was considered within
+this demo. The characteristics of this rupture (geometry, dip, rake,
+hypocentre,  upper and lower seismogenic depth) have been defined in the
+\verb+rupture.xml+ file, whist the hazard calculation settings have been
+established on the \verb+job_haz_ini+ file. In order to calculate the set of
+ground motion fields due to this rupture, users should navigate to the folder
+where the demo files are located, and use the following command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rh job_gmfq.ini
+\end{Verbatim}
+
+which will produce the following hazard result:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 10 results:
+id | output_type | name
+20 | gmf_scenario | gmf_scenario
+\end{Verbatim}
+
+Then, this hazard input can be used for the risk calculations using the
+following command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rr job_risk.ini --hazard-output-id 20
+\end{Verbatim}
+
+leading to the following results:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 11 results:
+id | output_type | name
+21 | aggregate_loss | Aggregate Loss type=structural
+22 | loss_map | loss maps. type=structural
+\end{Verbatim}

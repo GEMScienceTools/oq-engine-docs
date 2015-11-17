@@ -1,0 +1,28 @@
+The same hazard input as described in the Classical PSHA-based Risk demo was used for this demo. Thus, the workflow to produce the set of hazard curves described in \ref{subsec:demos_classical_risk} is also valid herein. Then, to run the Classical PSHA-based Damage demo, users should navigate to the folder containing the demo input models and configuration files and employ the following command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rh job_hazard.ini
+\end{Verbatim}
+
+which will produce the following sample hazard output:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 5 results:
+  id | output_type | name
+ 420 | Hazard Curve | Hazard Curve rlz-102-PGA
+ 419 | Hazard Curve (multiple imts) | hc-multi-imt-rlz-102
+\end{Verbatim}
+
+In this demo, the damage distribution for each asset in the exposure model is produced. The following command launches the risk calculations:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rr job_risk.ini --hazard-output-id 419
+\end{Verbatim}
+
+and the following sample outputs are obtained:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 6 results:
+ id | output_type | name
+ 421 | Damage Per Asset | Damage distribution for hazard=419
+\end{Verbatim}

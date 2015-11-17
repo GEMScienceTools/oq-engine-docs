@@ -1,0 +1,339 @@
+All risk calculators in the OpenQuake-engine require an \gls{exposure model} that needs to be stored in NRML. There are a number of parameters that compose the metadata, and provides general information regarding the \glspl{asset} within the \gls{exposure model}, as described below:
+
+\begin{itemize}
+\item  \Verb+id+: a unique key used to identify the \gls{exposure model};
+\item  \Verb+category+: a string used to define the type of \glspl{asset} being stored (e.g: buildings, population, contents);
+\item  \Verb+taxonomySource+: attribute used to define the \gls{taxonomy} being used to classify the  \glspl{asset};
+\item  \Verb+description+: brief string with further information about the \gls{exposure model};
+\end{itemize}
+
+This information is common to all the assets and needs to be incorporated at the beginning of the exposure model file according to the following example:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+<?xml version="1.0" encoding="UTF-8"?>
+<nrml xmlns="http://openquake.org/xmlns/nrml/0.4">
+<\textcolor{red}{exposureModel} id="exposure_model"
+      category="buildings"
+      taxonomySource="GEM taxonomy">
+    <\textcolor{green}{description}>Buildings in Pavia</\textcolor{green}{description}>
+...
+\end{Verbatim}
+
+The NRML schema for the exposure model allows the definition of various types of costs (structural cost, nonstructural cost, contents cost, business interruption cost). Further explanations regarding the quantities that are currently being used to define the exposure elements can be found in the OpenQuake-engine Book (Risk).
+
+The way the information about the characteristics of the \glspl{asset} in an \gls{exposure model} are stored can vary strongly depending on how and why the data was compiled. As an example, if national census information is used to estimated the distribution of assets in a given region, it is likely that the number of buildings within a given geographical area will be used to define the dataset, and will be used for estimating the number of collapsed buildings for a scenario earthquake. On the other hand, if simplified methodologies based on proxy data such as population distribution are used to develop the exposure model, then it is likely that the built up area or economic cost of each building typology will be directly derived, and will be used for the estimation of economic losses. Thus, the following set of attributes exist within the schema for the exposure model:
+
+\begin{itemize}
+\item  \Verb+number+: number of units of a given \gls{asset} at a given location;
+\item  \Verb+area+: area of the \gls{asset}, at a given location;
+\item  \Verb+cost+: structural replacement cost of the \gls{asset} at a given location;
+\end{itemize}
+
+The set of required attributes depends on what and how a user wants to store the information about the assets in the exposure model. While the attribute \Verb+number+ might be a rather simple parameter, the other two (area and cost) can be ambiguous, as different ways to define them might be used. With regards to the attribute \Verb+area+, one can either choose to provide the aggregated built up area of the \glspl{asset} per location or the average built up area for a single building unit (noting that an \gls{asset} might be made up of a number of individual buildings). Similarly, the \Verb+cost+ can also be defined as the aggregated structural replacement cost, the cost of replacing a single unit or even the structural replacement cost per unit of area. For the purposes of performing a retrofitting benefit/cost analysis, it is also necessary to define the retrofitting cost (\Verb+reco+). The combination between the possible options in which these three attributes can be defined leads to four ways of storing the information about the assets. For each of these cases a brief explanation and example is provided in this section.
+
+\paragraph{Example 1}
+This example is comprised of an \gls{exposure model} in which the aggregated cost (structural, nonstructural, contents and business interruption) of the buildings of each taxonomy for a set of locations is directly provided. Thus, in order to indicate how the various costs will be defined, the following information needs to be stored in the exposure model file:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{conversions}>
+  <\textcolor{blue}{costTypes}>
+   <\textcolor{magenta}{costType} name="structural" type="aggregated" unit="EUR">
+   <\textcolor{magenta}{costType} name="non_structural" type="aggregated" unit="EUR" />
+   <\textcolor{magenta}{costType} name="business_interruption" type="aggregated" 
+                                                      unit="EUR"/>
+   <\textcolor{magenta}{costType} name="contents" type="aggregated" unit="EUR"/>
+  </\textcolor{blue}{costTypes}>
+ </\textcolor{green}{conversions}>
+...
+\end{Verbatim}
+
+In this case, the cost \Verb+type+ of each component as been defined as \Verb+aggregated+. Once the way in which each cost is going to be defined has been established, the values for each asset can be stored according to the following format:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{assets}>
+  <\textcolor{blue}{asset} id="asset_01" taxonomy="RC/DMRF-D/LR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.17" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="1500"/>
+    <cost type="non_structural" value="2500"/>
+    <cost type="contents" value="1200"/>
+    <cost type="business_interruption" value="400"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+...
+  <\textcolor{blue}{asset} id="asset_99"  taxonomy="RC/DMRF-D/HR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.12" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="2500"/>
+    <cost type="non_structural" value="2100"/>
+    <cost type="contents" value="1900"/>
+    <cost type="business_interruption" value="40"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+ </\textcolor{green}{assets}>
+</\textcolor{red}{exposureModel}>
+</nrml>
+\end{Verbatim}
+
+Each \gls{asset} is uniquely identified by its \Verb+id+, which is used by the OpenQuake-engine to relate each asset with the associated results (e.g. loss exceedance curves). Then, a pair of coordinates (latitude and longitude) for a \Verb+location+ where the asset is assumed to exist is defined. \footnote{Within the OpenQuake-engine, longitude and latitude coordinates are internally rounded to a precision of 5 digits after the decimal point.} Each asset must be classified according to a \Verb+taxonomy+, so that the OpenQuake-engine is capable of employing the appropriate \gls{vulnerability function} or \gls{fragility function} in the risk calculations. Finally, the cost values of each \Verb+type+ are stored within the \Verb+costs+ attribute. In this example, the aggregated value for all units (within a given asset) at each location is provided directly, so there is no need to define other attributes such as \Verb+number+ or \Verb+area+. This mode of representing an exposure model is probably the simplest one.
+
+\paragraph{Example 2}
+In this example an \gls{exposure model} containing the number of units (buildings) and the associated costs per unit of each building typology is presented.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{conversions}>
+  <\textcolor{blue}{costTypes}>
+   <\textcolor{magenta}{costType} name="structural" type="per_unit" unit="EUR">
+   <\textcolor{magenta}{costType} name="non_structural" type="per_unit" unit="EUR" />
+   <\textcolor{magenta}{costType} name="business_interruption" type="per_unit" 
+                                                      unit="EUR"/>
+   <\textcolor{magenta}{costType} name="contents" type="per_unit" unit="EUR"/>
+  </\textcolor{blue}{costTypes}>
+ </\textcolor{green}{conversions}>
+...
+\end{Verbatim}
+
+For this case, the cost \Verb+type+ has been set to \Verb+per_unit+. Then, the information from each asset can be stored following the format below:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{assets}>
+  <\textcolor{blue}{asset} id="asset_01" number="10" taxonomy="RC/DMRF-D/LR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.17" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="150"/>
+    <cost type="non_structural" value="250"/>
+    <cost type="contents" value="120"/>
+    <cost type="business_interruption" value="40"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+...
+  <\textcolor{blue}{asset} id="asset_99" number="20" taxonomy="RC/DMRF-D/HR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.12" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="125"/>
+    <cost type="non_structural" value="105"/>
+    <cost type="contents" value="95"/>
+    <cost type="business_interruption" value="20"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+ </\textcolor{green}{assets}>
+</\textcolor{red}{exposureModel}>
+</nrml>
+\end{Verbatim}
+
+In this example, the various costs for each asset is not provided directly, as happened in the previous example. In order to carry out the risk calculations in which the economic cost of each asset is required, the OpenQuake-engine multiplies, for each asset, the number of units (buildings) by the ``per unit'' replacement cost. Note that in this case, there is no need to specify the attribute \Verb+area+.
+
+\paragraph{Example 3}
+This example is comprised of an \gls{exposure model} containing the built up area of each building typology for a set of locations, and the associated costs per area.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{conversions}>
+  <\textcolor{blue}{area} type="aggregated" unit="square meters"/>
+  <\textcolor{blue}{costTypes}>
+   <\textcolor{magenta}{costType} name="structural" type="per_area" unit="EUR">
+   <\textcolor{magenta}{costType} name="non_structural" type="per_area" unit="EUR" />
+   <\textcolor{magenta}{costType} name="business_interruption" type="per_area" 
+                                                      unit="EUR"/>
+   <\textcolor{magenta}{costType} name="contents" type="per_area" unit="EUR"/>
+  </\textcolor{blue}{costTypes}>
+ </\textcolor{green}{conversions}>
+...
+\end{Verbatim}
+
+In order to compile an \gls{exposure model} with this structure, it is required to set the cost \Verb+type+ to \Verb+per_area+. In addition, it is also necessary to specify if the \Verb+area+ that is being store represents the aggregated area of number of units within an asset, or the average area of a single unit. In this particular case, the \Verb+area+ that is being stored is the aggregated built up area per asset, and thus this attribute was set to \Verb+aggregated+.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{assets}>
+  <\textcolor{blue}{asset} id="asset_01" area="50" taxonomy="RC/DMRF-D/LR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.17" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="100"/>
+    <cost type="non_structural" value="200"/>
+    <cost type="contents" value="90"/>
+    <cost type="business_interruption" value="10"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+...
+  <\textcolor{blue}{asset} id="asset_99" area ="60" taxonomy="RC/DMRF-D/HR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.12" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="150"/>
+    <cost type="non_structural" value="250"/>
+    <cost type="contents" value="50"/>
+    <cost type="business_interruption" value="30"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+ </\textcolor{green}{assets}>
+</\textcolor{red}{exposureModel}>
+</nrml>
+\end{Verbatim}
+
+Once again, the OpenQuake-engine needs to carry out some calculations in order to compute the different costs per asset. In this case, this value is computed by multiplying the aggregated built up \Verb+area+ of each building typology by the associated cost per unit of area. Notice that in this case, there is no need to specify the attribute \Verb+number+.
+
+\paragraph{Example 4}
+This example is comprised of an \gls{exposure model} containing the number of buildings for each location, the average built up area per building unit and the associated costs per area.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{conversions}>
+  <\textcolor{blue}{area} type="per_asset" unit="square meters"/>
+  <\textcolor{blue}{costTypes}>
+   <\textcolor{magenta}{costType} name="structural" type="per_area" unit="EUR">
+   <\textcolor{magenta}{costType} name="non_structural" type="per_area" unit="EUR" />
+   <\textcolor{magenta}{costType} name="business_interruption" type="per_area" 
+                                                      unit="EUR"/>
+   <\textcolor{magenta}{costType} name="contents" type="per_area" unit="EUR"/>
+  </\textcolor{blue}{costTypes}>
+ </\textcolor{green}{conversions}>
+...
+\end{Verbatim}
+
+Similarly to what was described in the previous example, the various costs \Verb+type+ also need to be establish as \Verb+per_area+, but the \Verb+type+ of area is now defined as \Verb+per_unit+.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{assets}>
+  <\textcolor{blue}{asset} id="asset_01" number="5" area="50" taxonomy="RC/DMRF-D/LR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.17" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="100"/>
+    <cost type="non_structural" value="200"/>
+    <cost type="contents" value="90"/>
+    <cost type="business_interruption" value="10"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+...
+  <\textcolor{blue}{asset} id="asset_99" number="8" area ="60" taxonomy="RC/DMRF-D/HR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.12" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="150"/>
+    <cost type="non_structural" value="250"/>
+    <cost type="contents" value="50"/>
+    <cost type="business_interruption" value="30"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+ </\textcolor{green}{assets}>
+</\textcolor{red}{exposureModel}>
+</nrml>
+\end{Verbatim}
+
+In this example, the OpenQuake-engine will make use of all the parameters to estimate the various costs of each asset, by multiplying the number of buildings by its average built up area, and then by the respective cost per unit of area.
+
+\paragraph{Example 5}
+In this example, additional information will be included, which is required for other risk analysis besides loss estimation, such as the calculation of insured losses or benefit/cost analysis. For the former assessment, it is necessary to establish how the insured limit and deductible is going to be define, according to the format below. 
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{conversions}>
+  <\textcolor{blue}{costTypes}>
+   <\textcolor{magenta}{costType} name="structural" type="aggregated" unit="EUR">
+   <\textcolor{magenta}{costType} name="non_structural" type="aggregated" unit="EUR" />
+   <\textcolor{magenta}{costType} name="business_interruption" type="aggregated" 
+                                                      unit="EUR"/>
+   <\textcolor{magenta}{costType} name="contents" type="aggregated" unit="EUR"/>
+  </\textcolor{blue}{costTypes}>
+  <\textcolor{blue}{deductible} isAbsolute="false"/>
+  <\textcolor{blue}{insuranceLimit} isAbsolute="false"/>
+ </\textcolor{green}{conversions}>
+...
+\end{Verbatim}
+
+In this example, both the insurance limit and the deductible were defined as a fraction of the costs, by setting the attribute \Verb+isAbsolute+ to \Verb+false+. On the other hand, a user could define one or both of these parameters as the absolute threshold, by setting the aforementioned attribute to \Verb+true+. Then, for each type of cost, the limit and deductible value can be stored for each asset.
+Moreover, in order to perform a benefit/cost assessment, it is also fundamental to indicate the retrofitting cost. This parameter is handled in the same manner as the structural cost, and it should be stored according to the following structure.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{assets}>
+  <\textcolor{blue}{asset} id="asset_01" taxonomy="RC/DMRF-D/LR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.17" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="1500" deductible=".05" 
+                insuranceLimit="0.9" retrofitted="200"/>
+    <cost type="non_structural" value="2500" deductible=".1" 
+                insuranceLimit="0.8"/>
+    <cost type="contents" value="1200" deductible=".2" 
+                insuranceLimit="0.6"/>
+    <cost type="business_interruption" value="400" deductible=".1" 
+                insuranceLimit="0.5"/>
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+...
+  <\textcolor{blue}{asset} id="asset_99"  taxonomy="RC/DMRF-D/HR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.12" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="2500" deductible=".1" 
+                insuranceLimit="0.9"/ retrofitted="300"/>
+    <cost type="non_structural" value="2100" deductible=".05" 
+                insuranceLimit="0.7"/>
+    <cost type="contents" value="1900" deductible=".2" 
+                insuranceLimit="0.7"/>
+    <cost type="business_interruption" value="40"/ deductible=".05" 
+                insuranceLimit="0.9">
+   </\textcolor{magenta}{costs}>
+  </\textcolor{blue}{asset}>
+ </\textcolor{green}{assets}>
+</\textcolor{red}{exposureModel}>
+</nrml>
+\end{Verbatim}
+
+Despite the fact that for the demonstration of how the insurance parameters and retrofitting cost can be stored it was used the aggregated type of cost (structure described in example 1), it is important to mention that any of the other storing approaches can also be employed (example 2 -4).
+
+\paragraph{Example 6}
+The OpenQuake-engine is also capable of estimating human losses, based on a number of occupants within an asset, at a certain time of the day. In this example, it is demonstrated how this parameter is defined for each asset. In addition, this example also serves the purpose of presenting an \gls{exposure model} in which three cost types have been defined following different structures.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{conversions}>
+  <\textcolor{blue}{area} type="aggregated" unit="square meters"/>
+  <\textcolor{blue}{costTypes}>
+   <\textcolor{magenta}{costType} name="structural" type="per_unit" unit="EUR">
+   <\textcolor{magenta}{costType} name="non_structural" type="per_area" unit="EUR" />
+   <\textcolor{magenta}{costType} name="contents" type="aggregated" unit="EUR"/>
+  </\textcolor{blue}{costTypes}>
+ </\textcolor{green}{conversions}>
+...
+\end{Verbatim}
+
+As previously mentioned, in this example only three costs are being stored, and each one follows a different approach. The \Verb+structural+ cost is being defined as the replacement cost per unit (example 2), the \Verb+non_structural+ cost is established as the cost per area (example 3), and the \Verb+contents+ cost is provided directly as the aggregated value per asset (example 1). The information about each asset is presented bellow, along with the number of occupants at different times of the day.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+...
+ <\textcolor{green}{assets}>
+  <\textcolor{blue}{asset} id="asset_01" number="5" area ="500" taxonomy="RC/DMRF-D/LR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.17" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="1000"/>
+    <cost type="non_structural" value="250"/>
+    <cost type="contents" value="5000"/>
+   </\textcolor{magenta}{costs}>
+   <\textcolor{magenta}{occupancies}>
+    <occupancy occupants="10" period="day"/>
+    <occupancy occupants="50" period="night"/>
+   </\textcolor{magenta}{occupancies}>
+  </\textcolor{blue}{asset}>
+...
+  <\textcolor{blue}{asset} id="asset_99" number="8" area ="800" taxonomy="RC/DMRF-D/HR">
+   <\textcolor{magenta}{location} lon="9.15" lat="45.12" />
+   <\textcolor{magenta}{costs}>
+    <cost type="structural" value="2000"/>
+    <cost type="non_structural" value="400"/>
+    <cost type="contents" value="4000"/>
+   </\textcolor{magenta}{costs}>
+   <\textcolor{magenta}{occupancies}>
+    <occupancy occupants="20" period="day"/>
+    <occupancy occupants="30" period="night"/>
+   </\textcolor{magenta}{occupancies}>
+  </\textcolor{blue}{asset}>
+ </\textcolor{green}{assets}>
+</\textcolor{red}{exposureModel}>
+</nrml>
+\end{Verbatim}
+
+The number of occupants for each asset is stored under the \Verb+occupancies+ field, as part of the \Verb+occupancy+ instance. The number and type of periods of the day is not a fixed variable, and a user can provide as many as needed (e.g. morning, afternoon, night, transit, 9am-17pm). The descriptions used to define each \Verb+period+ are used to specify the time of the day for which the human losses should be estimated in the Scenario Risk calculator.
+
+The way this information is being stored is constantly being modified, as further feedback from users and experts is received. Hence, it is important to understand which version of NRML the engine is using, in order to avoid incompatibility issues. NRML is currenly v0.4 and documentation about each release can be found on GitHub (see \href{http://gitub.com/gem/oq-nrmllib}{oq-nrmllib}). Several examples of \glspl{exposure model} containing different types of information are presented below.
