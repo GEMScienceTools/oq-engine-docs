@@ -35,7 +35,6 @@ usage: oq-engine [--help]
                  [--export-risk-outputs RISK_CALCULATION_ID TARGET_DIR]
                  [--save-hazard-calculation HAZARD_CALCULATION_ID DUMP_DIR]
                  [--load-hazard-calculation DUMP_DIR]
-                 [--load-gmf GMF_FILE]
                  [--load-curve CURVE_FILE]
                  [--list-imported-outputs]
 
@@ -142,9 +141,6 @@ Save/Load:
                         SES outputs currently supported.
 
 Import:
-  --load-gmf GMF_FILE   Load gmf from a file. Only single-source gmf are
-                        supported currently. The file can be xml or tab-
-                        separated.
   --load-curve CURVE_FILE
                         Load hazard curves from an XML file
   --list-imported-outputs
