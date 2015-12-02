@@ -1,11 +1,12 @@
 Starting from OpenQuake-engine v1.6, the Scenario Damage calculator also
-accepts consequence models in addition to fragility models, in order to
-estimate consequences based on the calculated damage distribution. The user
-may provide one consequence model file corresponding to each loss type
-(amongst structural, nonstructural, contents, and business interruption) for
-which a fragility model file is provided. Whereas providing a fragility model
-file for at least one loss type is mandatory for running a Scenario Damage
-calculation, providing corresponding consequence model files is optional.
+accepts \glspl{consequence model} in addition to \glspl{fragility model}, in
+order to estimate consequences based on the calculated damage distribution.
+The user may provide one \gls{consequence model} file corresponding to each
+loss type (amongst structural, nonstructural, contents, and business
+interruption) for which a fragility model file is provided. Whereas providing
+a \gls{fragility model} file for at least one loss type is mandatory for
+running a Scenario Damage calculation, providing corresponding
+\gls{consequence model} files is optional.
 
 This section describes the schema currently used to store \glspl{consequence
 model}, which are optional inputs for the Scenario Damage Calculator. A
@@ -22,10 +23,10 @@ An example consequence model is shown below:
 \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}\\	
 
 The initial portion of the schema contains general information that describes
-some general aspects of the consequence model. The information in this metadata
-section is common to all of the functions in the consequence model and needs to
-be included at the beginning of every consequence model file. The parameters are
-described below:
+some general aspects of the \gls{consequence model}. The information in this
+metadata section is common to all of the functions in the \gls{consequence
+model} and needs to be included at the beginning of every \gls{consequence
+model} file. The parameters are described below:
 
 \begin{itemize}
 
@@ -90,7 +91,7 @@ The following attributes are needed to define a consequence function:
     respectively. The attribute \Verb+ls+ specifies the limit state for which 
     the parameters are being defined. The parameters for each limit state
     must be provided on a separate line. The number and names of the limit 
-    states in each consequence function must be equal to the number of limit 
+    states in each \gls{consequence function} must be equal to the number of limit 
     states defined in the corresponding \gls{fragility model}
     using the attribute \Verb+limitStates+.
 
