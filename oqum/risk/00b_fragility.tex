@@ -28,8 +28,8 @@ presented.
 \label{fig:fragModelContinuous}
 \end{figure}
 
-An example fragility model comprising one discrete fragility function and one
-continuous fragility function is shown below:
+An example \gls{fragility model} comprising one discrete \gls{fragility
+function} and one continuous \gls{fragility function} is shown below:
 
 \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}\\
 
@@ -42,8 +42,8 @@ some general aspects of the fragility model.
     \item \Verb+id+: a unique key used to identify the \gls{fragility model}
 
     \item \Verb+assetCategory+: an optional string used to specify the type of
-    \glspl{asset} for which fragility functions will be defined in this file 
-    (e.g: buildings, lifelines)
+    \glspl{asset} for which \glspl{fragility function} will be defined in this
+    file (e.g: buildings, lifelines)
 
     \item \Verb+lossCategory+: valid strings for this attribute are 
     ``structural'', ``nonstructural'', ``contents'', and 
@@ -56,9 +56,9 @@ some general aspects of the fragility model.
 
 \inputminted[firstline=4,firstnumber=4,lastline=9,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}\\
 
-The information in the metadata section is common to all of the functions in the
-fragility model and needs to be included at the beginning of every fragility
-model file. The parameters are described below:
+The information in the metadata section is common to all of the functions in
+the \gls{fragility model} and needs to be included at the beginning of every
+\gls{fragility model} file. The parameters are described below:
 
 \begin{itemize}
 
@@ -77,10 +77,10 @@ model file. The parameters are described below:
 \end{itemize}
 
 In order to perform probabilistic or scenario damage calculations, it is
-necessary to define a fragility function for each building typology present in
-the exposure model. The fragility functions can be defined using either a
-discrete or a continuous format, and the fragility model file can include a
-mix of both types of fragility functions.
+necessary to define a \gls{fragility function} for each building typology present in
+the exposure model. The \glspl{fragility function} can be defined using either a
+discrete or a continuous format, and the \gls{fragility model} file can include a
+mix of both types of \glspl{fragility function}.
 
 The following snippet from the above fragility model example file defines a
 discrete fragility function:
@@ -168,3 +168,15 @@ The following attributes are needed to define a continuous fragility function:
     using the attribute \Verb+limitStates+.
 
 \end{itemize}
+
+
+Several methodologies to derive fragility functions are currently being
+evaluated by \gls{acr:gem} and have been included as part of the Risk
+Modeller's Toolkit, the code for which can be found on a public repository at
+GitHub at the following address: 
+\href{http://github.com/gemsciencetools/rmtk}{http://github.com/gemsciencetools/rmtk}.
+
+Scripts to convert \glspl{fragility function} in CSV format or as Excel or
+ASCII files into NRML are also under development, and can be found at the
+OpenQuake platform at the following address:
+\href{https://platform.openquake.org/risk_input_preparation_toolkit/}{https://platform.openquake.org/risk\_input\_preparation\_toolkit/}.
