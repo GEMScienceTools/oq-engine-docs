@@ -1,17 +1,38 @@
-This calculator computes loss maps and loss statistics due to a single seismic
-event, for a collection of assets. The hazard input can be a single ground
-motion field (e.g. the median distribution of ground motion in the region of
-interest) or a set of ground motion fields allowing the characterisation of
-the inter- and intra-event variability from the GMPE. It is noted that the
-hazard input can either be calculated using the hazard component of OpenQuake-
-engine (oq-hazardlib), or provided to the risk component iian external file
-following the respective Natural hazards' Risk Markup Language (NRML) schema
-(see \href{http://github.com/gem/oq-nrmllib}{oq-nrmllib}). A vulnerability
-model is combined with the distribution of the ground motions at each asset
-location to calculate the loss distribution for each asset, as well as the
-statistics of the total loss throughout the region of interest. The required
-input files and resulting output files are depicted in
-Figure~\ref{fig:io-structure-scenario-risk}.
+The scenario risk calculator computes loss statistics for all assets in a
+given exposure model for a single specified earthquake rupture. Loss
+statistics include the mean and standard deviation of ground-up losses and
+insured losses for each loss type considered in the analysis. Loss statistics
+can currently be computed for five different loss types using this calculator:
+structural losses, nonstructural losses, contents losses, downtime losses, and
+occupant fatalities. This calculator requires the definition of a finite
+rupture model, an exposure model and a vulnerability model for each loss type
+considered; the main results are the loss statistics per asset and mean loss
+maps.
+
+The rupture characteristics—i.e. the magnitude, hypocenter and fault
+geometry—are modelled as deterministic in the scenario calculators. Multiple
+realizations of different possible ground motion fields (GMFs) due to the
+single rupture are generated, taking into consideration both the inter-event
+variability of ground motions, and the intra-event residuals obtained from a
+spatial correlation model for ground motion residuals. The use of logic-trees
+allows for the consideration of uncertainty in the choice of a ground motion
+model for the given tectonic region.
+
+As an alternative to computing the GMFs with OpenQuake, users can also provide
+their own sets of GMFs as input to the scenario risk calculator.
+
+For each GMF realization, a loss ratio is sampled for every asset in the
+exposure model using the provided probabilistic vulnerability model, taking
+into consideration the correlation model for vulnerability of different assets
+of a given taxonomy. Finally loss statistics, i.e., the mean loss and standard
+deviation of loss for both ground-up losses and insured losses across all
+realizations, are calculated for each asset. Mean loss maps are also generated
+by this calculator, describing the mean ground-up losses and mean insured
+losses caused by the scenario event for the different assets in the exposure
+model.
+
+The required input files required for running a scenario risk calculation and
+the resulting output files are depicted in Figure~\ref{fig:io-structure-scenario-risk}.
 
 \begin{figure}[ht]
 \centering
