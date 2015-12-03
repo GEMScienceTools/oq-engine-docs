@@ -1,15 +1,23 @@
-The classical PSHA-based damage calculator convolves through numerical
-integration, the damage state fragility functions for an asset with the
-seismic hazard curve at the location of the asset. The main results of this
-calculator are damage distribution statistics for each asset, which describe
-the expected fraction of buildings in each damage state. Furthermore, a
-probabilistic collapse map can be extracted giving the probability of collapse
-for each asset within the specified time period. Damage distribution
+The classical PSHA-based damage calculator integrates the fragility functions
+for an asset with the seismic hazard curve at the location of the asset, to
+give the expected damage distribution for the asset within a specified time
+period. The calculator requires the definition of an exposure model, a
+fragility model for each taxonomy represented in the exposure model, and
+hazard curves calculated in the region of interest. The main results of this
+calculator are the expected damage distribution for each asset, which describe
+the probability of the asset being in different damage states, and collapse
+maps for the region, which describe the probability of collapse for different
+assets in the portfolio over the specified time period. Damage distribution
 aggregated by taxonomy or of the total portfolio (considering all assets in
 the exposure model) can not be extracted using this calculator, as the spatial
 correlation of the ground motion residuals is not taken into consideration.
-The input and output files involved in this calculator are presented in
-Figure~\ref{fig:io-structure-classical-damage}.
+
+The hazard curves required for this calculator can be calculated by the
+OpenQuake engine for all asset locations in the exposure model using the
+classical PSHA approach \citep{cornell1968, mcguire1976}.
+
+The required input files required for running a classical probabilistic damage
+calculation and the resulting output files are depicted in Figure~\ref{fig:io-structure-classical-damage}.
 
 \begin{figure}[ht]
 \centering
