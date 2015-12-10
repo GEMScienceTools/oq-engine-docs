@@ -14,8 +14,7 @@ of different loss levels over the specified time period, and loss maps for the
 region, which describe the loss values that have a given probability of
 exceedance over the specified time period. Aggregate loss exceedance curves
 can be also be produced using this calculator; these describe the probability
-of exceedance of different loss levels for all assets of a single taxonomy, or
-for all assets in the portfolio, over the specified time period. Finally,
+of exceedance of different loss levels for all assets in the portfolio. Finally,
 event loss tables can be produced using this calculator; these tables describe
 the total loss across the portfolio for each seismic event in the stochastic
 event set.
@@ -41,10 +40,9 @@ For each rupture or event in the stochastic event sets, a spatially correlated
 ground motion field (GMF) realisation is generated, taking into consideration
 both the inter-event variability of ground motions, and the intra-event
 residuals obtained from a spatial correlation model for ground motion
-residuals. The use of logic-trees allows for the consideration of uncertainty
-in the choice of a seismic source model, in the choice of GMPE models for the
-different tectonic regions, and in the choice of vulnerability functions for
-the different taxonomy types in the exposure model.
+residuals. The use of logic trees allows for the consideration of uncertainty
+in the choice of a seismic source model, and in the choice of GMPE models for the
+different tectonic regions.
 
 For each GMF realization, a loss ratio is sampled for every asset in the
 exposure model using the provided probabilistic vulnerability model, taking
