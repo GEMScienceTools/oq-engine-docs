@@ -73,7 +73,7 @@ values for the assets. However, multiple cost types can be defined for each
 asset in the same exposure model.
 
 The \Verb+unit+ attribute of the \Verb+costType+ element is used for
-specifying the currency unit for the corresponding cost type. Note that
+specifying the currency unit for the corresponding cost type. Note that the
 OpenQuake-engine itself is agnostic to the currency units; the \Verb+unit+ is
 thus a descriptive attribute which is used by OpenQuake-engine to annotate the
 results of a risk assessment. This attribute can be set to any valid Unicode
@@ -103,8 +103,8 @@ conversions section. The \Verb+area+ element defines a \Verb+type+, and a
 \Verb+unit+ attribute.
 
 The \Verb+unit+ attribute of the \Verb+area+ element is used for specifying
-the units for the area of an asset. OpenQuake-engine itself is agnostic to the
-area units; the \Verb+unit+ is thus a descriptive attribute which is used by
+the units for the area of an asset. The OpenQuake-engine itself is agnostic to the
+area units; the \Verb+unit+ is thus a descriptive attribute which is used by the
 OpenQuake-engine to annotate the results of a risk assessment. This attribute
 can be set to any valid Unicode string.
 
@@ -149,7 +149,7 @@ assigned to each asset based on the current schema for the exposure model:
 \begin{itemize}
 
     \item \Verb+id+: mandatory; a unique key used to identify the given
-    \gls{asset}, which is used by OpenQuake-engine to relate each asset 
+    \gls{asset}, which is used by the OpenQuake-engine to relate each asset 
     with its associated results.
 
     \item \Verb+taxonomy+: mandatory; specifies the building typology of the 
