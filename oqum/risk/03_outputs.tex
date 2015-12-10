@@ -23,7 +23,7 @@ calc_id | num_jobs | latest_job_status | last_update | description
 \end{Verbatim}
 
 Then, in order to display a list of the risk outputs from a given job, the
-following command can be used
+following command can be used:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 user@ubuntu:~\$ oq-engine --list-outputs <risk_calculation_id>
@@ -35,7 +35,8 @@ or simply:
 user@ubuntu:~\$ oq-engine --lo <risk_calculation_id>
 \end{Verbatim}
 
-Which will display a list of risk calculations as presented below.
+which will display a list of outputs for the calculation requested, as
+presented below:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Calculation 4 results:
@@ -45,18 +46,33 @@ id | output_type | name
 \end{Verbatim}
 
 
-Then, in order to export the risk calculation outputs in the appropriate xml
+Then, in order to export all of the risk calculation outputs in the appropriate xml
 format, the following command can be used.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --export-risk <risk_output_id>
+user@ubuntu:~\$ oq-engine --export-outputs <risk_calculation_id>
 <output_directory>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --er <risk_output_id> <output_directory>
+user@ubuntu:~\$ oq-engine --eos <risk_calculation_id> <output_directory>
+\end{Verbatim}
+
+If, instead of exporting all of the outputs from a particular calculation,
+only particular output files need to be exported, this can be achieved by
+using the \Verb+--export-output+ option and providing the id of the required
+output:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --export-output <risk_output_id> <output_directory>
+\end{Verbatim}
+
+or simply:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --eo <risk_output_id> <output_directory>
 \end{Verbatim}
 
 
