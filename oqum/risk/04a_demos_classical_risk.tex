@@ -7,7 +7,7 @@ only one set seismic hazard curves will be produced. To do so, the following
 command needs to be employed:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --rh job_hazard.ini
+user@ubuntu:~\$ oq-engine --run job_hazard.ini
 \end{Verbatim}
 
 which will produce the following hazard output:
@@ -23,7 +23,7 @@ maps (for probabilities of exceedance of 1\% and 10\%) are produced. The
 following command launches these risk calculations:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --rr job_risk.ini --hazard-output-id 27
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-output-id 27
 \end{Verbatim}
 
 and the following outputs are expected:

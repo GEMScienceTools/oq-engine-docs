@@ -1,18 +1,6 @@
 Using the command line interface, risk calculations can be launched and the
 resulting outputs can be extracted. This section describes all the currently
-implemented commands and presents examples for each of the calculators. One of
-the first tasks that needs to be performed is the definition of the seismic
-hazard input.
-
-Whether a user chooses to load pre-computed ground motion fields, or calculate
-this input using the hazard component of the OpenQuake-engine, a unique
-\verb+id+ is associated to the set of ground motion fields, as depicted below.
-
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 3 results:
-id | output_type | name
-12 | gmf_scenario | gmf_scenario
-\end{Verbatim}
+implemented commands and presents examples for each of the calculators.
 
 This is the parameter that will be used when launching the risk calculations
 to indicate which hazard input should be employed. In the case of the
@@ -43,14 +31,13 @@ To do so, the id of the respective hazard result should be employed when
 launching the risk calculations, as depicted below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run-risk job.ini --hazard-output-id
-<hazard_output_id>
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-output-id <hazard_output_id>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --rr job.ini --ho <hazard_output_id>
+user@ubuntu:~\$ oq-engine --run job_risk.ini --ho <hazard_output_id>
 \end{Verbatim}
 
 On the other hand, a user might also want to run the risk calculations
@@ -59,12 +46,11 @@ case, rather than providing the \verb+hazard-output-id+, users need to provide
 the id of the hazard calculation as follows.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run-risk job.ini --hazard-calculation-id
-<hazard_calculation_id>
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-calculation-id <hazard_calculation_id>
 \end{Verbatim}
 
 or simply:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --rr job.ini --co <hazard_calculation_id>
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hc <hazard_calculation_id>
 \end{Verbatim}
