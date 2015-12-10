@@ -1,0 +1,20 @@
+The same rupture described in the Scenario Risk demo was used for this demo.
+The workflow to produce the set of ground motion fields described in the
+previous section is also valid herein. Then, to run the Scenario Damage demo,
+users should move to the folder where the required files have been placed and
+employ following command:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rr job_damage.ini --hazard-output-id 20
+\end{Verbatim}
+
+and the following outputs will be produced:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 12 results:
+id | output_type | name
+23 | collapse_map | Collapse Map per Asset
+24 | dmg_dist_per_asset | Damage Distribution per Asset
+25 | dmg_dist_per_taxonomy | Damage Distribution per Taxonomy
+26 | dmg_dist_total | Damage Distribution Total
+\end{Verbatim}

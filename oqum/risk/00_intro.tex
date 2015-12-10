@@ -1,11 +1,9 @@
 \index{OpenQuake-engine!risk}
 
-The seismic risk results are being calculated using the OpenQuake risk library
+The seismic risk results are calculated using the OpenQuake risk library
 (oq-risklib), an open-source suite of tools for seismic risk assessment and
 loss estimation. This library is written in the Python programming language
-and available in the form of a ``developers'' release, that can be executed
-through a command line interface. The code of the library can be found on a
-public repository at GitHub at the following address
+and available in the form of a ``developers'' release at the following location:
 \href{http://github.com/gem/oq-risklib}{http://github.com/gem/oq-risklib}.
 
 The risk component of the OpenQuake-engine can compute both scenario-based and
@@ -14,7 +12,7 @@ types of analysis are currently supported:
 
 \begin{itemize}
 
-    \item \textit{\textbf{Scenario Damage Assessment}}, allowing the
+    \item \textit{\textbf{Scenario Damage Assessment}}, for the
 	calculation of damage distribution statistics for a portfolio of buildings
 	from a single earthquake rupture scenario taking into account aleatory and
 	epistemic ground-motion variability.
@@ -26,18 +24,18 @@ types of analysis are currently supported:
 	same typology can also be taken into consideration.
 
 	\item \textit{\textbf{Classical Probabilistic Seismic Damage Analysis}}, for 
-	calculation of damage state probabilities over a specified time period,  
+	the calculation of damage state probabilities over a specified time period,  
 	and probabilistic collapse maps, starting from the hazard curves 
 	computed following the classical integration procedure (\cite{cornell1968}, 
 	\citet{mcguire1976}) as formulated by \cite{field2003}.
 
-    \item \textit{\textbf{Classical Probabilistic Seismic Risk Analysis}}, allowing
+    \item \textit{\textbf{Classical Probabilistic Seismic Risk Analysis}}, for the
 	calculation of loss curves and loss maps, starting from the hazard curves 
 	computed following the classical integration procedure (\cite{cornell1968}, 
 	\citet{mcguire1976}) as formulated by \cite{field2003}.
 
 	\item \textit{\textbf{Event-Based Probabilistic Seismic Risk Analysis}}, 
-	allowing calculation of event-loss tables starting from stochastic event sets.
+	for the calculation of event-loss tables starting from stochastic event sets.
 	Other results such as loss-exceedance curves, probabilistic loss maps, 
 	average annual losses, and insured loss statistics can be obtained by post-
 	processing the event-loss tables.
@@ -54,32 +52,41 @@ Each calculation workflow has a modular structure, so that intermediate
 results can be exported and analyzed. Moreover, each calculator can be
 extended independently of the others so that additional calculation options
 and methodologies can be easily introduced, without affecting the overall
-calculation workflow.
+calculation workflow. Each workflow is described in more detail in the
+following sections.
 
-The following sections describe the basic inputs required for a risk
-calculation, including exposure models, fragility models, consequence models,
-and vulnerability models. The final section of this chapter describes each of
-the above workflows in detail. For further information regarding the
-theoretical background of the methodologies used for each calculator, users
-are referred to the OpenQuake- engine Book (Risk).
+\section{Scenario Damage Assessment}
+\index{OpenQuake-engine!Risk calculation workflows!Scenario Damage Assessment}
+\label{sec:workflow_scenario_damage}
+\input{oqum/risk/00_workflow_scenario_damage}
 
+\section{Scenario Risk Assessment}
+\index{OpenQuake-engine!Risk calculation workflows!Scenario Risk Assessment}
+\label{sec:workflow_scenario_risk}
+\input{oqum/risk/00_workflow_scenario_risk}
 
-\section{Exposure models}
-\label{sec:exposure}
-\input{oqum/risk/00a_exposure}
+\section{Classical Probabilistic Seismic Damage Analysis}
+\index{OpenQuake-engine!Risk calculation workflows!Classical Probabilistic Seismic Damage Analysis}
+\label{sec:workflow_classical_damage}
+\input{oqum/risk/00_workflow_classical_damage}
 
-\section{Fragility models}
-\label{sec:fragility}
-\input{oqum/risk/00b_fragility}
+\section{Classical Probabilistic Seismic Risk Analysis}
+\index{OpenQuake-engine!Risk calculation workflows!Classical Probabilistic Seismic Risk Analysis}
+\label{sec:workflow_classical_risk}
+\input{oqum/risk/00_workflow_classical_risk}
 
-\section{Consequence models}
-\label{sec:consequence}
-\input{oqum/risk/00c_consequence}
+\section{Event-Based Probabilistic Seismic Risk Analysis}
+\index{OpenQuake-engine!Risk calculation workflows!Event-Based Probabilistic Seismic Risk Analysis}
+\label{sec:workflow_event_based_risk}
+\input{oqum/risk/00_workflow_event_based_risk}
 
-\section{Vulnerability models}
-\label{sec:vulnerability}
-\input{oqum/risk/00d_vulnerability}
+\section{Retrofit Benefit-Cost Ratio Analysis}
+\index{OpenQuake-engine!Risk calculation workflows!Retrofit Benefit-Cost Ratio Analysis}
+\label{sec:workflow_benefit_cost}
+\input{oqum/risk/00_workflow_benefit_cost}
 
-\section{Calculation workflows}
-\label{sec:risk_workflows}
-\input{oqum/risk/00e_risk_workflows}
+For further information regarding the theoretical background of the
+methodologies used for each calculator, users are referred to the OpenQuake-
+engine Book (Risk).
+
+\cleardoublepage

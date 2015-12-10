@@ -1,0 +1,86 @@
+Using the command line interface, risk calculations can be launched and the
+resulting outputs can be extracted. This section describes all the currently
+implemented commands and presents examples for each of the calculators. One of
+the first tasks that needs to be performed is the definition of the seismic
+hazard input.
+
+As mentioned in Chapter~\ref{chap:riskinputs}, the risk calculations can use
+the results produced by the hazard component of the OpenQuake-engine.
+Moreover, for the two scenario-based calculators, users also have the option
+of loading a set of ground motion fields that might have been produced using
+the OpenQuake-engine, or other software.
+
+In order to load ground motion fields based on a single earthquake event, it
+is important to ensure that the ground motion values have been saved
+according to the NRML schema as presented in
+Section~\ref{subsec:output_event_based_psha}. Then, the following line can be
+included in the risk job configuration file:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+gmfs_file = gmfs_filename.xml
+\end{Verbatim}
+
+Whether a user chooses to load pre-computed ground motion fields, or calculate
+this input using the hazard component of the OpenQuake-engine, a unique
+\verb+id+ is associated to the set of ground motion fields, as depicted below.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 3 results:
+id | output_type | name
+12 | gmf_scenario | gmf_scenario
+\end{Verbatim}
+
+This is the parameter that will be used when launching the risk calculations
+to indicate which hazard input should be employed. In the case of the
+scenario-based calculators, there is only a single hazard input (one or a set
+of ground motion fields). For the remaining calculators, where probabilistic
+seismic hazard is used, it is possible to have multiple hazard inputs due to
+the employment of logic trees, as described in
+Section~\ref{sec:hazard_logic_trees}. In the following illustration, a set of
+hazard results produced using the Classical PSHA calculator is presented.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 4 results:
+id | output_type | name
+32 | hazard_curve | hc-rlz-32-PGA
+33 | hazard_curve | hc-rlz-33-PGA
+34 | hazard_curve | hc-rlz-34-PGA
+35 | hazard_curve | hc-rlz-35-PGA
+36 | hazard_curve | mean curve for PGA
+37 | hazard_curve | quantile curve (poe>= 0.15) for imt PGA
+38 | hazard_curve | quantile curve (poe>= 0.85) for imt PGA
+\end{Verbatim}
+
+In this case, since the logic tree had four branches, fours sets of hazard
+curves were produced, each one with its own \verb+id+. In addition, mean and
+quantile hazard curves were also produced. A user may choose to run risk
+calculations using results from one of the branches or mean/quantile curves.
+To do so, the id of the respective hazard result should be employed when
+launching the risk calculations, as depicted below.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --run-risk job.ini --hazard-output-id
+<hazard_output_id>
+\end{Verbatim}
+
+or simply:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rr job.ini --ho <hazard_output_id>
+\end{Verbatim}
+
+On the other hand, a user might also want to run the risk calculations
+considering all the hazard results from a certain calculation run. In this
+case, rather than providing the \verb+hazard-output-id+, users need to provide
+the id of the hazard calculation as follows.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --run-risk job.ini --hazard-calculation-id
+<hazard_calculation_id>
+\end{Verbatim}
+
+or simply:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --rr job.ini --co <hazard_calculation_id>
+\end{Verbatim}
