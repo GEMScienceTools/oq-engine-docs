@@ -50,8 +50,7 @@ Then, in order to export all of the risk calculation outputs in the appropriate 
 format, the following command can be used.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --export-outputs <risk_calculation_id>
-<output_directory>
+user@ubuntu:~\$ oq-engine --export-outputs <risk_calculation_id> <output_directory>
 \end{Verbatim}
 
 or simply:
@@ -84,7 +83,9 @@ attributes are discussed, and example schema is provided.
 
 \subsection{Loss statistics}
 
-This output is produced by the Scenario Risk calculator and is comprised by a mean total loss and associated standard deviation. These results are stored in a comma separate value (.csv) file as follows:
+This output is produced by the Scenario Risk calculator and is comprised by a
+mean total loss and associated standard deviation. These results are stored in
+a comma separate value (.csv) file as follows:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 Mean,Standard Deviation

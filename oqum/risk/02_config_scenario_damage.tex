@@ -31,6 +31,30 @@ seen in the above example configuration file are described below:
 
 \end{itemize}
 
+Note that one or more of the following parameters can be used in the same job
+configuration file to provide the corresponding fragility model files:
+
+\begin{itemize}
+
+  \item \Verb+structural_fragility_file+: a parameter used to define the path
+    to a structural \gls{fragility model} file
+
+  \item \Verb+nonstructural_fragility_file+: a parameter used to define the path
+    to a nonstructural \gls{fragility model} file
+
+  \item \Verb+contents_fragility_file+: a parameter used to define the path
+    to a contents \gls{fragility model} file
+
+  \item \Verb+business_interruption_fragility_file+: a parameter used to define
+    the path to a business_interruption \gls{fragility model} file
+
+\end{itemize}
+
+It is important that the \Verb+lossCategory+ parameter in the metadata section
+for each provided fragility model file (``structural'', ``nonstructural'',
+``contents'', or ``business\_interruption'') should match the loss type
+defined by the relevant keyword above.
+
 
 \paragraph{Example 2}
 
