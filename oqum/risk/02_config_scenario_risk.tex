@@ -1,12 +1,17 @@
-In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+scenario_risk+. The remaining parameters are illustrated bellow.
+In order to run this calculator, the parameter \Verb+calculation_mode+ needs
+to be set to \Verb+scenario_risk+. Most of the job configuration parameters 
+required for running a scenario risk calculation are the same as those 
+described in the previous section for the scenario damage calculator.
+The remaining parameters specific to the scenario risk calculator 
+are illustrated below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
 ...
-structural_vulnerability_file = struct_vul_model.xml
-nonstructural_vulnerability_file = nonstruct_vul_model.xml
-contents_vulnerability_file = cont_vul_model.xml
-business_interruption_vulnerability_file = bus_int_vul_model.xml
-occupants_vulnerability_file = occ_vul_model.xml
+structural_vulnerability_file = structural_vulnerability_model.xml
+nonstructural_vulnerability_file = nonstructural_vulnerability_model.xml
+contents_vulnerability_file = contents_vulnerability_model.xml
+business_interruption_vulnerability_file = downtime_vulnerability_model.xml
+occupants_vulnerability_file = occupants_vulnerability_model.xml
 
 asset_correlation = 0.7
 master_seed = 3
@@ -14,12 +19,40 @@ insured_losses = true
 \end{Verbatim}
 
 \begin{itemize}
-\item  \Verb+structural_vulnerability_file+: this parameter is used to specify the path to the structural \gls{vulnerability model} file;
-\item  \Verb+nonstructural_vulnerability_file+: this parameter is used to specify the path to the non-structural\gls{vulnerability model} file;
-\item  \Verb+contents_vulnerability_file +: this parameter is used to specify the path to the contents \gls{vulnerability model} file;
-\item  \Verb+business_interruption_vulnerability_file +: this parameter is used to specify the path to the business interruption \gls{vulnerability model} file;
-\item  \Verb+vulnerability_file+: this parameter is used to specify the path to the occupants \gls{vulnerability model} file;
-\item \texttt{asset\_cor\-re\-la\-tion} if the uncertainty in the loss ratios has been defined within the \gls{vulnerability model}, users can specify a coefficient of correlation that will be used in the Monte Carlo sampling process of the loss ratios, between the assets that share the same \gls{taxonomy}. If the \texttt{asset\_cor\-re\-la\-tion} is set to one, the loss ratio residuals will be perfectly correlated. On the other hand, if this parameter is set to zero, the loss ratios will be sampled independently. Any value between zero and one will lead to increasing levels of correlation. If this parameter is not defined, the OpenQuake-engine assumes no correlation in the vulnerability;
-\item  \Verb+master_seed+: this parameter is used to control the random generator in the loss ratio sampling process. This way, if the same \Verb+master_seed+ is defined at each calculation run, the same random loss ratios will be generated, thus allowing replicability of the results;
-\item  \Verb+insured_losses+: this parameter is used to define if insured losses should be calculated (\Verb+true+) or not (\Verb+false+).
+
+  \item \Verb+structural_vulnerability_file+: this parameter is used to
+    specify the path to the structural \gls{vulnerability model} file
+
+  \item \Verb+nonstructural_vulnerability_file+: this parameter is used to
+    specify the path to the nonstructural\gls{vulnerability model} file
+
+  \item \Verb+contents_vulnerability_file +: this parameter is used to
+    specify the path to the contents \gls{vulnerability model} file
+
+  \item \Verb+business_interruption_vulnerability_file +: this parameter is
+    used to specify the path to the business interruption
+    \gls{vulnerability model} file
+
+  \item \Verb+occupants_vulnerability_file+: this parameter is used to
+    specify the path to the occupants \gls{vulnerability model} file
+
+  \item \texttt{asset\_correlation} if the uncertainty in the loss ratios
+    has been defined within the \gls{vulnerability model}, users can specify
+    a coefficient of correlation that will be used in the Monte Carlo sampling
+    process of the loss ratios, between the assets that share the same
+    \gls{taxonomy}. If the \texttt{asset\_correlation} is set to one,
+    the loss ratio residuals will be perfectly correlated. On the other hand,
+    if this parameter is set to zero, the loss ratios will be sampled
+    independently. Any value between zero and one will lead to increasing
+    levels of correlation. If this parameter is not defined, the
+    OpenQuake-engine will assume zero correlation in the vulnerability.
+
+  \item \Verb+master_seed+: this parameter is used to control the random
+    number generator in the loss ratio sampling process. If the same
+    \Verb+master_seed+ is defined at each calculation run, the same random loss
+    ratios will be generated, thus allowing replicability of the results.
+
+  \item \Verb+insured_losses+: this parameter specifies whether insured losses
+    should be calculated (\Verb+true+) or not (\Verb+false+).
+
 \end{itemize}
