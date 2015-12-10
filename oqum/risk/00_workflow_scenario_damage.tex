@@ -9,12 +9,12 @@ statistics for the region, and collapse maps, which contain the spatial
 distribution of the number or area of collapsed buildings throughout the
 region of interest.
 
-The rupture characteristics—i.e. the magnitude, hypocenter and fault
-geometry—are modelled as deterministic in the scenario calculators. Multiple
+The rupture characteristics---i.e. the magnitude, hypocenter and fault
+geometry---are modelled as deterministic in the scenario calculators. Multiple
 realizations of different possible ground motion fields (GMFs) due to the
 single rupture are generated, taking into consideration both the inter-event
 variability of ground motions, and the intra-event residuals obtained from a
-spatial correlation model for ground motion residuals. The use of logic-trees
+spatial correlation model for ground motion residuals. The use of logic trees
 allows for the consideration of uncertainty in the choice of a ground motion
 model for the given tectonic region.
 
@@ -40,3 +40,13 @@ and the resulting output files are depicted in Figure~\ref{fig:io-structure-scen
 \caption{Scenario Damage Calculator input/output structure.}
 \label{fig:io-structure-scenario-damage}
 \end{figure}
+
+Starting with OpenQuake-engine v1.7, \gls{consequence model} files can also be
+provided as inputs for a scenario damage calculation in addition to
+\glspl{fragility model} files, in order to estimate consequences based on the
+calculated damage distribution. The user may provide one \gls{consequence
+model} file corresponding to each loss type (amongst structural,
+nonstructural, contents, and business interruption) for which a fragility
+model file is provided. Whereas providing a \gls{fragility model} file for at
+least one loss type is mandatory for running a Scenario Damage calculation,
+providing corresponding \gls{consequence model} files is optional.
