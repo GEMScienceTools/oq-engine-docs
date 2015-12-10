@@ -30,3 +30,29 @@ seen in the above example configuration file are described below:
 	to the structural \gls{fragility model} file.
 
 \end{itemize}
+
+
+\paragraph{Example 2}
+
+This example illustrates a scenario damage calculation which uses a file
+listing a precomputed set of ground motion fields. These ground motion fields
+can be computed using the OpenQuake-engine or some other software. The ground
+motion fields can be provided in an NRML format, or as a CSV file. The damage
+distribution is computed based on the ground motion fields.
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{ini}{oqum/risk/Verbatim/config_scenario_damage_gmf.ini}\\
+
+\begin{itemize}
+
+  \item \Verb+gmfs_file+: a parameter used to define the path
+	to the ground motion fields file in the NRML format as presented in
+	Section~\ref{subsec:output_event_based_psha}.
+
+\end{itemize}
+
+In case the ground motion fields are stored in a CSV file, the file can be
+specified by including the following line in the job configuration file:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+gmfs_csv = gmfs.csv
+\end{Verbatim}

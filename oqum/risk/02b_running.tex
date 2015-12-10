@@ -4,22 +4,6 @@ implemented commands and presents examples for each of the calculators. One of
 the first tasks that needs to be performed is the definition of the seismic
 hazard input.
 
-As mentioned in Chapter~\ref{chap:riskinputs}, the risk calculations can use
-the results produced by the hazard component of the OpenQuake-engine.
-Moreover, for the two scenario-based calculators, users also have the option
-of loading a set of ground motion fields that might have been produced using
-the OpenQuake-engine, or other software.
-
-In order to load ground motion fields based on a single earthquake event, it
-is important to ensure that the ground motion values have been saved
-according to the NRML schema as presented in
-Section~\ref{subsec:output_event_based_psha}. Then, the following line can be
-included in the risk job configuration file:
-
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-gmfs_file = gmfs_filename.xml
-\end{Verbatim}
-
 Whether a user chooses to load pre-computed ground motion fields, or calculate
 this input using the hazard component of the OpenQuake-engine, a unique
 \verb+id+ is associated to the set of ground motion fields, as depicted below.
