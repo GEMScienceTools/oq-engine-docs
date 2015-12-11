@@ -1,0 +1,50 @@
+The parameter \Verb+calculation_mode+ needs to be set to
+\Verb+event_based_risk+ in order to use this calculator. Similarly to that
+described for the Scenario Risk Calculator, a Monte Carlo sampling process is
+also employed within this module to take into account the loss ratio
+uncertainty. Hence, the parameters \Verb+asset_correlation+ and
+\Verb+master_seed+ need to be defined as previously described. This calculator
+is also capable of estimating insured losses and therefore, the
+\Verb+insured_losses+ attribute can be specified as well. The parameter
+``risk\_investigation\_time'' specifies the time period for which the event
+loss tables and loss exceedance curves will be calculated. If this parameter
+is not provided in the risk job configuration file, the time period used is
+the same as that specifed in the hazard calculation.
+
+The remaining parameters are presented below.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+...
+structural_vulnerability_file = struct_vul_model.xml
+nonstructural_vulnerability_file = nonstruct_vul_model.xml
+contents_vulnerability_file = cont_vul_model.xml
+business_interruption_vulnerability_file = bus_int_vul_model.xml
+occupants_vulnerability_file = occ_vul_model.xml
+
+asset_correlation = 0.7
+master_seed = 3
+insured_losses = true
+
+loss_curve_resolution = 20
+conditional_loss_poes = 0.01, 0.05, 0.10
+\end{Verbatim}
+
+\begin{itemize}
+
+  \item \Verb+loss_curve_resolution+: since this calculator uses an event-based
+    approach, a large number of levels of loss (and associated probabilities of
+    exceedance) is computed (one per event) for each asset. The oq-risklib will
+    use this large set of results to extrapolate a loss curve, whose number of
+    points are controlled by this parameter. By default, the OpenQuake-engine
+    assumes the \Verb+loss_curve_resolution+ equal to 20.
+
+  \item \Verb+risk_investigation_time+: this parameter specifies the time
+    period for which the event loss tables and loss exceedance curves will be
+    calculated. If this parameter is not provided in the risk job configuration
+    file, the time period used is the same as that specifed in the hazard
+    calculation.
+
+  \item \Verb+conditional_loss_poes+: this parameter is used to define the
+    probabilities of exceedance at which loss maps are to be produced.
+
+\end{itemize}

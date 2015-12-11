@@ -1,12 +1,8 @@
-rm *.blg
 rm *.acn
 rm *.acr
 rm *.alg
 find . -name \*.aux -delete
 rm *.bbl
-rm *.bcf
-rm *.blg
-rm *.dvi
 rm *.glg
 rm *.glo
 rm *.gls
