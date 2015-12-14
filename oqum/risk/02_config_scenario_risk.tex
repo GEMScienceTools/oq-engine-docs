@@ -1,22 +1,28 @@
 In order to run this calculator, the parameter \Verb+calculation_mode+ needs
-to be set to \Verb+scenario_risk+. Most of the job configuration parameters 
-required for running a scenario risk calculation are the same as those 
-described in the previous section for the scenario damage calculator.
-The remaining parameters specific to the scenario risk calculator 
-are illustrated below.
+to be set to \Verb+scenario_risk+. 
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-...
-structural_vulnerability_file = structural_vulnerability_model.xml
-nonstructural_vulnerability_file = nonstructural_vulnerability_model.xml
-contents_vulnerability_file = contents_vulnerability_model.xml
-business_interruption_vulnerability_file = downtime_vulnerability_model.xml
-occupants_vulnerability_file = occupants_vulnerability_model.xml
+Most of the job configuration parameters required for running a scenario risk
+calculation are the same as those described in the previous section for the
+scenario damage calculator. The remaining parameters specific to the scenario
+risk calculator are illustrated through the example below.
 
-asset_correlation = 0.7
-master_seed = 3
-insured_losses = true
-\end{Verbatim}
+
+\paragraph{Example 1}
+
+This example illustrates a scenario risk calculation which uses a single
+configuration file to first compute the ground motion fields for the given
+rupture model and then calculate loss statistics for structural losses,
+nonstructural losses, and insured structural losses, based on the ground
+motion fields. The job configuration file required for running this scenario
+risk calculation is shown below:
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_risk_combined.ini}\\
+
+Whereas a scenario damage calculation requires one or more fragility and/or
+consequence models, a scenario risk calculation requires the user to specify
+one or more vulnerability model files. Note that one or more of the following
+parameters can be used in the same job configuration file to provide the
+corresponding vulnerability model files:
 
 \begin{itemize}
 
@@ -36,7 +42,23 @@ insured_losses = true
   \item \Verb+occupants_vulnerability_file+: this parameter is used to
     specify the path to the occupants \gls{vulnerability model} file
 
-  \item \texttt{asset\_correlation} if the uncertainty in the loss ratios
+\end{itemize}
+
+It is important that the \Verb+lossCategory+ parameter in the metadata section
+for each provided vulnerability model file (``structural'', ``nonstructural'',
+``contents'', ``business\_interruption'', or ``occupants'') should match the
+loss type defined in the configuration file by the relevant keyword above.
+
+The remaining new parameters introduced in this example are the following:
+
+\begin{itemize}
+
+  \item \Verb+master_seed+: this parameter is used to control the random
+    number generator in the loss ratio sampling process. If the same
+    \Verb+master_seed+ is defined at each calculation run, the same random loss
+    ratios will be generated, thus allowing reproducibility of the results.
+
+  \item \Verb+asset_correlation+: if the uncertainty in the loss ratios
     has been defined within the \gls{vulnerability model}, users can specify
     a coefficient of correlation that will be used in the Monte Carlo sampling
     process of the loss ratios, between the assets that share the same
@@ -47,12 +69,34 @@ insured_losses = true
     levels of correlation. If this parameter is not defined, the
     OpenQuake-engine will assume zero correlation in the vulnerability.
 
-  \item \Verb+master_seed+: this parameter is used to control the random
-    number generator in the loss ratio sampling process. If the same
-    \Verb+master_seed+ is defined at each calculation run, the same random loss
-    ratios will be generated, thus allowing reproducibility of the results.
-
   \item \Verb+insured_losses+: this parameter specifies whether insured losses
-    should be calculated (\Verb+true+) or not (\Verb+false+).
+    should be calculated; the default value of this parameter is \Verb+false+.
+    In order for the OpenQuake-engine to be able to compute insured losses, the
+    insurance limits and deductibles must be listed for each asset in the 
+    exposure model, as described in Example~5 in \ref{sec:exposure}.
 
 \end{itemize}
+
+In this case, the ground motion fields will be computed at each of the
+locations of the assets in the exposure model and for each of the intensity
+measure types found in the provided set of vulnerability models. The above
+calculation can be run using the command line:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --run job.ini
+\end{Verbatim}
+
+After the calculation is completed, a message similar to the following will be
+displayed:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 2735 completed in 10 seconds. Results:
+  id | output_type | name
+5328 | datastore | agglosses-rlzs
+5329 | datastore | loss_map-rlzs
+\end{Verbatim}
+
+
+All of the different ways of running a scenario damage calculation as
+illustrated through the examples of the previous section are also applicable
+to the scenario risk calculator, though the examples are not repeated here.

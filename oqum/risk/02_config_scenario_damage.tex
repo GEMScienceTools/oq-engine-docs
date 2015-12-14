@@ -122,11 +122,15 @@ calculation.
 In the configuration file illustrated above, the list of sites at which the
 ground motion values will be computed is provided in a CSV file, specified
 using the \Verb+sites_csv+ parameter. The sites used for the hazard
-calculation  need not be the same as the locations of the assets in the
-exposure model used  for the following risk calculation. In such cases, it is
+calculation need not be the same as the locations of the assets in the
+exposure model used for the following risk calculation. In such cases, it is
 recommended to set a reasonable search radius (in km) using the
 \Verb+asset_hazard_distance+ parameter for the OpenQuake-engine to look for
 available hazard values, as shown in the job_damage.ini example file above.
+
+The only new parameter introduced in this example is the
+\Verb+asset_hazard_distance+, which is described below; all other parameters
+have already been described in earlier examples.
 
 \begin{itemize}
 
