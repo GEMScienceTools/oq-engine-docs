@@ -1,5 +1,82 @@
-In order to run this calculator, the parameter \Verb+calculation_mode+ needs to be set to \Verb+classical_damage+. Similar to the Scenario Damage calculator, there is only one parameter specific to this calculator, which is the \gls{fragility model} file path, as presented below.
+In order to run this calculator, the parameter \Verb+calculation_mode+ needs
+to be set to \Verb+classical_damage+.
+
+\paragraph{Example 1}
+
+This example illustrates a classical probabilistic damage calculation which
+uses a single configuration file to first compute the hazard curves for the
+given source model and ground motion model and then calculate damage
+distribution statistics based on the hazard curves. A minimal job
+configuration file required for running a classical probabilistic damage
+calculation is shown below:
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_classical_damage_combined.ini}\\
+
+The general parameters \Verb+description+ and \Verb+calculation_mode+, and
+\Verb+exposure_file+ have already been described earlier in
+Section~\ref{sec:config_scenario_damage}. The parameters related to the
+hazard curves computation have been described earlier in
+Section~\ref{subsec:config_classical_psha}.
+
+In this case, the hazard curves will be computed at each of the locations of
+the assets in the exposure model, for each of the intensity measure types
+found in the provided set of fragility models. The above calculation can be
+run using the command line:
+
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-...
-fragility_file = fragility_model.xml
+user@ubuntu:~\$ oq-engine --run job.ini
 \end{Verbatim}
+
+After the calculation is completed, a message similar to the following will be
+displayed:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 2741 completed in 12 seconds. Results:
+  id | output_type | name
+5359 | Damage Per Asset | Damage distribution for hazard=5357
+\end{Verbatim}
+
+
+\paragraph{Example 2}
+
+This example illustrates a classical probabilistic damage calculation which
+uses separate configuration files for the hazard and risk parts of a classical
+probabilistic damage assessment. The first configuration file contains input
+models and parameters required for the computation of the hazard curves. The
+second configuration file contains input models and parameters required for
+the calculation of the probabilistic damage distribution for a portfolio of
+assets based on the hazard curves and fragility models.
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_classical_hazard.ini}\\
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_damage.ini]{ini}{oqum/risk/verbatim/config_classical_damage.ini}\\
+
+Now, the above calculations described by the two configuration files
+``job\_hazard.ini'' and ``job\_damage.ini'' can be run sequentially or
+separately, as illustrated in Example~2 in
+Section~\ref{sec:config_scenario_damage}. The new parameters introduced in the
+above example configuration file are described below:
+
+\begin{itemize}
+
+  \item \Verb+risk_investigation_time+: an optional parameter that can be used
+    in probabilistic damage or risk calculations where the period of interest
+    for the risk calculation is different from the period of interest for the 
+    hazard calculation. If this parameter is not explicitly set, the 
+    OpenQuake-engine will assume that the risk calculation is over the same 
+    time period as the preceding hazard calculation.
+
+  \item \Verb+steps_per_interval+: an optional parameter that can be used to
+    specify whether discrete fragility functions in the fragility models should
+    be discretized further, and if so, how many intermediate steps to use for
+    the discretization. Setting 
+
+    steps\_per\_interval = n
+
+    will result in the OpenQuake-engine discretizing the discrete fragility
+    models using (n - 1) interpolation steps between each pair of 
+    {intensity level, poe} points.
+
+    The default value of this parameter is one, implying no interpolation.
+
+\end{itemize}
