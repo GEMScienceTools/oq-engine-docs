@@ -126,21 +126,43 @@ calculation need not be the same as the locations of the assets in the
 exposure model used for the following risk calculation. In such cases, it is
 recommended to set a reasonable search radius (in km) using the
 \Verb+asset_hazard_distance+ parameter for the OpenQuake-engine to look for
-available hazard values, as shown in the job_damage.ini example file above.
+available hazard values, as shown in the job\_damage.ini example file above.
 
-The only new parameter introduced in this example is the
-\Verb+asset_hazard_distance+, which is described below; all other parameters
-have already been described in earlier examples.
+The only new parameters introduced in this example are the
+\Verb+region_constraint+ and \Verb+asset_hazard_distance+ parameters, which
+are described below; all other parameters have already been described in
+earlier examples.
 
 \begin{itemize}
+
+  \item \Verb+region_constraint+: this is an optional parameter, applicable
+    only to risk calculations, which defines the polygon that will be used for
+    filtering the assets from the exposure model. Assets outside of this region
+    will not be considered in the risk calculations. This region is defined
+    using pairs of coordinates that indicate the vertices of the polygon, which
+    should be listed in the Well-known text (WKT) format:
+
+    region\_constraint = lon\_1 lat\_1, lon\_2 lat\_2, ..., lon\_n lat\_n
+
+    For each point, the longitude is listed first, followed by the latitude,
+    both in decimal degrees. The list of points defining the polygon can be
+    provided either in a clockwise or counter-clockwise direction.
+
+    If the \Verb+region_constraint+ is not provided, all assets in the exposure model
+    are considered for the risk calculation.
 
   \item \Verb+asset_hazard_distance+: this parameter indicates the maximum
     allowable distance between an \gls{asset} and the closest hazard input.
     Hazard inputs can include hazard curves or ground motion intensity values.
-    If no hazard input is found within this distance, the \gls{asset} is
-    skipped and a message is provided mentioning the id of the asset that is
-    affected by this issue. If this parameter is not provided, the
-    OpenQuake-engine assumes the maximum allowable distance as 5 km.
+    If no hazard input site is found within the radius defined by the
+    \Verb+asset_hazard_distance+, the asset is skipped and a message is
+    provided mentioning the id of the asset that is affected by this issue.
+
+    If multiple hazard input sites are found within the radius defined by the
+    this parameter, the hazard input site with the shortest
+    distance from the asset location is associated with the asset. It is
+    possible that the associated hazard input site could be located outside
+    the polygon defined by the \Verb+region_constraint+.
 
 \end{itemize}
 
