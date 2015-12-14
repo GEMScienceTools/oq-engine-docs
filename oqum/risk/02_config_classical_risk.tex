@@ -65,3 +65,50 @@ Calculation 2749 completed in 24 seconds. Results:
 5374 | Loss Curve | loss curves. type=nonstructural, hazard=5371
 5375 | Loss Curve | insured loss curves. type=structural hazard=5371
 \end{Verbatim}
+
+
+\paragraph{Example 2}
+
+This example illustrates a classical probabilistic risk calculation which uses
+separate configuration files for the hazard and risk parts of a classical
+probabilistic risk assessment. The first configuration file contains input
+models and parameters required for the computation of the hazard curves. The
+second configuration file contains input models and parameters required for
+the calculation of the loss exceedance curves and probabilistic loss maps for
+a portfolio of assets based on the hazard curves and vulnerability models.
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_classical_hazard.ini}\\
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_risk.ini]{ini}{oqum/risk/verbatim/config_classical_risk.ini}\\
+
+Now, the above calculations described by the two configuration files
+``job\_hazard.ini'' and ``job\_risk.ini'' can be run sequentially or
+separately, as illustrated in Example~2 in
+Section~\ref{sec:config_scenario_damage}. The new parameters introduced in the
+above example configuration file are described below:
+
+\begin{itemize}
+
+	\item \Verb+lrem_steps_per_interval+: this parameter controls the number of
+	  intermediate values between consecutive loss ratios (as defined in the 
+	  \gls{vulnerability model}) that are considered in the risk calculations.
+	  A larger number of loss ratios than those defined in each
+	  \gls{vulnerability function} should be considered, in order to better
+	  account for the uncertainty in the loss ratio distribution. If this
+	  parameter is not defined in the configuration file, the OpenQuake-engine
+	  assumes the \Verb+lrem_steps_per_interval+ to be equal to 5. More details
+	  are provided in the OpenQuake-engine Book (Risk).
+
+	\item \Verb+quantile_loss_curves+: this parameter can be used to request
+	  the computation of quantile loss curves for computations involving
+	  nontrivial logic trees. The quantiles for which the loss curves should
+	  be computed must be provided as a comma separated list.
+
+	\item \Verb+conditional_loss_poes+: this parameter can be used to request
+	  the computation of probabilistic loss maps, which give the loss levels
+	  exceeded at the specified probabilities of exceedance over the time
+	  period specified by \Verb+risk_investigation_time+. The probabilities of
+	  exceedance for which the loss maps should be computed must be provided as
+	  a comma separated list.
+
+\end{itemize}
