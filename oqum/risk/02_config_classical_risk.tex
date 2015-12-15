@@ -51,20 +51,20 @@ the assets in the exposure model, for each of the intensity measure types
 found in the provided set of vulnerability models. The above calculation can
 be run using the command line:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 user@ubuntu:~\$ oq-engine --run job.ini
-\end{Verbatim}
+\end{minted}
 
 After the calculation is completed, a message similar to the following will be
 displayed:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 2749 completed in 24 seconds. Results:
   id | output_type | name
-5373 | Loss Curve | loss curves. type=structural, hazard=5371
-5374 | Loss Curve | loss curves. type=nonstructural, hazard=5371
-5375 | Loss Curve | insured loss curves. type=structural hazard=5371
-\end{Verbatim}
+5373 | Loss Curve  | loss curves. type=structural, hazard=5371
+5374 | Loss Curve  | loss curves. type=nonstructural, hazard=5371
+5375 | Loss Curve  | insured loss curves. type=structural hazard=5371
+\end{minted}
 
 
 \paragraph{Example 2}

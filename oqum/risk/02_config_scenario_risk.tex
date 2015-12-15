@@ -82,20 +82,19 @@ locations of the assets in the exposure model and for each of the intensity
 measure types found in the provided set of vulnerability models. The above
 calculation can be run using the command line:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 user@ubuntu:~\$ oq-engine --run job.ini
-\end{Verbatim}
+\end{minted}
 
 After the calculation is completed, a message similar to the following will be
 displayed:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 2735 completed in 10 seconds. Results:
   id | output_type | name
 5328 | datastore | agglosses-rlzs
 5329 | datastore | loss_map-rlzs
-\end{Verbatim}
-
+\end{minted}
 
 All of the different ways of running a scenario damage calculation as
 illustrated through the examples of the previous section are also applicable
