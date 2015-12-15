@@ -15,7 +15,7 @@
       <costType name="structural" type="per_area" unit="USD" />
       <costType name="nonstructural" type="per_area" unit="USD" />
       <costType name="contents" type="per_area" unit="USD" />
-      <costType name="business_interruption" type="per_area" unit="USD/month" />
+      <costType name="business_interruption" type="per_area" unit="USD/month"/>
     </costTypes>
   </conversions>
   <assets>

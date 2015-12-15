@@ -13,7 +13,7 @@
       <costType name="structural" type="per_asset" unit="USD" />
       <costType name="nonstructural" type="per_asset" unit="USD" />
       <costType name="contents" type="per_asset" unit="USD" />
-      <costType name="business_interruption" type="per_asset" unit="USD/month" />
+      <costType name="business_interruption" type="per_asset" unit="USD/month"/>
     </costTypes>
   </conversions>
   <assets>

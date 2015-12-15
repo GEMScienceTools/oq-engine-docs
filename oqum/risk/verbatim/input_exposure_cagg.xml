@@ -13,7 +13,7 @@
       <costType name="structural" type="aggregated" unit="USD" />
       <costType name="nonstructural" type="aggregated" unit="USD" />
       <costType name="contents" type="aggregated" unit="USD" />
-      <costType name="business_interruption" type="aggregated" unit="USD/month" />
+      <costType name="business_interruption" type="aggregated" unit="USD/month"/>
     </costTypes>
   </conversions>
   <assets>

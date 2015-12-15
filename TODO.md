@@ -5,7 +5,6 @@ The parameter `poes_hazard_maps` listed in the manual doesn't exist
 
 Describe the reuse option for exposure models
 Write an example for scenario damage with consequences
-Rewrite the classical bcr and event based risk examples
 Replace outdated risk output file formats with current ones
 Spellcheck the new risk sections
 Remove large blank spaces between sections
