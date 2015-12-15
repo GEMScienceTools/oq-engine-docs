@@ -24,15 +24,15 @@ below:
 
 \begin{itemize}
 
-    \item \Verb+id+: a unique key used to identify the \gls{exposure model}
+  \item \Verb+id+: a unique key used to identify the \gls{exposure model}
 
-    \item \Verb+category+: an optional string used to define the type of
+  \item \Verb+category+: an optional string used to define the type of
     \glspl{asset} being stored (e.g: buildings, lifelines)
 
-    \item \Verb+taxonomySource+: an optional attribute used to define the
+  \item \Verb+taxonomySource+: an optional attribute used to define the
     \gls{taxonomy} being used to classify the \glspl{asset}
 
-    \item \Verb+description+: a brief string with further information about the
+  \item \Verb+description+: a brief string with further information about the
     \gls{exposure model}
 
 \end{itemize}
@@ -54,15 +54,15 @@ following:
 
 \begin{itemize}
 
-    \item \Verb+structural+: used to specify the structural replacement cost
+  \item \Verb+structural+: used to specify the structural replacement cost
     of assets
 
-    \item \Verb+nonstructural+: used to specify the replacement cost for the
+  \item \Verb+nonstructural+: used to specify the replacement cost for the
     nonstructural components of assets
 
-    \item \Verb+contents+: used to specify the contents replacement cost
+  \item \Verb+contents+: used to specify the contents replacement cost
 
-    \item \Verb+business_interruption+: used to specify the cost that will be 
+  \item \Verb+business_interruption+: used to specify the cost that will be 
     incurred per unit time that a damaged asset remains closed following an 
     earthquake
 
@@ -86,13 +86,13 @@ the \Verb+type+ attribute of the \Verb+costType+ element are the following:
 
 \begin{itemize}
 
-    \item \Verb+aggregated+: indicates that the replacement costs will be 
+  \item \Verb+aggregated+: indicates that the replacement costs will be 
     provided as an aggregated value for each asset 
 
-    \item \Verb+per_asset+: indicates that the replacement costs will be 
+  \item \Verb+per_asset+: indicates that the replacement costs will be 
     provided per building or unit comprising each asset
 
-    \item \Verb+per_area+: indicates that the replacement costs will be 
+  \item \Verb+per_area+: indicates that the replacement costs will be 
     provided per unit area for each asset
 
 \end{itemize}
@@ -115,10 +115,10 @@ the \Verb+area+ element are the following:
 
 \begin{itemize}
 
-    \item \Verb+aggregated+: indicates that the area will be provided as an 
+  \item \Verb+aggregated+: indicates that the area will be provided as an 
     aggregated value for each asset
 
-    \item \Verb+per_asset+: indicates that the area will be provided per 
+  \item \Verb+per_asset+: indicates that the area will be provided per 
     building or unit comprising each asset
 
 \end{itemize}
@@ -148,29 +148,30 @@ assigned to each asset based on the current schema for the exposure model:
 
 \begin{itemize}
 
-    \item \Verb+id+: mandatory; a unique key used to identify the given
+  \item \Verb+id+: mandatory; a unique key used to identify the given
     \gls{asset}, which is used by the OpenQuake-engine to relate each asset 
     with its associated results.
 
-    \item \Verb+taxonomy+: mandatory; specifies the building typology of the 
+  \item \Verb+taxonomy+: mandatory; specifies the building typology of the 
     given \gls{asset}. The taxonomy strings can be user-defined, or based on
-    an existing classification scheme such as 
+    an existing classification scheme such as the GEM Taxonomy, PAGER,
+    or EMS-98.
 
-    \item \Verb+number+: mandatory; the number of independent units or 
+  \item \Verb+number+: mandatory; the number of independent units or 
     individual structures comprising a given \gls{asset}
 
-    \item \Verb+location+: mandatory; specifies the longitude 
+  \item \Verb+location+: mandatory; specifies the longitude 
     (between -180$^{\circ}$ to 180$^{\circ}$) and latitude 
     (between -90$^{\circ}$ to 90 $^{\circ}$) of the given \gls{asset}, both
     specified in decimal degrees\footnote{Within the OpenQuake-engine, 
     longitude and latitude coordinates are internally rounded to a precision
     of 5 digits after the decimal point.}.
 
-    \item \Verb+area+: area of the \gls{asset}, at a given location. As 
+  \item \Verb+area+: area of the \gls{asset}, at a given location. As 
     mentioned earlier, the area is a mandatory attribute only if any one of the 
     costs for the \gls{asset} is specified per unit area.
 
-    \item \Verb+costs+: specifies a set of costs for the given \gls{asset}. 
+  \item \Verb+costs+: specifies a set of costs for the given \gls{asset}. 
     The replacement value for different cost types must be provided on 
     separate lines within the \Verb+costs+ element. As shown in the example 
     above, each cost entry must define the \Verb+type+ and the \Verb+value+. 
@@ -178,7 +179,7 @@ assigned to each asset based on the current schema for the exposure model:
     \Verb+structural+,  \Verb+nonstructural+, \Verb+contents+, and 
     \Verb+business_interruption+.
 
-    \item \Verb+occupancies+: mandatory only for probabilistic or scenario 
+  \item \Verb+occupancies+: mandatory only for probabilistic or scenario 
     damage calculations. Each entry within this element specifies the number of
     occupants for the asset for a particular period of the day. As shown in 
     the example above, each occupancy entry must define the \Verb+period+ and 

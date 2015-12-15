@@ -102,13 +102,16 @@ above example configuration file are described below:
 	\item \Verb+quantile_loss_curves+: this parameter can be used to request
 	  the computation of quantile loss curves for computations involving
 	  nontrivial logic trees. The quantiles for which the loss curves should
-	  be computed must be provided as a comma separated list.
+	  be computed must be provided as a comma separated list. If this parameter
+	  is not included in the configuration file, quantile loss curves will not
+	  be computed. 
 
 	\item \Verb+conditional_loss_poes+: this parameter can be used to request
 	  the computation of probabilistic loss maps, which give the loss levels
 	  exceeded at the specified probabilities of exceedance over the time
 	  period specified by \Verb+risk_investigation_time+. The probabilities of
 	  exceedance for which the loss maps should be computed must be provided as
-	  a comma separated list.
+	  a comma separated list. If this parameter is not included in the
+	  configuration file, probabilistic loss maps will not be computed.
 
 \end{itemize}

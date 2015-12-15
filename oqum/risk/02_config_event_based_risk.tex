@@ -1,50 +1,77 @@
 The parameter \Verb+calculation_mode+ needs to be set to
-\Verb+event_based_risk+ in order to use this calculator. Similarly to that
-described for the Scenario Risk Calculator, a Monte Carlo sampling process is
-also employed within this module to take into account the loss ratio
-uncertainty. Hence, the parameters \Verb+asset_correlation+ and
-\Verb+master_seed+ need to be defined as previously described. This calculator
-is also capable of estimating insured losses and therefore, the
-\Verb+insured_losses+ attribute can be specified as well. The parameter
+\Verb+event_based_risk+ in order to use this calculator.
+
+Most of the job configuration parameters required for running a stochastic
+event based risk calculation are the same as those described in the previous
+sections for the scenario risk calculator and the classical probabilistic risk
+calculator. The remaining parameters specific to the stochastic event based
+risk calculator are illustrated through the example below.
+
+
+\paragraph{Example 1}
+
+This example illustrates a stochastic event based risk calculation which uses
+a single configuration file to first compute the stochastic event sets and
+ground motion fields for the given source model and ground motion model, and
+then calculate event loss tables, loss exceedance curves and probabilistic
+loss maps for structural losses, nonstructural losses, and insured structural
+losses, based on the ground motion fields. The job configuration file required
+for running this stochastic event based risk calculation is shown below:
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_event_based_risk_combined.ini}\\
+
+Similar to that the procedure described for the Scenario Risk calculator, a
+Monte Carlo sampling process is also employed in this calculator to take into
+account the uncertainty in the conditional loss ratio at a particular
+intensity level. Hence, the parameters \Verb+asset_correlation+ and
+\Verb+master_seed+ may be defined as previously described for the Scenario
+Risk calculator in Section~\ref{sec:config_scenario_risk}. This calculator is
+also capable of estimating insured losses and therefore, setting the
+\Verb+insured_losses+ attribute to \Verb+true+ will generate all results (loss
+tables, loss curves, loss maps) for insured losses as well. The parameter
 ``risk\_investigation\_time'' specifies the time period for which the event
-loss tables and loss exceedance curves will be calculated. If this parameter
-is not provided in the risk job configuration file, the time period used is
-the same as that specifed in the hazard calculation.
+loss tables and loss exceedance curves will be calculated, similar to the
+Classical Probabilistic Risk calculator. If this parameter is not provided in
+the risk job configuration file, the time period used is the same as that
+specifed in the hazard calculation using the parameter ``investigation\_time''.
 
-The remaining parameters are presented below.
-
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-...
-structural_vulnerability_file = struct_vul_model.xml
-nonstructural_vulnerability_file = nonstruct_vul_model.xml
-contents_vulnerability_file = cont_vul_model.xml
-business_interruption_vulnerability_file = bus_int_vul_model.xml
-occupants_vulnerability_file = occ_vul_model.xml
-
-asset_correlation = 0.7
-master_seed = 3
-insured_losses = true
-
-loss_curve_resolution = 20
-conditional_loss_poes = 0.01, 0.05, 0.10
-\end{Verbatim}
+The new parameters introduced in this example are described below:
 
 \begin{itemize}
 
-  \item \Verb+loss_curve_resolution+: since this calculator uses an event-based
-    approach, a large number of levels of loss (and associated probabilities of
-    exceedance) is computed (one per event) for each asset. The oq-risklib will
-    use this large set of results to extrapolate a loss curve, whose number of
-    points are controlled by this parameter. By default, the OpenQuake-engine
-    assumes the \Verb+loss_curve_resolution+ equal to 20.
+  \item \Verb+loss_curve_resolution+: this parameter specifies the number of
+    points on the aggregate loss curve. The loss levels on the aggregate loss
+    curve are obtained by dividing the interval between the minimum and maximum
+    portfolio losses in the portfolio loss table into `n' equispaced intervals,
+    where `n' is the value specified for the \Verb+loss_curve_resolution+.
+    If this parameter is not set, the OpenQuake-engine uses a default value of
+    20 for the \Verb+loss_curve_resolution+.
 
-  \item \Verb+risk_investigation_time+: this parameter specifies the time
-    period for which the event loss tables and loss exceedance curves will be
-    calculated. If this parameter is not provided in the risk job configuration
-    file, the time period used is the same as that specifed in the hazard
-    calculation.
+  \item \Verb+loss_ratios+: this parameter specifies the set of loss ratios at
+    which the individual asset loss curves will be computed. If
+    \Verb+loss_ratios+ is not set in the configuration file, the individual 
+    asset loss curves will not be computed; and only the aggregate loss curve
+    for the portfolio of assets will be computed.
 
-  \item \Verb+conditional_loss_poes+: this parameter is used to define the
-    probabilities of exceedance at which loss maps are to be produced.
+  \item \Verb+avg_losses+: this boolean parameter specifies whether the average
+    asset losses over the time period ``risk\_investigation\_time'' should be
+    computed. The default value of this parameter is \Verb+false+.
+
+    \begin{equation*}
+    \begin{split}
+    average\_loss & = sum(event\_losses) \\
+                 & \div (hazard\_investigation\_time \times ses\_per\_logic\_tree\_path) \\
+                 & \times risk\_investigation\_time
+    \end{split}
+    \end{equation*}
+
+  \item \Verb+asset_loss_table+: this boolean parameter specifies whether the
+    individual asset event loss tables should be saved to the datastore. 
+    The default value of this parameter is \Verb+false+.
 
 \end{itemize}
+
+Computation of the loss tables, loss curves, and average losses for each 
+individual asset in the exposure model can be resource intensive, and thus
+these outputs are not generated by default, unless instructed to by using the
+parameters described above.
