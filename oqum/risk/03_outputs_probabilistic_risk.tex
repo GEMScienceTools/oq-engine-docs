@@ -1,0 +1,172 @@
+\subsection{Loss exceedance curves}
+
+Loss exceedance curves can be calculated using the Classical PSHA-based Risk
+or Probabilistic Event-based Risk calculators, and they provide the
+probability of exceeding a set of levels of loss, within a given time span (or
+investigation interval). Similarly to what has been described for the
+probabilistic loss maps, also here it is necessary to define the parameters
+\Verb+investigationTime+, \Verb+sourceModelTreePath+, \Verb+gsimTreePath+ and
+\Verb+unit+. Then, the set of loss exceedance curves are stored as presented
+in the following example.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+<\textcolor{red}{lossCurves} investigationTime="50" sourceModelTreePath="b1"
+    gsimTreePath="b1" unit="EUR">
+     <\textcolor{green}{lossCurve} assetRef="a1">
+          <gml:Point>
+            <gml:pos>83.31 29.46</gml:pos>
+          </gml:Point>
+          <\textcolor{blue}{poE}> 0.970 0.297 0.137 0.019 0.005 0.001</\textcolor{blue}{poE}>
+          <\textcolor{blue}{losses}> 235 477 989 4102 7444 15631</\textcolor{blue}{losses}>
+          <\textcolor{blue}{lossRatios}> 0.02 0.03 0.06 0.26 0.48 1.0</\textcolor{blue}{lossRatios}>
+     <\textcolor{green}{/lossCurve}>
+     ...
+     <\textcolor{green}{lossCurve} assetRef="a999">
+          <gml:Point>
+            <gml:pos>83.33 28.71</gml:pos>
+          </gml:Point>
+          <\textcolor{blue}{poE}> 0.99 0.714 0.112 0.020 0.004 0.001</\textcolor{blue}{poE}>
+          <\textcolor{blue}{losses}>58 402 819 3664 8001 13540</\textcolor{blue}{losses}>
+          <\textcolor{blue}{lossRatios}> 0.02 0.04 0.07 0.32 0.59 1.0</\textcolor{blue}{lossRatios}>
+     <\textcolor{green}{/lossCurve}>
+<\textcolor{red}{/lossCurves}>
+</nrml>
+\end{Verbatim}
+
+Each \Verb+lossCurve+ is associated with a location (defined within the
+\Verb+gml:Point+ attribute) and a reference to the \gls{asset}
+(\Verb+assetRef+) whose loss is being represented. Then, three lists of values
+are stored: the probabilities of exceedance (\Verb+poE+), levels of absolute
+loss (\Verb+losses+) and percentages of loss (\Verb+lossRatios+).
+
+
+\subsection{Probabilistic loss maps}
+
+A loss map contains the spatial distribution of the losses throughout the
+region of interest. This result can be produced by the Scenario Risk
+calculator (representing the losses from a single event), or from the
+Probabilistic Event-based Risk or Classical PSHA-based Risk calculators
+(representing the expected losses from probabilistic seismic hazard). In the
+former case, the loss map is comprised of a mean loss and respective standard
+deviation for each \gls{asset}, whilst for the latter, a single value is
+provided, representing the expected loss for a given return period (or
+probability of exceedance for a certain time span, or investigation interval).
+In the following example, a loss map due to a single earthquake is presented.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+<\textcolor{red}{lossMap} lossCategory="buildings" unit="EUR">
+     <\textcolor{green}{node}>
+          <gml:Point>
+            <gml:pos>83.31 29.46</gml:pos>
+          </gml:Point>
+          \textcolor{blue}{loss} assetRef="a1" mean="53.3" stdDev="109.25"/>
+          \textcolor{blue}{loss} assetRef="a2" mean="386.0" stdDev="695.7"/>
+          \textcolor{blue}{loss} assetRef="a3" mean="303.1" stdDev="447.4"/>
+          \textcolor{blue}{loss} assetRef="a4" mean="298.9" stdDev="453.7"/>
+     <\textcolor{green}{/node}>
+    ...
+     <\textcolor{green}{node}>
+          <gml:Point>
+            <gml:pos>83.33 28.71</gml:pos>
+          </gml:Point>
+          \textcolor{blue}{loss} assetRef="a997" mean="277.3" stdDev="100.8"/>
+          \textcolor{blue}{loss} assetRef="a998" mean="219.6" stdDev="123.5"/>
+          \textcolor{blue}{loss} assetRef="a999" mean="576.3" stdDev="210.9"/>
+     <\textcolor{green}{/node}>
+<\textcolor{red}{/lossMap}>
+</nrml>
+\end{Verbatim}
+
+\begin{itemize}
+\item  \Verb+lossCategory+: the type of losses that are being stored. This parameter is taken from the \gls{vulnerability model} that was used in the loss calculations (e.g. fatalities, economic loss);
+\item  \Verb+unit+: this attribute is used to define the units in which the losses are being measured (e.g. EUR);
+\item  \Verb+node+: each loss map is comprised by various nodes, each node possibly containing a number of \glspl{asset}. The location of the node is defined by a latitude and longitude in decimal degrees within the field \Verb+gml:Point+. The mean loss (\Verb+mean+) and associated standard deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter \Verb+assetRef+) is stored in the \Verb+loss+ field.
+\end{itemize}
+
+For the probabilistic loss maps (expected losses for a given return period), a
+set of additional parameters need to be considered as depicted in the
+following example.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+<\textcolor{red}{lossMap} investigationTime="50" poE="0.1" sourceModelTreePath="b1"
+        gsimTreePath="b1" lossCategory="buildings" unit="EUR">
+     <\textcolor{green}{node}>
+          <gml:Point>
+            <gml:pos>83.31 29.46</gml:pos>
+          </gml:Point>
+          \textcolor{blue}{loss} assetRef="a1" value="696.1"/>
+          \textcolor{blue}{loss} assetRef="a2" value="4201.4"/>
+          \textcolor{blue}{loss} assetRef="a3" value="2666.0"/>
+          \textcolor{blue}{loss} assetRef="a4" value="1291.8"/>
+     <\textcolor{green}{/node}>
+    ...
+     <\textcolor{green}{node}>
+          <gml:Point>
+            <gml:pos>83.33 28.71</gml:pos>
+          </gml:Point>
+          \textcolor{blue}{loss} assetRef="a997" value="4077.3"/>
+          \textcolor{blue}{loss} assetRef="a998" value="2466.4"/>
+          \textcolor{blue}{loss} assetRef="a999" value="4434.5"/>
+     <\textcolor{green}{/node}>
+<\textcolor{red}{/lossMap}>
+</nrml>
+\end{Verbatim}
+
+\begin{itemize}
+\item  \Verb+investigationTime+: time span used to compute the probability of exceedance;
+\item  \Verb+poE+: parameter specifying the probability of exceedance (e.g. 0.1);
+\item  \Verb+sourceModelTreePath+: this is a parameter indicating the path used to create the seismic source model;
+\item  \Verb+gsimTreePath+: this parameter designates the ground motion model;
+\item  \Verb+node+: this attribute follows an identical structure as seen in the previous example, but only a single loss (\Verb+value+) is provided per \gls{asset}.
+\end{itemize}
+
+
+\subsection{Stochastic event loss tables}
+
+Unlike what was described for the other outputs, the event loss tables are
+exported using a comma separated value (.csv) file format. In this structure,
+each row contains the rupture id, magnitude and aggregated loss (sum of the
+losses from the collection of assets within the region of interest), for each
+event within the stochastic event sets. The following example depicts an
+example of this output.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+Rupture,Magnitude,Aggregate Loss
+1,8.25,79197
+2,8.25,74478
+3,7.75,46458
+4,7.75,45153
+5,7.75,42569
+6,8.25,40649
+7,7.75,38868
+8,7.75,37707
+9,7.75,37141
+...
+\end{Verbatim}
+
+The asset event loss tables provide calculated losses for each of the assets
+in the exposure model, for each event within the stochastic event sets. In
+these tables, each row contains the rupture id, the asset id, magnitude and
+asset loss. Note that only assets that sustain nonzero losses in a rupture are
+listed in the asset event loss table. An example of this output type is
+provided below:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+Rupture, Asset, Magnitude, Loss
+col=00|ses=0239|src=1727-356|rup=001-01, asset_10, 4.7, 13785407.3791
+col=00|ses=0239|src=1727-356|rup=001-01, asset_11, 4.7, 17124507.6341
+col=00|ses=0239|src=1727-356|rup=001-01, asset_12, 4.7, 16654913.6026
+.
+.
+.
+col=01|ses=6905|src=1120-2|rup=011-01, asset_53, 6.7, 18506576.0384
+col=01|ses=6905|src=1120-2|rup=011-01, asset_58, 6.7, 12095498.7066
+\end{Verbatim}

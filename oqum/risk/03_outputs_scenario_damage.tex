@@ -1,0 +1,158 @@
+\subsection{Scenario damage statistics}
+
+The damage distribution is part of the outputs from the Scenario Damage
+calculator, and can be provided in three ways: per \gls{asset}, per taxonomy
+or the total damage distribution. In the following illustration, an example of
+the NRML schema for the damage distribution per \gls{asset} is presented:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+<\textcolor{red}{dmgDistPerAsset}>
+     <\textcolor{green}{damageStates}>
+         no_damage
+         slight
+         moderate
+         complete
+     <\textcolor{green}{/damageStates}>
+     <\textcolor{green}{DDNode}>
+          <gml:Point>
+            <gml:pos>83.31 29.46</gml:pos>
+          </gml:Point>
+          <\textcolor{blue}{asset} assetRef="a1">
+            <damage ds="no_damage" mean="486.6" stddev="130.1"/>
+            <damage ds="slight" mean="118.8" stddev="9.9"/>
+            <damage ds="moderate" mean="130.3" stddev="20.3"/>
+            <damage ds="complete" mean="186.5" stddev="90.8"/>
+          <\textcolor{blue}{/asset}>
+          <\textcolor{blue}{asset} assetRef="2">
+            <damage ds="no_damage" mean="877.08" stddev="257.9"/>
+            <damage ds="slight" mean="171.3" stddev="13.2"/>
+            <damage ds="moderate" mean="161.5" stddev="014.5"/>
+            <damage ds="complete" mean="563.8" stddev="223.6"/>
+          <\textcolor{blue}{/asset}>
+     <\textcolor{green}{/DDNode}>
+     ...
+     <\textcolor{green}{DDNode}>
+          <gml:Point>
+            <gml:pos>83.91 28.19</gml:pos>
+          </gml:Point>
+          <\textcolor{blue}{asset} assetRef="999">
+            <damage ds="no_damage" mean="21.5" stddev="16.6"/>
+            <damage ds="slight" mean="15.5" stddev="8.7"/>
+            <damage ds="moderate" mean="39.1" stddev="17.3"/>
+            <damage ds="complete" mean="493.5" stddev="53.1"/>
+          <\textcolor{blue}{/asset}>
+     <\textcolor{green}{/DDNode}>
+<\textcolor{red}{/dmgDistPerAsset}>
+</nrml>
+\end{Verbatim}
+
+\begin{itemize}
+\item  \Verb+damageStates+: this field serves the purposes of storing the set of damage states, as defined in the \gls{fragility model} employed in the calculations;
+\item  \Verb+DDNode+: this attribute is used to store the damage distribution of a number of \glspl{asset}, at a given location (defined within the attribute \Verb+gml:Point+). For each \gls{asset}, the mean number of buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+) in each damage state is defined.
+\end{itemize}
+
+The Scenario Damage calculator can also estimate the total number of buildings
+with a certain \gls{taxonomy}, in each damage state. This  distribution of
+damage per building \gls{taxonomy} is depicted in the following example.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+<\textcolor{red}{dmgDistPerAsset}>
+     <\textcolor{green}{damageStates}>
+         no_damage
+         slight
+         moderate
+         complete
+     <\textcolor{green}{/damageStates}>
+     <\textcolor{green}{DDNode}>
+      <taxonomy>W</taxonomy>
+      <damage ds="no_damage" mean="456450.2" stddev="26376.62"/>
+      <damage ds="slight" mean="88102.3" stddev="3283.9"/>
+      <damage ds="moderate" mean="103564.6" stddev="3487.1"/>
+      <damage ds="complete" mean="275891.1" stddev="26676.8"/>
+     <\textcolor{green}{/DDNode}>
+     ...
+     <\textcolor{green}{DDNode}>
+      <taxonomy>RC</taxonomy>
+      <damage ds="no_damage" mean="4484.2" stddev="460.9"/>
+      <damage ds="slight" mean="932.4" stddev="106.7"/>
+      <damage ds="moderate" mean="1691.7" stddev="177.9"/>
+      <damage ds="complete" mean="7659.5" stddev="799.3"/>
+     <\textcolor{green}{/DDNode}>
+<\textcolor{red}{/dmgDistPerAsset}>
+</nrml>
+\end{Verbatim}
+
+In the damage distribution per \gls{taxonomy}, each \Verb+DDNode+ contains the
+statistics of the number of buildings in each damage state, belonging to a
+given building class as specified in the \Verb+taxonomy+ attribute. Finally, a
+total damage distribution can also be calculated, which contains the mean and
+standard deviation of the total number of buildings in each damage state, as
+illustrated below.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+<\textcolor{red}{totalDmgDist}>
+     <\textcolor{green}{damageStates}>
+         no_damage
+         slight
+         moderate
+         complete
+     <\textcolor{green}{/damageStates}>
+     <\textcolor{green}{damage} ds="no_damage" mean="456450.2" stddev="26376.62"/>
+     <\textcolor{green}{damage} ds="slight" mean="88102.3" stddev="3283.9"/>
+     <\textcolor{green}{damage} ds="moderate" mean="103564.6" stddev="3487.1"/>
+     <\textcolor{green}{damage} ds="complete" mean="275891.1" stddev="26676.8"/>
+<\textcolor{red}{/totalDmgDist}>
+</nrml>
+\end{Verbatim}
+
+
+\subsection{Scenario collapse maps}
+
+Collapse maps are part of the Scenario Damage calculator outputs. These
+results provide the spatial distribution of the number of the collapsed
+buildings throughout the area of interest. An example of the schema is
+presented below.
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
+\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+<\textcolor{red}{collapseMap}>
+     <\textcolor{green}{CMNode}>
+          <gml:Point>
+            <gml:pos>83.31 29.46</gml:pos>
+          </gml:Point>
+          <\textcolor{blue}{cf} assetRef="a1" mean="227.1" stdDev="95.8"/>
+          <\textcolor{blue}{cf} assetRef="a2" mean="703.2" stdDev="240.2"/>
+          <\textcolor{blue}{cf} assetRef="a3" mean="199.5" stdDev="63.3"/>
+          <\textcolor{blue}{cf} assetRef="a4" mean="357.8" stdDev="136.1"/>
+     <\textcolor{green}{/CMNode}>
+    ...
+     <\textcolor{green}{CMNode}>
+          <gml:Point>
+            <gml:pos>83.33 28.71</gml:pos>
+          </gml:Point>
+          <\textcolor{blue}{cf} assetRef="a997" mean="239.4" stdDev="102.0"/>
+          <\textcolor{blue}{cf} assetRef="a998" mean="733.0" stdDev="253.2"/>
+          <\textcolor{blue}{cf} assetRef="a999" mean="207.4" stdDev="66.5"/>
+     <\textcolor{green}{/CMNode}>
+<\textcolor{red}{/collapseMap}>
+</nrml>
+\end{Verbatim}
+
+This schema follows the same structure of the loss maps presented previously.
+Thus, the results for a number of \glspl{asset} at a given location are stored
+within the field \Verb+CMNode+. This field is associated with a location
+(defined within the \Verb+gml:Point+ attribute) and it contains the mean
+number of collapses (\Verb+mean+) and respective standard deviation
+(\Verb+stdDev+) for each \gls{asset} (identified by the parameter
+\Verb+assetRef+).

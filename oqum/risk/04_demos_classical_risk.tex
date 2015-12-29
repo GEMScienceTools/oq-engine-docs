@@ -1,0 +1,37 @@
+The seismic source model developed within the Global Seismic Hazard Assessment
+Program (GSHAP) was used with the \cite{chiou2008} ground motion prediction
+equation to produce the hazard input for this demo. No uncertainties are
+considered in the seismic source model and since only one GMPE is being
+considered, there will be only one possible path in the logic tree. Therefore,
+only one set seismic hazard curves will be produced. To do so, the following
+command needs to be employed:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --run job_hazard.ini
+\end{Verbatim}
+
+which will produce the following hazard output:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 13 results:
+id | output_type | name
+27 | hazard_curve | hc-rlz-70
+\end{Verbatim}
+
+In this demo, loss exceedance curves for each asset and two probabilistic loss
+maps (for probabilities of exceedance of 1\% and 10\%) are produced. The
+following command launches these risk calculations:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-output-id 27
+\end{Verbatim}
+
+and the following outputs are expected:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+Calculation 14 results:
+id | output_type | name
+28 | loss_curve | loss curves. type=structural, hazard=27
+29 | loss_map | loss maps. type=structural poe=0.1, hazard=27
+30 | loss_map | loss maps. type=structural poe=0.01, hazard=27
+\end{Verbatim}
