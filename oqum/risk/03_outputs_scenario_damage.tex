@@ -1,57 +1,25 @@
 \subsection{Scenario damage statistics}
+\label{subsec:scenario_damage_statistics}
 
-The damage distribution is part of the outputs from the Scenario Damage
-calculator, and can be provided in three ways: per \gls{asset}, per taxonomy
-or the total damage distribution. In the following illustration, an example of
-the NRML schema for the damage distribution per \gls{asset} is presented:
+\subsubsection{Asset damage statistics}
+\label{subsubsec:scenario_asset_damage_statistics}
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
-\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
-<nrml xmlns:gml="http://www.opengis.net/gml"
-      xmlns="http://openquake.org/xmlns/nrml/0.5">
-<\textcolor{red}{dmgDistPerAsset}>
-     <\textcolor{green}{damageStates}>
-         no_damage
-         slight
-         moderate
-         complete
-     <\textcolor{green}{/damageStates}>
-     <\textcolor{green}{DDNode}>
-          <gml:Point>
-            <gml:pos>83.31 29.46</gml:pos>
-          </gml:Point>
-          <\textcolor{blue}{asset} assetRef="a1">
-            <damage ds="no_damage" mean="486.6" stddev="130.1"/>
-            <damage ds="slight" mean="118.8" stddev="9.9"/>
-            <damage ds="moderate" mean="130.3" stddev="20.3"/>
-            <damage ds="complete" mean="186.5" stddev="90.8"/>
-          <\textcolor{blue}{/asset}>
-          <\textcolor{blue}{asset} assetRef="2">
-            <damage ds="no_damage" mean="877.08" stddev="257.9"/>
-            <damage ds="slight" mean="171.3" stddev="13.2"/>
-            <damage ds="moderate" mean="161.5" stddev="014.5"/>
-            <damage ds="complete" mean="563.8" stddev="223.6"/>
-          <\textcolor{blue}{/asset}>
-     <\textcolor{green}{/DDNode}>
-     ...
-     <\textcolor{green}{DDNode}>
-          <gml:Point>
-            <gml:pos>83.91 28.19</gml:pos>
-          </gml:Point>
-          <\textcolor{blue}{asset} assetRef="999">
-            <damage ds="no_damage" mean="21.5" stddev="16.6"/>
-            <damage ds="slight" mean="15.5" stddev="8.7"/>
-            <damage ds="moderate" mean="39.1" stddev="17.3"/>
-            <damage ds="complete" mean="493.5" stddev="53.1"/>
-          <\textcolor{blue}{/asset}>
-     <\textcolor{green}{/DDNode}>
-<\textcolor{red}{/dmgDistPerAsset}>
-</nrml>
-\end{Verbatim}
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_asset.xml}\\
+
+The key fields in the above output file are described below:
 
 \begin{itemize}
-\item  \Verb+damageStates+: this field serves the purposes of storing the set of damage states, as defined in the \gls{fragility model} employed in the calculations;
-\item  \Verb+DDNode+: this attribute is used to store the damage distribution of a number of \glspl{asset}, at a given location (defined within the attribute \Verb+gml:Point+). For each \gls{asset}, the mean number of buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+) in each damage state is defined.
+
+  \item \Verb+damageStates+: this field serves the purposes of storing the set
+    of damage states, as defined in the \gls{fragility model} employed in the
+    calculations
+
+  \item \Verb+DDNode+: this attribute is used to store the damage distribution
+    of a number of \glspl{asset}, at a given location (defined within the
+    attribute \Verb+gml:Point+). For each \gls{asset}, the mean number of
+    buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+)
+    of the number of buildings in each damage state are listed.
+
 \end{itemize}
 
 The Scenario Damage calculator can also estimate the total number of buildings

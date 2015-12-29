@@ -12,7 +12,12 @@ Describe the reuse option for exposure models
 Describe output filenames (eg. dmg_by_asset_and_collapse_map)
 Replace outdated risk output file formats with current ones
 Spellcheck the new risk sections
-Remove large blank spaces between sections
+Float all minted listings to avoid vertical whitespace:
+	\begin{listing}[ht]
+	  \inputminted{xml}{exposure.xml}
+	  \caption{Example exposure model}
+	  \label{listing:exposure_model}
+	\end{listing}
 
 General
 -------
