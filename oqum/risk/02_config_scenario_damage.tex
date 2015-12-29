@@ -259,7 +259,7 @@ generated for each \gls{acr:gmpe} in the logic tree file. Correspondingly,
 damage distribution statistics will be generated for each set of
 \gls{acr:gmf}.
 
-The file shown below lists the two \glsps{acr:gmpe} to be used for the hazard
+The file shown below lists the two \glspl{acr:gmpe} to be used for the hazard
 calculation:
 
 \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=gsim\_logic\_tree.xml]{xml}{oqum/risk/verbatim/input_scenario_gmlt.xml}\\
@@ -269,3 +269,61 @@ to replace the \Verb+gsim+ parameter with \Verb+gsim_logic_tree_file+, as
 demonstrated in the file below:
 
 \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_scenario_hazard_gmlt.ini}\\
+
+
+\paragraph{Example 5}
+
+This example illustrates a scenario damage calculation which specifies
+fragility models for calculating damage to structural and nonstructural
+components of structures, and also specifies consequence model files for
+calculation of the corresponding losses.
+
+A minimal job configuration file required for
+running a scenario damage calculation is shown below:
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_consequences.ini}\\
+
+Note that one or more of the following parameters can be used in the same job
+configuration file to provide the corresponding consequence model files:
+
+\begin{itemize}
+
+  \item \Verb+structural_consequence_file+: a parameter used to define the path
+    to a structural \gls{consequence model} file
+
+  \item \Verb+nonstructural_consequence_file+: a parameter used to define the path
+    to a nonstructural \gls{consequence model} file
+
+  \item \Verb+contents_consequence_file+: a parameter used to define the path
+    to a contents \gls{consequence model} file
+
+  \item \Verb+business_interruption_consequence_file+: a parameter used to define
+    the path to a business interruption \gls{consequence model} file
+
+\end{itemize}
+
+It is important that the \Verb+lossCategory+ parameter in the metadata section
+for each provided consequence model file (``structural'', ``nonstructural'',
+``contents'', or ``business\_interruption'') should match the loss type
+defined in the configuration file by the relevant keyword above.
+
+The above calculation can be run using the command line:
+
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job.ini
+\end{minted}
+
+After the calculation is completed, a message similar to the following will be
+displayed:
+
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 1579 completed in 37 seconds. Results:
+  id | output_type | name
+8990 | datastore | csq_by_asset
+8991 | datastore | csq_by_taxon
+8992 | datastore | csq_total
+8993 | datastore | dmg_by_asset_and_collapse_map
+8994 | datastore | dmg_by_taxon
+8995 | datastore | dmg_total
+8996 | datastore | gmfs
+\end{minted}
