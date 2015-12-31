@@ -62,8 +62,13 @@ provided in the configuration file:
 
 \end{enumerate}
 
-These different output files are described in more detail in the following
-subsections.
+If the calculation involves multiple \glspl{acr:gmpe} as described in
+Example~4 in Section~\ref{sec:config_scenario_damage}, separate output files
+are generated for each of the above outputs, for each of the different
+\glspl{acr:gmpe} used in the calculation.
+
+These different output files for Scenario Damage calculations are described in
+more detail in the following subsections.
 
 
 \subsection{Scenario damage statistics}
@@ -100,7 +105,7 @@ The key fields in the above output file are the following:
 \subsubsection{Taxonomy damage statistics}
 \label{subsubsec:scenario_taxonomy_damage_statistics}
 
-The Scenario Damage calculator can also estimate the expected total number of
+The Scenario Damage calculator also estimates the expected total number of
 buildings of a certain \gls{taxonomy} in each damage state. This distribution
 of damage per building \gls{taxonomy} is depicted in the following example
 output file snippet:
@@ -139,3 +144,46 @@ within the field \Verb+CMNode+. This field is associated with a location
 number of buildings in the ultimate limit state (\Verb+mean+) and the
 corresponding standard deviation (\Verb+stdDev+) for each \gls{asset}
 (identified by the parameter \Verb+assetRef+).
+
+
+\subsection{Scenario consequence statistics}
+\label{subsec:scenario_consequence_statistics}
+
+\subsubsection{Asset consequence statistics}
+\label{subsubsec:scenario_asset_consequence_statistics}
+
+This output contains the consequences statistics for each of the individual
+\glspl{asset} defined in the \gls{exposure model} that fall within the
+\Verb+region_constraint+ and have a computed \gls{acr:gmf} value available
+within the defined \Verb+asset_hazard_distance+. An example output file for
+structural damage consequences is shown in
+Table~\ref{output:scenario_consequence_asset}.
+
+\input{oqum/risk/verbatim/output_scenario_consequence_asset}
+
+The output file lists consequence statistics for all loss types (amongst
+``structural'', ``nonstructural'', ``contents'', or
+``business\_interruption'') for which a consequence model file was also
+provided in the configuration file in addition to the corresponding
+\gls{fragility model} file.
+
+
+\subsubsection{Taxonomy consequence statistics}
+\label{subsubsec:scenario_taxonomy_consequence_statistics}
+
+The Scenario Damage calculator also estimates the expected total consequences
+for buildings of a certain \gls{taxonomy}, as depicted in the sample output
+shown in Table~\ref{output:scenario_consequence_taxonomy}.
+
+\input{oqum/risk/verbatim/output_scenario_consequence_taxonomy}
+
+
+\subsubsection{Total consequence statistics}
+\label{subsubsec:scenario_total_consequence_statistics}
+
+Finally, a total consequences output file is also generated, which contains
+the mean and standard deviation of the total consequences for the selected
+scenario, as illustrated in the example shown in
+Table~\label{output:scenario_consequence_total}.
+
+\input{oqum/risk/verbatim/output_scenario_consequence_total}
