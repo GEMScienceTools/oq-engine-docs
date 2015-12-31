@@ -1,56 +1,91 @@
+The Scenario Risk Calculator produces the following set of output files for
+all loss types (amongst ``structural'', ``nonstructural'', ``contents'',
+``occupants'', or ``business\_interruption'') for which a vulnerability model
+file was provided in the configuration file:
+
+\begin{enumerate}
+
+  \item \Verb+agg_loss+: this file contains the aggregated scenario
+    loss statistics for the entire portfolio of \glspl{asset} defined
+    in the \gls{exposure model}. The mean (\Verb+mean+) and standard
+    deviation (\Verb+stddev+) of the total loss for the portfolio of
+    \glspl{asset} are listed in this file.
+
+  \item \Verb+loss_map+: this file contains mean (\Verb+mean+) and
+    associated standard deviation (\Verb+stddev+) of the scenario loss for all
+    \glspl{asset} at each of the unique locations in the \gls{exposure model}.
+
+\end{enumerate}
+
+If the calculation involves multiple \glspl{acr:gmpe}, separate output files
+are generated for each of the above outputs, for each of the different
+\glspl{acr:gmpe} used in the calculation.
+
+These different output files for Scenario Risk calculations are described in
+more detail in the following subsections.
+
+
 \subsection{Scenario loss statistics}
+\label{subsec:scenario_loss_statistics}
 
-This output is produced by the Scenario Risk calculator and is comprised by a
-mean total loss and associated standard deviation. These results are stored in
-a comma separate value (.csv) file as follows:
+\subsubsection{Total loss statistics}
+\label{subsubsec:scenario_total_loss_statistics}
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Mean,Standard Deviation
-8717775315.66,2047771108.36
-\end{Verbatim}
+This output is always produced for a Scenario Risk calculation and comprises a
+mean total loss and associated standard deviation for the selected earthquake
+rupture. These results are stored in a comma separate value (.csv) file as
+illustrated in the example shown in Table~\label{output:scenario_loss_total}.
 
-\subsection{Scenario loss maps}
+\input{oqum/risk/verbatim/output_scenario_loss_total}
 
-A loss map contains the spatial distribution of the losses throughout the
-region of interest. This result can be produced by the Scenario Risk
-calculator (representing the losses from a single event), or from the
-Probabilistic Event-based Risk or Classical PSHA-based Risk calculators
-(representing the expected losses from probabilistic seismic hazard). In the
-former case, the loss map is comprised of a mean loss and respective standard
-deviation for each \gls{asset}, whilst for the latter, a single value is
-provided, representing the expected loss for a given return period (or
-probability of exceedance for a certain time span, or investigation interval).
-In the following example, a loss map due to a single earthquake is presented.
+The important attributes in a scenario total loss statistics output file are
+described below:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
-\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
-<nrml xmlns:gml="http://www.opengis.net/gml"
-      xmlns="http://openquake.org/xmlns/nrml/0.5">
-<\textcolor{red}{lossMap} lossCategory="buildings" unit="EUR">
-     <\textcolor{green}{node}>
-          <gml:Point>
-            <gml:pos>83.31 29.46</gml:pos>
-          </gml:Point>
-          \textcolor{blue}{loss} assetRef="a1" mean="53.3" stdDev="109.25"/>
-          \textcolor{blue}{loss} assetRef="a2" mean="386.0" stdDev="695.7"/>
-          \textcolor{blue}{loss} assetRef="a3" mean="303.1" stdDev="447.4"/>
-          \textcolor{blue}{loss} assetRef="a4" mean="298.9" stdDev="453.7"/>
-     <\textcolor{green}{/node}>
-    ...
-     <\textcolor{green}{node}>
-          <gml:Point>
-            <gml:pos>83.33 28.71</gml:pos>
-          </gml:Point>
-          \textcolor{blue}{loss} assetRef="a997" mean="277.3" stdDev="100.8"/>
-          \textcolor{blue}{loss} assetRef="a998" mean="219.6" stdDev="123.5"/>
-          \textcolor{blue}{loss} assetRef="a999" mean="576.3" stdDev="210.9"/>
-     <\textcolor{green}{/node}>
-<\textcolor{red}{/lossMap}>
-</nrml>
-\end{Verbatim}
 
 \begin{itemize}
-\item  \Verb+lossCategory+: the type of losses that are being stored. This parameter is taken from the \gls{vulnerability model} that was used in the loss calculations (e.g. fatalities, economic loss);
-\item  \Verb+unit+: this attribute is used to define the units in which the losses are being measured (e.g. EUR);
-\item  \Verb+node+: each loss map is comprised by various nodes, each node possibly containing a number of \glspl{asset}. The location of the node is defined by a latitude and longitude in decimal degrees within the field \Verb+gml:Point+. The mean loss (\Verb+mean+) and associated standard deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter \Verb+assetRef+) is stored in the \Verb+loss+ field.
+
+  \item \Verb+LossType+: the type of losses that are being stored. This
+    parameter is taken from the \gls{vulnerability model} that was used in the
+    loss calculations (e.g. fatalities, economic loss).
+
+  \item \Verb+Unit+: this attribute defines the units in which the losses are
+    being measured (e.g. EUR).
+
+  \item \Verb+Mean+: the mean total loss across the portfolio of assets for the
+    selected earthquake rupture.
+
+  \item \Verb+Standard Deviation+: the standard deviation of the total loss 
+    across the portfolio of assets for the selected earthquake rupture.
+
+\end{itemize}
+
+
+\subsection{Scenario loss maps}
+\label{subsec:scenario_loss_map}
+
+A scenario loss map contains the spatial distribution of the losses throughout
+the region of interest. The scenario loss map comprises a mean loss and
+respective standard deviation for each \gls{asset} for the selected earthquake
+rupture, as shown in the example file below.
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_loss_map.xml}\\
+
+The important attributes in a scenario loss map are described below:
+
+\begin{itemize}
+
+  \item \Verb+lossCategory+: the type of losses that are being stored. This
+    parameter is taken from the \gls{vulnerability model} that was used in the
+    loss calculations (e.g. fatalities, economic loss).
+
+  \item \Verb+unit+: this attribute defines the units in which the losses are
+    being measured (e.g. EUR).
+
+  \item \Verb+node+: each loss map comprises various nodes, each node possibly
+    containing a number of \glspl{asset}. The location of the node is defined
+    by a latitude and longitude in decimal degrees within the field
+    \Verb+gml:Point+. The mean loss (\Verb+mean+) and associated standard
+    deviation (\Verb+stdDev+) for each \gls{asset} (identified by the parameter
+    \Verb+assetRef+) is stored in the \Verb+loss+ field.
+
 \end{itemize}
