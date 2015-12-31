@@ -78,7 +78,7 @@ the \Verb+region_constraint+ and have a computed \gls{acr:gmf} value available
 within the defined \Verb+asset_hazard_distance+. An example output file for
 structural damage is shown in the file snippet below:
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_asset.xml}\\
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_asset.xml}\\
 
 The key fields in the above output file are the following:
 
@@ -123,6 +123,7 @@ damage state, as illustrated in the example file below.
 
 
 \subsection{Scenario collapse maps}
+\label{subsec:scenario_collapse_map}
 
 Collapse maps are part of the Scenario Damage calculator outputs. These
 results provide the spatial distribution of the number of the buildings in the
@@ -130,37 +131,11 @@ ultimate limit state throughout the area of interest. An example snippet from
 an output file depicting a collapse map for structural damage is presented
 below.
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
-\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
-<nrml xmlns:gml="http://www.opengis.net/gml"
-      xmlns="http://openquake.org/xmlns/nrml/0.5">
-<\textcolor{red}{collapseMap}>
-     <\textcolor{green}{CMNode}>
-          <gml:Point>
-            <gml:pos>83.31 29.46</gml:pos>
-          </gml:Point>
-          <\textcolor{blue}{cf} assetRef="a1" mean="227.1" stdDev="95.8"/>
-          <\textcolor{blue}{cf} assetRef="a2" mean="703.2" stdDev="240.2"/>
-          <\textcolor{blue}{cf} assetRef="a3" mean="199.5" stdDev="63.3"/>
-          <\textcolor{blue}{cf} assetRef="a4" mean="357.8" stdDev="136.1"/>
-     <\textcolor{green}{/CMNode}>
-    ...
-     <\textcolor{green}{CMNode}>
-          <gml:Point>
-            <gml:pos>83.33 28.71</gml:pos>
-          </gml:Point>
-          <\textcolor{blue}{cf} assetRef="a997" mean="239.4" stdDev="102.0"/>
-          <\textcolor{blue}{cf} assetRef="a998" mean="733.0" stdDev="253.2"/>
-          <\textcolor{blue}{cf} assetRef="a999" mean="207.4" stdDev="66.5"/>
-     <\textcolor{green}{/CMNode}>
-<\textcolor{red}{/collapseMap}>
-</nrml>
-\end{Verbatim}
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_collapse.xml}\\
 
-This schema follows the same structure of the loss maps presented previously.
-Thus, the results for a number of \glspl{asset} at a given location are stored
+The results for a number of \glspl{asset} at a given location are stored
 within the field \Verb+CMNode+. This field is associated with a location
 (defined within the \Verb+gml:Point+ attribute) and it contains the mean
-number of collapses (\Verb+mean+) and respective standard deviation
-(\Verb+stdDev+) for each \gls{asset} (identified by the parameter
-\Verb+assetRef+).
+number of buildings in the ultimate limit state (\Verb+mean+) and the
+corresponding standard deviation (\Verb+stdDev+) for each \gls{asset}
+(identified by the parameter \Verb+assetRef+).
