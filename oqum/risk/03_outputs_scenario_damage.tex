@@ -1,12 +1,86 @@
+The Scenario Damage Calculator produces the following set of output files for
+all loss types (amongst ``structural'', ``nonstructural'', ``contents'', or
+``business\_interruption'') for which a fragility model file was provided in
+the configuration file:
+
+\begin{enumerate}
+
+  \item \Verb+dmg_dist_per_asset+: this file contains the damage distribution
+    statistics for each of the individual \glspl{asset} defined in the
+    \gls{exposure model} that fall within the \Verb+region_constraint+ and have
+    a computed \gls{acr:gmf} value available within the defined
+    \Verb+asset_hazard_distance+. For each \gls{asset}, the mean number of
+    buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+)
+    of the number of buildings in each damage state are listed in this file.
+
+  \item \Verb+dmg_dist_per_taxonomy+: this file contains the aggregated damage
+    distribution statistics for each of the \glspl{taxonomy} defined in the
+    \gls{exposure model}. For each \gls{taxonomy}, the mean number of
+    buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+)
+    of the number of buildings in each damage state are listed in this file.
+
+  \item \Verb+dmg_dist_total+: this file contains the aggregated damage
+    distribution statistics for the entire portfolio of \glspl{asset} defined
+    in the \gls{exposure model}. The mean (\Verb+mean+) and associated standard
+    deviation (\Verb+stddev+) of the total number of buildings in each
+    damage state are listed in this file.
+
+  \item \Verb+collapse_map+: this file contains mean (\Verb+mean+) and
+    associated standard deviation (\Verb+stddev+) of the number of buildings
+    in the ultimate limit state for all \glspl{asset} at each of the unique
+    locations in the \gls{exposure model}.
+
+\end{enumerate}
+
+In addition to the above output files which are produced for all Scenario
+Damage calculations, the following set of output files for all loss types
+(amongst ``structural'', ``nonstructural'', ``contents'', or
+``business\_interruption'') for which a consequence model file was also
+provided in the configuration file:
+
+\begin{enumerate}
+\setcounter{enumi}{4}
+
+  \item \Verb+csq_by_asset+: this file contains the scenario consequence
+    statistics for each of the individual \glspl{asset} defined in the
+    \gls{exposure model} that fall within the \Verb+region_constraint+ and have
+    a computed \gls{acr:gmf} value available within the defined
+    \Verb+asset_hazard_distance+. For each \gls{asset}, the mean consequences
+    (\Verb+mean+) and associated standard deviation (\Verb+stddev+) are listed
+    in this file.
+
+  \item \Verb+csq_by_taxon+: this file contains the aggregated scenario
+    consequence statistics for each of the \glspl{taxonomy} defined in the
+    \gls{exposure model}. For each \gls{taxonomy}, the mean consequences
+    (\Verb+mean+) and associated standard deviation (\Verb+stddev+) are listed
+    in this file.
+
+  \item \Verb+csq_total+: this file contains the aggregated scenario
+    consequence statistics for the entire portfolio of \glspl{asset} defined
+    in the \gls{exposure model}. The mean consequences (\Verb+mean+) and 
+    associated standard deviation (\Verb+stddev+) are listed in this file.
+
+\end{enumerate}
+
+These different output files are described in more detail in the following
+subsections.
+
+
 \subsection{Scenario damage statistics}
 \label{subsec:scenario_damage_statistics}
 
 \subsubsection{Asset damage statistics}
 \label{subsubsec:scenario_asset_damage_statistics}
 
+This output contains the damage distribution statistics for each of the
+individual \glspl{asset} defined in the \gls{exposure model} that fall within
+the \Verb+region_constraint+ and have a computed \gls{acr:gmf} value available
+within the defined \Verb+asset_hazard_distance+. An example output file for
+structural damage is shown in the file snippet below:
+
 \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_asset.xml}\\
 
-The key fields in the above output file are described below:
+The key fields in the above output file are the following:
 
 \begin{itemize}
 
@@ -22,46 +96,28 @@ The key fields in the above output file are described below:
 
 \end{itemize}
 
-The Scenario Damage calculator can also estimate the total number of buildings
-with a certain \gls{taxonomy}, in each damage state. This  distribution of
-damage per building \gls{taxonomy} is depicted in the following example.
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
-\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
-<nrml xmlns:gml="http://www.opengis.net/gml"
-      xmlns="http://openquake.org/xmlns/nrml/0.5">
-<\textcolor{red}{dmgDistPerAsset}>
-     <\textcolor{green}{damageStates}>
-         no_damage
-         slight
-         moderate
-         complete
-     <\textcolor{green}{/damageStates}>
-     <\textcolor{green}{DDNode}>
-      <taxonomy>W</taxonomy>
-      <damage ds="no_damage" mean="456450.2" stddev="26376.62"/>
-      <damage ds="slight" mean="88102.3" stddev="3283.9"/>
-      <damage ds="moderate" mean="103564.6" stddev="3487.1"/>
-      <damage ds="complete" mean="275891.1" stddev="26676.8"/>
-     <\textcolor{green}{/DDNode}>
-     ...
-     <\textcolor{green}{DDNode}>
-      <taxonomy>RC</taxonomy>
-      <damage ds="no_damage" mean="4484.2" stddev="460.9"/>
-      <damage ds="slight" mean="932.4" stddev="106.7"/>
-      <damage ds="moderate" mean="1691.7" stddev="177.9"/>
-      <damage ds="complete" mean="7659.5" stddev="799.3"/>
-     <\textcolor{green}{/DDNode}>
-<\textcolor{red}{/dmgDistPerAsset}>
-</nrml>
-\end{Verbatim}
+\subsubsection{Taxonomy damage statistics}
+\label{subsubsec:scenario_taxonomy_damage_statistics}
+
+The Scenario Damage calculator can also estimate the expected total number of
+buildings of a certain \gls{taxonomy} in each damage state. This distribution
+of damage per building \gls{taxonomy} is depicted in the following example
+output file snippet:
+
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_taxonomy.xml}\\
 
 In the damage distribution per \gls{taxonomy}, each \Verb+DDNode+ contains the
 statistics of the number of buildings in each damage state, belonging to a
-given building class as specified in the \Verb+taxonomy+ attribute. Finally, a
-total damage distribution can also be calculated, which contains the mean and
-standard deviation of the total number of buildings in each damage state, as
-illustrated below.
+given building class as specified by the \Verb+taxonomy+ attribute.
+
+
+\subsubsection{Total damage statistics}
+\label{subsubsec:scenario_total_damage_statistics}
+
+Finally, a total damage distribution can also be calculated, which contains
+the mean and standard deviation of the total number of buildings in each
+damage state, as illustrated below.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
 \textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
