@@ -1,49 +1,27 @@
-\subsection{Retrofitting Benefit/cost ratio maps}
+\subsection{Retrofitting benefit/cost ratio maps}
 
 Ratio maps from the Retrofitting Benefit/Cost Ratio calculator require loss
-exceedance curves, which can be calculated using the Classical PSHA-based Risk
+exceedance curves, which can be calculated using the Classical Probabilistic Risk
 calculator. For this reason, the parameters \Verb+sourceModelTreePath+ and
 \Verb+gsimTreePath+ are also included in this NRML schema, so the whole
 calculation process can be traced back. The results for each \gls{asset} are
 stored as depicted below:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=false]
-\textcolor{gray}{<?xml version="1.0" encoding="UTF-8"?>}
-<nrml xmlns:gml="http://www.opengis.net/gml"
-      xmlns="http://openquake.org/xmlns/nrml/0.5">
-<\textcolor{red}{bcrMap} interestRate="0.05" assetLifeExpectancy="50.0"
-    sourceModelTreePath="b1" gsimTreePath="b1" unit="EUR">
-     <\textcolor{green}{node}>
-          <gml:Point>
-            <gml:pos>83.31 29.46</gml:pos>
-          </gml:Point>
-          <\textcolor{blue}{bcr} assetRef="a1" ratio="1.96" aalOrig="1466.9"
-              aalRetr="253.0"/>
-          <\textcolor{blue}{bcr} assetRef="a2" ratio="2.33" aalOrig="937.9"
-              aalRetr="215.7"/>
-          <\textcolor{blue}{bcr} assetRef="a3" ratio="1.32" aalOrig="492.0"
-              aalRetr="83.7"/>
-          <\textcolor{blue}{bcr} assetRef="a4" ratio="0.76" aalOrig="294.1"
-              aalRetr="57.9"/>
-     <\textcolor{green}{/node}>
-    ...
-     <\textcolor{green}{node}>
-          <gml:Point>
-            <gml:pos>83.33 28.71</gml:pos>
-          </gml:Point>
-          <\textcolor{blue}{bcr} assetRef="a997" ratio="0.84" aalOrig="18323.1"
-              aalRetr="7340.7"/>
-          <\textcolor{blue}{bcr} assetRef="a998" ratio="1.36" aalOrig="152027.6"
-              aalRetr="29123.5"/>
-          <\textcolor{blue}{bcr} assetRef="a999" ratio="0.83" aalOrig="60727.3"
-              aalRetr="12676.1"/>
-     <\textcolor{green}{/node}>
-<\textcolor{red}{/bcrMap}>
-</nrml>
-\end{Verbatim}
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_bcr_map.xml}\\
+
 
 \begin{itemize}
-\item  \Verb+interestRate+: this parameter represents the inflation rate of the economic value of the \glspl{asset};
-\item  \Verb+assetLifeExpectancy+: a parameter specifying the life expectancy (or design life) of the \glspl{asset} considered for the calculations;
-\item  \Verb+node+: this schema follows the same \Verb+node+ structure already presented for the loss maps, however, instead of losses for each \gls{asset}, the benefit/cost ratio (\Verb+ratio+), the average annual loss considering the original vulnerability (\Verb+aalOrig+) and the average annual loss for the retrofitted (\Verb+aalRetr+) configuration  of the \glspl{asset} are provided.
+  \item \Verb+interestRate+: this parameter represents the interest rate used
+    in the time-value of money calculations
+
+  \item \Verb+assetLifeExpectancy+: this parameter specifies the life expectancy
+    (or design life) of the \glspl{asset} considered for the calculations
+
+  \item \Verb+node+: this schema follows the same \Verb+node+ structure already
+    presented for the loss maps, however, instead of losses for each
+    \gls{asset}, the benefit/cost ratio (\Verb+ratio+), the average annual loss
+    considering the original vulnerability (\Verb+aalOrig+) and the average
+    annual loss for the retrofitted (\Verb+aalRetr+) configuration of the
+    \glspl{asset} are provided.
+
 \end{itemize}
