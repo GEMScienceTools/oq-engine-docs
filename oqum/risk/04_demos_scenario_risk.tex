@@ -1,35 +1,21 @@
-A rupture of magnitude 7 Mw in the central part of Nepal was considered within
-this demo. The characteristics of this rupture (geometry, dip, rake,
-hypocentre,  upper and lower seismogenic depth) have been defined in the
-\verb+rupture.xml+ file, whist the hazard calculation settings have been
-established on the \verb+job_hazard.ini+ file. In order to calculate the set of
-ground motion fields due to this rupture, users should navigate to the folder
-where the demo files are located, and use the following command:
+The same rupture described in the Scenario Damage demo is also used for this
+demo. In this case, a combined job file, job.ini, is used to specify the
+configuration parameters for the hazard and risk calculations.
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run job_hazard.ini
-\end{Verbatim}
+To run the Scenario Risk demo, users should navigate to the folder where the
+required files have been placed and employ following command:
 
-which will produce the following hazard result:
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job.ini
+\end{minted}
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 10 results:
-id | output_type | name
-20 | gmf_scenario | gmf_scenario
-\end{Verbatim}
+and the following outputs should be produced:
 
-Then, this hazard input can be used for the risk calculations using the
-following command:
-
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-output-id 20
-\end{Verbatim}
-
-leading to the following results:
-
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 11 results:
-id | output_type | name
-21 | aggregate_loss | Aggregate Loss type=structural
-22 | loss_map | loss maps. type=structural
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 8970 completed in 16 seconds. Results:
+  id | output_type | name
+9070 | datastore | gmfs
+9071 | datastore | realizations
+9072 | datastore | loss_map-rlzs
+9073 | datastore | agglosses-rlzs
+\end{minted}

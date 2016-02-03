@@ -1,17 +1,23 @@
 The loss exceedance curves used within this demo are produced using the
-Classical PSHA-based Risk calculator. Thus, the process to produce the seismic
-hazard curves described in the respective section
-(\ref{sec:demos_classical_risk}) can be employed here. Then, the risk
-calculations can be initiated using the following command:
+Classical Probabilistic Risk calculator. Thus, the process to produce the
+seismic hazard curves described in Section~\ref{sec:demos_classical_risk} can
+be employed here. Then, the risk calculations can be initiated using the
+following command:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run job_bcr.ini --hazard-output-id 27
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+\end{minted}
+
+Alternatively, the hazard and risk jobs can be run sequentially using:
+
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job_hazard.ini,job_risk.ini
+\end{minted}
 
 which should produce the following output:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 17 results:
-id | output_type | name
-37 | bcr_distribution | BCR Distribution for hazard 27
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 8976 completed in 14 seconds. Results:
+  id | output_type | name
+9087 | datastore | bcr-rlzs
+\end{minted}

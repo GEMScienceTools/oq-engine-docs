@@ -1,37 +1,36 @@
-The seismic source model developed within the Global Seismic Hazard Assessment
-Program (GSHAP) was used with the \cite{chiou2008} ground motion prediction
-equation to produce the hazard input for this demo. No uncertainties are
-considered in the seismic source model and since only one GMPE is being
-considered, there will be only one possible path in the logic tree. Therefore,
-only one set seismic hazard curves will be produced. To do so, the following
-command needs to be employed:
+The same hazard input as described in the Classical Probabilistic Damage demo
+is used for this demo. Thus, the workflow to produce the set of hazard curves
+described in Section~\ref{sec:demos_classical_damage} is also valid herein.
+Then, to run the Classical Probabilistic Risk demo, users should navigate to
+the folder containing the demo input models and configuration files and employ
+the following command:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 user@ubuntu:~\$ oq-engine --run job_hazard.ini
-\end{Verbatim}
+\end{minted}
 
 which will produce the following hazard output:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 13 results:
-id | output_type | name
-27 | hazard_curve | hc-rlz-70
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 8971 completed in 34 seconds. Results:
+  id | output_type | name
+9074 | datastore | hcurves
+9075 | datastore | realizations
+\end{minted}
 
 In this demo, loss exceedance curves for each asset and two probabilistic loss
 maps (for probabilities of exceedance of 1\% and 10\%) are produced. The
 following command launches these risk calculations:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-output-id 27
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+\end{minted}
 
 and the following outputs are expected:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 14 results:
-id | output_type | name
-28 | loss_curve | loss curves. type=structural, hazard=27
-29 | loss_map | loss maps. type=structural poe=0.1, hazard=27
-30 | loss_map | loss maps. type=structural poe=0.01, hazard=27
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 8973 completed in 16 seconds. Results:
+  id | output_type | name
+9077 | datastore | loss_curves-rlzs
+9078 | datastore | loss_maps-rlzs
+\end{minted}

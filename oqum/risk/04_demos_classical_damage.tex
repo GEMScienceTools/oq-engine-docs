@@ -1,34 +1,36 @@
-The same hazard input as described in the Classical PSHA-based Risk demo was
-used for this demo. Thus, the workflow to produce the set of hazard curves
-described in \ref{sec:demos_classical_risk} is also valid herein. Then, to run
-the Classical PSHA-based Damage demo, users should navigate to the folder
-containing the demo input models and configuration files and employ the
-following command:
+The seismic source model developed within the Global Seismic Hazard Assessment
+Program (GSHAP) is used with the \cite{chiou2008} ground motion prediction
+equation to produce the hazard input for this demo. No uncertainties are
+considered in the seismic source model and since only one GMPE is being
+considered, there will be only one possible path in the logic tree. Therefore,
+only one set of seismic hazard curves will be produced. To run the hazard
+calculation, the following command needs to be employed:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 user@ubuntu:~\$ oq-engine --run job_hazard.ini
-\end{Verbatim}
+\end{minted}
 
 which will produce the following sample hazard output:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 5 results:
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 8971 completed in 34 seconds. Results:
   id | output_type | name
- 420 | Hazard Curve | Hazard Curve rlz-102-PGA
- 419 | Hazard Curve (multiple imts) | hc-multi-imt-rlz-102
-\end{Verbatim}
+9074 | datastore | hcurves
+9075 | datastore | realizations
+\end{minted}
 
-In this demo, the damage distribution for each asset in the exposure model is
-produced. The following command launches the risk calculations:
+The risk job calculates the probabilistic damage distribution for each asset
+in the exposure model starting from the above generated hazard curves. The
+following command launches the risk calculations:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hazard-output-id 419
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+\end{minted}
 
 and the following sample outputs are obtained:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-Calculation 6 results:
- id | output_type | name
- 421 | Damage Per Asset | Damage distribution for hazard=419
-\end{Verbatim}
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+Calculation 8972 completed in 16 seconds. Results:
+  id | output_type | name
+9076 | datastore | damages-rlzs
+\end{minted}
