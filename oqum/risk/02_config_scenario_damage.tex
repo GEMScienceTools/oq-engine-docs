@@ -6,10 +6,15 @@ For this calculator, the parameter \Verb+calculation_mode+ should be set to
 This example illustrates a scenario damage calculation which uses a single
 configuration file to first compute the ground motion fields for the given
 rupture model and then calculate damage distribution statistics based on the
-ground motion fields. A minimal job configuration file required for
-running a scenario damage calculation is shown below:
+ground motion fields. A minimal job configuration file required for running a
+scenario damage calculation is shown in
+Listing~\ref{lst:config_scenario_damage_combined}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_combined.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_combined.ini}
+  \caption{Example combined configuration file for running a scenario damage calculation}
+  \label{lst:config_scenario_damage_combined}
+\end{listing}
 
 The general parameters \Verb+description+ and \Verb+calculation_mode+, and
 \Verb+exposure_file+ have already been described earlier. The other parameters
@@ -80,15 +85,25 @@ defined in the configuration file by the relevant keyword above.
 
 This example illustrates a scenario damage calculation which uses separate
 configuration files for the hazard and risk parts of a scenario damage
-assessment. The first configuration file contains input models and parameters
-required for the computation of the ground motion fields due to a given
-rupture. The second configuration file contains input models and parameters
+assessment. The first configuration file shown in
+Listing~\ref{lst:config_scenario_damage_hazard} contains input models and
+parameters required for the computation of the ground motion fields due to a
+given rupture. The second configuration file shown in
+Listing~\ref{lst:config_scenario_damage} contains input models and parameters
 required for the calculation of the damage distribution for a portfolio of
 assets due to the ground motion fields.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_scenario_hazard.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_scenario_hazard.ini}
+  \caption{Example hazard configuration file for a scenario damage calculation}
+  \label{lst:config_scenario_damage_hazard}
+\end{listing}
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_damage.ini]{ini}{oqum/risk/verbatim/config_scenario_damage.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_damage.ini]{ini}{oqum/risk/verbatim/config_scenario_damage.ini}
+  \caption{Example risk configuration file for a scenario damage calculation}
+  \label{lst:config_scenario_damage}
+\end{listing}
 
 Now, the above calculations described by the two configuration files
 ``job\_hazard.ini'' and ``job\_damage.ini'' can be run sequentially using the
@@ -225,14 +240,19 @@ will produce the following display:
 
 \paragraph{Example 3}
 
-This example illustrates a scenario damage calculation which uses a file
-listing a precomputed set of ground motion fields. These ground motion fields
-can be computed using the OpenQuake-engine or some other software. The ground
-motion fields can be provided in the NRML format as presented in
+The example shown in Listing~\ref{lst:config_scenario_damage_gmf} illustrates
+a scenario damage calculation which uses a file listing a precomputed set of
+ground motion fields. These ground motion fields can be computed using the
+OpenQuake-engine or some other software. The ground motion fields can be
+provided in the NRML format as presented in
 Section~\ref{subsec:output_event_based_psha}. The damage distribution is
 computed based on the provided ground motion fields.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_gmf.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_gmf.ini}
+  \caption{Example configuration file for a scenario damage calculation using a precomputed set of ground motion fields}
+  \label{lst:config_scenario_damage_gmf}
+\end{listing}
 
 \begin{itemize}
 
@@ -253,22 +273,30 @@ user@ubuntu:~\$ oq-engine --run job.ini
 This example illustrates a scenario damage calculation which uses two
 \glspl{acr:gmpe} instead of only one. Currently, the set of \glspl{acr:gmpe}
 to be used for a scenario calculation can be specified using a logic tree
-file, as demonstrated in \ref{subsec:gmlt}. As of OpenQuake-engine v1.7, the
+file, as demonstrated in \ref{subsec:gmlt}. As of OpenQuake-engine v1.8, the
 weights in the logic tree are ignored, and a set of \glspl{acr:gmf} will be
 generated for each \gls{acr:gmpe} in the logic tree file. Correspondingly,
 damage distribution statistics will be generated for each set of
 \gls{acr:gmf}.
 
-The file shown below lists the two \glspl{acr:gmpe} to be used for the hazard
-calculation:
+The file shown in Listing~\ref{lst:input_scenario_gmlt} lists the two
+\glspl{acr:gmpe} to be used for the hazard calculation:
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=gsim\_logic\_tree.xml]{xml}{oqum/risk/verbatim/input_scenario_gmlt.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=gsim\_logic\_tree.xml]{xml}{oqum/risk/verbatim/input_scenario_gmlt.xml}
+  \caption{Example ground motion logic tree for a scenario calculation}
+  \label{lst:input_scenario_gmlt}
+\end{listing}
 
 The only change that needs to be made in the hazard job configuration file is
 to replace the \Verb+gsim+ parameter with \Verb+gsim_logic_tree_file+, as
-demonstrated in the file below:
+demonstrated in Listing~\ref{lst:config_scenario_hazard_gmlt}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_scenario_hazard_gmlt.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job\_hazard.ini]{ini}{oqum/risk/verbatim/config_scenario_hazard_gmlt.ini}
+  \caption{Example configuration file for a scenario damage calculation using a logic-tree file}
+  \label{lst:config_scenario_hazard_gmlt}
+\end{listing}
 
 
 \paragraph{Example 5}
@@ -278,10 +306,15 @@ fragility models for calculating damage to structural and nonstructural
 components of structures, and also specifies consequence model files for
 calculation of the corresponding losses.
 
-A minimal job configuration file required for
-running a scenario damage calculation is shown below:
+A minimal job configuration file required for running a scenario damage
+calculation followed by a consequences analysis is shown in
+Listing~\ref{lst:config_scenario_damage_consequences}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_consequences.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_damage_consequences.ini}
+  \caption{Example configuration file for a scenario damage calculation followed by a consequences analysis}
+  \label{lst:config_scenario_damage_consequences}
+\end{listing}
 
 Note that one or more of the following parameters can be used in the same job
 configuration file to provide the corresponding consequence model files:

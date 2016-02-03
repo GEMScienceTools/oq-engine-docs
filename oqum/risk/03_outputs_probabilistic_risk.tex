@@ -55,11 +55,16 @@ file was provided in the configuration file.
 Individual asset loss exceedance curves for ground-up losses are always
 generated for the Classical Probabilistic Risk Calculator. On the other hand,
 individual asset loss exceedance curves are not generated for the Stochastic
-Event-Based Probabilistic Risk Calculator unless the parameter ``loss\_ratios''
-is defined in the configuration file. The file snippet included below shows an
-example asset loss exceedance curve output file.
+Event-Based Probabilistic Risk Calculator unless the parameter
+``loss\_ratios'' is defined in the configuration file. The file snippet
+included in Listing~\ref{lst:output_loss_curve_asset} shows an example asset
+loss exceedance curve output file.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_asset.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_asset.xml}
+  \caption{Example asset loss exceedance curves}
+  \label{lst:output_loss_curve_asset}
+\end{listing}
 
 Each \Verb+lossCurve+ is associated with a location (defined within the
 \Verb+gml:Point+ attribute) and a reference to the \gls{asset}
@@ -90,10 +95,14 @@ exceedance curves are also generated for both the Classical Probabilistic Risk
 Calculator and the Stochastic Event-Based Probabilistic Risk Calculator (if
 the parameter ``loss\_ratios'' is defined in the configuration file). An
 example output file containing mean asset loss exceedance curves is shown
-below. Apart from the metadata section, the structure of the file is identical
+in Listing~\ref{lst:output_loss_curve_mean}. Apart from the metadata section, the structure of the file is identical
 to that of the individual asset loss exceedance curve output file.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_mean.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_mean.xml}
+  \caption{Example mean asset loss exceedance curves}
+  \label{lst:output_loss_curve_mean}
+\end{listing}
 
 \subsubsection{Quantile loss exceedance curves}
 \label{subsubsec:quantile_loss_curves}
@@ -105,23 +114,33 @@ Risk Calculator and the Stochastic Event-Based Probabilistic Risk Calculator
 quantiles for which loss curves will be calculated should have been defined in
 the job configuration file for the calculation using the parameter
 \Verb+quantile_loss_curves+. An example output file containing mean asset loss
-exceedance curves is shown below. Apart from the metadata section, the
+exceedance curves is shown in Listing~\ref{lst:output_loss_curve_quantile}. Apart from the metadata section, the
 structure of the file is identical to that of the individual asset loss
 exceedance curve output file.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_quantile.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_quantile.xml}
+  \caption{Example quantile asset loss exceedance curves}
+  \label{lst:output_loss_curve_quantile}
+\end{listing}
 
 \subsubsection{Aggregate loss exceedance curves}
 \label{subsubsec:aggregate_loss_curves}
 
 Aggregate loss exceedance curves are generated only by the Stochastic Event-
-Based Probabilistic Risk Calculator and describe the probabilities of the
-total loss across the entire portfolio exceeding a set of loss values within a
-given time span (or investigation interval).
+Based Probabilistic Risk Calculator and describe the probabilities of
+exceedance of the total loss across the entire portfolio for a set of
+loss values within a given time span (or investigation interval). An example aggregate loss exceedance curve file is shown in Listing~\ref{lst:output_loss_curve_aggregate}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_aggregate.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_loss_curve_aggregate.xml}
+  \caption{Example aggregate loss exceedance curve}
+  \label{lst:output_loss_curve_aggregate}
+\end{listing}
 
-Same as described previously for individual assets, aggregate insured loss exceedance curves, mean aggregate loss exceedance curves, and quantile aggregate loss exceedance curves will also be generated when relevant.
+Same as described previously for individual assets, aggregate insured loss
+exceedance curves, mean aggregate loss exceedance curves, and quantile
+aggregate loss exceedance curves will also be generated when relevant.
 
 
 \subsection{Probabilistic loss maps}
@@ -133,10 +152,14 @@ the region of interest. This result can be generated using either the
 Stochastic Event-Based Probabilistic Risk Calculator or the Classical
 Probabilistic Risk Calculator.
 
-The file snippet included below shows an example probabilistic loss map output
+The file snippet included in Listing~\ref{lst:output_probabilistic_loss_map} shows an example probabilistic loss map output
 file.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_probabilistic_loss_map.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_probabilistic_loss_map.xml}
+  \caption{Example probabilistic loss map}
+  \label{lst:output_probabilistic_loss_map}
+\end{listing}
 
 The important attributes in a probabilistic loss map are described below:
 
@@ -176,10 +199,14 @@ aggregate event loss table. Each row of this table contains the rupture id, magn
 losses from the collection of assets within the region of interest), for each
 event in the stochastic event sets.
 
-The file snippet included below shows an example stochastic event loss table
+The file snippet included in Listing~\ref{lst:output_event_loss_table_aggregate}shows an example stochastic event loss table
 output file.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_event_loss_table_aggregate.csv}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_event_loss_table_aggregate.csv}
+  \caption{Example aggregate event loss table}
+  \label{lst:output_event_loss_table_aggregate}
+\end{listing}
 
 Asset event loss tables provide calculated losses for each of the assets in
 the exposure model, for each event within the stochastic event sets. In these

@@ -81,9 +81,13 @@ This output contains the damage distribution statistics for each of the
 individual \glspl{asset} defined in the \gls{exposure model} that fall within
 the \Verb+region_constraint+ and have a computed \gls{acr:gmf} value available
 within the defined \Verb+asset_hazard_distance+. An example output file for
-structural damage is shown in the file snippet below:
+structural damage is shown in the file snippet in Listing~\ref{lst:output_scenario_damage_asset}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_asset.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_asset.xml}
+  \caption{Example scenario damage statistics per asset}
+  \label{lst:output_scenario_damage_asset}
+\end{listing}
 
 The key fields in the above output file are the following:
 
@@ -107,10 +111,14 @@ The key fields in the above output file are the following:
 
 The Scenario Damage calculator also estimates the expected total number of
 buildings of a certain \gls{taxonomy} in each damage state. This distribution
-of damage per building \gls{taxonomy} is depicted in the following example
-output file snippet:
+of damage per building \gls{taxonomy} is depicted in the example
+output file snippet in Listing~\ref{lst:output_scenario_damage_taxonomy}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_taxonomy.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_taxonomy.xml}
+  \caption{Example scenario damage statistics per taxonomy}
+  \label{lst:output_scenario_damage_taxonomy}
+\end{listing}
 
 In the damage distribution per \gls{taxonomy}, each \Verb+DDNode+ contains the
 statistics of the number of buildings in each damage state, belonging to a
@@ -120,11 +128,16 @@ given building class as specified by the \Verb+taxonomy+ attribute.
 \subsubsection{Total damage statistics}
 \label{subsubsec:scenario_total_damage_statistics}
 
-Finally, a total damage distribution output file is also generated, which contains
-the mean and standard deviation of the total number of buildings in each
-damage state, as illustrated in the example file below.
+Finally, a total damage distribution output file is also generated, which
+contains the mean and standard deviation of the total number of buildings in
+each damage state, as illustrated in the example file in
+Listing~\ref{lst:output_scenario_damage_total}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_total.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_total.xml}
+  \caption{Example total damage statistics}
+  \label{lst:output_scenario_damage_total}
+\end{listing}
 
 
 \subsection{Scenario collapse maps}
@@ -136,7 +149,11 @@ ultimate limit state throughout the area of interest. An example snippet from
 an output file depicting a collapse map for structural damage is presented
 below.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_collapse.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_damage_collapse.xml}
+  \caption{Example collapse map}
+  \label{lst:output_scenario_damage_collapse}
+\end{listing}
 
 The results for a number of \glspl{asset} at a given location are stored
 within the field \Verb+CMNode+. This field is associated with a location
@@ -184,6 +201,6 @@ shown in Table~\ref{output:scenario_consequence_taxonomy}.
 Finally, a total consequences output file is also generated, which contains
 the mean and standard deviation of the total consequences for the selected
 scenario, as illustrated in the example shown in
-Table~\label{output:scenario_consequence_total}.
+Table~\ref{output:scenario_consequence_total}.
 
 \input{oqum/risk/verbatim/output_scenario_consequence_total}

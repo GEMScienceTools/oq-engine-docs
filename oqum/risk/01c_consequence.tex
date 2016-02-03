@@ -18,9 +18,13 @@ the continuous distribution of the loss ratio for each limit state specified
 in the fragility model for the corresponding loss type, for each taxonomy
 defined in the exposure model.
 
-An example consequence model is shown below:
+An example consequence model is shown in Listing~\ref{lst:input_consequence}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}\\	
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}
+  \caption{Example consequence model}
+  \label{lst:input_consequence}
+\end{listing}	
 
 The initial portion of the schema contains general information that describes
 some general aspects of the \gls{consequence model}. The information in this
@@ -54,13 +58,13 @@ model} file. The parameters are described below:
 
 \end{itemize}
 
-\inputminted[firstline=4,firstnumber=4,lastline=9,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}\\
+\inputminted[firstline=4,firstnumber=4,lastline=9,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}
 
 The following snippet from the above consequence model example file defines a
 consequence function using a lognormal distribution to model the uncertainty
 in the consequence ratio for each limit state:
 
-\inputminted[firstline=11,firstnumber=11,lastline=16,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}\\
+\inputminted[firstline=11,firstnumber=11,lastline=16,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_consequence.xml}
 
 The following attributes are needed to define a consequence function:
 

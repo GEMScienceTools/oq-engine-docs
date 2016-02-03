@@ -29,9 +29,13 @@ presented.
 \end{figure}
 
 An example \gls{fragility model} comprising one discrete \gls{fragility
-function} and one continuous \gls{fragility function} is shown below:
+function} and one continuous \gls{fragility function} is shown in Listing~\ref{lst:input_fragility}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}
+  \caption{Example fragility model comprising one discrete fragility function and one continuous fragility function}
+  \label{lst:input_fragility}
+\end{listing}
 
 
 The initial portion of the schema contains general information that describes 
@@ -54,7 +58,7 @@ some general aspects of the \gls{fragility model}.
 
 \end{itemize}
 
-\inputminted[firstline=4,firstnumber=4,lastline=9,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}\\
+\inputminted[firstline=4,firstnumber=4,lastline=9,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}
 
 The information in the metadata section is common to all of the functions in
 the \gls{fragility model} and needs to be included at the beginning of every
@@ -85,7 +89,7 @@ mix of both types of \glspl{fragility function}.
 The following snippet from the above fragility model example file defines a
 discrete fragility function:
 
-\inputminted[firstline=11,firstnumber=11,lastline=17,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}\\
+\inputminted[firstline=11,firstnumber=11,lastline=17,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}
 
 The following attributes are needed to define a discrete \gls{fragility function}:
 
@@ -126,7 +130,7 @@ The following attributes are needed to define a discrete \gls{fragility function
 The following snippet from the above \gls{fragility model} example file
 defines a continuous \gls{fragility function}:
 
-\inputminted[firstline=19,firstnumber=19,lastline=25,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}\\
+\inputminted[firstline=19,firstnumber=19,lastline=25,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_fragility.xml}
 
 The following attributes are needed to define a continuous \gls{fragility function}:
 

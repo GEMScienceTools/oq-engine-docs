@@ -16,9 +16,14 @@ ground motion fields for the given source model and ground motion model, and
 then calculate event loss tables, loss exceedance curves and probabilistic
 loss maps for structural losses, nonstructural losses, and insured structural
 losses, based on the ground motion fields. The job configuration file required
-for running this stochastic event based risk calculation is shown below:
+for running this stochastic event based risk calculation is shown in
+Listing~\ref{lst:config_event_based_risk_combined}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray,linenos,label=job.ini]{ini}{oqum/risk/verbatim/config_event_based_risk_combined.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray,linenos,label=job.ini]{ini}{oqum/risk/verbatim/config_event_based_risk_combined.ini}
+  \caption{Example combined configuration file for running a stochastic event based risk calculation}
+  \label{lst:config_event_based_risk_combined}
+\end{listing}
 
 Similar to that the procedure described for the Scenario Risk calculator, a
 Monte Carlo sampling process is also employed in this calculator to take into

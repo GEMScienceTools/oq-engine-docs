@@ -40,7 +40,7 @@ more detail in the following subsections.
 This output is always produced for a Scenario Risk calculation and comprises a
 mean total loss and associated standard deviation for the selected earthquake
 rupture. These results are stored in a comma separate value (.csv) file as
-illustrated in the example shown in Table~\label{output:scenario_loss_total}.
+illustrated in the example shown in Table~\ref{output:scenario_loss_total}.
 
 \input{oqum/risk/verbatim/output_scenario_loss_total}
 
@@ -73,9 +73,13 @@ described below:
 A scenario loss map contains the spatial distribution of the losses throughout
 the region of interest. The scenario loss map comprises a mean loss and
 respective standard deviation for each \gls{asset} for the selected earthquake
-rupture, as shown in the example file below.
+rupture, as shown in the example file in Listing~\ref{lst:output_scenario_loss_map}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_loss_map.xml}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_scenario_loss_map.xml}
+  \caption{Example scenario loss map}
+  \label{lst:output_scenario_loss_map}
+\end{listing}
 
 The important attributes in a scenario loss map are described below:
 

@@ -14,9 +14,13 @@ configuration file to first compute the ground motion fields for the given
 rupture model and then calculate loss statistics for structural losses,
 nonstructural losses, and insured structural losses, based on the ground
 motion fields. The job configuration file required for running this scenario
-risk calculation is shown below:
+risk calculation is shown in Listing~\ref{lst:config_scenario_risk_combined}.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_risk_combined.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_scenario_risk_combined.ini}
+  \caption{Example combined configuration file for a scenario risk calculation}
+  \label{lst:config_scenario_risk_combined}
+\end{listing}
 
 Whereas a scenario damage calculation requires one or more fragility and/or
 consequence models, a scenario risk calculation requires the user to specify
@@ -73,7 +77,7 @@ The remaining new parameters introduced in this example are the following:
     should be calculated; the default value of this parameter is \Verb+false+.
     In order for the OpenQuake-engine to be able to compute insured losses, the
     insurance limits and deductibles must be listed for each asset in the 
-    exposure model, as described in Example~5 in \ref{sec:exposure}.
+    exposure model, as described in Example~5 in Section~\ref{sec:exposure}.
 
 \end{itemize}
 
