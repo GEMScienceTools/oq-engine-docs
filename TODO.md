@@ -19,8 +19,6 @@ Risk
 ----
 
 * Describe the reuse option for exposure models
-* Describe output filenames (eg. dmg_by_asset_and_collapse_map)
-* Replace outdated risk output file formats with current ones
 * Spellcheck the new risk sections
 * Add download links to examples
 * Float all minted listings to avoid vertical whitespace:
