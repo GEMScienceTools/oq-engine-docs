@@ -152,8 +152,8 @@ the region of interest. This result can be generated using either the
 Stochastic Event-Based Probabilistic Risk Calculator or the Classical
 Probabilistic Risk Calculator.
 
-The file snippet included in Listing~\ref{lst:output_probabilistic_loss_map} shows an example probabilistic loss map output
-file.
+The file snippet included in Listing~\ref{lst:output_probabilistic_loss_map}
+shows an example probabilistic loss map output file.
 
 \begin{listing}[htbp]
   \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_probabilistic_loss_map.xml}
@@ -175,7 +175,8 @@ The important attributes in a probabilistic loss map are described below:
     parameter is taken from the \gls{vulnerability model} that was used in the
     loss calculations (e.g. fatalities, economic loss).
 
-  \item \Verb+investigationTime+: time span used to compute the probability of exceedance
+  \item \Verb+investigationTime+: time span used to compute the probability of
+    exceedance
   
   \item \Verb+poE+: parameter specifying the probability of exceedance (e.g. 0.1)
 
@@ -194,19 +195,18 @@ The important attributes in a probabilistic loss map are described below:
 
 \subsection{Stochastic event loss tables}
 
-The Stochastic Event-Based Probabilistic Risk Calculator will also produce an 
-aggregate event loss table. Each row of this table contains the rupture id, magnitude, and aggregated loss (sum of the
-losses from the collection of assets within the region of interest), for each
-event in the stochastic event sets.
+The Stochastic Event-Based Probabilistic Risk Calculator will also produce an
+aggregate event loss table. Each row of this table contains the rupture id,
+and aggregated loss (sum of the losses from the collection of assets within
+the region of interest), for each event in the stochastic event sets. The
+rupture id listed in this table is linked with the rupture ids listed in the
+stochastic event sets files.
 
-The file snippet included in Listing~\ref{lst:output_event_loss_table_aggregate}shows an example stochastic event loss table
-output file.
+The file snippet included in Table~\ref{output:event_loss_table_aggregate}
+shows an example stochastic event loss table output file.
 
-\begin{listing}[htbp]
-  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}{oqum/risk/verbatim/output_event_loss_table_aggregate.csv}
-  \caption{Example aggregate event loss table}
-  \label{lst:output_event_loss_table_aggregate}
-\end{listing}
+\input{oqum/risk/verbatim/output_event_loss_table_aggregate}
+
 
 Asset event loss tables provide calculated losses for each of the assets in
 the exposure model, for each event within the stochastic event sets. In these
