@@ -21,19 +21,6 @@ Risk
 * Describe the reuse option for exposure models
 * Spellcheck the new risk sections
 * Add download links to examples
-* Float all minted listings to avoid vertical whitespace:
-```tex
-\begin{listing}[ht]
-  \inputminted{xml}{exposure.xml}
-  \caption{Example exposure model}
-  \label{listing:exposure_model}
-\end{listing}
-```
-
-
-General
--------
-
 * Link consistently to glossary definitions
 * Define in glossary:
   - Loss types
