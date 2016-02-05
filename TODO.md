@@ -4,7 +4,6 @@ Hazard
 * Describe the rupture model NRML schema; provide examples for simple fault, complex fault, single plane, multi plane rupture models
 * Examples for SES and GMF should explain the rupture tag, eg.: col=00~ses=0001~src=1-1~rup=006-01
 * Describe the `individual_curves` option for hazard calculations
-* The parameter `poes_hazard_maps` listed in the manual doesn't exist
 * Replace --run-hazard and --rh with --run
 * Replace --list-hazard-outputs and --lho with --list-outputs and --lo
 * Replace --export-hazard-outputs and --eho with --export-outputs and --eos
