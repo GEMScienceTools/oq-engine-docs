@@ -419,6 +419,30 @@ asset.
   \label{lst:input_exposure_occupants}
 \end{listing}
 
+
+\paragraph{Reusing an exposure model in subsequent calculations}
+
+For calculations involving large exposure models, the OpenQuake-engine makes
+it possible to read the exposure model once and reuse the same exposure in
+subsequent calculations. The first time the computation involving the exposure
+model is run, the exposure will be read and saved in the datastore. Then, if
+you need to re-run the computation by changing some parameter external to the
+exposure, you can comment out the exposure from the job.ini file and give the
+command
+
+\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
+user@ubuntu:~\$ oq-engine --run job.ini --hc <calc_id>
+\end{minted}
+
+where calc\_id is the ID of the previous calculation. The original exposure will
+be re-used. Note that if a hazard calculation uses an exposure model to specify
+the sites where the hazard is computed; then any other exposure model provided
+in a subsequent risk calculation which uses this hazard calculation will be 
+ignored. In such cases, the risk results will be computed based on the exposure
+model previously specified in the hazard calculation.
+
+
+
 Scripts to convert an \gls{exposure model} in CSV format or as Excel or
 ASCII files into NRML are also under development, and can be found at the
 OpenQuake platform at the following address:

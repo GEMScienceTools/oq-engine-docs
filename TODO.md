@@ -17,8 +17,5 @@ Hazard
 Risk
 ----
 
-* Describe the reuse option for exposure models
 * Add download links to examples
 * Link consistently to glossary definitions
-* Define in glossary:
-  - Loss types
