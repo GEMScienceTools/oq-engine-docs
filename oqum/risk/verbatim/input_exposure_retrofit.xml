@@ -8,14 +8,15 @@
   <description>Exposure model illustrating retrofit costs</description>
   <conversions>
     <costTypes>
-      <costType name="structural" type="aggregated" unit="USD" />
+      <costType name="structural" type="aggregated" unit="USD" 
+                retrofittedType="per_asset" retrofittedUnit="USD" />
     </costTypes>
   </conversions>
   <assets>
     <asset id="a1" taxonomy="Adobe" number="1" >
       <location lon="-122.000" lat="38.113" />
       <costs>
-        <cost type="structural" value="10000" retrofit="2000" />
+        <cost type="structural" value="10000" retrofitted="2000" />
       </costs>
     </asset>
   </assets>

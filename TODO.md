@@ -19,7 +19,6 @@ Risk
 ----
 
 * Describe the reuse option for exposure models
-* Spellcheck the new risk sections
 * Add download links to examples
 * Link consistently to glossary definitions
 * Define in glossary:
