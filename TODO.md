@@ -17,5 +17,4 @@ Hazard
 Risk
 ----
 
-* Add download links to examples
 * Link consistently to glossary definitions
