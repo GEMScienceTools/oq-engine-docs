@@ -7,13 +7,13 @@ file was provided in the configuration file:
 
   \item \Verb+agg_loss+: this file contains the aggregated scenario
     loss statistics for the entire portfolio of \glspl{asset} defined
-    in the \gls{exposure model}. The mean (\Verb+mean+) and standard
+    in the \gls{exposuremodel}. The mean (\Verb+mean+) and standard
     deviation (\Verb+stddev+) of the total loss for the portfolio of
     \glspl{asset} are listed in this file.
 
   \item \Verb+loss_map+: this file contains mean (\Verb+mean+) and
     associated standard deviation (\Verb+stddev+) of the scenario loss for all
-    \glspl{asset} at each of the unique locations in the \gls{exposure model}.
+    \glspl{asset} at each of the unique locations in the \gls{exposuremodel}.
 
 \end{enumerate}
 
@@ -51,12 +51,12 @@ described below:
 \begin{itemize}
 
   \item \Verb+LossType+: the type of losses that are being stored. This
-    parameter is taken from the \gls{vulnerability model} that was used in the
+    parameter is taken from the \gls{vulnerabilitymodel} that was used in the
     loss calculations (e.g. fatalities, economic loss).
 
   \item \Verb+Unit+: this attribute defines the units in which the losses are
     being measured (e.g. USD or EUR). These units are the same as those defined
-    in the \gls{exposure model} used for the calculation.
+    in the \gls{exposuremodel} used for the calculation.
 
   \item \Verb+Mean+: the mean total loss across the portfolio of assets for the
     selected earthquake rupture.
@@ -86,7 +86,7 @@ The important attributes in a scenario loss map are described below:
 \begin{itemize}
 
   \item \Verb+LossType+: the type of losses that are being stored. This
-    parameter is taken from the \gls{vulnerability model} that was used in the
+    parameter is taken from the \gls{vulnerabilitymodel} that was used in the
     loss calculations (e.g. fatalities, economic loss).
 
   \item \Verb+unit+: this attribute defines the units in which the losses are

@@ -31,20 +31,20 @@ corresponding vulnerability model files:
 \begin{itemize}
 
   \item \Verb+structural_vulnerability_file+: this parameter is used to
-    specify the path to the structural \gls{vulnerability model} file
+    specify the path to the structural \gls{vulnerabilitymodel} file
 
   \item \Verb+nonstructural_vulnerability_file+: this parameter is used to
-    specify the path to the nonstructural\gls{vulnerability model} file
+    specify the path to the nonstructural\gls{vulnerabilitymodel} file
 
   \item \Verb+contents_vulnerability_file+: this parameter is used to
-    specify the path to the contents \gls{vulnerability model} file
+    specify the path to the contents \gls{vulnerabilitymodel} file
 
   \item \Verb+business_interruption_vulnerability_file+: this parameter is
     used to specify the path to the business interruption
-    \gls{vulnerability model} file
+    \gls{vulnerabilitymodel} file
 
   \item \Verb+occupants_vulnerability_file+: this parameter is used to
-    specify the path to the occupants \gls{vulnerability model} file
+    specify the path to the occupants \gls{vulnerabilitymodel} file
 
 \end{itemize}
 
@@ -63,7 +63,7 @@ The remaining new parameters introduced in this example are the following:
     ratios will be generated, thus allowing reproducibility of the results.
 
   \item \Verb+asset_correlation+: if the uncertainty in the loss ratios
-    has been defined within the \gls{vulnerability model}, users can specify
+    has been defined within the \gls{vulnerabilitymodel}, users can specify
     a coefficient of correlation that will be used in the Monte Carlo sampling
     process of the loss ratios, between the assets that share the same
     \gls{taxonomy}. If the \Verb+asset_correlation+ is set to one,
@@ -71,11 +71,11 @@ The remaining new parameters introduced in this example are the following:
     if this parameter is set to zero, the loss ratios will be sampled
     independently. Any value between zero and one will lead to increasing
     levels of correlation. If this parameter is not defined, the
-    OpenQuake-engine will assume zero correlation in the vulnerability.
+    \glsdesc{acr:oqe} will assume zero correlation in the vulnerability.
 
   \item \Verb+insured_losses+: this parameter specifies whether insured losses
     should be calculated; the default value of this parameter is \Verb+false+.
-    In order for the OpenQuake-engine to be able to compute insured losses, the
+    In order for the \glsdesc{acr:oqe} to be able to compute insured losses, the
     insurance limits and deductibles must be listed for each asset in the 
     exposure model, as described in Example~5 in Section~\ref{sec:exposure}.
 

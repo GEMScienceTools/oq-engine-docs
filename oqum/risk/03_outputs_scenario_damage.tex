@@ -7,7 +7,7 @@ the configuration file:
 
   \item \Verb+dmg_dist_per_asset+: this file contains the damage distribution
     statistics for each of the individual \glspl{asset} defined in the
-    \gls{exposure model} that fall within the \Verb+region_constraint+ and have
+    \gls{exposuremodel} that fall within the \Verb+region_constraint+ and have
     a computed \gls{acr:gmf} value available within the defined
     \Verb+asset_hazard_distance+. For each \gls{asset}, the mean number of
     buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+)
@@ -15,27 +15,27 @@ the configuration file:
 
   \item \Verb+dmg_dist_per_taxonomy+: this file contains the aggregated damage
     distribution statistics for each of the \glspl{taxonomy} defined in the
-    \gls{exposure model}. For each \gls{taxonomy}, the mean number of
+    \gls{exposuremodel}. For each \gls{taxonomy}, the mean number of
     buildings (\Verb+mean+) and associated standard deviation (\Verb+stddev+)
     of the number of buildings in each damage state are listed in this file.
 
   \item \Verb+dmg_dist_total+: this file contains the aggregated damage
     distribution statistics for the entire portfolio of \glspl{asset} defined
-    in the \gls{exposure model}. The mean (\Verb+mean+) and associated standard
+    in the \gls{exposuremodel}. The mean (\Verb+mean+) and associated standard
     deviation (\Verb+stddev+) of the total number of buildings in each
     damage state are listed in this file.
 
   \item \Verb+collapse_map+: this file contains mean (\Verb+mean+) and
     associated standard deviation (\Verb+stddev+) of the number of buildings
     in the ultimate limit state for all \glspl{asset} at each of the unique
-    locations in the \gls{exposure model}.
+    locations in the \gls{exposuremodel}.
 
 \end{enumerate}
 
 In addition to the above output files which are produced for all Scenario
 Damage calculations, the following set of output files for all loss types
 (amongst ``structural'', ``nonstructural'', ``contents'', or
-``business\_interruption'') for which a consequence model file was also
+``business\_interruption'') for which a \gls{consequencemodel} file was also
 provided in the configuration file:
 
 \begin{enumerate}
@@ -43,7 +43,7 @@ provided in the configuration file:
 
   \item \Verb+csq_by_asset+: this file contains the scenario consequence
     statistics for each of the individual \glspl{asset} defined in the
-    \gls{exposure model} that fall within the \Verb+region_constraint+ and have
+    \gls{exposuremodel} that fall within the \Verb+region_constraint+ and have
     a computed \gls{acr:gmf} value available within the defined
     \Verb+asset_hazard_distance+. For each \gls{asset}, the mean consequences
     (\Verb+mean+) and associated standard deviation (\Verb+stddev+) are listed
@@ -51,13 +51,13 @@ provided in the configuration file:
 
   \item \Verb+csq_by_taxon+: this file contains the aggregated scenario
     consequence statistics for each of the \glspl{taxonomy} defined in the
-    \gls{exposure model}. For each \gls{taxonomy}, the mean consequences
+    \gls{exposuremodel}. For each \gls{taxonomy}, the mean consequences
     (\Verb+mean+) and associated standard deviation (\Verb+stddev+) are listed
     in this file.
 
   \item \Verb+csq_total+: this file contains the aggregated scenario
     consequence statistics for the entire portfolio of \glspl{asset} defined
-    in the \gls{exposure model}. The mean consequences (\Verb+mean+) and 
+    in the \gls{exposuremodel}. The mean consequences (\Verb+mean+) and 
     associated standard deviation (\Verb+stddev+) are listed in this file.
 
 \end{enumerate}
@@ -78,7 +78,7 @@ more detail in the following subsections.
 \label{subsubsec:scenario_asset_damage_statistics}
 
 This output contains the damage distribution statistics for each of the
-individual \glspl{asset} defined in the \gls{exposure model} that fall within
+individual \glspl{asset} defined in the \gls{exposuremodel} that fall within
 the \Verb+region_constraint+ and have a computed \gls{acr:gmf} value available
 within the defined \Verb+asset_hazard_distance+. An example output file for
 structural damage is shown in the file snippet in Listing~\ref{lst:output_scenario_damage_asset}.
@@ -94,7 +94,7 @@ The key fields in the above output file are the following:
 \begin{itemize}
 
   \item \Verb+damageStates+: this field serves the purposes of storing the set
-    of damage states, as defined in the \gls{fragility model} employed in the
+    of damage states, as defined in the \gls{fragilitymodel} employed in the
     calculations
 
   \item \Verb+DDNode+: this attribute is used to store the damage distribution
@@ -170,7 +170,7 @@ corresponding standard deviation (\Verb+stdDev+) for each \gls{asset}
 \label{subsubsec:scenario_asset_consequence_statistics}
 
 This output contains the consequences statistics for each of the individual
-\glspl{asset} defined in the \gls{exposure model} that fall within the
+\glspl{asset} defined in the \gls{exposuremodel} that fall within the
 \Verb+region_constraint+ and have a computed \gls{acr:gmf} value available
 within the defined \Verb+asset_hazard_distance+. An example output file for
 structural damage consequences is shown in
@@ -180,9 +180,9 @@ Table~\ref{output:scenario_consequence_asset}.
 
 The output file lists consequence statistics for all loss types (amongst
 ``structural'', ``nonstructural'', ``contents'', or
-``business\_interruption'') for which a consequence model file was also
+``business\_interruption'') for which a \gls{consequencemodel} file was also
 provided in the configuration file in addition to the corresponding
-\gls{fragility model} file.
+\gls{fragilitymodel} file.
 
 
 \subsubsection{Taxonomy consequence statistics}

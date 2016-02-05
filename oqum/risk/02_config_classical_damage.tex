@@ -30,7 +30,7 @@ Section~\ref{subsec:config_classical_psha}.
 
 In this case, the hazard curves will be computed at each of the locations of
 the assets in the exposure model, for each of the intensity measure types
-found in the provided set of fragility models. The above calculation can be
+found in the provided set of \glspl{fragilitymodel}. The above calculation can be
 run using the command line:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
@@ -83,7 +83,7 @@ above example configuration file are described below:
     in probabilistic damage or risk calculations where the period of interest
     for the risk calculation is different from the period of interest for the 
     hazard calculation. If this parameter is not explicitly set, the 
-    OpenQuake-engine will assume that the risk calculation is over the same 
+    \glsdesc{acr:oqe} will assume that the risk calculation is over the same 
     time period as the preceding hazard calculation.
 
   \item \Verb+steps_per_interval+: an optional parameter that can be used to
@@ -93,7 +93,7 @@ above example configuration file are described below:
 
     steps\_per\_interval = n
 
-    will result in the OpenQuake-engine discretizing the discrete fragility
+    will result in the \glsdesc{acr:oqe} discretizing the discrete fragility
     models using (n - 1) interpolation steps between each pair of 
     {intensity level, poe} points.
 

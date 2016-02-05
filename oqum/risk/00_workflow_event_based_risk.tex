@@ -2,9 +2,9 @@ This calculator employs an event-based Monte Carlo simulation approach to
 probabilistic risk assessment in order to estimate the loss distribution for
 individual assets and aggregated loss distribution for a spatially distributed
 portfolio of assets within a specified time period. The calculator requires
-the definition of an exposure model, a vulnerability model for each loss type
-of interest with vulnerability functions for each taxonomy represented in the
-exposure model, and a set of ground motion fields representative of the
+the definition of an \gls{exposuremodel}, a \gls{vulnerabilitymodel} for each loss type
+of interest with \glspl{vulnerabilityfunction} for each taxonomy represented in the
+\gls{exposuremodel}, and a set of ground motion fields representative of the
 seismicity of the region over the specified time period. Loss curves and loss
 maps can currently be calculated for five different loss types using this
 calculator: structural losses, nonstructural losses, contents losses, downtime
@@ -45,7 +45,7 @@ in the choice of a seismic source model, and in the choice of GMPE models for th
 different tectonic regions.
 
 For each GMF realization, a loss ratio is sampled for every asset in the
-exposure model using the provided probabilistic vulnerability model, taking
+\gls{exposuremodel} using the provided probabilistic vulnerability model, taking
 into consideration the correlation model for vulnerability of different assets
 of a given taxonomy. Finally loss exceedance curves are computed for both
 ground-up losses and insured losses.
