@@ -1,4 +1,4 @@
-usage: oq-engine [--help]
+usage: oq-engine [-h]
                  [--version]
                  [--log-file LOG_FILE]
                  [--log-level {debug,info,progress,warn,error,critical}]
@@ -8,7 +8,6 @@ usage: oq-engine [--help]
                  [--yes]
                  [--config-file CONFIG_FILE]
                  [--make-html-report YYYY-MM-DD|today]
-                 [--lite]
                  [--upgrade-db]
                  [--version-db]
                  [--what-if-I-upgrade]
@@ -23,20 +22,10 @@ usage: oq-engine [--help]
                  [--delete-risk-calculation RISK_CALCULATION_ID]
                  [--list-outputs CALCULATION_ID]
                  [--show-view CALCULATION_ID VIEW_NAME]
-                 [--list-hazard-outputs CALCULATION_ID]
-                 [--list-risk-outputs CALCULATION_ID]
                  [--exports EXPORT_FORMATS]
                  [--export-output OUTPUT_ID TARGET_DIR]
-                 [--export-hazard-output OUTPUT_ID TARGET_DIR]
-                 [--export-risk-output OUTPUT_ID TARGET_DIR]
                  [--export-outputs CALCULATION_ID TARGET_DIR]
                  [--export-stats CALCULATION_ID TARGET_DIR OUTPUT_TYPE]
-                 [--export-hazard-outputs HAZARD_CALCULATION_ID TARGET_DIR]
-                 [--export-risk-outputs RISK_CALCULATION_ID TARGET_DIR]
-                 [--save-hazard-calculation HAZARD_CALCULATION_ID DUMP_DIR]
-                 [--load-hazard-calculation DUMP_DIR]
-                 [--load-curve CURVE_FILE]
-                 [--list-imported-outputs]
 
 OpenQuake Seismic Hazard and Risk Analysis Engine
 
@@ -67,7 +56,6 @@ General:
   --make-html-report, -r YYYY-MM-DD|today
                         Build an HTML report of the computation at the given
                         date
-  --lite                Use lite version of the calculator, if possible
 
 Database:
   --upgrade-db          Upgrade the openquake database
@@ -86,9 +74,9 @@ Hazard:
                         Delete all the uncompleted calculations
 
 Risk:
-  --run-risk, --rr CONFIG_FILE
+  --run-risk CONFIG_FILE, --rr CONFIG_FILE
                         Run a risk job with the specified config file
-  --hazard-output-id, --ho HAZARD_OUTPUT
+  --hazard-output-id, --ho HAZARD_OUTPUT_ID
                         Use the desired hazard output as input for the risk
                         job
   --hazard-calculation-id, --hc HAZARD_CALCULATION_ID
@@ -103,46 +91,14 @@ Export:
                         List outputs for the specified calculation
   --show-view, --sv CALCULATION_ID VIEW_NAME
                         Show a view of the specified calculation
-  --list-hazard-outputs, --lho CALCULATION_ID
-                        List outputs for the specified calculation
-                        [deprecated]
-  --list-risk-outputs, --lro CALCULATION_ID
-                        List outputs for the specified calculation
-                        [deprecated]
   --exports EXPORT_FORMATS
                         Comma-separated string specifing the export formats,
                         in order of priority
   --export-output, --eo OUTPUT_ID TARGET_DIR
                         Export the desired output to the specified directory
-  --export-hazard-output, --eh OUTPUT_ID TARGET_DIR
-                        Export the output to the specified directory
-                        [deprecated]
-  --export-risk-output, --er OUTPUT_ID TARGET_DIR
-                        Export the output to the specified directory
-                        [deprecated]
   --export-outputs, --eos CALCULATION_ID TARGET_DIR
                         Export all the calculation outputs to the specified
                         directory
   --export-stats, --es CALCULATION_ID TARGET_DIR OUTPUT_TYPE
                         Export the statistical outputs to the specified
                         directory
-  --export-hazard-outputs, --eho HAZARD_CALCULATION_ID TARGET_DIR
-                        Export all the outputs to the specified directory
-                        [deprecated]
-  --export-risk-outputs, --ero RISK_CALCULATION_ID TARGET_DIR
-                        Export all the outputs to the specified directory
-                        [deprecated]
-
-Save/Load:
-  --save-hazard-calculation, --shc HAZARD_CALCULATION_ID DUMP_DIR
-                        Save a hazard calculation to a new created directory
-  --load-hazard-calculation DUMP_DIR
-                        Load a hazard calculation from a saved import. Only
-                        SES outputs currently supported.
-
-Import:
-  --load-curve CURVE_FILE
-                        Load hazard curves from an XML file
-  --list-imported-outputs
-                        List outputs which were imported from a file, not
-                        calculated from a job
