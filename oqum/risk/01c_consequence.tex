@@ -34,27 +34,30 @@ metadata section is common to all of the functions in the
 
 \begin{itemize}
 
-    \item \Verb+id+: a unique key used to identify the \gls{consequencemodel}
+    \item \Verb+id+: a unique string (UTF-8) used to identify the
+    \gls{consequencemodel}
 
     \item \Verb+assetCategory+: an optional string used to specify the type of
-    \glspl{asset} for which fragility functions will be defined in this file 
-    (e.g: buildings, lifelines)
+    \glspl{asset} for which \glspl{consequencefunction} will be defined in this 
+    file (e.g: buildings, lifelines)
 
-    \item \Verb+lossCategory+: valid strings for this attribute are 
+    \item \Verb+lossCategory+: mandatory; valid strings for this attribute are 
     ``structural'', ``nonstructural'', ``contents'', and 
     ``business\_interruption''
 
-    \item \Verb+description+: a brief string with further information about the
-    \gls{consequencemodel}, for example, which building typologies are covered or 
-    the source of the functions in the \gls{consequencemodel}
+    \item \Verb+description+: mandatory; a brief string with further 
+    information about the \gls{consequencemodel}, for example, which building
+    typologies are covered or the source of the functions in the
+    \gls{consequencemodel}
 
-    \item \Verb+limitStates+: this field is used to define the number and 
+    \item \Verb+limitStates+: mandatory; this field is used to define the number and 
     nomenclature of each limit state. Four limit states are employed in the 
-    example above, but it is possible to use any number of discrete states,
-    as long as a fragility curve is always defined for each limit state. The 
+    example above, but it is possible to use any number of discrete states. The 
     limit states must be provided as a set of strings separated by whitespaces 
     between each limit state. Please ensure that there is no whitespace within 
-    the name of any individual limit state.
+    the name of any individual limit state. The number and nomenclature of the
+    limit states used in the \gls{consequencemodel} should match those used in
+    the corresponding \gls{fragilitymodel}
 
 \end{itemize}
 
@@ -70,12 +73,12 @@ The following attributes are needed to define a \gls{consequencefunction}:
 
 \begin{itemize}
 
-    \item \Verb+id+: a unique key used to identify the \gls{taxonomy} for 
-    which the function is being defined. This key is used to relate the 
+    \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the \gls{taxonomy} for 
+    which the function is being defined. This string is used to relate the 
     \gls{consequencefunction} with the relevant \gls{asset} in the 
     \gls{exposuremodel}.
 
-    \item \Verb+dist+: for vulnerability function which use a continuous 
+    \item \Verb+dist+: mandatory; for vulnerability function which use a continuous 
     distribution to model the uncertainty in the conditional loss ratios, 
     this attribute should be set to either ``\Verb+LN+'' if using the lognormal
     distribution, or to ``\Verb+BT+'' if using the Beta distribution
@@ -85,7 +88,7 @@ The following attributes are needed to define a \gls{consequencefunction}:
     damage distribution. Consideration of the uncertainty in the consequence
     ratios will be included in future releases of the \glsdesc{acr:oqe}.}.
 
-    \item \Verb+params+: this field is used to define the parameters of 
+    \item \Verb+params+: mandatory; this field is used to define the parameters of 
     the continuous distribution used for modelling the uncertainty in the
     loss ratios for each limit state for this 
     \gls{consequencefunction}. For a lognormal distrbution, 

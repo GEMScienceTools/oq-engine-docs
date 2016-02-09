@@ -11,12 +11,12 @@ risk calculator are illustrated through the example below.
 \paragraph{Example 1}
 
 This example illustrates a stochastic event based risk calculation which uses
-a single configuration file to first compute the stochastic event sets and
-ground motion fields for the given source model and ground motion model, and
-then calculate event loss tables, loss exceedance curves and probabilistic
-loss maps for structural losses, nonstructural losses, and insured structural
-losses, based on the ground motion fields. The job configuration file required
-for running this stochastic event based risk calculation is shown in
+a single configuration file to first compute the \glspl{acr:ses} and
+\glspl{acr:gmf} for the given source model and ground motion model, and then
+calculate event loss tables, loss exceedance curves and probabilistic loss
+maps for structural losses, nonstructural losses, insured structural losses,
+and occupants, based on the \glspl{acr:gmf}. The job configuration file
+required for running this stochastic event based risk calculation is shown in
 Listing~\ref{lst:config_event_based_risk_combined}.
 
 \begin{listing}[htbp]
@@ -56,7 +56,9 @@ The new parameters introduced in this example are described below:
     which the individual asset loss curves will be computed. If
     \Verb+loss_ratios+ is not set in the configuration file, the individual 
     asset loss curves will not be computed; and only the aggregate loss curve
-    for the portfolio of assets will be computed.
+    for the portfolio of assets will be computed. Furthermore, if
+    \Verb+loss_ratios+ is not set in the configuration file, loss maps will
+    also \bf{not} be computed.
 
   \item \Verb+avg_losses+: this boolean parameter specifies whether the average
     asset losses over the time period ``risk\_investigation\_time'' should be

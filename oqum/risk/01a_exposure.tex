@@ -1,12 +1,13 @@
 \emph{All} risk calculators in the \glsdesc{acr:oqe} require an
-\gls{exposuremodel} that needs to be provided in the NRML format. The
-information included in an \gls{exposuremodel} comprises a metadata section listing
-general information about the exposure, followed by a cost conversions section
-that describes how the different areas, costs, and occupancies for the assets
-will be specified, followed by data regarding each individual asset in the
-portfolio.
+\gls{exposuremodel} that needs to be provided in the \gls{acr:nrml} schema,
+the use of which is illustrated through several examples in this section. The
+information included in an \gls{exposuremodel} comprises a metadata section
+listing general information about the exposure, followed by a cost conversions
+section that describes how the different areas, costs, and occupancies for the
+assets will be specified, followed by data regarding each individual
+\gls{asset} in the portfolio.
 
-A minimal \gls{exposuremodel} comprising a single asset is shown in
+A simple \gls{exposuremodel} comprising a single \gls{asset} is shown in
 Listing~\ref{lst:input_exposure_minimal}.
 
 \begin{listing}[htbp]
@@ -29,7 +30,8 @@ described below:
 
 \begin{itemize}
 
-  \item \Verb+id+: a unique key used to identify the \gls{exposuremodel}
+  \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the
+    \gls{exposuremodel}
 
   \item \Verb+category+: an optional string used to define the type of
     \glspl{asset} being stored (e.g: buildings, lifelines)
@@ -37,8 +39,8 @@ described below:
   \item \Verb+taxonomySource+: an optional attribute used to define the
     \gls{taxonomy} being used to classify the \glspl{asset}
 
-  \item \Verb+description+: a brief string with further information about the
-    \gls{exposuremodel}
+  \item \Verb+description+: mandatory; a brief string (UTF-8) with further
+    information about the \gls{exposuremodel}
 
 \end{itemize}
 
@@ -51,8 +53,8 @@ conversions:
 Notice that the \Verb+costType+ element defines a \Verb+name+, a \Verb+type+, 
 and a \Verb+unit+ attribute.
 
-The NRML schema for the \gls{exposuremodel} allows the definition of a
-structural cost, a nonstructural components cost, a contents cost, and a
+The \gls{acr:nrml} schema for the \gls{exposuremodel} allows the definition of
+a structural cost, a nonstructural components cost, a contents cost, and a
 business interruption or downtime cost for each \gls{asset} in the portfolio.
 Thus, the valid values for the \Verb+name+ attribute of the \Verb+costType+
 element are the following:
@@ -93,13 +95,13 @@ following:
 \begin{itemize}
 
   \item \Verb+aggregated+: indicates that the replacement costs will be 
-    provided as an aggregated value for each asset 
+    provided as an aggregated value for each \gls{asset}
 
   \item \Verb+per_asset+: indicates that the replacement costs will be 
-    provided per building or unit comprising each asset
+    provided per structural unit comprising each \gls{asset}
 
   \item \Verb+per_area+: indicates that the replacement costs will be 
-    provided per unit area for each asset
+    provided per unit area for each \gls{asset}
 
 \end{itemize}
 
@@ -109,10 +111,10 @@ conversions section. The \Verb+area+ element defines a \Verb+type+, and a
 \Verb+unit+ attribute.
 
 The \Verb+unit+ attribute of the \Verb+area+ element is used for specifying
-the units for the area of an asset. The \glsdesc{acr:oqe} itself is agnostic to the
-area units; the \Verb+unit+ is thus a descriptive attribute which is used by the
-\glsdesc{acr:oqe} to annotate the results of a risk assessment. This attribute
-can be set to any valid Unicode string.
+the units for the area of an \gls{asset}. The \glsdesc{acr:oqe} itself is
+agnostic to the area units; the \Verb+unit+ is thus a descriptive attribute
+which is used by the \glsdesc{acr:oqe} to annotate the results of a risk
+assessment. This attribute can be set to any valid UTF-8 string.
 
 The \Verb+type+ attribute of the \Verb+area+ element specifies whether the
 area will be provided as an aggregated value for an \gls{asset}, or per
@@ -122,10 +124,10 @@ building or unit comprising an \gls{asset}. The valid values for the
 \begin{itemize}
 
   \item \Verb+aggregated+: indicates that the area will be provided as an 
-    aggregated value for each asset
+    aggregated value for each \gls{asset}
 
   \item \Verb+per_asset+: indicates that the area will be provided per 
-    building or unit comprising each asset
+    building or unit comprising each \gls{asset}
 
 \end{itemize}
 
@@ -149,23 +151,30 @@ calculations:
 
 \inputminted[firstline=17,firstnumber=17,lastline=27,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_exposure_minimal.xml}
 
-Each asset definition involves specifiying a set of mandatory and optional
-attributes concerning the asset. The following set of attributes can be
-assigned to each asset based on the current schema for the exposure model:
+Each \gls{asset} definition involves specifiying a set of mandatory and
+optional attributes concerning the \gls{asset}. The following set of
+attributes can be assigned to each \gls{asset} based on the current schema for
+the \gls{exposuremodel}:
 
 \begin{itemize}
 
-  \item \Verb+id+: mandatory; a unique key used to identify the given
-    \gls{asset}, which is used by the \glsdesc{acr:oqe} to relate each asset 
-    with its associated results.
+  \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the 
+    given \gls{asset}, which is used by the \glsdesc{acr:oqe} to relate each
+    \gls{asset} with its associated results.
 
-  \item \Verb+taxonomy+: mandatory; specifies the building typology of the 
-    given \gls{asset}. The taxonomy strings can be user-defined, or based on
-    an existing classification scheme such as the GEM Taxonomy, PAGER,
+  \item \Verb+taxonomy+: mandatory; this string specifies the building typology
+    of the given \gls{asset}. The taxonomy strings can be user-defined, or
+    based on an existing classification scheme such as the GEM Taxonomy, PAGER,
     or EMS-98.
 
-  \item \Verb+number+: mandatory; the number of independent units or 
-    individual structures comprising a given \gls{asset}
+  \item \Verb+number+: the number of individual structural units comprising a
+    given \gls{asset}. This attribute is mandatory for damage calculations. For
+    risk calculations, this attribute must be defined if either the area or any
+    of the costs are provided per structural unit comprising each \gls{asset}.
+
+  \item \Verb+area+: area of the \gls{asset}, at a given location. As 
+    mentioned earlier, the area is a mandatory attribute only if any one of the 
+    costs for the \gls{asset} is specified per unit area.
 
   \item \Verb+location+: mandatory; specifies the longitude 
     (between -180$^{\circ}$ to 180$^{\circ}$) and latitude 
@@ -173,10 +182,6 @@ assigned to each asset based on the current schema for the exposure model:
     specified in decimal degrees\footnote{Within the \glsdesc{acr:oqe}, 
     longitude and latitude coordinates are internally rounded to a precision
     of 5 digits after the decimal point.}.
-
-  \item \Verb+area+: area of the \gls{asset}, at a given location. As 
-    mentioned earlier, the area is a mandatory attribute only if any one of the 
-    costs for the \gls{asset} is specified per unit area.
 
   \item \Verb+costs+: specifies a set of costs for the given \gls{asset}. 
     The replacement value for different cost types must be provided on 
@@ -187,7 +192,8 @@ assigned to each asset based on the current schema for the exposure model:
     \Verb+business_interruption+.
 
   \item \Verb+occupancies+: mandatory only for probabilistic or scenario 
-    damage calculations. Each entry within this element specifies the number of
+    risk calculations that specify an \Verb+occupants_vulnerability_file+.
+    Each entry within this element specifies the number of
     occupants for the asset for a particular period of the day. As shown in 
     the example above, each occupancy entry must define the \Verb+period+ and 
     the \Verb+occupants+. Currently supported valid options for the 
@@ -209,10 +215,10 @@ provided in this section.
 
 This example illustrates an \gls{exposuremodel} in which the aggregated cost
 (structural, nonstructural, contents and business interruption) of the
-buildings of each taxonomy for a set of locations is directly provided. Thus,
-in order to indicate how the various costs will be defined, the following
-information needs to be stored in the \gls{exposuremodel} file, as shown in
-Listing~\ref{lst:input_exposure_cagg_metadata}.
+\glspl{asset} of each taxonomy for a set of locations is directly provided.
+Thus, in order to indicate how the various costs will be defined, the
+following information needs to be stored in the \gls{exposuremodel} file, as
+shown in Listing~\ref{lst:input_exposure_cagg_metadata}.
 
 \begin{listing}[htbp]
   \inputminted[firstline=8,firstnumber=8,lastline=18,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_exposure_cagg.xml}
@@ -233,22 +239,23 @@ format shown in Listing~\ref{lst:input_exposure_cagg_assets}.
 
 Each \gls{asset} is uniquely identified by its \Verb+id+, (e.g. loss
 exceedance curves). Then, a pair of coordinates (latitude and longitude) for a
-\Verb+location+ where the asset is assumed to exist is defined. Each asset
-must be classified according to a \Verb+taxonomy+, so that the OpenQuake-
-engine is capable of employing the appropriate \gls{vulnerabilityfunction} or
-\gls{fragilityfunction} in the risk calculations. Finally, the cost values of
-each \Verb+type+ are stored within the \Verb+costs+ attribute. In this
-example, the aggregated value for all units (within a given asset) at each
-location is provided directly, so there is no need to define other attributes
-such as \Verb+number+ or \Verb+area+. This mode of representing an
-\gls{exposuremodel} is probably the simplest one.
+\Verb+location+ where the asset is assumed to exist is defined. Each
+\gls{asset} must be classified according to a \Verb+taxonomy+, so that the
+\glsdesc{acr:oqe} is capable of employing the appropriate
+\gls{vulnerabilityfunction} or \gls{fragilityfunction} in the risk
+calculations. Finally, the cost values of each \Verb+type+ are stored within
+the \Verb+costs+ attribute. In this example, the aggregated value for all
+structural units (within a given \gls{asset}) at each location is provided
+directly, so there is no need to define other attributes such as \Verb+number+
+or \Verb+area+. This mode of representing an \gls{exposuremodel} is probably
+the simplest one.
 
 
 \paragraph{Example 2}
 
 In the snippet shown in Listing~\ref{lst:input_exposure_cunit_metadata}, an
-\gls{exposuremodel} containing the number of units (buildings) and the
-associated costs per unit of each building typology is presented.
+\gls{exposuremodel} containing the number of structural units and the
+associated costs per unit of each \gls{asset} is presented.
 
 \begin{listing}[htbp]
   \inputminted[firstline=8,firstnumber=8,lastline=18,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_exposure_cunit.xml}
@@ -266,20 +273,19 @@ in Listing~\ref{lst:input_exposure_cunit_assets}.
   \label{lst:input_exposure_cunit_assets}
 \end{listing}
 
-In this example, the various costs for each asset is not provided directly, as
-happened in the previous example. In order to carry out the risk calculations
-in which the economic cost of each asset is required, the \glsdesc{acr:oqe}
-multiplies, for each asset, the number of units (buildings) by the ``per
-asset'' replacement cost. Note that in this case, there is no need to specify
-the attribute \Verb+area+.
+In this example, the various costs for each \gls{asset} is not provided
+directly, as in the previous example. In order to carry out the risk
+calculations in which the economic cost of each \gls{asset} is provided, the
+\glsdesc{acr:oqe} multiplies, for each \gls{asset}, the number of units
+(buildings) by the ``per asset'' replacement cost. Note that in this case,
+there is no need to specify the attribute \Verb+area+.
 
 
 \paragraph{Example 3}
 
 The example shown in Listing~\ref{lst:input_exposure_carea_aagg_metadata}
 comprises an \gls{exposuremodel} containing the built up area of each
-building typology for a set of locations, and the associated costs are
-provided per unit area.
+\gls{asset}, and the associated costs are provided per unit area.
 
 \begin{listing}[htbp]
   \inputminted[firstline=8,firstnumber=8,lastline=20,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_exposure_carea_aagg.xml}
@@ -294,7 +300,7 @@ aggregated area of number of units within an asset, or the average area of a
 single unit. In this particular case, the \Verb+area+ that is being stored is
 the aggregated built up area per asset, and thus this attribute was set to
 \Verb+aggregated+. Listing~\ref{lst:input_exposure_carea_aagg_assets}
-illustrates the definition of the assets for this example.
+illustrates the definition of the \glspl{asset} for this example.
 
 \begin{listing}[htbp]
   \inputminted[firstline=21,firstnumber=21,lastline=31,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_exposure_carea_aagg.xml}
@@ -302,18 +308,18 @@ illustrates the definition of the assets for this example.
   \label{lst:input_exposure_carea_aagg_assets}
 \end{listing}
 
-Once again, the \glsdesc{acr:oqe} needs to carry out some calculations in order
-to compute the different costs per asset. In this case, this value is computed
-by multiplying the aggregated built up \Verb+area+ of each building typology
-by the associated cost per unit of area. Notice that in this case, there is no
-need to specify the attribute \Verb+number+.
+Once again, the \glsdesc{acr:oqe} needs to carry out some calculations in
+order to compute the different costs per \gls{asset}. In this case, this value
+is computed by multiplying the aggregated built up \Verb+area+ of each
+\gls{asset} by the associated cost per unit area. Notice that in this case,
+there is no need to specify the attribute \Verb+number+.
 
 
 \paragraph{Example 4}
 
 This example demonstrates an \gls{exposuremodel} that defines the number of
-buildings for each location, the average built up area per building unit and
-the associated costs per unit area.
+structural units for each \gls{asset}, the average built up area per
+structural unit and the associated costs per unit area.
 Listing~\ref{lst:input_exposure_carea_aunit_metadata} shows the metadata
 definition for an \gls{exposuremodel} built in this manner.
 
@@ -337,20 +343,21 @@ of the assets for this example.
 
 In this example, the \glsdesc{acr:oqe} will make use of all the parameters to
 estimate the various costs of each \gls{asset}, by multiplying the number of
-buildings by its average built up area, and then by the respective cost per
-unit of area.
+structural units by its average built up area, and then by the respective cost
+per unit area.
 
 
 \paragraph{Example 5}
 
 In this example, additional information will be included, which is required
 for other risk analysis besides loss estimation, such as the calculation of
-insured losses or benefit/cost analysis. For the former assessment, it is
-necessary to establish how the insurance \glspl{limit} and \glspl{deductible}
-are going to be defined. Listing~\ref{lst:input_exposure_ins_rel_metadata}
-illustrates the metadata section of an \gls{exposuremodel} where the insurance
-\glspl{limit} and \glspl{deductible} for structural components will be defined
-relative to the structural replacement cost.
+insured losses or benefit/cost analysis. For the calculation of insured
+losses, it is necessary to establish how the insurance \glspl{limit} and
+\glspl{deductible} are going to be defined.
+Listing~\ref{lst:input_exposure_ins_rel_metadata} illustrates the metadata
+section of an \gls{exposuremodel} where the insurance \glspl{limit} and
+\glspl{deductible} for structural components will be defined relative to the
+structural replacement cost.
 
 \begin{listing}[htbp]
   \inputminted[firstline=8,firstnumber=8,lastline=21,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/risk/Verbatim/input_exposure_ins_rel.xml}
@@ -449,7 +456,6 @@ calculation.
 
 
 
-Scripts to convert an \gls{exposuremodel} in CSV format or as Excel or
-ASCII files into NRML are also under development, and can be found at the
-OpenQuake platform at the following address:
-\href{https://platform.openquake.org/ript/}{https://platform.openquake.org/ript/}.
+A web-based tool to build an \gls{exposuremodel} in the \gls{acr:nrml} schema
+are also under development, and can be found at the OpenQuake platform at the
+following address: \href{https://platform.openquake.org/ript/}{https://platform.openquake.org/ript/}.

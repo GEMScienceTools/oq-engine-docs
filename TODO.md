@@ -13,3 +13,8 @@ Hazard
 * Section on implemented Ground Shaking Intensity Models needs updating
 * Describe the correct behavior of `ses_per_logic_tree_path`, `investigation_time`
 * ~~Replace the nonexistent `poes_hazard_maps` with `poes`~~
+
+Risk
+----
+
+* Document PMF vulnerability functions

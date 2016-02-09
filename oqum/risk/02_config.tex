@@ -49,9 +49,9 @@ and risk analysis using the \glsdesc{acr:oqe} are organised into:
 
 \end{itemize}
 
-The file formats for \glspl{exposuremodel}, \glspl{fragiltymodel},
+The file formats for \glspl{exposuremodel}, \glspl{fragilitymodel},
 \glspl{consequencemodel}, and \glspl{vulnerabilitymodel} have been described
-earlier in Chapter~\ref{chap:riskintro}. The configuration file is the primary
+earlier in Chapter~\ref{chap:riskinputs}. The configuration file is the primary
 file that provides the \glsdesc{acr:oqe} information regarding both the
 definition of the input models (e.g. exposure, site parameters, fragility,
 consequence, or vulnerability models) as well as the parameters governing the
@@ -59,10 +59,10 @@ risk calculation.
 
 Information regarding the configuration file for running hazard calculations
 using the \glsdesc{acr:oqe} can be found in
-Section~\ref{sec:hazard_configuration_file}. Some initial parameters of the
-configuration file common to all of the risk calculators are presented in
-Listing~\ref{lst:config_example}. The remaining parameters that are specific
-to each risk calculator are discussed in subsequent sections.
+Section~\ref{sec:hazard_configuration_file}. Some initial mandatory parameters
+of the configuration file common to all of the risk calculators are presented
+in Listing~\ref{lst:config_example}. The remaining parameters that are
+specific to each risk calculator are discussed in subsequent sections.
 
 \begin{listing}[htbp]
   \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{ini}{oqum/risk/Verbatim/config_example.ini}
