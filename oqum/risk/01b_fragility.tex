@@ -54,28 +54,33 @@ described after the snippet:
 
 \begin{itemize}
 
-    \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the 
-      \gls{fragilitymodel}
+    \item \Verb+id+: mandatory; a unique string used to identify the 
+      \gls{fragilitymodel}. This string can contain letters~(a--z; A--Z), 
+      numbers~(0--9), dashes~(-), and underscores~(\_), with a maximum of 
+      100~characters.
 
     \item \Verb+assetCategory+: an optional string used to specify the type of
       \glspl{asset} for which \glspl{fragilityfunction} will be defined in this
-      file (e.g: buildings, lifelines)
+      file (e.g: buildings, lifelines).
 
     \item \Verb+lossCategory+: mandatory; valid strings for this attribute are 
       ``structural'', ``nonstructural'', ``contents'', and 
-      ``business\_interruption''
+      ``business\_interruption''.
 
-    \item \Verb+description+: mandatory; a brief string with further information about the
-      \gls{fragilitymodel}, for example, which building typologies are covered
-      or the source of the functions in the \gls{fragilitymodel}
+    \item \Verb+description+: mandatory; a brief string (ASCII) with further 
+      relevant information about the \gls{fragilitymodel}, 
+      for example, which building typologies are covered
+      or the source of the functions in the \gls{fragilitymodel}.
 
     \item \Verb+limitStates+: mandatory; this field is used to define the number and 
       nomenclature of each limit state. Four limit states are employed in the 
       example above, but it is possible to use any number of discrete states,
       as long as a fragility curve is always defined for each limit state. The 
       limit states must be provided as a set of strings separated by whitespaces 
-      between each limit state. Please ensure that there is no whitespace within 
-      the name of any individual limit state.
+      between each limit state. Each limit state string can contain
+      letters~(a--z; A--Z), numbers~(0--9), dashes~(-), and underscores~(\_).
+      Please ensure that there is no whitespace within the name of any
+      individual limit state.
 
 \end{itemize}
 
@@ -90,33 +95,35 @@ The following attributes are needed to define a discrete \gls{fragilityfunction}
 
 \begin{itemize}
 
-    \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the \gls{taxonomy} for 
-    which the function is being defined. This string is used to relate the 
-    \gls{fragilityfunction} with the relevant \gls{asset} in the 
-    \gls{exposuremodel}.
+    \item \Verb+id+: mandatory; a unique string used to identify the 
+      \gls{taxonomy} for which the function is being defined. This string is
+      used to relate the \gls{fragilityfunction} with the relevant \gls{asset}
+      in the \gls{exposuremodel}. This string can contain letters~(a--z; A--Z),
+      numbers~(0--9), dashes~(-), and underscores~(\_), with a maximum of
+      100~characters.
 
     \item \Verb+format+: mandatory; for discrete \glspl{fragilityfunction}, this
-    attribute should be set to ``\Verb+discrete+''
+      attribute should be set to ``\Verb+discrete+''.
 
     \item \Verb+imls+: mandatory; this attribute specifies the list of intensity levels
-    for which the limit state probabilities of exceedance will be defined. 
-    In addition, it is also necessary to define the intensity measure type 
-    (\Verb+imt+). Optionally, a \Verb+noDamageLimit+ can be specified, which 
-    defines the intensity level below which the probability of exceedance 
-    for all limit states is taken to be zero.
+      for which the limit state probabilities of exceedance will be defined. 
+      In addition, it is also necessary to define the intensity measure type 
+      (\Verb+imt+). Optionally, a \Verb+noDamageLimit+ can be specified, which 
+      defines the intensity level below which the probability of exceedance 
+      for all limit states is taken to be zero.
 
     \item \Verb+poes+: mandatory; this field is used to define the probabilities of 
-    exceedance (\Verb+poes+) for each limit state for each discrete 
-    \gls{fragilityfunction}. It is also necessary to specify which limit 
-    state the exceedance probabilities are being defined for using the 
-    attribute \Verb+ls+. The probabilities of exceedance for each limit state
-    must be provided on a separate line; and the number of exceedance 
-    probabilities for each limit state defined by the \Verb+poes+ attribute 
-    must be equal to the number of intensity levels defined by the attribute 
-    \Verb+imls+. Finally, the number and names of the limit states in each 
-    fragility function must be equal to the number of limit states defined 
-    earlier in the metadata section of the \gls{fragilitymodel} using the 
-    attribute \Verb+limitStates+.
+      exceedance (\Verb+poes+) for each limit state for each discrete 
+      \gls{fragilityfunction}. It is also necessary to specify which limit 
+      state the exceedance probabilities are being defined for using the 
+      attribute \Verb+ls+. The probabilities of exceedance for each limit state
+      must be provided on a separate line; and the number of exceedance 
+      probabilities for each limit state defined by the \Verb+poes+ attribute 
+      must be equal to the number of intensity levels defined by the attribute 
+      \Verb+imls+. Finally, the number and names of the limit states in each 
+      fragility function must be equal to the number of limit states defined 
+      earlier in the metadata section of the \gls{fragilitymodel} using the 
+      attribute \Verb+limitStates+.
 
 \end{itemize}
 
@@ -131,40 +138,43 @@ The following attributes are needed to define a continuous \gls{fragilityfunctio
 
 \begin{itemize}
 
-    \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the \gls{taxonomy} for 
-    which the function is being defined. This string is used to relate the 
-    \gls{fragilityfunction} with the relevant \gls{asset} in the 
-    \gls{exposuremodel}.
+    \item \Verb+id+: mandatory; a unique string used to identify the 
+      \gls{taxonomy} for which the function is being defined. This string is
+      used to relate the \gls{fragilityfunction} with the relevant \gls{asset}
+      in the \gls{exposuremodel}. This string can contain letters~(a--z; A--Z),
+      numbers~(0--9), dashes~(-), and underscores~(\_), with a maximum of
+      100~characters.
 
-    \item \Verb+format+: mandatory; for continuous \glspl{fragilityfunction}, this
-    attribute should be set to ``\Verb+continuous+''
+    \item \Verb+format+: mandatory; for continuous \glspl{fragilityfunction},
+      this attribute should be set to ``\Verb+continuous+''.
 
-    \item \Verb+shape+: mandatory; for continuous \glspl{fragilityfunction} using the lognormal
-    cumulative distrution, this attribute should be set to ``\Verb+logncdf+''.
-    At present, only the lognormal cumulative distribution function can be 
-    used for representing continuous \glspl{fragilityfunction}.
+    \item \Verb+shape+: mandatory; for continuous \glspl{fragilityfunction}
+      using the lognormal cumulative distrution, this attribute should be set
+      to ``\Verb+logncdf+''. At present, only the lognormal cumulative
+      distribution function can be used for representing continuous
+      \glspl{fragilityfunction}.
 
-    \item \Verb+imls+: mandatory; this element specifies various aspects related to the 
-    intensity measure used by the the \gls{fragilityfunction}. The range of 
-    intensity levels for which the continuous \glspl{fragilityfunction} are valid 
-    are specified using the attributes \Verb+minIML+ and \Verb+maxIML+. 
-    In addition, it is also necessary to define the intensity measure type 
-    \Verb+imt+. Optionally, a \Verb+noDamageLimit+ can be specified, which 
-    defines the intensity level below which the probability of exceedance 
-    for all limit states is taken to be zero.
+    \item \Verb+imls+: mandatory; this element specifies aspects related to the
+      intensity measure used by the the \gls{fragilityfunction}. The range of 
+      intensity levels for which the continuous \glspl{fragilityfunction} are valid
+      is specified using the attributes \Verb+minIML+ and \Verb+maxIML+. 
+      In addition, it is also necessary to define the intensity measure type 
+      \Verb+imt+. Optionally, a \Verb+noDamageLimit+ can be specified, which 
+      defines the intensity level below which the probability of exceedance 
+      for all limit states is taken to be zero.
 
-    \item \Verb+params+: mandatory; this field is used to define the parameters of the 
-    continuous curve for each limit state for this 
-    \gls{fragilityfunction}. For a lognormal cumulative distrbution function, 
-    the two parameters required to specify the function are the mean and 
-    standard deviation of the intensity level. These parameters are defined for 
-    each limit state using the attributes \Verb+mean+ and \Verb+stddev+ 
-    respectively. The attribute \Verb+ls+ specifies the limit state for which 
-    the parameters are being defined. The parameters for each limit state
-    must be provided on a separate line. The number and names of the limit 
-    states in each \gls{fragilityfunction} must be equal to the number of limit 
-    states defined earlier in the metadata section of the \gls{fragilitymodel}
-    using the attribute \Verb+limitStates+.
+    \item \Verb+params+: mandatory; this field is used to define the parameters
+      of the continuous curve for each limit state for this 
+      \gls{fragilityfunction}. For a lognormal cumulative distrbution function, 
+      the two parameters required to specify the function are the mean and 
+      standard deviation of the intensity level. These parameters are defined for 
+      each limit state using the attributes \Verb+mean+ and \Verb+stddev+ 
+      respectively. The attribute \Verb+ls+ specifies the limit state for which 
+      the parameters are being defined. The parameters for each limit state
+      must be provided on a separate line. The number and names of the limit 
+      states in each \gls{fragilityfunction} must be equal to the number of limit 
+      states defined earlier in the metadata section of the \gls{fragilitymodel}
+      using the attribute \Verb+limitStates+.
 
 \end{itemize}
 

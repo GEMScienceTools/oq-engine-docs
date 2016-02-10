@@ -30,17 +30,19 @@ described below:
 
 \begin{itemize}
 
-  \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the
-    \gls{exposuremodel}
+  \item \Verb+id+: mandatory; a unique string used to identify the
+    \gls{exposuremodel}. This string can contain letters~(a--z; A--Z), 
+    numbers~(0--9), dashes~(--), and underscores~(\_), with a maximum of 
+    100~characters.
 
   \item \Verb+category+: an optional string used to define the type of
-    \glspl{asset} being stored (e.g: buildings, lifelines)
+    \glspl{asset} being stored (e.g: buildings, lifelines).
 
   \item \Verb+taxonomySource+: an optional attribute used to define the
-    \gls{taxonomy} being used to classify the \glspl{asset}
+    \gls{taxonomy} being used to classify the \glspl{asset}.
 
-  \item \Verb+description+: mandatory; a brief string (UTF-8) with further
-    information about the \gls{exposuremodel}
+  \item \Verb+description+: mandatory; a brief string (ASCII) with further
+    information about the \gls{exposuremodel}.
 
 \end{itemize}
 
@@ -114,7 +116,7 @@ The \Verb+unit+ attribute of the \Verb+area+ element is used for specifying
 the units for the area of an \gls{asset}. The \glsdesc{acr:oqe} itself is
 agnostic to the area units; the \Verb+unit+ is thus a descriptive attribute
 which is used by the \glsdesc{acr:oqe} to annotate the results of a risk
-assessment. This attribute can be set to any valid UTF-8 string.
+assessment. This attribute can be set to any valid ASCII string.
 
 The \Verb+type+ attribute of the \Verb+area+ element specifies whether the
 area will be provided as an aggregated value for an \gls{asset}, or per
@@ -158,9 +160,11 @@ the \gls{exposuremodel}:
 
 \begin{itemize}
 
-  \item \Verb+id+: mandatory; a unique string (UTF-8) used to identify the 
+  \item \Verb+id+: mandatory; a unique string used to identify the 
     given \gls{asset}, which is used by the \glsdesc{acr:oqe} to relate each
-    \gls{asset} with its associated results.
+    \gls{asset} with its associated results. This string can contain 
+    letters~(a--z; A--Z), numbers~(0--9), dashes~(-), and underscores~(\_), 
+    with a maximum of 100~characters.
 
   \item \Verb+taxonomy+: mandatory; this string specifies the building typology
     of the given \gls{asset}. The taxonomy strings can be user-defined, or
