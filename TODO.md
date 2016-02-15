@@ -14,6 +14,7 @@ Hazard
 * Replace --run-hazard and --rh with --run
 * Replace --list-hazard-outputs and --lho with --list-outputs and --lo
 * Replace --export-hazard-outputs and --eho with --export-outputs and --eos
+* Replace (outdated) --export-hazard and --eh with --export-output and --eo
 * Describe the priority order amongst sites/sites_csv, site_model_file,
   exposure_file, and region, for the set of sites 
   where the hazard outputs will be computed
