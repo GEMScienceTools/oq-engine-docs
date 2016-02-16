@@ -21,19 +21,19 @@ random_seed = 1024
 
 \textbf{Event based parameters}
 
-This is section is used to specify the number of stochastic event sets to be
+This section is used to specify the number of stochastic event sets to be
 generated for each logic tree realisation  (each stochastic event set
 represents a potential realisation of seismicity during the
 \texttt{investigation\_time} specified in the
 \texttt{calculation\_configuration} part). Additionally, in this section the
-user can specify the spatial correlation model to be used in case for the
+user can specify the spatial correlation model to be used for the
 generation of ground motion fields.
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 [event_based_params]
 ses_per_logic_tree_path = 5
 ground_motion_correlation_model = JB2009
-ground_motion_correlation_params = {"vs30_clustering": True}
+ground_motion_correlation_params = \{"vs30_clustering": True\}
 \end{Verbatim}
 
 The acceptable flags for the parameter \verb+vs30_clustering+ are \verb+False+
@@ -56,8 +56,8 @@ ground_motion_fields = true
 # given the specified `intensity_measure_types_and_levels`
 hazard_curves_from_gmfs = true
 mean_hazard_curves = true
-quantile_hazard_curves = 0.15, 0.5, 0.85
-poes_hazard_maps = 0.1, 0.2
+quantile_hazard_curves = 0.15 0.5 0.85
+poes = 0.1 0.2
 \end{Verbatim}
 
 The option \verb=hazard_curves_from_gmfs= instructs the user to use the event-based ground motion values to provide hazard curves indicating the probabilities of exceeding the intensity measure levels set previously in the \verb=intensity_measure_types_and_levels= option.
