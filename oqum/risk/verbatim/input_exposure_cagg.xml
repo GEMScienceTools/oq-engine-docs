@@ -13,11 +13,11 @@
       <costType name="structural" type="aggregated" unit="USD" />
       <costType name="nonstructural" type="aggregated" unit="USD" />
       <costType name="contents" type="aggregated" unit="USD" />
-      <costType name="business_interruption" type="aggregated" unit="USD/month" />
+      <costType name="business_interruption" type="aggregated" unit="USD/month"/>
     </costTypes>
   </conversions>
   <assets>
-    <asset id="a1" number="2" taxonomy="Adobe" >
+    <asset id="a1" taxonomy="Adobe" >
       <location lon="-122.000" lat="38.113" />
       <costs>
         <cost type="structural" value="20000" />

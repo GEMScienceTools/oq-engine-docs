@@ -1,18 +1,18 @@
 This Chapter summarises the structure of the information necessary to define
-the different input data to be used with the OpenQuake-engine risk
+the different input data to be used with the \glsdesc{acr:oqe} risk
 calculators. Input data for scenario-based and probabilistic seismic damage
-and risk analysis using OpenQuake-engine are organised into:
+and risk analysis using the \glsdesc{acr:oqe} are organised into:
 
 \begin{itemize}
 
   \item An exposure model file in the NRML format, as described in 
     Section~\ref{sec:exposure}.
 
-  \item A file describing the \gls{vulnerability model}
+  \item A file describing the \gls{vulnerabilitymodel}
     (Section~\ref{sec:vulnerability}) for loss calculations, or a 
-  	file describing the \gls{fragility model} (Section~\ref{sec:fragility})
+  	file describing the \gls{fragilitymodel} (Section~\ref{sec:fragility})
     for damage calculations. Optionally, a file describing the
-    \gls{consequence model} (Section~\ref{sec:consequence}) can also be
+    \gls{consequencemodel} (Section~\ref{sec:consequence}) can also be
   	provided in order to calculate losses from the estimated damage
   	distributions.
 
@@ -21,9 +21,9 @@ and risk analysis using OpenQuake-engine are organised into:
   \item Hazard inputs. These include hazard curves for the classical
     probabilistic damage and risk calculators, ground motion fields for the
     scenario damage and risk calculators, or stochastic event sets for the
-    probabilistic event based calculators. As of OpenQuake-engine v1.7, in
+    probabilistic event based calculators. As of \glsdesc{acr:oqe17}, in
     general, there are five different ways in which hazard calculation
-    parameters or results can be provided to the OpenQuake-engine in order to
+    parameters or results can be provided to the \glsdesc{acr:oqe} in order to
     run the subsequent risk calculations:
 
     \begin{itemize}
@@ -36,11 +36,11 @@ and risk analysis using OpenQuake-engine are organised into:
 
       \item Use a configuration file for the risk calculation along with all
       hazard outputs from a previously completed, compatible
-      OpenQuake-engine hazard calculation
+      \glsdesc{acr:oqe} hazard calculation
 
       \item Use a configuration file for the risk calculation along with a
       specific hazard output from a previously completed, compatible
-      OpenQuake-engine hazard calculation
+      \glsdesc{acr:oqe} hazard calculation
 
       \item Use a configuration file for the risk calculation along with
       hazard input files in the OpenQuake NRML format
@@ -49,21 +49,26 @@ and risk analysis using OpenQuake-engine are organised into:
 
 \end{itemize}
 
-The file formats for exposure, fragility, consequence, and vulnerability
-models have been described earlier in Chapter~\ref{chap:riskintro}. The
-configuration file is the primary file that provides the OpenQuake-engine
-information regarding both the definition of the input models (e.g. exposure,
-site parameters, fragility, consequence, or vulnerability models) as well as
-the parameters governing the risk calculation.
+The file formats for \glspl{exposuremodel}, \glspl{fragilitymodel},
+\glspl{consequencemodel}, and \glspl{vulnerabilitymodel} have been described
+earlier in Chapter~\ref{chap:riskinputs}. The configuration file is the primary
+file that provides the \glsdesc{acr:oqe} information regarding both the
+definition of the input models (e.g. exposure, site parameters, fragility,
+consequence, or vulnerability models) as well as the parameters governing the
+risk calculation.
 
 Information regarding the configuration file for running hazard calculations
-using OpenQuake-engine can be found in
-Section~\ref{sec:hazard_configuration_file}. Some initial parameters of the
-configuration file common to all of the risk calculators are presented below.
-The remaining parameters that are specific to each risk calculator are
-discussed in subsequent sections.
+using the \glsdesc{acr:oqe} can be found in
+Section~\ref{sec:hazard_configuration_file}. Some initial mandatory parameters
+of the configuration file common to all of the risk calculators are presented
+in Listing~\ref{lst:config_example}. The remaining parameters that are
+specific to each risk calculator are discussed in subsequent sections.
 
-\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{ini}{oqum/risk/Verbatim/config_example.ini}\\
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{ini}{oqum/risk/Verbatim/config_example.ini}
+  \caption{Example minimal risk calculation configuration file (\href{https://raw.githubusercontent.com/GEMScienceTools/oq-engine-docs/master/oqum/risk/verbatim/config_example.xml}{Download example})}
+  \label{lst:config_example}
+\end{listing}
 
 \begin{itemize}
 
@@ -77,7 +82,7 @@ discussed in subsequent sections.
   and \Verb+classical_bcr+.
 
   \item \Verb+exposure_file+: this parameter is used to specify the path to
-  the \gls{exposure model} file.
+  the \gls{exposuremodel} file.
 
 \end{itemize}
 
@@ -95,15 +100,15 @@ calculators.
 \label{sec:config_scenario_risk}
 \input{oqum/risk/02_config_scenario_risk}
 
-\section{Classical Probabilistic Seismic Risk Calculator}
-\label{sec:config_classical_risk}
-\input{oqum/risk/02_config_classical_risk}
-
 \section{Classical Probabilistic Seismic Damage Calculator}
 \label{sec:config_classical_damage}
 \input{oqum/risk/02_config_classical_damage}
 
-\section{Event-Based Probabilistic Seismic Risk Calculator}
+\section{Classical Probabilistic Seismic Risk Calculator}
+\label{sec:config_classical_risk}
+\input{oqum/risk/02_config_classical_risk}
+
+\section{Stochastic Event Based Probabilistic Seismic Risk Calculator}
 \label{sec:config_event_based_risk}
 \input{oqum/risk/02_config_event_based_risk}
 
@@ -111,8 +116,9 @@ calculators.
 \label{sec:config_benefit_cost}
 \input{oqum/risk/02_config_benefit_cost}
 
-\section{Running the Risk Calculators}
-\label{sec:running_risk}
-\input{oqum/risk/02b_running}
+\section{Exporting Risk Results}
+\label{sec:risk_export}
+\input{oqum/risk/02_export}
+
 
 \cleardoublepage
