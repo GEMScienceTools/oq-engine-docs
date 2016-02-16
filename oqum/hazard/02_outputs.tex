@@ -16,16 +16,15 @@ sections.
 The execution of a hazard analysis using the OpenQuake-engine is
 straightforward. Below we provide an example of the simplest command that can be
 used to launch a hazard calculation. It consists in the invocation of \texttt
-{oq-engine} together with the \texttt{--rh} option which stands for ``run
-hazard'' and the name of a configuration file (in the example below it
+{oq-engine} together with the \texttt{-{}-run} or \texttt{-{}-rh} (run-hazard) option, and the name of a configuration file (in the example below it
 corresponds to \texttt{job.ini}):
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --rh job.ini
+user@ubuntu:~$ oq-engine --run job.ini
 \end{Verbatim}
 
 The amount of information prompted during the execution of the analysis can be
-controlled through the \texttt{--log-level} flag as shown in the example below:
+controlled through the \texttt{-{}-log-level} flag as shown in the example below:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ oq-engine --rh job.ini --log-level debug
@@ -49,13 +48,14 @@ The first option is defined at the OpenQuake-engine invocation through the
 flag \texttt{--exports xml}, as shown in the example below:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --rh job.ini \textcolor{red}{--exports xml}
+user@ubuntu:~$ oq-engine --run job.ini \textcolor{red}{--exports xml}
 \end{Verbatim}
+\noindent This will export the results to the \verb=results= directory specified in the \verb=job.ini= file. 
 
 The second option allows the user to export the computed results or just a
 subset of them whenever they want. In order to obtain the list of results of
 the hazard calculations stored in the \gls{acr:oqe} database the user can
-utilize the following command:
+utilize the \texttt{-{}-lhc} command (`list hazard calculations') to list the hazard calculations:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ oq-engine --lhc
@@ -67,11 +67,11 @@ below (the numbers in red are the calculations IDs):
 \input{oqum/hazard/verbatim/output_list_hazard_calcs}
 
 Subsequently the user can get the list of result stored for a specific hazard
-analysis as in the example below (note that the number in blue emphasizes the
+analysis by using the \texttt{-{}-list-outputs}, or \texttt{-{}-lo}, command, as in the example below (note that the number in blue emphasizes the
 result ID):
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --lho <calc_id>
+user@ubuntu:~$ oq-engine --lo <calc_id>
 id | output_type | name
 \textcolor{blue}{3} | hazard_curve | hc-rlz-6
 \end{Verbatim}
@@ -79,7 +79,7 @@ id | output_type | name
 and finally extract an xml file for a specific hazard result:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --eh <result_id> <path_to_the_output_folder>
+user@ubuntu:~$ oq-engine --export-outputs <result_id> <output_folder>
 \end{Verbatim}
 
 
@@ -95,7 +95,7 @@ When epistemic uncertainty is incorporated into the calculation, the
 OpenQuake-engine calculators (e.g. Classical PSHA, Event Based PSHA,
 Disaggregation, UHS) produce a set of results (i.e. hazard curves, ground
 motion fields, disaggregation matrices, UHS, for each logic-tree realisation)
-which reflects epistemic uncertainties introduced in the PSHA input model.
+which reflects epistemic uncertainties introduced in the PSHA input model. The user can specify that only the mean results and desired quantiles are exported by using the optional configuration \verb+individual_curves=False+ in the \verb=job.ini= file.
 
 For each logic tree sample, results are computed and stored. Calculation of
 results statistics (mean, standard deviation, quantiles) are supported by all

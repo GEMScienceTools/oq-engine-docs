@@ -9,7 +9,7 @@ Section~\ref{sec:exporting_hazard_results} for an explanation about how to
 obtain the list of calculations performed with their corresponding ID):
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --lho <calc_id>
+user@ubuntu:~$ oq-engine --lo <calc_id>
 id | output_type | name
 \textcolor{red}{3 | hazard_curve | hc-rlz-6}
 \end{Verbatim}
@@ -26,7 +26,7 @@ If we export from the database the hazard curves contained in one of the
 items above using the following command:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --eh <output_id> <output_directory>
+user@ubuntu:~$ oq-engine --export-outputs <output_id> <output_directory>
 \end{Verbatim}
 
 we obtain a nrml formatted file as represented in the example in the inset
