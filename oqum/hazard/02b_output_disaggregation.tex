@@ -2,17 +2,15 @@ The \glsdesc{acr:oqe} output of a disaggregation analysis corresponds to the
 combination of a hazard curve and a multidimensional matrix containing the
 results of the disaggregation.
 
-The example below shows the list of disaggregation results obtained for four
-logic tree realisations.
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+user@ubuntu:~$ oq-engine --lo <calc_id>
+id | output_type | name
+\textcolor{red}{3 | datastore | disagg}
+4  | datastore | realizations
+\end{Verbatim}
+%\input{oqum/hazard/verbatim/output_disaggregation}
 
-For each realisation, disaggregation has been completed for two intensity
-measure levels corresponding to different probabilities of exceedence in the
-specified \texttt{investigation time}.
-
-\input{oqum/hazard/verbatim/output_disaggregation}
-
-In the following inset we show an example of the nrml file used to represent
-the different disaggregation matrices (highlighted in red) produced by
+Running \texttt{-{}-export-output} to export the disaggregation results will produce individual files for each IMT, probability of exceedence and logic tree realisation. In the following inset we show an example of the nrml file used to represent the different disaggregation matrices (highlighted in red) produced by
 \gls{acr:oqe}:
 
 \input{oqum/hazard/verbatim/output_disaggregation_matrix}

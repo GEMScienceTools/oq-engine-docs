@@ -1,19 +1,17 @@
 \subsubsection{Characteristic faults}
+\label{desc_characteristic_fault}
 \index{Source type!fault!characteristic}
 \index{Characteristic fault|see{Source type}}
 
-The charactercistic fault source is a particular typology of fault created
+The characteristic fault source is a particular typology of fault created
 with the assumption that its ruptures will always cover the entire fault
-surface.
+surface. As such, no floating is necessary on the surface. The characteristic fault may still take as input a magnitude frequency distribution. In this case, the fault surface can be represented either as a \gls{simplefaultsource} surface or as a \gls{complexfaultsource} surface or as a combination of rectangular ruptures as represented in
+Figure~\ref{fig:char_fault_source}. Mutiple surfaces containing mixed geometry types are also supported. 
 
-In this case, the fault surface can be represented either as a
-\gls{simplefaultsource} surface or as a \gls{complexfaultsource} surface or as
-a combination of rectangular ruptures as represented in
-Figure~\ref{fig:char_fault_source}.
 
-\begin{figure}[!ht]
+\begin{figure}[htb]
 \centering
-\includegraphics[width=15cm]{figures/hazard/multi_surface.pdf}
+\includegraphics[trim=5cm 7cm 5cm 7cm, clip, width=10cm]{figures/hazard/multi_surface.pdf}
 \caption{Geometry of a multi-segmented characteristic fault composed of four
          rectangular ruptures as modelled in OpenQuake.}
 \label{fig:char_fault_source}
@@ -28,7 +26,7 @@ Figure~\ref{fig:char_fault_source}.
 
         \begin{itemize}
 
-            \item A list of rectangular ruptures
+            \item A list of rectangular ruptures (``planar surfaces'')
 
             \item A \gls{simplefaultsource} geometry
 
@@ -44,3 +42,18 @@ Figure~\ref{fig:char_fault_source}.
     \item Upper and lower depth values limiting the seismogenic interval.
 
 \end{itemize}
+A comprehensive example enumerating the possible rupture surface configurations is shown below. 
+
+\input{oqum/hazard/verbatim/input_characteristic_fault}
+
+\subsubsection{Non-Parametric Fault}
+\label{desc_nonparametric_fault}
+\index{Source type!fault!nonparametric}
+\index{Non-Parametric fault|see{Source type}}
+
+The non-parametric fault typology requires that the user indicates the rupture properties (rupture surface, magnitude, rake and hypocentre) and the corresponding probabilities of the rupture. The probabilities are given as a list of floating point values that correspond to the probabilities of $0, 1, 2, \ldots ... N$ occurrences of the rupture within the specified investigation time. Note that there is not, at present, any internal check to ensure that the investigation time to which the probabilities refer corresponds to that specified in the configuration file. As the surface of the rupture is set explicitly, no rupture floating occurs, and, as in the case of the characteristic fault source, the rupture surface can be defined as either a single planar rupture, a list of planar ruptures, a \gls{simplefaultsource} geometry, a \gls{complexfaultsource} geometry, or a combination of different geometries.
+
+An comprehensive example enumerating the possible configurations is shown below:
+
+\input{oqum/hazard/verbatim/input_nonparametric_source}
+

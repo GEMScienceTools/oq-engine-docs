@@ -34,3 +34,4 @@ oq-manual-blx.bib
 *.tdo
 *.DS_Store
 _minted-oq-manual/
+*.texpadtmp/

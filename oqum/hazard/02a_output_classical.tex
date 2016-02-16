@@ -9,27 +9,36 @@ Section~\ref{sec:exporting_hazard_results} for an explanation about how to
 obtain the list of calculations performed with their corresponding ID):
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --lho <calc_id>
+user@ubuntu:~$ oq-engine --lo <calc_id>
 id | output_type | name
-\textcolor{red}{3 | hazard_curve | hc-rlz-6}
+\textcolor{red}{3 | datastore | hcurves}
+4  | datastore | realizations
 \end{Verbatim}
 
-In this case the \gls{acr:oqe} computed a group of hazard curves with result
-ID equal to \texttt{3}. On the contrary, if the parameter
-\texttt{number\_of\_logic\_tree\_samples} in the configuration file is
-different than zero, then N hazard curves files are generated. The example
-below shows this case:
+%The user need not concern them-self with the realizations output. 
+%
+%In this case the \gls{acr:oqe} computed a group of hazard curves with result
+%ID equal to \texttt{3}. On the contrary, if the parameter
+%\texttt{number\_of\_logic\_tree\_samples} in the configuration file is
+%different than zero, then N hazard curves files are generated. The example
+%below shows this case:
+%
+%\input{oqum/hazard/verbatim/output_classical_single_rlz}
 
-\input{oqum/hazard/verbatim/output_classical_single_rlz}
 
-If we export from the database the hazard curves contained in one of the
-items above using the following command:
+To export from the database the outputs (in this case hazard curves)  contained in one of the output identifies, one can do so with the following command:
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq-engine --eh <output_id> <output_directory>
+user@ubuntu:~$ oq-engine --export-output <output_id> <output_directory>
 \end{Verbatim}
 
-we obtain a nrml formatted file as represented in the example in the inset
+Alternatively, if the user wishes to export all of the outputs associated with a particular calculation then they can use the \texttt{-{}-export-outputs} with the corresponding calculation key:
+
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+user@ubuntu:~$ oq-engine --export-outputs <calc_id> <output_directory>
+\end{Verbatim}
+
+The exports will produce one or more nrml files containing the seismic hazard curves, as represented in the example in the inset
 below:
 
 \input{oqum/hazard/verbatim/output_hazard_curves}
@@ -54,18 +63,27 @@ element which has the coordinates (longitude and latitude in decimal degrees)
 of the site and the values of the probability of exceedance for all the
 intensity measure levels specified in the \texttt{IMLs} element.
 
-If in the configuration file the calculation of mean hazard curves and hazard
-curves corresponding to one or several percentiles have been specified, the
-list of outputs that we should expect from the \glsdesc{acr:oqe} corresponds
-to:
+If the hazard calculation is configured to produce results including seismic hazard maps and uniform hazard spectra, then the list of outputs would display the following:
 
-\input{oqum/hazard/verbatim/output_classical_multiple_rlz}
+\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+user@ubuntu:~$ oq-engine --lo <calc_id>
+id | output_type | name
+\textcolor{red}{3 | datastore | hcurves}
+\textcolor{red}{4 | datastore | hmaps}
+5  | datastore | realizations
+\textcolor{red}{6 | datastore | uhs}
+\end{Verbatim}
 
-In this example the \gls{acr:oqe} produced hazard curves and hazard maps for
-six logic tree realisations plus median hazard curves and the median hazard
-map (both highlighted in red).
+%\input{oqum/hazard/verbatim/output_classical_multiple_rlz}
 
-The following inset shows a sample of the nrml file used to describe a hazard
-map:
+%In this example the \gls{acr:oqe} produced hazard curves and hazard maps for
+%six logic tree realisations plus median hazard curves and the median hazard
+%map (both highlighted in red).
+
+The following inset shows a sample of the nrml file used to describe a hazard map:
 
 \input{oqum/hazard/verbatim/output_hazard_map}
+
+\noindent and a uniform hazard spectrum:
+
+\input{oqum/hazard/verbatim/output_uhs}

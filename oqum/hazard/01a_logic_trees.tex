@@ -154,6 +154,18 @@ Possible values for the \Verb+uncertaintyType+ attribute are:
 
     \item \Verb+maxMagGRAbsolute+: indicates (absolute) epistemic
 	uncertainties on the Gutenberg-Richter maximum magnitude.
+	
+	\item \Verb+incrementalMFDAbsolute+: indicates (absolute) epistemic uncertainties on the incremental magnitude frequency distribution (i.e. alternative rates and/or minimum magnitude) of a specific source (can only be applied to individual sources)
+	
+	\item \Verb+simpleFaultGeometryAbsolute+: indicates alternative representations of the simple fault geometry for an individual simple fault source
+	
+	\item \Verb+simpleFaultDipRelative+: indicates a relative increase or decrease in fault dip for one or more simple fault sources
+	
+	\item \Verb+simpleFaultDipAbsolute+: indicates alternative values of fault dip for one or more simple fault sources
+	
+	\item \Verb+complexFaultGeometryAbsolute+: indicates alternative representations of complex fault geometry for an individual complex fault source
+
+	\item \Verb+characteristicFaultGeometryAbsolute+: indicates alternative representations of the characteristic fault geometry for an individual characteristic fault source
 
 \end{itemize}
 
@@ -208,14 +220,14 @@ Depending on the \Verb+uncertaintyType+ the content of the
 	available GMPEs are given in Appendix~\ref{chap:gsims}), e.g.:
 
 	\begin{Verbatim}[frame=single, commandchars=\\\{\}]
-	<uncertaintyModel>GMPE_NAME</uncertaintyModel>
+<uncertaintyModel>GMPE_NAME</uncertaintyModel>
 	\end{Verbatim}
 
     \item if \Verb+uncertaintyType="sourceModel"+, the uncertainty model
 	contains the paths to a source model file, e.g.:
 
 	\begin{Verbatim}[frame=single, commandchars=\\\{\}]
-	<uncertaintyModel>SOURCE_MODEL_FILE_PATH</uncertaintyModel>
+<uncertaintyModel>SOURCE_MODEL_FILE_PATH</uncertaintyModel>
 	\end{Verbatim}
 
     \item if \Verb+uncertaintyType="maxMagGRRelative"+, the uncertainty model
@@ -223,7 +235,7 @@ Depending on the \Verb+uncertaintyType+ the content of the
 	to the Gutenberg-Richter maximum magnitude:
 
 	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-	<uncertaintyModel>MAX_MAGNITUDE_INCREMENT</uncertaintyModel>
+<uncertaintyModel>MAX_MAGNITUDE_INCREMENT</uncertaintyModel>
 	\end{Verbatim}
 
     \item if \Verb+uncertaintyType="bGRRelative"+, the uncertainty model
@@ -231,23 +243,52 @@ Depending on the \Verb+uncertaintyType+ the content of the
 	to the Gutenberg-Richter b value:
 
 	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-	<uncertaintyModel>B_VALUE_INCREMENT</uncertaintyModel>
+<uncertaintyModel>B_VALUE_INCREMENT</uncertaintyModel>
 	\end{Verbatim}
 
     \item if \Verb+uncertaintyType="abGRAbsolute"+, the uncertainty model
 	must contain one a and b pair:
 
 	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-	<uncertaintyModel>A_VALUE B_VALUE</uncertaintyModel>
+<uncertaintyModel>A_VALUE B_VALUE</uncertaintyModel>
 	\end{Verbatim}
 
     \item if \Verb+uncertaintyType="maxMagGRAbsolute"+, the uncertainty
 	model must contain one Gutenberg-Richter maximum magnitude value:
 
 	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
-	<uncertaintyModel>MAX_MAGNITUDE</uncertaintyModel>
+<uncertaintyModel>MAX_MAGNITUDE</uncertaintyModel>
+	\end{Verbatim}
+	
+	\item if \Verb+uncertaintyType="incrementalMFDAbsolute"+, the uncertainty model must contain an instance of the incremental MFD node:
+	
+	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+<uncertaintyModel>
+    <incrementalMFD
+        minMag="MIN MAGNITUDE"
+        binWidth="BIN WIDTH">
+        <occurRates>RATE_1 RATE_2 ... RATE_N</occurRates>
+    </incrementalMFD>
+</uncertaintyModel>
+    \end{Verbatim}
+
+    \item if \Verb+uncertaintyType="simpleFaultGeometryAbsolute"+ then the uncertainty model must contain a \emph{valid} instance of the \verb+simpleFaultGeometry+ node as described in section \ref{desc_simple_fault}
+
+    \item if \Verb+uncertaintyType="simpleFaultDipRelative"+ then the uncertainty model must specify the number of degrees to increase (positive) or decrease (negative) the fault dip. Note that if this increase results in an adjusted fault dip greater than $90^{\circ}$ or less than $0^{\circ}$ an error will occur.
+     
+     \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+<uncertaintyModel>DIP_INCREMENT</uncertaintyModel>
 	\end{Verbatim}
 
+	\item if \Verb+uncertaintyType="simpleFaultDipAbsolute"+ then the uncertainty model must specify the dip angle (in degrees)
+
+	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+<uncertaintyModel>DIP</uncertaintyModel>
+	\end{Verbatim}
+
+    \item if \Verb+uncertaintyType="complexFaultGeometryAbsolute"+ then the uncertainty model must contain a \emph{valid} instance of the \verb+complexFaultGeometry+ source node as described in section \ref{desc_complex_fault}
+    
+    \item if \Verb+uncertaintyType="characteristicFaultGeometryAbsolute"+ then the uncertainty model must contain a \emph{valid} instance of the \verb+characteristicFaultGeometry+ source node, as described in section \ref{desc_characteristic_fault}
 \end{itemize}
 
 There are no restrictions on the number of \Verb+logicTreeBranch+ elements
