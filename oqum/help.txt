@@ -22,6 +22,7 @@ usage: oq-engine [-h]
                  [--exports EXPORT_FORMATS]
                  [--export-output OUTPUT_ID TARGET_DIR]
                  [--export-outputs CALCULATION_ID TARGET_DIR]
+                 [--export-stats CALCULATION_ID TARGET_DIR OUTPUT_TYPE]
 
 OpenQuake Seismic Hazard and Risk Analysis Engine
 
@@ -89,6 +90,9 @@ Export:
                         in order of priority
   --export-output OUTPUT_ID TARGET_DIR, --eo OUTPUT_ID TARGET_DIR
                         Export the desired output to the specified directory
-  --export-outputs CALCULATION_ID TARGET_DIR, --eos CALCULATION_ID TARGET_DIR
+  --export-outputs, --eos CALCULATION_ID TARGET_DIR
                         Export all the calculation outputs to the specified
+                        directory
+  --export-stats, --es CALCULATION_ID TARGET_DIR OUTPUT_TYPE
+                        Export the statistical outputs to the specified
                         directory
