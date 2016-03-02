@@ -241,12 +241,11 @@ format shown in Listing~\ref{lst:input_exposure_cagg_assets}.
   \label{lst:input_exposure_cagg_assets}
 \end{listing}
 
-Each \gls{asset} is uniquely identified by its \Verb+id+, (e.g. loss
-exceedance curves). Then, a pair of coordinates (latitude and longitude) for a
-\Verb+location+ where the asset is assumed to exist is defined. Each
-\gls{asset} must be classified according to a \Verb+taxonomy+, so that the
-\glsdesc{acr:oqe} is capable of employing the appropriate
-\gls{vulnerabilityfunction} or \gls{fragilityfunction} in the risk
+Each \gls{asset} is uniquely identified by its \Verb+id+. Then, a pair of
+coordinates (latitude and longitude) for a \Verb+location+ where the asset is
+assumed to exist is defined. Each \gls{asset} must be classified according to
+a \Verb+taxonomy+, so that the \glsdesc{acr:oqe} is capable of employing the
+appropriate \gls{vulnerabilityfunction} or \gls{fragilityfunction} in the risk
 calculations. Finally, the cost values of each \Verb+type+ are stored within
 the \Verb+costs+ attribute. In this example, the aggregated value for all
 structural units (within a given \gls{asset}) at each location is provided
