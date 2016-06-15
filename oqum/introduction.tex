@@ -27,27 +27,3 @@ user@ubuntu:~\$ oq-engine --help
 The result is the following:
 
 \inputminted[firstline=1,fontsize=\footnotesize,frame=single]{shell-session}{oqum/help.txt}\\
-
-% ------------------------------------------------------------------------------
-\section{Concurrent Computing with OpenQuake}
-\label{sec:concurrent_tasks}
-
-The \glsdesc{acr:oqe} supports concurrent computing on both standalone
-computers and computer clusters.
-
-The \glsdesc{acr:oqe} works by splitting a computation into a number of tasks
-which are then processed in parallel. The user has the ability to control the
-splitting procedure, at least to a certain extent, by setting the parameter
-\Verb+concurrent_tasks+ in the job.ini file. The \glsdesc{acr:oqe} will try to
-produce a number of tasks close to \Verb+concurrent_tasks+: it could be more, it
-could be less. The details of the algorithm used can change depending on the
-release of the engine and this is why they are not documented here. Our
-suggestion is to provide a value:
-
-\Verb+concurrent_tasks+ = 2 * number of (hyperthread) cores in the workers
-
-or more, if the computation has memory issues. With more tasks, less memory is
-used, but more data is transferred and the computation becomes slower.
-
-If \Verb+concurrent_tasks+ is set to zero, the parallelization is disabled and the
-job is executed by using a single core. This is useful when debugging errors.
