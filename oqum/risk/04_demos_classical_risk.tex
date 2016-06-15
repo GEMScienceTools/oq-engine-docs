@@ -6,7 +6,7 @@ the folder containing the demo input models and configuration files and employ
 the following command:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_hazard.ini
+user@ubuntu:~\$ oq engine --run job_hazard.ini
 \end{minted}
 
 which will produce the following hazard output:
@@ -23,7 +23,7 @@ maps (for probabilities of exceedance of 1\% and 10\%) are produced. The
 following command launches these risk calculations:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+user@ubuntu:~\$ oq engine --run job_risk.ini --hc 8971
 \end{minted}
 
 and the following outputs are expected:

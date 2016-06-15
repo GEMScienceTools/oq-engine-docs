@@ -2,7 +2,6 @@ General
 -------
 
 * Update cover page
-* Update help text (oq engine --help)
 * Remove concurrent tasks section
 * Add current affiliations for Helen and Damiano on authors page
 
@@ -12,8 +11,7 @@ Hazard
 
 * Describe the rupture model NRML schema; provide examples for simple fault, 
   complex fault, single plane, multi plane rupture models
-* Replace `oq-engine` with `oq engine`
-* Replace `oq-engine --rh` with `oq engine --run`
+* Replace `oq engine --rh` with `oq engine --run`
 * Most of the output file examples are outdated
 * Examples for SES and GMF should explain what the different components of
   the rupture tag mean, eg.: col=02~ses=0004~src=12-2~rup=006-03
@@ -33,7 +31,6 @@ Hazard
 Risk
 ----
 
-* Replace `oq-engine` with `oq engine`
 * Update the datastore output names
 * Change collapse maps to damage maps
 * Describe the parameter minimum_intensity`

@@ -7,7 +7,7 @@ only one set of seismic hazard curves will be produced. To run the hazard
 calculation, the following command needs to be employed:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_hazard.ini
+user@ubuntu:~\$ oq engine --run job_hazard.ini
 \end{minted}
 
 which will produce the following sample hazard output:
@@ -24,7 +24,7 @@ in the \gls{exposuremodel} starting from the above generated hazard curves. The
 following command launches the risk calculations:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+user@ubuntu:~\$ oq engine --run job_risk.ini --hc 8971
 \end{minted}
 
 and the following sample outputs are obtained:

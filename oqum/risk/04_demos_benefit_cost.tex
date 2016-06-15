@@ -5,13 +5,13 @@ be employed here. Then, the risk calculations can be initiated using the
 following command:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+user@ubuntu:~\$ oq engine --run job_risk.ini --hc 8971
 \end{minted}
 
 Alternatively, the hazard and risk jobs can be run sequentially using:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_hazard.ini,job_risk.ini
+user@ubuntu:~\$ oq engine --run job_hazard.ini,job_risk.ini
 \end{minted}
 
 which should produce the following output:
