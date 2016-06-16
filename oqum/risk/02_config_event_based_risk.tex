@@ -20,7 +20,8 @@ required for running this stochastic event based risk calculation is shown in
 Listing~\ref{lst:config_event_based_risk_combined}.
 
 \begin{listing}[htbp]
-  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray,linenos,label=job.ini]{ini}{oqum/risk/verbatim/config_event_based_risk_combined.ini}
+  \inputminted[firstline=1,firstnumber=1,fontsize=\scriptsize
+  ,frame=single,bgcolor=lightgray,linenos,label=job.ini]{ini}{oqum/risk/verbatim/config_event_based_risk_combined.ini}
   \caption{Example combined configuration file for running a stochastic event based risk calculation (\href{https://raw.githubusercontent.com/GEMScienceTools/oq-engine-docs/master/oqum/risk/verbatim/config_event_based_risk_combined.xml}{Download example})}
   \label{lst:config_event_based_risk_combined}
 \end{listing}
@@ -43,6 +44,21 @@ specifed in the hazard calculation using the parameter ``investigation\_time''.
 The new parameters introduced in this example are described below:
 
 \begin{itemize}
+
+  \item \Verb+minimum_intensity+: this optional parameter specifies the minimum
+    intensity levels for each of the intensity measure types in the risk model.
+    Ground motion fields where each ground motion value is less than the 
+    specified minimum threshold are discarded. This helps speed up calculations
+    and reduce memory consumption by considering only those ground motion fields
+    that are likely to contribute to losses. It is also possible to set the same
+    threshold value for all intensity measure types by simply providing a single
+    value to this paramter. For instance: ``minimum\_intensity = 0.05'' would
+    set the threshold to 0.05 g for all intensity measure types in the risk 
+    calculation.
+    If this parameter is not set, the \glsdesc{acr:oqe} extracts the minimum
+    thresholds for each intensity measure type from the vulnerability
+    models provided, picking the first intensity value for which the mean loss
+    ratio is nonzero.
 
   \item \Verb+loss_curve_resolution+: this parameter specifies the number of
     points on the aggregate loss curve. The loss levels on the aggregate loss
