@@ -29,6 +29,4 @@ Risk
 
 * Update the datastore output names
 * Change collapse maps to damage maps
-* Remove link to dead repo github.com/gem/oq-risklib
-* Update links to platform.openquake.org/ript
 * Describe the new csv outputs
