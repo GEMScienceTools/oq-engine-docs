@@ -21,7 +21,7 @@ and risk analysis using the \glsdesc{acr:oqe} are organised into:
   \item Hazard inputs. These include hazard curves for the classical
     probabilistic damage and risk calculators, ground motion fields for the
     scenario damage and risk calculators, or stochastic event sets for the
-    probabilistic event based calculators. As of \glsdesc{acr:oqe17}, in
+    probabilistic event based calculators. As of \glsdesc{acr:oqe20}, in
     general, there are five different ways in which hazard calculation
     parameters or results can be provided to the \glsdesc{acr:oqe} in order to
     run the subsequent risk calculations:
@@ -29,18 +29,18 @@ and risk analysis using the \glsdesc{acr:oqe} are organised into:
     \begin{itemize}
 
       \item Use a single configuration file for running the hazard and risk
-      calculations sequentially
+      calculations sequentially (preferred)
 
       \item Use separate configuration files for running the hazard and risk
-      calculations sequentially
+      calculations sequentially (legacy)
 
       \item Use a configuration file for the risk calculation along with all
       hazard outputs from a previously completed, compatible
       \glsdesc{acr:oqe} hazard calculation
 
-      \item Use a configuration file for the risk calculation along with a
-      specific hazard output from a previously completed, compatible
-      \glsdesc{acr:oqe} hazard calculation
+      % \item Use a configuration file for the risk calculation along with a
+      % specific hazard output from a previously completed, compatible
+      % \glsdesc{acr:oqe} hazard calculation
 
       \item Use a configuration file for the risk calculation along with
       hazard input files in the OpenQuake NRML format
