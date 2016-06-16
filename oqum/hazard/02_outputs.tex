@@ -3,7 +3,7 @@ running hazard with the \gls{acr:oqe} and the file formats used to represent
 the results of the analyses.
 
 A general introduction on the use of the \glsdesc{acr:oqe} is provided in
-Section~\ref{sec:running_oq_engine} at page~\pageref{sec:running_oq_engine}. The
+Chapter~\ref{chap:intro} at page~\pageref{chap:intro}. The
 reader is invited to consult this part before diving into the following
 sections.
 
@@ -16,7 +16,8 @@ sections.
 The execution of a hazard analysis using the OpenQuake-engine is
 straightforward. Below we provide an example of the simplest command that can be
 used to launch a hazard calculation. It consists in the invocation of \texttt
-{oq-engine} together with the \texttt{-{}-run} or \texttt{-{}-rh} (run-hazard) option, and the name of a configuration file (in the example below it
+{oq engine} together with the \texttt{-{}-run} option,
+and the name of a configuration file (in the example below it
 corresponds to \texttt{job.ini}):
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
@@ -32,7 +33,7 @@ user@ubuntu:~$ oq engine --run job.ini --log-level debug
 
 In this example we ask the engine to provide an extensive amount of information
 (usually not justified for a standard analysis). Alternative options are:
-\texttt{debug}, \texttt{info}, \texttt{progress}, \texttt{warn}, \texttt{error},
+\texttt{debug}, \texttt{info}, \texttt{warn}, \texttt{error},
 \texttt{critical}.
 
 

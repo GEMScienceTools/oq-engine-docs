@@ -3,7 +3,7 @@ Hazard
 
 * Describe the rupture model NRML schema; provide examples for simple fault, 
   complex fault, single plane, multi plane rupture models
-* Most of the output file examples are outdated
+* Check if the output file examples are outdated
 * Examples for SES and GMF should explain what the different components of
   the rupture tag mean, eg.: col=02~ses=0004~src=12-2~rup=006-03
 * Describe the priority order amongst sites/sites_csv, site_model_file,

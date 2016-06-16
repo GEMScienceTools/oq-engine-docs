@@ -12,19 +12,8 @@ obtain the list of calculations performed with their corresponding ID):
 user@ubuntu:~$ oq engine --lo <calc_id>
 id | output_type | name
 \textcolor{red}{3 | datastore | hcurves}
-4  | datastore | realizations
+\textcolor{black}{4 | datastore | realizations}
 \end{Verbatim}
-
-%The user need not concern them-self with the realizations output. 
-%
-%In this case the \gls{acr:oqe} computed a group of hazard curves with result
-%ID equal to \texttt{3}. On the contrary, if the parameter
-%\texttt{number\_of\_logic\_tree\_samples} in the configuration file is
-%different than zero, then N hazard curves files are generated. The example
-%below shows this case:
-%
-%\input{oqum/hazard/verbatim/output_classical_single_rlz}
-
 
 To export from the database the outputs (in this case hazard curves)  contained in one of the output identifies, one can do so with the following command:
 
@@ -70,15 +59,9 @@ user@ubuntu:~$ oq engine --lo <calc_id>
 id | output_type | name
 \textcolor{red}{3 | datastore | hcurves}
 \textcolor{red}{4 | datastore | hmaps}
-5  | datastore | realizations
+\textcolor{black}{5 | datastore | realizations}
 \textcolor{red}{6 | datastore | uhs}
 \end{Verbatim}
-
-%\input{oqum/hazard/verbatim/output_classical_multiple_rlz}
-
-%In this example the \gls{acr:oqe} produced hazard curves and hazard maps for
-%six logic tree realisations plus median hazard curves and the median hazard
-%map (both highlighted in red).
 
 The following inset shows a sample of the nrml file used to describe a hazard map:
 
