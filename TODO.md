@@ -20,6 +20,5 @@ Hazard
 Risk
 ----
 
-* Check and update the datastore output names
 * Change collapse maps to damage maps
 * Describe the new csv outputs
