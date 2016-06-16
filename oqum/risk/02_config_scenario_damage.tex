@@ -50,10 +50,10 @@ displayed:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 2680 completed in 13 seconds. Results:
-  id | output_type | name
-5069 | datastore   | dmg_by_asset_and_collapse_map
-5070 | datastore   | dmg_by_taxon
-5071 | datastore   | dmg_total
+  id | name
+5069 | dmg_by_asset_and_collapse_map
+5070 | dmg_by_taxon
+5071 | dmg_total
 \end{minted}
 
 Note that one or more of the following parameters can be used in the same job
@@ -189,8 +189,8 @@ will be displayed in the terminal:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 2681 completed in 4 seconds. Results:
-  id | output_type | name
-5072 | datastore   | gmfs
+  id | name
+5072 | gmfs
 \end{minted}
 
 In the example above, the calculation~id of the hazard calculation is 2681.
@@ -211,7 +211,7 @@ the option \Verb+--list-hazard-calculations+ (or \Verb+--lhc+) can be used to
 display a list of all previously run hazard calculations:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-job_id |     status |         last_update |         description
+job_id |     status |         start_time |         description
   2609 | successful | 2015-12-01 14:14:14 | Mid Nepal earthquake
   ...
   2681 | successful | 2015-12-12 10:00:00 | Scenario hazard example
@@ -227,8 +227,8 @@ user@ubuntu:~\$ oq engine --lo 2681
 will produce the following display:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-  id | output_type | name
-5072 | datastore   | gmfs
+  id | name
+5072 | gmfs
 \end{minted}
 
 
@@ -347,11 +347,11 @@ displayed:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 1579 completed in 37 seconds. Results:
-  id | output_type | name
-8990 | datastore | csq_by_asset
-8991 | datastore | csq_by_taxon
-8992 | datastore | csq_total
-8993 | datastore | dmg_by_asset_and_collapse_map
-8994 | datastore | dmg_by_taxon
-8995 | datastore | dmg_total
+  id | name
+8990 | csq_by_asset
+8991 | csq_by_taxon
+8992 | csq_total
+8993 | dmg_by_asset_and_collapse_map
+8994 | dmg_by_taxon
+8995 | dmg_total
 \end{minted}

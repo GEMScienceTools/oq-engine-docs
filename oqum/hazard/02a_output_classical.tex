@@ -10,9 +10,9 @@ obtain the list of calculations performed with their corresponding ID):
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ oq engine --lo <calc_id>
-id | output_type | name
-\textcolor{red}{3 | datastore | hcurves}
-\textcolor{black}{4 | datastore | realizations}
+id | name
+\textcolor{red}{3 | hcurves}
+\textcolor{black}{4 | realizations}
 \end{Verbatim}
 
 To export from the database the outputs (in this case hazard curves)  contained in one of the output identifies, one can do so with the following command:
@@ -27,8 +27,7 @@ Alternatively, if the user wishes to export all of the outputs associated with a
 user@ubuntu:~$ oq engine --export-outputs <calc_id> <output_directory>
 \end{Verbatim}
 
-The exports will produce one or more nrml files containing the seismic hazard curves, as represented in the example in the inset
-below:
+The exports will produce one or more nrml files containing the seismic hazard curves, as represented in the example in the inset below:
 
 \input{oqum/hazard/verbatim/output_hazard_curves}
 
@@ -56,11 +55,11 @@ If the hazard calculation is configured to produce results including seismic haz
 
 \begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
 user@ubuntu:~$ oq engine --lo <calc_id>
-id | output_type | name
-\textcolor{red}{3 | datastore | hcurves}
-\textcolor{red}{4 | datastore | hmaps}
-\textcolor{black}{5 | datastore | realizations}
-\textcolor{red}{6 | datastore | uhs}
+id | name
+\textcolor{red}{3 | hcurves}
+\textcolor{red}{4 | hmaps}
+\textcolor{black}{5 | realizations}
+\textcolor{red}{6 | uhs}
 \end{Verbatim}
 
 The following inset shows a sample of the nrml file used to describe a hazard map:
