@@ -1,9 +1,3 @@
-General
--------
-
-* Add current affiliations for Helen and Damiano on authors page
-
-
 Hazard
 ------
 
