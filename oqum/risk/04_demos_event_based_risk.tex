@@ -9,18 +9,18 @@ trigger the hazard and risk calculations the following command needs to be
 used:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job.ini
+user@ubuntu:~\$ oq engine --run job.ini
 \end{minted}
 
 and the following results are expected:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 8974 completed in 229 seconds. Results:
-  id | output_type | name
-9079 | datastore | agg_curve-rlzs
-9080 | datastore | agg_loss_table
-9081 | datastore | loss_maps-rlzs
-9082 | datastore | rcurves-rlzs
-9083 | datastore | realizations
-9084 | datastore | sescollection
+  id | name
+9079 | agg_curve-rlzs
+9080 | agg_loss_table
+9081 | loss_maps-rlzs
+9082 | rcurves-rlzs
+9083 | realizations
+9084 | sescollection
 \end{minted}

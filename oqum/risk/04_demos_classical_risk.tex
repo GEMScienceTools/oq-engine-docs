@@ -6,16 +6,16 @@ the folder containing the demo input models and configuration files and employ
 the following command:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_hazard.ini
+user@ubuntu:~\$ oq engine --run job_hazard.ini
 \end{minted}
 
 which will produce the following hazard output:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 8971 completed in 34 seconds. Results:
-  id | output_type | name
-9074 | datastore | hcurves
-9075 | datastore | realizations
+  id | name
+9074 | hcurves
+9075 | realizations
 \end{minted}
 
 In this demo, loss exceedance curves for each asset and two probabilistic loss
@@ -23,14 +23,14 @@ maps (for probabilities of exceedance of 1\% and 10\%) are produced. The
 following command launches these risk calculations:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job_risk.ini --hc 8971
+user@ubuntu:~\$ oq engine --run job_risk.ini --hc 8971
 \end{minted}
 
 and the following outputs are expected:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 8973 completed in 16 seconds. Results:
-  id | output_type | name
-9077 | datastore | loss_curves-rlzs
-9078 | datastore | loss_maps-rlzs
+  id | name
+9077 | loss_curves-rlzs
+9078 | loss_maps-rlzs
 \end{minted}

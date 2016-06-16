@@ -435,30 +435,6 @@ also provided as aggregated values for all of the buildings comprising the
 \end{listing}
 
 
-\paragraph{Reusing an exposure model in subsequent calculations}
-
-For calculations involving large \glspl{exposuremodel}, the \glsdesc{acr:oqe}
-makes it possible to read the \gls{exposuremodel} once and reuse the same
-exposure in subsequent calculations. The first time the computation involving
-the \gls{exposuremodel} is run, the exposure will be read and saved in the
-datastore. Then, if you need to re-run the computation by changing some
-parameter external to the exposure, you can comment out the exposure from the
-job.ini file and give the command
-
-\begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job.ini --hc <calc_id>
-\end{minted}
-
-where calc\_id is the ID of the previous calculation. The original exposure
-will be re-used. Note that if a hazard calculation uses an \gls{exposuremodel}
-to specify the sites where the hazard is computed; then any other
-\gls{exposuremodel} provided in a subsequent risk calculation which uses this
-hazard calculation will be  ignored. In such cases, the risk results will be
-computed based on the \gls{exposuremodel} previously specified in the hazard
-calculation.
-
-
-
 A web-based tool to build an \gls{exposuremodel} in the \gls{acr:nrml} schema
 are also under development, and can be found at the OpenQuake platform at the
-following address: \href{https://platform.openquake.org/ript/}{https://platform.openquake.org/ript/}.
+following address: \href{https://platform.openquake.org/ipt/}{https://platform.openquake.org/ipt/}.

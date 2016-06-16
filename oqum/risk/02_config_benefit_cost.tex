@@ -24,7 +24,7 @@ Listing~\ref{lst:config_classical_bcr_combined}.
 
 \begin{listing}[htbp]
   \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray,label=job.ini]{ini}{oqum/risk/verbatim/config_classical_bcr_combined.ini}
-  \caption{Example configuration file for a classical probabilistic retrofit benefit-cost ratio calculation (\href{https://raw.githubusercontent.com/GEMScienceTools/oq-engine-docs/master/oqum/risk/verbatim/config_classical_bcr_combined.xml}{Download example})}
+  \caption{Example configuration file for a classical probabilistic retrofit benefit-cost ratio calculation (\href{https://raw.githubusercontent.com/GEMScienceTools/oq-engine-docs/master/oqum/risk/verbatim/config_classical_bcr_combined.ini}{Download example})}
   \label{lst:config_classical_bcr_combined}
 \end{listing}
 
@@ -49,7 +49,7 @@ described below:
 The above calculation can be run using the command line:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job.ini
+user@ubuntu:~\$ oq engine --run job.ini
 \end{minted}
 
 After the calculation is completed, a message similar to the following will be
@@ -57,6 +57,6 @@ displayed:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 2776 completed in 25 seconds. Results:
-  id | output_type | name
+  id | name
 5422 | Benefit-cost ratio distribution | BCR Map. type=structural, hazard=5420
 \end{minted}

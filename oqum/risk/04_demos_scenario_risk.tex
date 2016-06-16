@@ -6,16 +6,16 @@ To run the Scenario Risk demo, users should navigate to the folder where the
 required files have been placed and employ following command:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
-user@ubuntu:~\$ oq-engine --run job.ini
+user@ubuntu:~\$ oq engine --run job.ini
 \end{minted}
 
 and the following outputs should be produced:
 
 \begin{minted}[fontsize=\footnotesize,frame=single,bgcolor=lightgray]{shell-session}
 Calculation 8970 completed in 16 seconds. Results:
-  id | output_type | name
-9070 | datastore | gmfs
-9071 | datastore | realizations
-9072 | datastore | loss_map-rlzs
-9073 | datastore | agglosses-rlzs
+  id | name
+9070 | gmfs
+9071 | realizations
+9072 | loss_map-rlzs
+9073 | agglosses-rlzs
 \end{minted}
