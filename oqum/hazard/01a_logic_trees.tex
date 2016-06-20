@@ -37,17 +37,17 @@ following:
 Below we provide a simple schema illustrating the skeleton of xml file
 containing the desciption of a logic tree:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-\textcolor{green}{<logicTreeBranchingLevel branchingLevelID=ID>}
-    \textcolor{blue}{<logicTreeBranchSet branchSetID=ID}
-            \textcolor{blue}{uncertaintyType=TYPE>}
-        \textcolor{magenta}{<logicTreeBranch>}
-            \textcolor{cyan}{<uncertaintyModel>VALUE</uncertaintyModel>}
-            \textcolor{cyan}{<uncertaintyWeight>WEIGHT</uncertaintyWeight>}
-        \textcolor{magenta}{</logicTreeBranch>}
-    \textcolor{blue}{</logicTreeBranchSet>}
-\textcolor{green}{</logicTreeBranchingLevel>}
-\end{Verbatim}
+\begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
+<logicTreeBranchingLevel branchingLevelID=ID>
+    <logicTreeBranchSet branchSetID=ID
+                        uncertaintyType=TYPE>
+        <logicTreeBranch>
+            <uncertaintyModel>VALUE</uncertaintyModel>
+            <uncertaintyWeight>WEIGHT</uncertaintyWeight>
+        </logicTreeBranch>
+    </logicTreeBranchSet>
+</logicTreeBranchingLevel>
+\end{minted}
 
 As it appears from this example, the structure of a logic tree is a set of
 nested elements.
@@ -59,45 +59,39 @@ branches (i.e. individual branches)  whose weights sum to 1.
 
 \begin{figure}[!ht]
 \centering
-\includegraphics[width=15cm]{figures/hazard/GenericLogicTreeStructure.pdf}
+\includegraphics[width=13cm]{figures/hazard/GenericLogicTreeStructure.pdf}
 \caption{Generic Logic Tree structure as described in terms of branching
 levels, branch sets, and individual branches.}
 \label{glts}
 \end{figure}
-
-
 
 \subsection{Logic trees as described in the nrml schema}
 
 In the NRML schema, a logic tree structure is defined through the
 \Verb+logicTree+ element:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}]
-<\textcolor{red}{logicTree} logicTreeID="ID">
+\begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
+<logicTree logicTreeID="ID">
 ...
-</\textcolor{red}{logicTree}>
-\end{Verbatim}
+</logicTree>
+\end{minted}
 
-A \Verb+logicTree+ contains as a sequence of \Verb+logicTreeBranchingLevel+
-elements. The position in the sequence of a \Verb+logicTreeBranchingLevel+
-specifies the level of the tree where it is located. That is, the first
-\texttt{logicTreeBranchingLevel} element in the sequence represents  the first
-level in the tree, the second element the second level in the tree, and so on.
+A \Verb+logicTree+ contains as a sequence of \Verb+logicTreeBranchingLevel+ elements. The position in the sequence of a \Verb+logicTreeBranchingLevel+ specifies the level of the tree where it is located. That is, the first \texttt{logicTreeBranchingLevel} element in the sequence represents  the first level in the tree, the second element the second level in the tree, and so on.
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}]
-<\textcolor{red}{logicTree} logicTreeID="ID">
-	<\textcolor{green}{logicTreeBranchingLevel} branchingLevelID="ID_1">
+\begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
+<logicTree logicTreeID="ID">
+	<logicTreeBranchingLevel branchingLevelID="ID_1">
 		...
-	</\textcolor{green}{logicTreeBranchingLevel}>
-	<\textcolor{green}{logicTreeBranchingLevel} branchingLevelID="ID_2">
+	</logicTreeBranchingLevel>
+	<logicTreeBranchingLevel branchingLevelID="ID_2">
 		...
-	</\textcolor{green}{logicTreeBranchingLevel}>
+	</logicTreeBranchingLevel>
 	....
-	<\textcolor{green}{logicTreeBranchingLevel} branchingLevelID="ID_N">
+	<logicTreeBranchingLevel branchingLevelID="ID_N">
 		...
-	</\textcolor{green}{logicTreeBranchingLevel}>
-</\textcolor{red}{logicTree}>
-\end{Verbatim}
+	</logicTreeBranchingLevel>
+</logicTree>
+\end{minted}
 
 There are no restrictions on the number of tree levels that can be defined.
 
@@ -106,30 +100,29 @@ A \Verb+logicTreeBranchingLevel+ is defined as a sequence of
 defines a particular epistemic uncertainty inside a branching level.
 
 A branch set has two required attributes: \Verb+branchSetID+ and
-\Verb+uncertaintyType+. The latter defines the type of epistemic uncertainty
-this branch set is describing.
+\Verb+uncertaintyType+. The latter defines the type of epistemic uncertainty this branch set is describing.
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}]
-<\textcolor{red}{logicTree} logicTreeID="ID">
+\begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
+<logicTree logicTreeID="ID">
 ...
-	<\textcolor{green}{logicTreeBranchingLevel} branchingLevelID="ID_#">
-		<\textcolor{blue}{logicTreeBranchSet} branchSetID="ID_1"
+	<logicTreeBranchingLevel branchingLevelID="ID_#">
+		<logicTreeBranchSet branchSetID="ID_1"
 			uncertaintyType="UNCERTAINTY_TYPE">
 			...
-		</\textcolor{blue}{logicTreeBranchSet}>
-		<\textcolor{blue}{logicTreeBranchSet} branchSetID="ID_2"
+		</logicTreeBranchSet>
+		<logicTreeBranchSet branchSetID="ID_2"
 			uncertaintyType="UNCERTAINTY_TYPE">
 			...
-		</\textcolor{blue}{logicTreeBranchSet}>
+		</logicTreeBranchSet>
 		...
-		<\textcolor{blue}{logicTreeBranchSet} branchSetID="ID_N"
+		<logicTreeBranchSet branchSetID="ID_N"
 			uncertaintyType="UNCERTAINTY_TYPE">
 			...
-		</\textcolor{blue}{logicTreeBranchSet}>
-	</\textcolor{green}{logicTreeBranchingLevel}>
+		</logicTreeBranchSet>
+	</logicTreeBranchingLevel>
 ...
-</\textcolor{red}{logicTree}>
-\end{Verbatim}
+</logicTree>
+\end{minted}
 
 Possible values for the \Verb+uncertaintyType+ attribute are:
 
@@ -169,46 +162,42 @@ Possible values for the \Verb+uncertaintyType+ attribute are:
 
 \end{itemize}
 
-There are no restrictions on the number of branch sets that can be defined
-inside a branching level.
+There are no restrictions on the number of branch sets that can be defined inside a branching level.
 
 A \Verb+branchSet+ is defined as a sequence of \Verb+logicTreeBranch+
 elements, each specified by an \Verb+uncertaintyModel+ element (a string
-identifying an uncertainty model; the content of the string varies with the
-\texttt{uncertaintyType} attribute value of the branchSet element) and the
-\texttt{uncertaintyWeight} element (specifying the probability/weight
-associated to the uncertaintyModel):
+identifying an uncertainty model; the content of the string varies with the \texttt{uncertaintyType} attribute value of the branchSet element) and the \texttt{uncertaintyWeight} element (specifying the probability/weight associated to the uncertaintyModel):
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}]
-<\textcolor{red}{logicTree} logicTreeID="ID">
+\begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
+< logicTree  logicTreeID="ID">
 ...
-	<\textcolor{green}{logicTreeBranchingLevel} branchingLevelID="ID_#">
+	< logicTreeBranchingLevel  branchingLevelID="ID_#">
 		...
-		<\textcolor{blue}{logicTreeBranchSet} branchSetID="ID_#"
+		< logicTreeBranchSet  branchSetID="ID_#"
 				uncertaintyType="UNCERTAINTY_TYPE">
-			<\textcolor{magenta}{logicTreeBranch} branchID="ID_1">
+			< logicTreeBranch  branchID="ID_1">
 				<uncertaintyModel>
-				UNCERTAINTY_MODEL
+				    UNCERTAINTY_MODEL
 				</uncertaintyModel>
 				<uncertaintyWeight>
-				UNCERTAINTY_WEIGHT
+				    UNCERTAINTY_WEIGHT
 				</uncertaintyWeight>
-			</\textcolor{magenta}{logicTreeBranch}>
+			</ logicTreeBranch >
 			...
-			<\textcolor{magenta}{logicTreeBranch} branchID="ID_N">
+			< logicTreeBranch  branchID="ID_N">
 				<uncertaintyModel>
-				UNCERTAINTY_MODEL
+				    UNCERTAINTY_MODEL
 				</uncertaintyModel>
 				<uncertaintyWeight>
-				UNCERTAINTY_WEIGHT
+				    UNCERTAINTY_WEIGHT
 				</uncertaintyWeight>
-			</\textcolor{magenta}{logicTreeBranch}>
-		</\textcolor{blue}{logicTreeBranchSet}>
+			</logicTreeBranch>
+		</logicTreeBranchSet>
 		...
-	</\textcolor{green}{logicTreeBranchingLevel}>
+	</logicTreeBranchingLevel>
 ...
-</\textcolor{red}{logicTree}>
-\end{Verbatim}
+</logicTree >
+\end{minted}
 
 Depending on the \Verb+uncertaintyType+ the content of the
 \Verb+<uncertaintyModel>+ element changes:
@@ -219,50 +208,50 @@ Depending on the \Verb+uncertaintyType+ the content of the
 	contains the name of a ground motion prediction equation (a list of
 	available GMPEs are given in Appendix~\ref{chap:gsims}), e.g.:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>GMPE_NAME</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
     \item if \Verb+uncertaintyType="sourceModel"+, the uncertainty model
 	contains the paths to a source model file, e.g.:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>SOURCE_MODEL_FILE_PATH</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
     \item if \Verb+uncertaintyType="maxMagGRRelative"+, the uncertainty model
 	contains the increment to be added (or subtracted, depending on the sign)
 	to the Gutenberg-Richter maximum magnitude:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>MAX_MAGNITUDE_INCREMENT</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
     \item if \Verb+uncertaintyType="bGRRelative"+, the uncertainty model
 	contains the increment to be added (or subtracted, depending on the sign)
 	to the Gutenberg-Richter b value:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>B_VALUE_INCREMENT</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
     \item if \Verb+uncertaintyType="abGRAbsolute"+, the uncertainty model
 	must contain one a and b pair:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>A_VALUE B_VALUE</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
     \item if \Verb+uncertaintyType="maxMagGRAbsolute"+, the uncertainty
 	model must contain one Gutenberg-Richter maximum magnitude value:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>MAX_MAGNITUDE</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 	
 	\item if \Verb+uncertaintyType="incrementalMFDAbsolute"+, the uncertainty model must contain an instance of the incremental MFD node:
 	
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>
     <incrementalMFD
         minMag="MIN MAGNITUDE"
@@ -270,21 +259,21 @@ Depending on the \Verb+uncertaintyType+ the content of the
         <occurRates>RATE_1 RATE_2 ... RATE_N</occurRates>
     </incrementalMFD>
 </uncertaintyModel>
-    \end{Verbatim}
+    \end{minted}
 
     \item if \Verb+uncertaintyType="simpleFaultGeometryAbsolute"+ then the uncertainty model must contain a \emph{valid} instance of the \verb+simpleFaultGeometry+ node as described in section \ref{desc_simple_fault}
 
     \item if \Verb+uncertaintyType="simpleFaultDipRelative"+ then the uncertainty model must specify the number of degrees to increase (positive) or decrease (negative) the fault dip. Note that if this increase results in an adjusted fault dip greater than $90^{\circ}$ or less than $0^{\circ}$ an error will occur.
      
-     \begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>DIP_INCREMENT</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
 	\item if \Verb+uncertaintyType="simpleFaultDipAbsolute"+ then the uncertainty model must specify the dip angle (in degrees)
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+    \begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
 <uncertaintyModel>DIP</uncertaintyModel>
-	\end{Verbatim}
+	\end{minted}
 
     \item if \Verb+uncertaintyType="complexFaultGeometryAbsolute"+ then the uncertainty model must contain a \emph{valid} instance of the \verb+complexFaultGeometry+ source node as described in section \ref{desc_complex_fault}
     
@@ -305,7 +294,7 @@ attributes allowing for complex tree definitions:
 	is linked to. The linking is established by defining the IDs of the
 	branches to link to:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+	\begin{Verbatim}[commandchars=\\\{\}, samepage=true]
 	applyToBranches="branchID1 branchID2 .... branchIDN"
 	\end{Verbatim}
 
@@ -317,7 +306,7 @@ attributes allowing for complex tree definitions:
     \item \Verb+applyToSources+: specifies to which source in a source model
 	the uncertainty applies to. Sources are specified in terms of their IDs:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+	\begin{Verbatim}[commandchars=\\\{\}, samepage=true]
 	applyToSources="srcID1 srcID2 .... srcIDN"
 	\end{Verbatim}
 
@@ -325,7 +314,7 @@ attributes allowing for complex tree definitions:
 	uncertainty applies to.  Only one source typology can be defined
 	(\Verb+area+, \Verb+point+, \Verb+simpleFault+, \Verb+complexFault+), e.g.:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}, samepage=true]
+	\begin{Verbatim}[commandchars=\\\{\}, samepage=true]
 	applyToSources="area"
 	\end{Verbatim}
 
@@ -335,7 +324,7 @@ attributes allowing for complex tree definitions:
 	Shallow Crust}, \texttt{Subduction Interface}, \texttt{Subduction}
 	\texttt{IntraSlab}, \texttt{Volcanic}), e.g.:
 
-	\begin{Verbatim}[frame=single, commandchars=\\\{\}]
+	\begin{Verbatim}[commandchars=\\\{\}]
 	applyToTectonicRegionType="Active Shallow Crust"
 	\end{Verbatim}
 

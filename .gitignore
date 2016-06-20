@@ -32,6 +32,7 @@ oq-manual-blx.bib
 *.vrb
 *.xdy
 *.tdo
+*.ptc
 *.DS_Store
 _minted-oq-manual/
 *.texpadtmp/

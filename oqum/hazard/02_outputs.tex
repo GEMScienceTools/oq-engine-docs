@@ -20,16 +20,16 @@ used to launch a hazard calculation. It consists in the invocation of \texttt
 and the name of a configuration file (in the example below it
 corresponds to \texttt{job.ini}):
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq engine --run job.ini
-\end{Verbatim}
+\begin{minted}[firstline=1,linenos=false,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{bash}
+user@ubuntu:$ oq engine --run job.ini
+\end{minted}
 
 The amount of information prompted during the execution of the analysis can be
 controlled through the \texttt{-{}-log-level} flag as shown in the example below:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq engine --run job.ini --log-level debug
-\end{Verbatim}
+\begin{minted}[firstline=1,linenos=false,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{bash}
+user@ubuntu:$ oq engine --run job.ini --log-level debug
+\end{minted}
 
 In this example we ask the engine to provide an extensive amount of information
 (usually not justified for a standard analysis). Alternative options are:
@@ -45,22 +45,19 @@ There are two alternative ways to get results from the OpenQuake-engine:
 directly through the calculation or by exporting them from the internal
 \gls{acr:oqe} database once a calculation is completed.
 
-The first option is defined at the OpenQuake-engine invocation through the
-flag \texttt{--exports xml}, as shown in the example below:
+The first option is defined at the OpenQuake-engine invocation through the flag \texttt{--exports xml}, as shown in the example below:
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
-user@ubuntu:~$ oq engine --run job.ini \textcolor{red}{--exports xml}
-\end{Verbatim}
-\noindent This will export the results to the \verb=results= directory specified in the \verb=job.ini= file. 
+\begin{minted}[firstline=1,linenos=false,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{bash}
+user@ubuntu:~$ oq engine --run job.ini --exports xml
+\end{minted}
 
-The second option allows the user to export the computed results or just a
-subset of them whenever they want. In order to obtain the list of results of
-the hazard calculations stored in the \gls{acr:oqe} database the user can
-utilize the \texttt{-{}-lhc} command (`list hazard calculations') to list the hazard calculations:
+This will export the results to the \verb=results= directory specified in the \verb=job.ini= file. 
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+The second option allows the user to export the computed results or just a subset of them whenever they want. In order to obtain the list of results of the hazard calculations stored in the \gls{acr:oqe} database the user can utilize the \texttt{-{}-lhc} command (`list hazard calculations') to list the hazard calculations:
+
+\begin{minted}[firstline=1,linenos=false,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{bash}
 user@ubuntu:~$ oq engine --lhc
-\end{Verbatim}
+\end{minted}
 
 The execution of this command will produce a list similar to the one provided
 below (the numbers in red are the calculations IDs):

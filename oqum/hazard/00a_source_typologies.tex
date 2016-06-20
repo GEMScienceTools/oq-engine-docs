@@ -7,6 +7,8 @@ Currently the \glsdesc{acr:oqe} supports the following source types:
 
 \begin{itemize}
 
+
+    
     \item Sources for modelling distributed seismicity:
 
     \begin{itemize}
@@ -42,7 +44,18 @@ Currently the \glsdesc{acr:oqe} supports the following source types:
 
         \item \Gls{charfaultsource} - A typology of source where ruptures
         always fill the entire fault surface.
+        
+        \item \Gls{nonparametricsource} - A typology of source representing a collection of ruptures, each with their associated probabilities of 0, 1, 2 ... occurrences in the investigation time
 
+    \end{itemize}
+
+    \item Sources for representing individual earthquake ruptures (for use only with the scenario hazard and risk calculators)
+    
+    \begin{itemize}
+        \item Planar fault rupture - an individual fault rupture represented as a single rectangular plane
+        \item Multi-planar fault rupture - an individual rupture represented as a collection of rectangular planes
+        \item Simple fault rupture - an individual fault rupture represented as a simple fault surface
+        \item Complex fault rupture - an individual fault rupture represented as a complex fault surface
     \end{itemize}
 
 \end{itemize}
