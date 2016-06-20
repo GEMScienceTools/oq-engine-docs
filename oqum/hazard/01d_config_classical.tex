@@ -106,6 +106,12 @@ area_source_discretization = 10
 This section of the configuration file is used to specify the level of
 discretization of the mesh representing faults, the grid used to delineate the area sources and, the magnitude-frequency distribution. Note that the smaller is the mesh spacing (or the bin width) the larger are (1) the precision in the calculation and (2) the computation demand.
 
+In cases where the source model may contain a mixture of simple and complex ruptures it is possible to define a different rupture mesh spacing for complex faults only. This may be helpful in models that permit floating ruptures over large subduction sources, in which the nearest source to site distances may be larger than 20 - 30 km, and for which a small mesh spacing would produce a very large number of ruptures. The spacing for complex faults only can be configured by the line:
+
+\begin{minted}[firstline=1,linenos=true,firstnumber=18,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
+comple_rupture_mesh_spacing = 10
+\end{minted}
+
 \textbf{Parameters describing site conditions}
 
 \begin{minted}[firstline=1,linenos=true,firstnumber=18,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
@@ -175,9 +181,16 @@ maximum_distance = 200.0
 
 This section of the \gls{acr:oqe} configuration file specifies the parameters that are relevant for the calculation of hazard. These include the names of the two files containing the Seismic Source System and the Ground Motion System, the duration of the time window used to compute the  hazard, the ground motion intensity measure types and levels for  which the probability of exceedence will be computed, the level of truncation of the Gaussian distribution of the logarithm of ground motion used in the calculation of hazard and the maximum integration distance (i.e. the distance within which sources will contribute to the computation of the hazard).
 
+The maximum distance refers to the largest distance between a rupture and the target calculation sites in order for the rupture to be considered in the PSHA calculation. This can be input directly in terms of kilometres (as above). There may be cases, however, in which it may be appropriate to have a different maximum source to site distance depending on the tectonic region type. This may be used, for example, to eliminate the impact of small, very far-field sources with very low activity rates in stable tectonic regions (in which case maximum distance is reduced), or conversely it may be raised to allow certain source types to contribute to the hazard at greater distances (such as in the case of large subduction interface events). An example configuration for a maximum distance in Active Shallow Crust of 200 km, and in Stable Continental Crust of 150 km, is shown below:
+\begin{minted}[firstline=1,linenos=true,firstnumber=31,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
+maximum_distance = {'Stable Continental Crust': 150.0,
+                    'Active Shallow Crust': 200.0}
+\end{minted}
+
+
 \textbf{Output}
 
-\begin{minted}[firstline=1,linenos=true,firstnumber=32,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
+\begin{minted}[firstline=1,linenos=true,firstnumber=31,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
 [output]
 export_dir = outputs/
 # given the specified `intensity_measure_types_and_levels`
