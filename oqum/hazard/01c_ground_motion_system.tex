@@ -15,4 +15,26 @@ assumes that all the sources in the PSHA input model belong to ``Active
 Shallow Crust'' and uses for calculation the \citet{chiou2008}
 \gls{acr:gmpe}.
 
-\input{oqum/hazard/verbatim/input_gmlt.tex}
+\begin{minted}[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{xml}
+<?xml version="1.0" encoding="UTF-8"?>
+<nrml xmlns:gml="http://www.opengis.net/gml"
+      xmlns="http://openquake.org/xmlns/nrml/0.5">
+    <logicTree logicTreeID="lt1">
+        <logicTreeBranchingLevel branchingLevelID="bl1">
+            <logicTreeBranchSet uncertaintyType="gmpeModel"
+                    branchSetID="bs1"
+                    applyToTectonicRegionType="Active Shallow Crust">
+
+                <logicTreeBranch branchID="b1">
+                    <uncertaintyModel>
+                    ChiouYoungs2008
+                    </uncertaintyModel>
+                    <uncertaintyWeight>1.0</uncertaintyWeight>
+                </logicTreeBranch>
+
+            </logicTreeBranchSet>
+        </logicTreeBranchingLevel>
+    </logicTree>
+</nrml>
+\end{minted}
+%\input{oqum/hazard/verbatim/input_gmlt.tex}

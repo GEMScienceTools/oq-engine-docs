@@ -6,13 +6,12 @@ page~\pageref{subsec:config_classical_psha} as a reference and we emphasize
 herein major differences.
 
 
-\textbf{Calculation type and model info}
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+\begin{minted}[firstline=1,linenos=true,firstnumber=1,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
 [general]
 description = A demo .ini file for PSHA disaggregation
 calculation_mode = disaggregation
 random_seed = 1024
-\end{Verbatim}
+\end{minted}
 
 The calculation mode parameter in this case is set as
 \texttt{disaggregation}.
@@ -21,10 +20,10 @@ The calculation mode parameter in this case is set as
 
 \textbf{Geometry of the area (or the sites) where hazard is computed}
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+\begin{minted}[firstline=1,linenos=true,firstnumber=5,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
 [geometry]
 sites = 11.0 44.5
-\end{Verbatim}
+\end{minted}
 
 In the section it is necessary to specify the geographic coordinates of
 the site (or sites) where the disaggregation will be performed.
@@ -33,14 +32,14 @@ the site (or sites) where the disaggregation will be performed.
 
 \textbf{Disaggregation parameters}
 
-\begin{Verbatim}[frame=single, commandchars=\\\{\}, fontsize=\small]
+\begin{minted}[firstline=1,linenos=true,firstnumber=7,fontsize=\footnotesize,frame=single,bgcolor=lightgray]{ini}
 [disaggregation]
 poes_disagg = 0.02, 0.1
 mag_bin_width = 1.0
 distance_bin_width = 25.0
 coordinate_bin_width = 1.5
 num_epsilon_bins = 3
-\end{Verbatim}
+\end{minted}
 
 With the disaggregation settings shown above we'll disaggregate the intensity
 measure levels with 10\% and 2\% probability of exceedance using the

@@ -81,24 +81,30 @@ engine is the ChiouYoungs2014NearFaultEffect GMPE developed  by
 \citet{chiou2014update} (associated with an \texttt{Active Shallow Crust}
 tectonic region type).
 
-Below we provide two examples of simple fault source files. The first is an
+We provide two examples of simple fault source files. The first is an
 excerpt of an xml file used to describe the properties of a simple fault
 source and the second example shows the excerpt of an xml file used to
-describe the properties of a simple fault source that can be used to perform a
-PSHA calculation taking into account directivity effects.
+describe the properties of a simple fault source that can be used to perform a PSHA calculation taking into account directivity effects.
 
-\input{oqum/hazard/verbatim/input_simple_fault}
-\label{example_incremental_mfd}
+\begin{listing}[htbp]
+  \inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/hazard/verbatim/input_simple_fault.xml}
+  \caption{Example simple fault}
+  \label{lst:example_simple_fault}
+\end{listing}
+%\input{oqum/hazard/verbatim/input_simple_fault}
+%\label{example_incremental_mfd}
 
-Below is an excerpt of a simple fault source xml file for near-fault
-directivity PSHA calculations:
+%Below is an excerpt of a simple fault source xml file for near-fault directivity PSHA calculations:
 
-\input{oqum/hazard/verbatim/input_simple_fault_directivity}
+%\begin{listing}[htbp]
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/hazard/verbatim/input_simple_fault_directivity.xml}
+\captionof{listing}{Example simple fault with added information to model directivity\label{lst:example_simple_fault_directivity}}
 
-As with the previous examples, the red text highlights the parameters used to
-specify the source geometry, the parameters in green describe the rupture
-mechanism, the text in blue describes the magnitude-frequency distribution and
-the gray text describes the rupture properties.
+%\end{listing}
+
+%\input{oqum/hazard/verbatim/input_simple_fault_directivity}
+
+%As with the previous examples, the red text highlights the parameters used to specify the source geometry, the parameters in green describe the rupture mechanism, the text in blue describes the magnitude-frequency distribution and the gray text describes the rupture properties.
 
 
 
@@ -122,7 +128,10 @@ the big subduction structures active in the Pacific (Sumatra, South America,
 Japan) but this source typology can be used also to create - for example -
 listric fault sources with a realistic geometry.
 
-\input{oqum/hazard/verbatim/input_complex_fault}
+\inputminted[firstline=1,firstnumber=1,fontsize=\footnotesize,frame=single,linenos,bgcolor=lightgray]{xml}{oqum/hazard/verbatim/input_complex_fault.xml}
+\captionof{listing}{Example complex fault \label{lst:example_complex_fault}}
+
+%\input{oqum/hazard/verbatim/input_complex_fault}
 
 As with the previous examples, the red text highlights the parameters used to
 specify the source geometry, the parameters in green describe the rupture
