@@ -1,6 +1,7 @@
 Hazard
 ------
 
+* Describe the new parameter `save_ruptures`
 * Check if the output file examples are outdated
 * Describe the priority order amongst sites/sites_csv, site_model_file,
   exposure_file, and region, for the set of sites
@@ -14,6 +15,5 @@ Hazard
 Risk
 ----
 
-* Change collapse maps to damage maps
 * Describe the new csv outputs
 * Describe the parameter `max_site_model_distance`
