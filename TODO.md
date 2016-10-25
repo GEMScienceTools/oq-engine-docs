@@ -17,3 +17,4 @@ Risk
 
 * Describe the new csv outputs
 * Describe the parameter `max_site_model_distance`
+* Describe the parameter `time_event` for scenarios
