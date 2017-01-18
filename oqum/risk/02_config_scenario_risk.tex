@@ -83,6 +83,14 @@ The remaining new parameters introduced in this example are the following:
     insurance limits and deductibles must be listed for each asset in the 
     exposure model, as described in Example~5 in Section~\ref{sec:exposure}.
 
+  \item \Verb+all_losses+: this parameter was introduced in \glsdesc{acr:oqe22}
+    and specifies whether the individual asset and portfolio losses should be
+    stored for each realization; the default value of this parameter is
+    \Verb+false+ and only mean and standard deviation of the portfolio losses
+    across all realizations are stored. If this flag is set to \Verb+true+, a
+    matrix containing all of the losses is saved in the datastore and can be
+    exported in the .npz format.
+
 \end{itemize}
 
 In this case, the ground motion fields will be computed at each of the
