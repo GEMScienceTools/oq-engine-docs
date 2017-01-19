@@ -69,19 +69,30 @@ The remaining new parameters introduced in this example are the following:
     \gls{taxonomy}. If the \Verb+asset_correlation+ is set to one,
     the loss ratio residuals will be perfectly correlated. On the other hand,
     if this parameter is set to zero, the loss ratios will be sampled
-    independently. Any value between zero and one will lead to increasing
-    levels of correlation. If this parameter is not defined, the
+    independently. If this parameter is not defined, the
     \glsdesc{acr:oqe} will assume zero correlation in the vulnerability. As of
     \glsdesc{acr:oqe18}, \Verb+asset_correlation+ applies only to continuous
     \glspl{vulnerabilityfunction} using the lognormal or Beta distribution; 
     it does not apply to \glspl{vulnerabilityfunction} defined using the PMF
-    distribution.
+    distribution. Although partial correlation was supported in previous
+    versions of the engine, beginning from \glsdesc{acr:oqe22}, values between
+    zero and one are no longer supported due to performance considerations. The
+    only two values permitted are \Verb+asset_correlation = 0+ and 
+    \Verb+asset_correlation = 1+.
 
   \item \Verb+insured_losses+: this parameter specifies whether insured losses
     should be calculated; the default value of this parameter is \Verb+false+.
     In order for the \glsdesc{acr:oqe} to be able to compute insured losses, the
     insurance limits and deductibles must be listed for each asset in the 
     exposure model, as described in Example~5 in Section~\ref{sec:exposure}.
+
+  \item \Verb+all_losses+: this parameter was introduced in \glsdesc{acr:oqe22}
+    and specifies whether the individual asset and portfolio losses should be
+    stored for each realization; the default value of this parameter is
+    \Verb+false+ and only mean and standard deviation of the portfolio losses
+    across all realizations are stored. If this flag is set to \Verb+true+, a
+    matrix containing all of the losses is saved in the datastore and can be
+    exported in the .npz format.
 
 \end{itemize}
 
