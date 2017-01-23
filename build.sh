@@ -1,3 +1,9 @@
+#!/bin/bash
+
+if [ $GEM_SET_DEBUG ]; then
+    set -x
+fi
+
 pdflatex -shell-escape -interaction=nonstopmode oq-manual.tex &> log.md
 bibtex oq-manual > log.md
 pdflatex -shell-escape -interaction=nonstopmode oq-manual.tex &> log.md
